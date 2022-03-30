@@ -1,7 +1,7 @@
 # MENU MANUNTENÇÃO
 
 1. DEFINIR DIA DA MANUTENÇÃO GERAL
-2. MARCAR MANUNTENÇÃO
+2. MARCAR MANUTENÇÃO
 3. CANCELAR MANUTENÇÃO
 4. ALTERAR DADO DE UMA MANUTENÇÃO
 5. VISUALIZAR MANUTENÇÕES 
@@ -26,11 +26,11 @@
     
     Nome da manutenção: 
     
-    Descrição da manutencao: 
+    Descrição da manutenção: 
     
     Data da manutenção (dd/mm/aaaa):
     
-    Preventiva ?: Sim ou Não 
+    Preventiva?: Sim ou Não 
 
 ## CANCELAR MANUTENÇÃO
 
@@ -38,12 +38,12 @@
 
 **Cancelamento de Manutenções:**
 
-    Digite o número de identificação da Manutenção (Digite 0 para sair): 
+    Digite o número de identificação da manutenção (Digite 0 para sair): 
     
     DESEJA CANCELAR ESSA MANUTENÇÃO?
-    Manutenção não encontrada ! (Se o sistema não encontrar)
+    Manutenção não encontrada! (Se o sistema não encontrar)
     
-    Digite a senha de Administrador: (Se for manutenção preventiva)
+    Digite a senha de administrador: (Se for manutenção preventiva)
     
     Manutenção Cancelada 
     Digite a senha novamente: (Se a senha não for correta)
@@ -56,7 +56,7 @@
 
 **Alteração de Dados**
 
-     Digite o número de identificação da Manutenção (Digite 0 para sair): 
+     Digite o número de identificação da manutenção (digite 0 para sair): 
      
      Qual dado deseja alterar:
      1. NOME
@@ -72,13 +72,13 @@
     Filtro: 
     1. VISUALIZAR TODAS AS MANUTENÇÕES
     2. VISUALIZAR MANUTENÇÕES ANTES DE: 
-        Insira a Data:
+        Insira a data(dd/mm/aa):
         
     3. VISUALIZAR MANUTENÇÕES DEPOIS DE:
-        Insira a Data: 
+        Insira a data(dd/mm/aa): 
     
     4. VISUALIZAR MANUTENÇÕES EM:
-        Insira a Data:
+        Insira a data(dd/mm/aa):
     
     COD     NOME    DESCRIÇÃO   DATA    PREVENTIVA
         
