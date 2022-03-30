@@ -18,7 +18,9 @@
     
     Tipo da Quadra: Selecione uma das opções através dos números:
     1. SAIBRO;
-    2. BEACH TÊNIS.
+    2. SUPERFÍCIE SINTÉTICA;
+    3. CIMENTO;
+    4. BEACH TÊNIS.
     Opção: 
     
     Possui Cobertura: Sim ou Não
