@@ -16,6 +16,8 @@
     
     Número da Quadra:
     
+    Endereço da Quadra:
+    
     Tipo da Quadra: Selecione uma das opções através dos números:
     1. SAIBRO;
     2. SUPERFÍCIE SINTÉTICA;
@@ -54,16 +56,17 @@
 
      Digite o número de identificação da Quadra:
      
-     Qual informação desja alterar: 
+     Qual informação deseja alterar: 
      1. NOME
      2. NÚMERO
      3. TIPO DA QUADRA
-     4. INFORMAÇÕES ADICIONAIS
+     4. ENDEREÇO DA QUADRA
+     5. INFORMAÇÕES ADICIONAIS
         1. COBERTURA
         2. ARQUIBANCADA
         3. ÁREA DE DESCANSO
         4. VOLTAR
-    5. VOLTAR
+    6. VOLTAR
 
 ## VISUALIZAR QUADRAS
 
@@ -76,7 +79,7 @@
     2. VISUALIZAR QUADRAS HABILITADAS
     3. VISUALIZAR QUADRAS DESABILITADAS
     
-    COD     NOME    TIPO    COBERTURA   ARQUIBANCADA    ÁREA DE DESCANSO    STATUS
+    COD     NOME    TIPO   ENDEREÇO   COBERTURA   ARQUIBANCADA    ÁREA DE DESCANSO    STATUS
 
 
 
