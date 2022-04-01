@@ -10,6 +10,25 @@ public class Quadras {
 	private boolean possuiAreaDescanso;
 	private boolean estaBloqueada = false;
 	
+	protected String identificaTipoQuadra(int identificador) {
+		switch(identificador) {
+		case 1:
+			return "SAIBRO";
+			
+		case 2:
+			return "SUPERFÍCIE SINTÉTICA";
+			
+		case 3:
+			return "CIMENTO";
+			
+		case 4:
+			return "BEACH TENNIS";
+			
+		default:
+			return "OPÇÃO INVÁLIDA";
+		}
+	}
+	
 	protected int getCodigoQuadra() {
 		return codigoQuadra;
 	}
