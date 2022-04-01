@@ -10,7 +10,16 @@ public class Quadras {
 	private boolean possuiAreaDescanso;
 	private boolean estaBloqueada = false;
 	
-	protected String identificaTipoQuadra(int identificador) {
+	public void cadastraQuadra(int numero, String nome, String endereco, String tipo, boolean cobertura, boolean arquibancada, boolean area) {
+		setCodigoQuadra(numero);
+		setNomeQuadra(nome);
+		setEnderecoQuadra(endereco);
+		setTipoQuadra(tipo);
+		setPossuiCobertura(cobertura);
+		setPossuiArquibancada(arquibancada);
+		setPossuiAreaDescanso(area);
+	}
+	public String identificaTipoQuadra(int identificador) {
 		switch(identificador) {
 		case 1:
 			return "SAIBRO";
@@ -84,11 +93,11 @@ public class Quadras {
 	protected void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
 		this.possuiAreaDescanso = possuiAreaDescanso;
 	}
-
+	
 	protected boolean isEstaBloqueada() {
 		return estaBloqueada;
 	}
-
+	
 	protected void setEstaBloqueada(boolean estaBloqueada) {
 		this.estaBloqueada = estaBloqueada;
 	}
