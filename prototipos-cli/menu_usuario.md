@@ -7,7 +7,7 @@
     5. VISUALIZAR USUÁRIOS
     0. VOLTAR
 
-## Cadastro de Usuario
+## Cadastro de Usuário
 
 **Cadastro de Usuário**
 
@@ -26,7 +26,7 @@
 
     Permissões de zelador (s/n):
 
-## Habilitar/Desabilitar Usuarios
+## Habilitar/Desabilitar Usuários
 
 **Habilitação/Desabilitação de usuários**
 
@@ -37,7 +37,7 @@
     Digite o nome do usuário a (opção escolhida):
 
 
-## Bloquear/Desbloquear Usuarios
+## Bloquear/Desbloquear Usuários
 
 **Bloquear/Desbloquear usuários**
 
@@ -50,7 +50,7 @@
 ## Alterar Dados de Usuários
 **Alteração de Dados**
 
-    Digite o nome do usuario a alterar:
+    Digite o nome do usuário a alterar:
 
     Alterar:
     1. Nome
