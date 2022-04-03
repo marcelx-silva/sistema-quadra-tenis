@@ -12,8 +12,8 @@ class Testes {
 		
 		interfaceQua.interfaceCadastrarQuadra(qua);
 		assertEquals("Quadra Municipal de Mogi das Cruzes", qua.getNomeQuadra());
-		assertEquals(15, qua.getCodigoQuadra());
 		assertEquals("Rua da Quadra", qua.getEnderecoQuadra());
+		assertEquals(15, qua.getCodigoQuadra());
 		assertEquals("SAIBRO", qua.getTipoQuadra());
 		assertEquals(true, qua.isPossuiCobertura());
 		assertEquals(true, qua.isPossuiArquibancada());

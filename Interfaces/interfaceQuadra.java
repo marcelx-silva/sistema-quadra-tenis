@@ -34,13 +34,13 @@ public class interfaceQuadra {
 			tipo = quadra.identificaTipoQuadra(scanner.nextInt());
 			
 			utilidades.exibeMensagem("Possui cobertura (sim/não): ");
-			cobertura = utilidades.transformaString(scanner.next());
+			cobertura = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
 			
 			utilidades.exibeMensagem("Possui arquibancada (sim/não): ");
-			arquibancada = utilidades.transformaString(scanner.next());
+			arquibancada = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
 			
 			utilidades.exibeMensagem("Possui área de descanso: ");
-			area = utilidades.transformaString(scanner.next());
+			area = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
 			
 			quadra.cadastraQuadra(numero, nome, endereco, tipo, cobertura, arquibancada, area);
 		}catch(Exception e) {
