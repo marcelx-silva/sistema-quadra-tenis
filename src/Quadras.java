@@ -20,12 +20,12 @@ public class Quadras {
 		setPossuiAreaDescanso(area);
 	}
 	
-	public void bloqueiaQuadraParaAluguel(Quadras quadra) {
-		quadra.setEstaBloqueada(true);
+	public void bloqueiaQuadraParaAluguel() {
+		this.setEstaBloqueada(true);
 	}
 	
-	public void desbloqueiaQuadraParaAluguel(Quadras quadra) {
-		quadra.setEstaBloqueada(false);
+	public void desbloqueiaQuadraParaAluguel() {
+		this.setEstaBloqueada(false);
 	}
 	
 	public String identificaTipoQuadra(int identificador) {
