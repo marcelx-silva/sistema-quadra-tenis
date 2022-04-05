@@ -19,6 +19,15 @@ public class Quadras {
 		setPossuiArquibancada(arquibancada);
 		setPossuiAreaDescanso(area);
 	}
+	
+	public void bloqueiaQuadraParaAluguel(Quadras quadra) {
+		quadra.setEstaBloqueada(true);
+	}
+	
+	public void desbloqueiaQuadraParaAluguel(Quadras quadra) {
+		quadra.setEstaBloqueada(false);
+	}
+	
 	public String identificaTipoQuadra(int identificador) {
 		switch(identificador) {
 		case 1:
