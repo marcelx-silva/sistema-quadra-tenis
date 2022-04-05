@@ -43,7 +43,8 @@
 ​    
     Habilitar: Sim ou Não ( Se a quadra tiver desabilitada)
     
-    Desabilitar: Sim ou Não ( Se a quadra tiver habilitada)
+    A quadra está atualmente (Exibir estado da quadra)
+    Deseja deixar está quadra HABILITADA (digite 1) ou DESABILITADA (digite 0): 
 
  
 
