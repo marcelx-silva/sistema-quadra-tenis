@@ -3,7 +3,7 @@ public class Reservas extends Quadras_Reservas{
 	
 	
 	
-	private String cod_reservista;
+	private int cod_reservista;
 	
 	private String data_reserva;
 	private String hr_inicio_reserva;
@@ -13,9 +13,28 @@ public class Reservas extends Quadras_Reservas{
 	private int parcelas; 
 	
 	
+
+	
+	public String selecionarModoPagamento(int modo_pagamento) {
+		switch(modo_pagamento) {
+		
+		case 1:
+			return "CRÉDITO";
+		case 2:
+			return "DÉBITO";
+		case 3:
+			return "DINHEIRO";
+		case 4:
+			return "PIX";
+		default:
+			return "OPÇÃO INVÁLIDA !";
+		}
+	}
 	
 	
-	protected String getCod_reservista() {
+	
+	
+	protected int getCod_reservista() {
 		return cod_reservista;
 	}
 	
@@ -39,7 +58,7 @@ public class Reservas extends Quadras_Reservas{
 		return parcelas;
 	}
 	
-	protected void setCod_reservista(String cod_reservista){
+	protected void setCod_reservista(int cod_reservista){
 		this.cod_reservista = cod_reservista;
 	}
 	
