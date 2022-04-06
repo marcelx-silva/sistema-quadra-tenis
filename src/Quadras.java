@@ -10,6 +10,50 @@ public class Quadras {
 	private boolean possuiAreaDescanso;
 	private boolean estaBloqueada = false;
 	
+	public void cadastraQuadra(int numero, String nome, String endereco, String tipo, boolean cobertura, boolean arquibancada, boolean area) {
+		setCodigoQuadra(numero);
+		setNomeQuadra(nome);
+		setEnderecoQuadra(endereco);
+		setTipoQuadra(tipo);
+		setPossuiCobertura(cobertura);
+		setPossuiArquibancada(arquibancada);
+		setPossuiAreaDescanso(area);
+	}
+	
+	public boolean verificaNumeroQuadra(int numero) {
+		if(numero == this.getCodigoQuadra()) {
+			return true;
+		}else
+			return false;
+	}
+	
+	public void bloqueiaQuadraParaAluguel() {
+		this.setEstaBloqueada(true);
+	}
+	
+	public void desbloqueiaQuadraParaAluguel() {
+		this.setEstaBloqueada(false);
+	}
+	
+	public String identificaTipoQuadra(int identificador) {
+		switch(identificador) {
+		case 1:
+			return "SAIBRO";
+			
+		case 2:
+			return "SUPERFÍCIE SINTÉTICA";
+			
+		case 3:
+			return "CIMENTO";
+			
+		case 4:
+			return "BEACH TENNIS";
+			
+		default:
+			return "OPÇÃO INVÁLIDA";
+		}
+	}
+	
 	protected int getCodigoQuadra() {
 		return codigoQuadra;
 	}
@@ -65,11 +109,11 @@ public class Quadras {
 	protected void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
 		this.possuiAreaDescanso = possuiAreaDescanso;
 	}
-
+	
 	protected boolean isEstaBloqueada() {
 		return estaBloqueada;
 	}
-
+	
 	protected void setEstaBloqueada(boolean estaBloqueada) {
 		this.estaBloqueada = estaBloqueada;
 	}
