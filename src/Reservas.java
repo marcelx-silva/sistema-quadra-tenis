@@ -13,7 +13,18 @@ public class Reservas extends Quadras_Reservas{
 	private int parcelas; 
 	
 	
-
+	public int parcelarReserva(int parcelas) {
+		switch(parcelas) {
+		case 1:
+			return 1;
+		case 2:
+			return 2;
+		case 3:
+			return 3;
+		default:
+			return 0;
+		}
+	}
 	
 	public String selecionarModoPagamento(int modo_pagamento) {
 		switch(modo_pagamento) {
