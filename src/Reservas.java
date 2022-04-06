@@ -1,9 +1,9 @@
 
-public class Reservas {
+public class Reservas extends Quadras_Reservas{
 	
 	
 	
-	private String nome_reservista;
+	private String cod_reservista;
 	
 	private String data_reserva;
 	private String hr_inicio_reserva;
@@ -15,8 +15,8 @@ public class Reservas {
 	
 	
 	
-	protected String getNome_reservista() {
-		return nome_reservista;
+	protected String getCod_reservista() {
+		return cod_reservista;
 	}
 	
 	protected String getData_reserva(){
@@ -39,8 +39,8 @@ public class Reservas {
 		return parcelas;
 	}
 	
-	protected void setNome_reservista(String nome_reservista){
-		this.nome_reservista = nome_reservista;
+	protected void setCod_reservista(String cod_reservista){
+		this.cod_reservista = cod_reservista;
 	}
 	
 	protected void setData_reserva(String data_reserva){
