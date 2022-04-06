@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
-public class interfaceQuadra {
+public final class interfaceQuadra {
 	
 	Scanner scanner = new Scanner(System.in);
 	UtilidadesSimplificadas utilidades = new UtilidadesSimplificadas();
 	
-	final void interfacePrincipalQuadras() {
+	void interfacePrincipalQuadras() {
 		Quadras quadra = new Quadras();
 		int operadorDoMenu = 0;
 		do {
@@ -24,6 +24,10 @@ public class interfaceQuadra {
 				
 				case 1:
 					this.interfaceCadastrarQuadra(quadra);
+					break;
+					
+				case 2:
+					this.interfaceBloqueioQuadra(quadra);
 					break;
 					
 				case 5:
@@ -82,5 +86,34 @@ public class interfaceQuadra {
 		}catch(Exception e) {
 			utilidades.exibeMensagem("Cadastro interrompido!\n");
 		}
+	}
+	
+	void interfaceBloqueioQuadra(Quadras quadra) {
+		int numero;
+		boolean continuaMetodo, estadoQuadra;
+		utilidades.exibeMensagem("Digite o numero de identificação da quadra: ");
+		numero = Integer.parseInt(scanner.nextLine());
+		
+		continuaMetodo = quadra.verificaNumeroQuadra(numero);
+		
+		if(continuaMetodo) {
+			estadoQuadra = quadra.isEstaBloqueada();
+			
+			if(estadoQuadra) 
+				utilidades.exibeMensagem("A quadra está DESBLOQUEADA\n");
+			else
+				utilidades.exibeMensagem("A quadra está BLOQUEADA\n");
+			
+			do {
+				utilidades.exibeMensagem("Deseja deixar está quadra HABILITADA (digite 1) ou DESABILITADA (digite 0): ");
+				numero = Integer.parseInt(scanner.nextLine());
+			}while(numero != 1 && numero != 0);		
+			
+			if(numero == 1)
+				quadra.setEstaBloqueada(true);
+			else
+				quadra.setEstaBloqueada(false);
+		}else
+			utilidades.exibeMensagem("Número digitado não corresponde a nenhuma quadra cadastrada!");
 	}
 }

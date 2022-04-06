@@ -20,6 +20,13 @@ public class Quadras {
 		setPossuiAreaDescanso(area);
 	}
 	
+	public boolean verificaNumeroQuadra(int numero) {
+		if(numero == this.getCodigoQuadra()) {
+			return true;
+		}else
+			return false;
+	}
+	
 	public void bloqueiaQuadraParaAluguel() {
 		this.setEstaBloqueada(true);
 	}
