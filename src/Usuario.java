@@ -13,6 +13,10 @@ public class Usuario {
 					acessoRelatorios,
 					acessoZelador;
 	
+	public Usuario() {
+		
+	}
+	
 	public Usuario(int codigoUsuario, String nomeUsuario, String emailUsuario, String senhaUsuario, 
 			boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, 
 			boolean acessoZelador) 
