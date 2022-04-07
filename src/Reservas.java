@@ -11,6 +11,16 @@ public class Reservas {
 	
 	private Quadras quadra;
 	
+	public void CadastrarReserva(String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, int md_pag, int quant_parcelas, Quadras quadra){
+		setNome_reservista(nm_reservista);
+		setData_reserva(dt_reserva);
+		setHr_inicio_reserva(hr_ini_reserva);
+		setHr_fim_reserva(hr_fim_reserva);
+		setModo_pagamento(md_pag);
+		setParcelas(quant_parcelas);
+		setQuadras(getQuadras());
+	}
+	
 	public String selecionarModoPagamento(int modo_pagamento) {
 		switch(modo_pagamento) {
 		
