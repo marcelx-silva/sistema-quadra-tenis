@@ -1,8 +1,6 @@
 
 public class Reservas {
 	
-	
-	
 	private String nome_reservista;
 	
 	private String data_reserva;
