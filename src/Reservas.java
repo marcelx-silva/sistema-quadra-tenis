@@ -1,17 +1,23 @@
 
+
 public class Reservas {
 	
 	private String nome_reservista;
-	
 	private String data_reserva;
 	private String hr_inicio_reserva;
 	private String hr_fim_reserva;
-	
 	private int modo_pagamento;
 	private int parcelas; 
 	
+	private Quadras quadra;
 	
 	
+	protected Quadras getQuadras() {
+		return this.quadra;
+	}
+	
+	
+
 	
 	protected String getNome_reservista() {
 		return nome_reservista;
@@ -61,6 +67,9 @@ public class Reservas {
 		this.parcelas = parcelas;
 	}
 	
+	protected void setQuadras(Quadras quadra){
+		this.quadra = quadra;
+	}
 	
 	
 	
