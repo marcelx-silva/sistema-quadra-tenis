@@ -11,7 +11,17 @@ public class Reservas {
 	
 	private Quadras quadra;
 	
-	public void CadastrarReserva(String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, int md_pag, int quant_parcelas, Quadras quadra){
+	public Reservas(String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, int modo_pagamento, int parcelas, Quadras quadra){
+		this.nome_reservista = nome_reservista;
+		this.data_reserva = data_reserva;
+		this.hr_inicio_reserva = hr_inicio_reserva;
+		this.hr_fim_reserva = hr_fim_reserva;
+		this.modo_pagamento = modo_pagamento;
+		this.parcelas = parcelas;
+		this.quadra = quadra;
+	}
+	
+	public void cadastrarReserva(String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, int md_pag, int quant_parcelas, Quadras quadra){
 		setNome_reservista(nm_reservista);
 		setData_reserva(dt_reserva);
 		setHr_inicio_reserva(hr_ini_reserva);
