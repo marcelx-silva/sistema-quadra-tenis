@@ -27,5 +27,13 @@ class TestesDeUnidade {
 		
 		qua.desbloqueiaQuadraParaAluguel();
 		assertEquals(false, qua.isEstaBloqueada());
+		
 	}
+	
+	@Test
+	void testeDeDisponibilidade() {
+		
+		qua.verificarDisponibilidadeQuadra("semPeriodo");	
+	}
+	
 }
