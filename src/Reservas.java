@@ -11,13 +11,27 @@ public class Reservas {
 	
 	private Quadras quadra;
 	
+	public String selecionarModoPagamento(int modo_pagamento) {
+		switch(modo_pagamento) {
+		
+		case 1:
+			return "CRÉDITO";
+		case 2:
+			return "DÉBITO";
+		case 3:
+			return "DINHEIRO";
+		case 4:
+			return "PIX";
+		default:
+			return "OPÇÃO INVÁLIDA !";
+		}
+	}
+	
 	
 	protected Quadras getQuadras() {
 		return this.quadra;
 	}
 	
-	
-
 	
 	protected String getNome_reservista() {
 		return nome_reservista;
