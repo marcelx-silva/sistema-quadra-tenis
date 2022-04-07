@@ -27,6 +27,19 @@ public class Reservas {
 		}
 	}
 	
+	public int parcelarReserva(int parcelas) {
+		switch(parcelas) {
+		case 1:
+			return 1;
+		case 2:
+			return 2;
+		case 3:
+			return 4;
+		default:
+			return 0;
+		}
+	}
+	
 	
 	protected Quadras getQuadras() {
 		return this.quadra;
