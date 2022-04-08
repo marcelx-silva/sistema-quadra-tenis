@@ -7,29 +7,33 @@ public class Reservas {
 	private String hr_inicio_reserva;
 	private String hr_fim_reserva;
 	private String modo_pagamento;
+	private double preco_reserva;
 	private int parcelas; 
 	
 	private Quadras quadra;
 	
-	public Reservas(String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, Quadras quadra){
+	public Reservas(String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, double preco_reserva, Quadras quadra){
 		this.nome_reservista = nome_reservista;
 		this.data_reserva = data_reserva;
 		this.hr_inicio_reserva = hr_inicio_reserva;
 		this.hr_fim_reserva = hr_fim_reserva;
 		this.modo_pagamento = modo_pagamento;
 		this.parcelas = parcelas;
+		this.preco_reserva = preco_reserva;
 		this.quadra = quadra;
 	}
 	
-	public void cadastrarReserva(String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, Quadras quadra){
+	public void cadastrarReserva(String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, double preco_reserva, Quadras quadra){
 		setNome_reservista(nm_reservista);
 		setData_reserva(dt_reserva);
 		setHr_inicio_reserva(hr_ini_reserva);
 		setHr_fim_reserva(hr_fim_reserva);
 		setModo_pagamento(md_pag);
 		setParcelas(quant_parcelas);
-		setQuadras(getQuadras());
+		setPreco_reserva(quadra);
+		setQuadras(quadra);
 	}
+	
 	
 	public String selecionarModoPagamento(int modo_pagamento) {
 		switch(modo_pagamento) {
@@ -60,6 +64,18 @@ public class Reservas {
 		}
 	}
 	
+	protected double getPreco_reserva() {
+		return preco_reserva;
+	}
+	
+	
+	protected void setPreco_reserva(Quadras quadra) {
+		if(quadra.isPossuiCobertura()) {
+			this.preco_reserva = 70.00;
+		}else {
+			this.preco_reserva = 40.00;
+		}
+	}
 	
 	protected Quadras getQuadras() {
 		return this.quadra;
