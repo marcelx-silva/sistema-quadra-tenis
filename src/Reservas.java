@@ -6,12 +6,12 @@ public class Reservas {
 	private String data_reserva;
 	private String hr_inicio_reserva;
 	private String hr_fim_reserva;
-	private int modo_pagamento;
+	private String modo_pagamento;
 	private int parcelas; 
 	
 	private Quadras quadra;
 	
-	public Reservas(String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, int modo_pagamento, int parcelas, Quadras quadra){
+	public Reservas(String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, Quadras quadra){
 		this.nome_reservista = nome_reservista;
 		this.data_reserva = data_reserva;
 		this.hr_inicio_reserva = hr_inicio_reserva;
@@ -21,7 +21,7 @@ public class Reservas {
 		this.quadra = quadra;
 	}
 	
-	public void cadastrarReserva(String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, int md_pag, int quant_parcelas, Quadras quadra){
+	public void cadastrarReserva(String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, Quadras quadra){
 		setNome_reservista(nm_reservista);
 		setData_reserva(dt_reserva);
 		setHr_inicio_reserva(hr_ini_reserva);
@@ -82,7 +82,7 @@ public class Reservas {
 		return hr_fim_reserva;
 	}
 	
-	protected int getModo_pagamento() {
+	protected String getModo_pagamento() {
 		return modo_pagamento;
 	}
 	
@@ -106,7 +106,7 @@ public class Reservas {
 		this.hr_fim_reserva = hr_fim_reserva;
 	}
 	
-	protected void setModo_pagamento(int modo_pagamento){
+	protected void setModo_pagamento(String modo_pagamento){
 		this.modo_pagamento = modo_pagamento;
 	}
 	
