@@ -30,9 +30,10 @@ public class Reservas {
 		setHr_fim_reserva(hr_fim_reserva);
 		setModo_pagamento(md_pag);
 		setParcelas(quant_parcelas);
-		setPreco_reserva(quadra);
+		setPreco_reserva(preco_reserva);
 		setQuadras(quadra);
 	}
+	
 	
 	
 	public String selecionarModoPagamento(int modo_pagamento) {
@@ -64,17 +65,19 @@ public class Reservas {
 		}
 	}
 	
-	protected double getPreco_reserva() {
-		return preco_reserva;
+	protected void setPreco_reserva(double preco_reserva) {
+		 this.preco_reserva = preco_reserva;
 	}
 	
 	
-	protected void setPreco_reserva(Quadras quadra) {
+	protected double getPreco_reserva(Quadras quadra) {
 		if(quadra.isPossuiCobertura()) {
 			this.preco_reserva = 70.00;
 		}else {
 			this.preco_reserva = 40.00;
 		}
+		
+		return this.preco_reserva;
 	}
 	
 	protected Quadras getQuadras() {
