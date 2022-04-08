@@ -6,7 +6,7 @@ public final class interfaceReserva {
 	UtilidadesSimplificadas utilidades = new UtilidadesSimplificadas();
 	
 	Quadras quadra = new Quadras();
-	Reservas reserva = new Reservas("","","","","",1,quadra);
+	Reservas reserva = new Reservas("","","","","",1,0,quadra);
 	
 	void interfaceMenuReserva() {
 		int operadorMenu = 0;
@@ -87,7 +87,11 @@ public final class interfaceReserva {
 						+ "\n3. 4x"
 						+ "\n Opção: ");
 				parcelas = reserva.parcelarReserva(scanner.nextInt());
+			}else {
+				parcelas = 1;
 			}
+			
+			
 			
 			utilidades.exibeMensagem("Nome da quadra: ");
 			nome = scanner.nextLine();
@@ -115,9 +119,10 @@ public final class interfaceReserva {
 			utilidades.exibeMensagem("Possui área de descanso: ");
 			area = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
 			
-			utilidades.exibeMensagem("Cadastro Realizado com Sucesso!\n");
+			utilidades.exibeMensagem("Reserva Realizada com Sucesso!\n");
+			
 			quadra.cadastraQuadra(numero, nome, endereco, tipo, cobertura, arquibancada, area);
-			reserva.cadastrarReserva(nome_reservista, hr_inicio_reserva, data_reserva, hr_fim_reserva, modo_pagamento, parcelas, quadra);
+			reserva.cadastrarReserva(nome_reservista, hr_inicio_reserva, data_reserva, hr_fim_reserva, modo_pagamento, parcelas,reserva.getPreco_reserva(quadra), quadra);
 		}catch(Exception e) {
 			utilidades.exibeMensagem("Reserva interrompida!\n");
 		}
