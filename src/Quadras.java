@@ -1,8 +1,9 @@
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Quadras {
-
+	
 	private int codigoQuadra;
 	private String nomeQuadra;
 	private String enderecoQuadra;
@@ -11,14 +12,16 @@ public class Quadras {
 	private boolean possuiArquibancada;
 	private boolean possuiAreaDescanso;
 	private boolean estaBloqueada = false;
-
+	
+	
 	public String[][] verificaDisponibilidadeQuadra(int periodoDias) {
-		
+		//hashmap
 		int aberturaSemana = 6;
 		int fechamentoSemana = 22;
 		int periodoTempo = (24 - ((24 - fechamentoSemana) + aberturaSemana)) * 2; 
 
 		String[][] disponibilidade;
+		ArrayList<String> horariosReservados = horariosReservas(codigoQuadra);
 		
 		disponibilidade = new String[periodoDias][periodoTempo];
 		
@@ -27,33 +30,36 @@ public class Quadras {
 		
 		LocalDateTime horario = LocalDateTime.now();
    
-        if (horario.getMinute()%30!=0){
+		if (horario.getMinute()%30!=0){
             horario = horario.minusMinutes(horario.getMinute()-30).plusMinutes(30);
         }
         
-
-        if (horario.isBefore(horario.withHour(aberturaSemana))){
-            horario = horario.withHour(aberturaSemana);
-        } else if (horario.isAfter(horario.withHour(fechamentoSemana))){
-            horario = horario.plusDays(1).withHour(aberturaSemana);
-        }
+		
+		if (horario.isBefore(horario.withHour(aberturaSemana))){
+			horario = horario.withHour(aberturaSemana);
+		} else if (horario.isAfter(horario.withHour(fechamentoSemana))){
+			horario = horario.plusDays(1).withHour(aberturaSemana);
+		}
         
         
-        for (int dia=0; dia<periodoDias; dia++){
-            for (int intervalo=0; intervalo<periodoTempo; intervalo++){
-                if (horario.isAfter(horario.withHour(fechamentoSemana)) | horario.isEqual(horario.withHour(fechamentoSemana)))
-                    break;
-                disponibilidade[dia][intervalo] = horario.format(horarioFormatoPadrao).toString();
+		for (int dia=0; dia<periodoDias; dia++){
+			for (int intervalo=0; intervalo<periodoTempo; intervalo++){
+				if (horario.isAfter(horario.withHour(fechamentoSemana)) | horario.isEqual(horario.withHour(fechamentoSemana))) {
+					break;
+				}
+				if (!horariosReservados.contains(horario.format(horarioFormatoPadrao).toString())) {
+					disponibilidade[dia][intervalo] = horario.format(horarioFormatoPadrao).toString();
+				}
                 horario = horario.plusMinutes(30);
+			} 
 
-            } 
-
-            horario = horario.plusDays(1);
-            horario = horario.withHour(aberturaSemana);
-        }
+			horario = horario.plusDays(1);
+			horario = horario.withHour(aberturaSemana);
+		}
         	
-        return disponibilidade;  
+		return disponibilidade;  
 	}
+		
 
 	public void cadastraQuadra(int numero, String nome, String endereco, String tipo, boolean cobertura,
 			boolean arquibancada, boolean area) {
