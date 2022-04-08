@@ -4,7 +4,7 @@ public class Usuario {
 	private String 	nomeUsuario, 
 					emailUsuario, 
 					senhaUsuario;
-	private int 	codigoUsuario;
+	private int 	cpfUsuario;
 					
 	private boolean	estaDesabilitado,
 					estaBloqueado,
@@ -13,26 +13,26 @@ public class Usuario {
 					acessoRelatorios,
 					acessoZelador;
 	
-	public Usuario() {
-		
+	public Usuario(int cpfDigitado) {
+		this.verificarUsuario(cpfDigitado);
 	}
 	
-	public Usuario(int codigoUsuario, String nomeUsuario, String emailUsuario, String senhaUsuario, 
+	public Usuario(String nomeUsuario, int cpfUsuario, String emailUsuario, String senhaUsuario, 
 			boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, 
 			boolean acessoZelador) 
 	{
-		setCodigoUsuario(codigoUsuario);
-		setNomeUsuario(nomeUsuario);
-		setEmailUsuario(emailUsuario);
-		setSenhaUsuario(senhaUsuario);
-		setAcessoGestorQuadras(acessoGestorQuadras);
-		setAcessoGestorUsuarios(acessoGestorUsuarios);
-		setAcessoRelatorios(acessoRelatorios);
-		setAcessoZelador(acessoZelador);
+		this.setNomeUsuario(nomeUsuario);
+		this.setCpfUsuario(cpfUsuario);
+		this.setEmailUsuario(emailUsuario);
+		this.setSenhaUsuario(senhaUsuario);
+		this.setAcessoGestorQuadras(acessoGestorQuadras);
+		this.setAcessoGestorUsuarios(acessoGestorUsuarios);
+		this.setAcessoRelatorios(acessoRelatorios);
+		this.setAcessoZelador(acessoZelador);
 	}
 
-	public boolean verificarUsuario(int codigoDigitado) {
-		if(codigoDigitado == this.getCodigoUsuario())
+	public boolean verificarUsuario(int cpfDigitado) {
+		if(cpfDigitado == this.getCpfUsuario())
 			return true;
 		else
 			return false;
@@ -68,8 +68,8 @@ public class Usuario {
 		return senhaUsuario;
 	}
 	
-	public int getCodigoUsuario() {
-		return codigoUsuario;
+	public int getCpfUsuario() {
+		return cpfUsuario;
 	}
 
 	
@@ -85,8 +85,8 @@ public class Usuario {
 		this.senhaUsuario = senhaUsuario;
 	}
 
-	public void setCodigoUsuario(int codigoUsuario) {
-		this.codigoUsuario = codigoUsuario;
+	public void setCpfUsuario(int codigoUsuario) {
+		this.cpfUsuario = codigoUsuario;
 	}
 
 
@@ -125,7 +125,7 @@ public class Usuario {
 	}
 
 	
-	public void setAcessoGestorQuadras(boolean acessoGestorQuadras) {
+	public void setAcessoGestorQuadras(boolean acessoGestorQuadras) {  
 		this.acessoGestorQuadras = acessoGestorQuadras;
 	}
 	
