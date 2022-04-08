@@ -21,7 +21,7 @@ public class Quadras {
 		int periodoTempo = (24 - ((24 - fechamentoSemana) + aberturaSemana)) * 2; 
 
 		String[][] disponibilidade;
-		ArrayList<String> horariosReservados = horariosReservas(codigoQuadra);
+		ArrayList<String> horariosReservados = Reservas.horariosReservas(codigoQuadra);
 		
 		disponibilidade = new String[periodoDias][periodoTempo];
 		
