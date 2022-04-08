@@ -1,4 +1,5 @@
-
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Reservas {
 	
@@ -12,6 +13,7 @@ public class Reservas {
 	
 	private Quadras quadra;
 	
+	
 	public Reservas(String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, double preco_reserva, Quadras quadra){
 		this.nome_reservista = nome_reservista;
 		this.data_reserva = data_reserva;
@@ -21,6 +23,13 @@ public class Reservas {
 		this.parcelas = parcelas;
 		this.preco_reserva = preco_reserva;
 		this.quadra = quadra;
+	}
+	
+	public BigDecimal precoParcela(double preco_reserva,int parcela) {
+		BigDecimal prc_res = new BigDecimal(String.valueOf(preco_reserva));
+		BigDecimal prl = new BigDecimal(String.valueOf(parcela));
+		return prc_res.divide(prl, 2, RoundingMode.UP);
+		
 	}
 	
 	public void cadastrarReserva(String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, double preco_reserva, Quadras quadra){
