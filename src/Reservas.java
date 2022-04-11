@@ -3,6 +3,8 @@ import java.math.RoundingMode;
 
 public class Reservas {
 	
+	Quadras quadra = new Quadras();
+	
 	private String nome_reservista;
 	private String data_reserva;
 	private String hr_inicio_reserva;
@@ -10,11 +12,9 @@ public class Reservas {
 	private String modo_pagamento;
 	private double preco_reserva;
 	private int parcelas; 
+	private boolean cobertura = false;
 	
-	private Quadras quadra;
-	
-	
-	public Reservas(String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, double preco_reserva, Quadras quadra){
+	public Reservas(String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, double preco_reserva, boolean cobertura){
 		this.nome_reservista = nome_reservista;
 		this.data_reserva = data_reserva;
 		this.hr_inicio_reserva = hr_inicio_reserva;
@@ -22,28 +22,28 @@ public class Reservas {
 		this.modo_pagamento = modo_pagamento;
 		this.parcelas = parcelas;
 		this.preco_reserva = preco_reserva;
-		this.quadra = quadra;
+		this.cobertura = cobertura;
 	}
 	
-	public BigDecimal precoParcela(double preco_reserva,int parcela) {
+
+	
+	public BigDecimal calcularParcela(double preco_reserva,int parcela) {
 		BigDecimal prc_res = new BigDecimal(String.valueOf(preco_reserva));
 		BigDecimal prl = new BigDecimal(String.valueOf(parcela));
 		return prc_res.divide(prl, 2, RoundingMode.UP);
 		
 	}
 	
-	public void cadastrarReserva(String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, double preco_reserva, Quadras quadra){
-		setNome_reservista(nm_reservista);
+	public void cadastrarReserva(String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, boolean cobertura){
+		this.setNome_reservista(nm_reservista);
 		setData_reserva(dt_reserva);
 		setHr_inicio_reserva(hr_ini_reserva);
 		setHr_fim_reserva(hr_fim_reserva);
 		setModo_pagamento(md_pag);
 		setParcelas(quant_parcelas);
-		setPreco_reserva(preco_reserva);
-		setQuadras(quadra);
+		setCobertura(cobertura);
+		setPreco_reserva(cobertura);		
 	}
-	
-	
 	
 	public String selecionarModoPagamento(int modo_pagamento) {
 		switch(modo_pagamento) {
@@ -74,25 +74,10 @@ public class Reservas {
 		}
 	}
 	
-	protected void setPreco_reserva(double preco_reserva) {
-		 this.preco_reserva = preco_reserva;
+	
+	protected double getPreco_reserva() {
+		return preco_reserva;
 	}
-	
-	
-	protected double getPreco_reserva(Quadras quadra) {
-		if(quadra.isPossuiCobertura()) {
-			this.preco_reserva = 70.00;
-		}else {
-			this.preco_reserva = 40.00;
-		}
-		
-		return this.preco_reserva;
-	}
-	
-	protected Quadras getQuadras() {
-		return this.quadra;
-	}
-	
 	
 	protected String getNome_reservista() {
 		return nome_reservista;
@@ -118,6 +103,11 @@ public class Reservas {
 		return parcelas;
 	}
 	
+	protected boolean isCobertura() {
+		return cobertura;
+	}
+	
+	
 	protected void setNome_reservista(String nome_reservista){
 		this.nome_reservista = nome_reservista;
 	}
@@ -141,11 +131,18 @@ public class Reservas {
 	protected void setParcelas(int parcelas){
 		this.parcelas = parcelas;
 	}
-	
-	protected void setQuadras(Quadras quadra){
-		this.quadra = quadra;
+		
+	protected void setCobertura(boolean cobertura) {
+		this.cobertura = cobertura;
 	}
 	
+	protected void setPreco_reserva(boolean cobertura) {
+		if(cobertura) {
+			this.preco_reserva = 70.00;
+		}else {
+			this.preco_reserva = 40.00;
+		}
+	}
 	
 	
 	
