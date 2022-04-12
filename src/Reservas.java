@@ -5,13 +5,21 @@ public class Reservas {
 	
 	Quadras quadra = new Quadras();
 	
+	
 	private String nome_reservista;
+	private String cpf_usuario;
+	
 	private String data_reserva;
 	private String hr_inicio_reserva;
 	private String hr_fim_reserva;
 	private String modo_pagamento;
 	private int parcelas; 
+	
 	private boolean cobertura = false;
+	private String nome_quadra;
+	private String cod_quadra;
+	private String tipo_quadra;
+
 	
 	public Reservas(String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, boolean cobertura){
 		this.nome_reservista = nome_reservista;
@@ -73,6 +81,22 @@ public class Reservas {
 	
 	
 
+	protected String getCpf_usuario() {
+		return cpf_usuario;
+	}
+	
+	protected String getNome_quadra() {
+		return nome_quadra; 
+	}
+	
+	protected String getTipo_quadra() {
+		return tipo_quadra;
+	}
+	
+	protected String getCod_quadra() {
+		return cod_quadra;
+	}
+	
 	protected String getNome_reservista() {
 		return nome_reservista;
 	}
