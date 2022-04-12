@@ -9,6 +9,7 @@ public class Quadras {
 	private boolean possuiArquibancada;
 	private boolean possuiAreaDescanso;
 	private boolean estaBloqueada = false;
+	private double preco_reserva;
 	
 	public void cadastraQuadra(int numero, String nome, String endereco, String tipo, boolean cobertura, boolean arquibancada, boolean area) {
 		setCodigoQuadra(numero);
@@ -18,6 +19,7 @@ public class Quadras {
 		setPossuiCobertura(cobertura);
 		setPossuiArquibancada(arquibancada);
 		setPossuiAreaDescanso(area);
+		setPreco_reserva(cobertura);
 	}
 	
 	public boolean verificaNumeroQuadra(int numero) {
@@ -53,6 +55,18 @@ public class Quadras {
 			return "OPÇÃO INVÁLIDA";
 		}
 	}
+	protected double getPreco_reserva() {
+		return preco_reserva;
+	}
+	
+	protected void setPreco_reserva(boolean cobertura) {
+		if(cobertura) {
+			this.preco_reserva = 70.00;
+		}else {
+			this.preco_reserva = 40.00;
+		}
+	}
+	
 	
 	protected int getCodigoQuadra() {
 		return codigoQuadra;

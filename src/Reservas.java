@@ -10,18 +10,16 @@ public class Reservas {
 	private String hr_inicio_reserva;
 	private String hr_fim_reserva;
 	private String modo_pagamento;
-	private double preco_reserva;
 	private int parcelas; 
 	private boolean cobertura = false;
 	
-	public Reservas(String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, double preco_reserva, boolean cobertura){
+	public Reservas(String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, boolean cobertura){
 		this.nome_reservista = nome_reservista;
 		this.data_reserva = data_reserva;
 		this.hr_inicio_reserva = hr_inicio_reserva;
 		this.hr_fim_reserva = hr_fim_reserva;
 		this.modo_pagamento = modo_pagamento;
 		this.parcelas = parcelas;
-		this.preco_reserva = preco_reserva;
 		this.cobertura = cobertura;
 	}
 	
@@ -41,8 +39,7 @@ public class Reservas {
 		setHr_fim_reserva(hr_fim_reserva);
 		setModo_pagamento(md_pag);
 		setParcelas(quant_parcelas);
-		setCobertura(cobertura);
-		setPreco_reserva(cobertura);		
+		setCobertura(cobertura);		
 	}
 	
 	public String selecionarModoPagamento(int modo_pagamento) {
@@ -75,10 +72,7 @@ public class Reservas {
 	}
 	
 	
-	protected double getPreco_reserva() {
-		return preco_reserva;
-	}
-	
+
 	protected String getNome_reservista() {
 		return nome_reservista;
 	}
@@ -136,14 +130,7 @@ public class Reservas {
 		this.cobertura = cobertura;
 	}
 	
-	protected void setPreco_reserva(boolean cobertura) {
-		if(cobertura) {
-			this.preco_reserva = 70.00;
-		}else {
-			this.preco_reserva = 40.00;
-		}
-	}
-	
+
 	
 	
 }
