@@ -6,7 +6,7 @@ class TestesDeUnidadeReserva {
 	
 	UtilidadesSimplificadas utilidades = new UtilidadesSimplificadas();
 	interfaceReserva interfaceReserva = new interfaceReserva();
-	Reservas res = new Reservas("","","","","",1,40,false);
+	Reservas res = new Reservas("","","","","",1,false);
 	
 	@Test
 	void testeCadastroReserva() {
@@ -18,7 +18,6 @@ class TestesDeUnidadeReserva {
 		assertEquals("DÉBITO",res.getModo_pagamento());
 		assertEquals(1,res.getParcelas());
 		assertEquals(false,res.isCobertura());
-		assertEquals(40,res.getPreco_reserva());
 	}
 	
 }

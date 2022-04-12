@@ -18,6 +18,7 @@ class TestesDeUnidade {
 		assertEquals(true, qua.isPossuiCobertura());
 		assertEquals(true, qua.isPossuiArquibancada());
 		assertEquals(true, qua.isPossuiAreaDescanso());
+		assertEquals(70,qua.getPreco_reserva());
 	}
 	
 	@Test 
