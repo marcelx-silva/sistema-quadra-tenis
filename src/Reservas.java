@@ -159,6 +159,22 @@ public class Reservas {
 		this.cobertura = cobertura;
 	}
 	
+	protected void setCpf_usuario(String cpf_usuario) {
+		this.cpf_usuario = cpf_usuario;
+	}
+	
+	protected void setNome_quadra(String nome_quadra) {
+		this.nome_quadra = nome_quadra; 
+	}
+	
+	protected void setTipo_quadra(String tipo_quadra) {
+		this.tipo_quadra = tipo_quadra;
+	}
+	
+	protected void setCod_quadra(String cod_quadra) {
+		this.cod_quadra = cod_quadra;
+	}
+	
 
 	
 	
