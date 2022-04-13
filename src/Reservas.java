@@ -17,11 +17,11 @@ public class Reservas {
 	
 	private boolean cobertura = false;
 	private String nome_quadra;
-	private String cod_quadra;
+	private int cod_quadra;
 	private String tipo_quadra;
 
 	
-	public Reservas(String cod_quadra,String nome_quadra, String tipo_quadra,String cpf_usuario,String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, boolean cobertura){
+	public Reservas(int cod_quadra,String nome_quadra, String tipo_quadra,String cpf_usuario,String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, boolean cobertura){
 		this.cod_quadra = cod_quadra;
 		this.nome_quadra = nome_quadra;
 		this.tipo_quadra = tipo_quadra;
@@ -44,7 +44,7 @@ public class Reservas {
 		
 	}
 	
-	public void cadastrarReserva(String cpf_usu,String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, boolean cobertura, String cod_qua, String nm_qua, String tipo_qua){
+	public void cadastrarReserva(String cpf_usu,String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, boolean cobertura, int cod_qua, String nm_qua, String tipo_qua){
 		setCpf_usuario(cpf_usu);
 		setNome_reservista(nm_reservista);
 		setData_reserva(dt_reserva);
@@ -101,7 +101,7 @@ public class Reservas {
 		return tipo_quadra;
 	}
 	
-	protected String getCod_quadra() {
+	protected int getCod_quadra() {
 		return cod_quadra;
 	}
 	
@@ -174,7 +174,7 @@ public class Reservas {
 		this.tipo_quadra = tipo_quadra;
 	}
 	
-	protected void setCod_quadra(String cod_quadra) {
+	protected void setCod_quadra(int cod_quadra) {
 		this.cod_quadra = cod_quadra;
 	}
 	
