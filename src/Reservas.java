@@ -44,8 +44,8 @@ public class Reservas {
 		
 	}
 	
-	public void cadastrarReserva(String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, boolean cobertura){
-		
+	public void cadastrarReserva(String cpf_usu,String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, boolean cobertura, String cod_qua, String nm_qua, String tipo_qua){
+		setCpf_usuario(cpf_usu);
 		setNome_reservista(nm_reservista);
 		setData_reserva(dt_reserva);
 		setHr_inicio_reserva(hr_ini_reserva);
@@ -53,6 +53,9 @@ public class Reservas {
 		setModo_pagamento(md_pag);
 		setParcelas(quant_parcelas);
 		setCobertura(cobertura);		
+		setCod_quadra(cod_qua);
+		setNome_quadra(nm_qua);
+		setTipo_quadra(tipo_qua);
 	}
 	
 	public String selecionarModoPagamento(int modo_pagamento) {
