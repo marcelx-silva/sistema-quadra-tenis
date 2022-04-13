@@ -21,7 +21,11 @@ public class Reservas {
 	private String tipo_quadra;
 
 	
-	public Reservas(String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, boolean cobertura){
+	public Reservas(String cod_quadra,String nome_quadra, String tipo_quadra,String cpf_usuario,String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, boolean cobertura){
+		this.cod_quadra = cod_quadra;
+		this.nome_quadra = nome_quadra;
+		this.tipo_quadra = tipo_quadra;
+		this.cpf_usuario = cpf_usuario;
 		this.nome_reservista = nome_reservista;
 		this.data_reserva = data_reserva;
 		this.hr_inicio_reserva = hr_inicio_reserva;
@@ -41,7 +45,8 @@ public class Reservas {
 	}
 	
 	public void cadastrarReserva(String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, boolean cobertura){
-		this.setNome_reservista(nm_reservista);
+		
+		setNome_reservista(nm_reservista);
 		setData_reserva(dt_reserva);
 		setHr_inicio_reserva(hr_ini_reserva);
 		setHr_fim_reserva(hr_fim_reserva);

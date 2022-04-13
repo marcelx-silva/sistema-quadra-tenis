@@ -6,7 +6,7 @@ public final class interfaceReserva {
 	UtilidadesSimplificadas utilidades = new UtilidadesSimplificadas();
 	
 	void interfaceMenuReserva() {
-		Reservas reserva = new Reservas("","","","","",1,false);
+		Reservas reserva = new Reservas("","","","","","","","","",1,false);
 		int operadorMenu = 0;
 		
 		do {

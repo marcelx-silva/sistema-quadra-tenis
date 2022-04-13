@@ -6,7 +6,7 @@ class TestesDeUnidadeReserva {
 	
 	UtilidadesSimplificadas utilidades = new UtilidadesSimplificadas();
 	interfaceReserva interfaceReserva = new interfaceReserva();
-	Reservas res = new Reservas("","","","","",1,false);
+	Reservas res = new Reservas("","","","","","","","","",1,false);
 	
 	@Test
 	void testeCadastroReserva() {
