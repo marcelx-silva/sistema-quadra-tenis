@@ -6,7 +6,8 @@ public final class interfaceReserva {
 	UtilidadesSimplificadas utilidades = new UtilidadesSimplificadas();
 	
 	void interfaceMenuReserva() {
-		Reservas reserva = new Reservas("","","","","","","","","",1,false);
+		Reservas reserva = new Reservas(0,"","","","","","","","",1,false);
+		Quadras quadra = new Quadras();
 		int operadorMenu = 0;
 		
 		do {
@@ -22,7 +23,7 @@ public final class interfaceReserva {
 			
 			switch(operadorMenu) {
 				case 1:
-					this.interfaceCadastroReserva(reserva);
+					this.interfaceCadastroReserva(reserva,quadra);
 					break;
 				case 2:
 					break;
@@ -38,13 +39,17 @@ public final class interfaceReserva {
 		}while(operadorMenu!=5);
 	}
 	
-	void interfaceCadastroReserva(Reservas reserva){
+	void interfaceCadastroReserva(Reservas reserva, Quadras quadra){
 		
 	
-		//int numero = 0;
+		int cod_quadra = 0;
+		String nome_quadra = "";
+		String tipo_quadra = "";
 		boolean cobertura = false;
 		
 		String nome_reservista = "";
+		String cpf_usuario = "";
+		
 		String data_reserva = "";
 		String hr_inicio_reserva = "";
 		String hr_fim_reserva = "";
@@ -52,7 +57,13 @@ public final class interfaceReserva {
 		int parcelas = 1;
 		
 		
+		
+		
 		try {
+			
+			utilidades.exibeMensagem("CPF do reservista: ");
+			cpf_usuario = scanner.nextLine();
+			
 			utilidades.exibeMensagem("Nome do reservista:");
 			nome_reservista = scanner.nextLine();
 			
@@ -86,10 +97,21 @@ public final class interfaceReserva {
 			}
 			
 			
-			/*
-			utilidades.exibeMensagem("Número da quadra: ");
-			numero = Integer.parseInt(scanner.nextLine());
-			*/
+			
+			utilidades.exibeMensagem("Nome da Quadra: ");
+			nome_quadra = (scanner.nextLine());
+			
+			utilidades.exibeMensagem("Código da quadra: ");
+			cod_quadra = Integer.parseInt(scanner.nextLine());
+			
+			utilidades.exibeMensagem("Tipo da quadra, selecione uma das opções atráves dos números:"
+					+ "\n1. SAIBRO"
+					+ "\n2. SUPERFÍCIE SINTÉTICA"
+					+ "\n3. CIMENTO"
+					+ "\n4. BEACH TENNIS"
+					+ "\nOpção: ");
+			tipo_quadra = quadra.identificaTipoQuadra(scanner.nextInt());
+		
 			
 			utilidades.exibeMensagem("Possui cobertura (sim/não): ");
 			cobertura = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
@@ -97,7 +119,7 @@ public final class interfaceReserva {
 			
 			utilidades.exibeMensagem("Reserva Realizada com Sucesso!\n");
 			
-			reserva.cadastrarReserva(nome_reservista, data_reserva, hr_inicio_reserva, hr_fim_reserva, modo_pagamento, parcelas,cobertura);
+			reserva.cadastrarReserva(cpf_usuario,nome_reservista, data_reserva, hr_inicio_reserva, hr_fim_reserva, modo_pagamento, parcelas,cobertura,cod_quadra,nome_quadra,tipo_quadra);
 
 		}catch(Exception e) {
 			utilidades.exibeMensagem("Reserva interrompida!\n");
