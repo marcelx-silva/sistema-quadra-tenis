@@ -1,26 +1,15 @@
 
 public class Usuario {
 	
-	private String 	nomeUsuario, 
-					emailUsuario, 
-					senhaUsuario;
-	private int 	cpfUsuario;
-					
-	private boolean	estaDesabilitado,
-					estaBloqueado,
-					acessoGestorQuadras,
-					acessoGestorUsuarios,
-					acessoRelatorios,
-					acessoZelador;
+	private String nomeUsuario, emailUsuario, senhaUsuario;
+	private int cpfUsuario;		
+	private boolean	estaDesabilitado, estaBloqueado, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador;
 	
 	public Usuario(int cpfDigitado) {
 		this.verificarUsuario(cpfDigitado);
 	}
 	
-	public Usuario(String nomeUsuario, int cpfUsuario, String emailUsuario, String senhaUsuario, 
-			boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, 
-			boolean acessoZelador) 
-	{
+	public Usuario(String nomeUsuario, int cpfUsuario, String emailUsuario, String senhaUsuario, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setNomeUsuario(nomeUsuario);
 		this.setCpfUsuario(cpfUsuario);
 		this.setEmailUsuario(emailUsuario);
@@ -54,90 +43,84 @@ public class Usuario {
 		this.setEstaBloqueado(false);
 	}
 
-	
-
-	public String getNomeUsuario() {
+	protected String getNomeUsuario() {
 		return nomeUsuario;
 	}
 
-	public String getEmailUsuario() {
+	protected String getEmailUsuario() {
 		return emailUsuario;
 	}
 
-	public String getSenhaUsuario() {
+	protected String getSenhaUsuario() {
 		return senhaUsuario;
 	}
 	
-	public int getCpfUsuario() {
+	protected int getCpfUsuario() {
 		return cpfUsuario;
 	}
 
-	
-	public void setNomeUsuario(String nomeUsuario) {
+	protected void setNomeUsuario(String nomeUsuario) {
 		this.nomeUsuario = nomeUsuario;
 	}
 
-	public void setEmailUsuario(String emailUsuario) {
+	protected void setEmailUsuario(String emailUsuario) {
 		this.emailUsuario = emailUsuario;
 	}
 
-	public void setSenhaUsuario(String senhaUsuario) {
+	protected void setSenhaUsuario(String senhaUsuario) {
 		this.senhaUsuario = senhaUsuario;
 	}
 
-	public void setCpfUsuario(int codigoUsuario) {
+	protected void setCpfUsuario(int codigoUsuario) {
 		this.cpfUsuario = codigoUsuario;
 	}
 
 
-	public boolean isEstaDesabilitado() {
+	protected boolean isEstaDesabilitado() {
 		return estaDesabilitado;
 	}
 
-	public boolean isEstaBloqueado() {
+	protected boolean isEstaBloqueado() {
 		return estaBloqueado;
 	}
 	
-
-	public void setEstaDesabilitado(boolean estaDesabilitado) {
+	protected void setEstaDesabilitado(boolean estaDesabilitado) {
 		this.estaDesabilitado = estaDesabilitado;
 	}
 
-	public void setEstaBloqueado(boolean estaBloqueado) {
+	protected void setEstaBloqueado(boolean estaBloqueado) {
 		this.estaBloqueado = estaBloqueado;
 	}
-
 	
-	public boolean isAcessoGestorQuadras() {
+	protected boolean isAcessoGestorQuadras() {
 		return acessoGestorQuadras;
 	}
 
-	public boolean isAcessoGestorUsuarios() {
+	protected boolean isAcessoGestorUsuarios() {
 		return acessoGestorUsuarios;
 	}
 
-	public boolean isAcessoRelatorios() {
+	protected boolean isAcessoRelatorios() {
 		return acessoRelatorios;
 	}
 	
-	public boolean isAcessoZelador() {
+	protected boolean isAcessoZelador() {
 		return acessoZelador;
 	}
-
 	
-	public void setAcessoGestorQuadras(boolean acessoGestorQuadras) {  
+	protected void setAcessoGestorQuadras(boolean acessoGestorQuadras) {  
 		this.acessoGestorQuadras = acessoGestorQuadras;
 	}
 	
-	public void setAcessoGestorUsuarios(boolean acessoGestorUsuarios) {
+	protected void setAcessoGestorUsuarios(boolean acessoGestorUsuarios) {
 		this.acessoGestorUsuarios = acessoGestorUsuarios;
 	}
 
-	public void setAcessoRelatorios(boolean acessoRelatorios) {
+	protected void setAcessoRelatorios(boolean acessoRelatorios) {
 		this.acessoRelatorios = acessoRelatorios;
 	}
 
-	public void setAcessoZelador(boolean acessoZelador) {
+	protected void setAcessoZelador(boolean acessoZelador) {
 		this.acessoZelador = acessoZelador;
 	}
 	
