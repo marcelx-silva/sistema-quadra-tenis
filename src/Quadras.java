@@ -98,7 +98,7 @@ public class Quadras {
 			return "SAIBRO";
 
 		case 2:
-			return "SUPERF�CIE SINT�TICA";
+			return "SUPERFICIE SINTETICA";
 
 		case 3:
 			return "CIMENTO";
@@ -107,7 +107,7 @@ public class Quadras {
 			return "BEACH TENNIS";
 
 		default:
-			return "OP��O INV�LIDA";
+			return "OPCAO INVALIDA";
 		}
 	}
 
@@ -115,7 +115,7 @@ public class Quadras {
 		return codigoQuadra;
 	}
 
-	protected void setCodigoQuadra(int codigoQuadra) {
+	private void setCodigoQuadra(int codigoQuadra) {
 		this.codigoQuadra = codigoQuadra;
 	}
 
@@ -123,7 +123,7 @@ public class Quadras {
 		return nomeQuadra;
 	}
 
-	protected void setNomeQuadra(String nomeQuadra) {
+	private void setNomeQuadra(String nomeQuadra) {
 		this.nomeQuadra = nomeQuadra;
 	}
 
@@ -131,7 +131,7 @@ public class Quadras {
 		return enderecoQuadra;
 	}
 
-	protected void setEnderecoQuadra(String enderecoQuadra) {
+	private void setEnderecoQuadra(String enderecoQuadra) {
 		this.enderecoQuadra = enderecoQuadra;
 	}
 
@@ -139,7 +139,7 @@ public class Quadras {
 		return tipoQuadra;
 	}
 
-	protected void setTipoQuadra(String tipoQuadra) {
+	private void setTipoQuadra(String tipoQuadra) {
 		this.tipoQuadra = tipoQuadra;
 	}
 
@@ -147,7 +147,7 @@ public class Quadras {
 		return possuiCobertura;
 	}
 
-	protected void setPossuiCobertura(boolean possuiCobertura) {
+	private void setPossuiCobertura(boolean possuiCobertura) {
 		this.possuiCobertura = possuiCobertura;
 	}
 
@@ -155,7 +155,7 @@ public class Quadras {
 		return possuiArquibancada;
 	}
 
-	protected void setPossuiArquibancada(boolean possuiArquibancada) {
+	private void setPossuiArquibancada(boolean possuiArquibancada) {
 		this.possuiArquibancada = possuiArquibancada;
 	}
 
@@ -163,7 +163,7 @@ public class Quadras {
 		return possuiAreaDescanso;
 	}
 
-	protected void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
+	private void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
 		this.possuiAreaDescanso = possuiAreaDescanso;
 	}
 
@@ -171,7 +171,7 @@ public class Quadras {
 		return estaBloqueada;
 	}
 
-	protected void setEstaBloqueada(boolean estaBloqueada) {
+	private void setEstaBloqueada(boolean estaBloqueada) {
 		this.estaBloqueada = estaBloqueada;
 	}
 }

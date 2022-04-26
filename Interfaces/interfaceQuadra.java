@@ -91,6 +91,7 @@ public final class interfaceQuadra {
 	void interfaceBloqueioQuadra(Quadras quadra) {
 		int numero;
 		boolean continuaMetodo, estadoQuadra;
+		
 		utilidades.exibeMensagem("Digite o numero de identificação da quadra: ");
 		numero = Integer.parseInt(scanner.nextLine());
 		
@@ -110,9 +111,9 @@ public final class interfaceQuadra {
 			}while(numero != 1 && numero != 0);		
 			
 			if(numero == 1)
-				quadra.setEstaBloqueada(true);
+				quadra.desbloqueiaQuadraParaAluguel();
 			else
-				quadra.setEstaBloqueada(false);
+				quadra.bloqueiaQuadraParaAluguel();
 		}else
 			utilidades.exibeMensagem("Número digitado não corresponde a nenhuma quadra cadastrada!");
 	}

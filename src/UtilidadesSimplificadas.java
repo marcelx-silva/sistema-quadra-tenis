@@ -24,10 +24,8 @@ public class UtilidadesSimplificadas {
 		return persistirValor(valor);
 	}
 	
-	public final static void clearConsole()
-	{
-	    try
-	    {
+	public final static void clearConsole() {
+	    try {
 	        final String os = System.getProperty("os.name");
 
 	        if (os.contains("Windows"))
@@ -35,8 +33,7 @@ public class UtilidadesSimplificadas {
 	        else
 	            Runtime.getRuntime().exec("clear");
 	    }
-	    catch (final Exception e)
-	    {
+	    catch (final Exception e) {
 	        e.printStackTrace();
 	    }
 	}
