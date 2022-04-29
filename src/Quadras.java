@@ -1,15 +1,17 @@
 
-public class Quadras {
+public class Quadras{
 	
 	private int codigoQuadra;
 	private String nomeQuadra;
 	private String enderecoQuadra;
+
 	private String tipoQuadra;
 	private boolean possuiCobertura;
 	private boolean possuiArquibancada;
 	private boolean possuiAreaDescanso;
 	private boolean estaBloqueada = false;
 	private double preco_reserva;
+
 	
 	public void cadastraQuadra(int numero, String nome, String endereco, String tipo, boolean cobertura, boolean arquibancada, boolean area) {
 		setCodigoQuadra(numero);
@@ -22,12 +24,6 @@ public class Quadras {
 		setPreco_reserva(cobertura);
 	}
 	
-	public boolean verificaNumeroQuadra(int numero) {
-		if(numero == this.getCodigoQuadra()) {
-			return true;
-		}else
-			return false;
-	}
 	
 	public void bloqueiaQuadraParaAluguel() {
 		this.setEstaBloqueada(true);
@@ -37,6 +33,7 @@ public class Quadras {
 		this.setEstaBloqueada(false);
 	}
 	
+
 	public String identificaTipoQuadra(int identificador) {
 		switch(identificador) {
 		case 1:
@@ -75,7 +72,7 @@ public class Quadras {
 	protected void setCodigoQuadra(int codigoQuadra) {
 		this.codigoQuadra = codigoQuadra;
 	}
-	
+
 	protected String getNomeQuadra() {
 		return nomeQuadra;
 	}
@@ -95,7 +92,7 @@ public class Quadras {
 	protected String getTipoQuadra() {
 		return tipoQuadra;
 	}
-	
+
 	protected void setTipoQuadra(String tipoQuadra) {
 		this.tipoQuadra = tipoQuadra;
 	}
@@ -103,32 +100,33 @@ public class Quadras {
 	protected boolean isPossuiCobertura() {
 		return possuiCobertura;
 	}
-	
+
 	protected void setPossuiCobertura(boolean possuiCobertura) {
 		this.possuiCobertura = possuiCobertura;
 	}
-	
+
 	protected boolean isPossuiArquibancada() {
 		return possuiArquibancada;
 	}
-	
+
 	protected void setPossuiArquibancada(boolean possuiArquibancada) {
 		this.possuiArquibancada = possuiArquibancada;
 	}
-	
+
 	protected boolean isPossuiAreaDescanso() {
 		return possuiAreaDescanso;
 	}
-	
+
 	protected void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
 		this.possuiAreaDescanso = possuiAreaDescanso;
 	}
-	
+
 	protected boolean isEstaBloqueada() {
 		return estaBloqueada;
 	}
-	
+
 	protected void setEstaBloqueada(boolean estaBloqueada) {
 		this.estaBloqueada = estaBloqueada;
 	}
+	
 }

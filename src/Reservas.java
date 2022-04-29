@@ -1,13 +1,15 @@
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Reservas {
+public class Reservas{
 	
 	Quadras quadra = new Quadras();
 	
 	
+
 	private String nome_reservista;
 	private String cpf_usuario;
+
 	
 	private String data_reserva;
 	private String hr_inicio_reserva;
@@ -58,6 +60,7 @@ public class Reservas {
 		setTipo_quadra(tipo_qua);
 	}
 	
+
 	public String selecionarModoPagamento(int modo_pagamento) {
 		switch(modo_pagamento) {
 		
@@ -73,7 +76,7 @@ public class Reservas {
 			return "OPÇÃO INVÁLIDA !";
 		}
 	}
-	
+
 	public int parcelarReserva(int parcelas) {
 		switch(parcelas) {
 		case 1:
@@ -87,7 +90,9 @@ public class Reservas {
 		}
 	}
 	
-	
+	protected String getNome_reservista() {
+		return nome_reservista;
+	}
 
 	protected String getCpf_usuario() {
 		return cpf_usuario;
@@ -103,10 +108,6 @@ public class Reservas {
 	
 	protected int getCod_quadra() {
 		return cod_quadra;
-	}
-	
-	protected String getNome_reservista() {
-		return nome_reservista;
 	}
 	
 	protected String getData_reserva(){
@@ -137,6 +138,7 @@ public class Reservas {
 	protected void setNome_reservista(String nome_reservista){
 		this.nome_reservista = nome_reservista;
 	}
+
 	
 	protected void setData_reserva(String data_reserva){
 		this.data_reserva = data_reserva;
