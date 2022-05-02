@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
+
 public final class interfaceReserva {
+
 
 	Scanner scanner = new Scanner(System.in);
 	UtilidadesSimplificadas utilidades = new UtilidadesSimplificadas();
@@ -26,6 +28,7 @@ public final class interfaceReserva {
 					this.interfaceCadastroReserva(reserva,quadra);
 					break;
 				case 2:
+					this.visualizarReservas();
 					break;
 				case 3:
 					break;
@@ -46,6 +49,8 @@ public final class interfaceReserva {
 		String nome_quadra = "";
 		String tipo_quadra = "";
 		boolean cobertura = false;
+		boolean arquibancada = false;
+		boolean areaDescanso = false;
 		
 		String nome_reservista = "";
 		String cpf_usuario = "";
@@ -53,8 +58,11 @@ public final class interfaceReserva {
 		String data_reserva = "";
 		String hr_inicio_reserva = "";
 		String hr_fim_reserva = "";
+		
 		String modo_pagamento = "";
 		int parcelas = 1;
+		
+		
 		
 		
 		
@@ -67,13 +75,13 @@ public final class interfaceReserva {
 			utilidades.exibeMensagem("Nome do reservista:");
 			nome_reservista = scanner.nextLine();
 			
-			utilidades.exibeMensagem("Data da reserva:");
+			utilidades.exibeMensagem("Data da reserva (dd/mm/aaaa):");
 			data_reserva = scanner.nextLine();
 			
-			utilidades.exibeMensagem("Horário da reserva (INÍCIO):");
+			utilidades.exibeMensagem("Horário da reserva - INÍCIO (hh:mm) :");
 			hr_inicio_reserva = scanner.nextLine();
 			
-			utilidades.exibeMensagem("Horário da reserva (FIM):");
+			utilidades.exibeMensagem("Horário da reserva - FIM (hh:mm):");
 			hr_fim_reserva = scanner.nextLine();
 			
 			utilidades.exibeMensagem("Modo de Pagamento, meio pelo qual o reservista pagará a sua reserva:"
@@ -116,17 +124,26 @@ public final class interfaceReserva {
 			utilidades.exibeMensagem("Possui cobertura (sim/não): ");
 			cobertura = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
 			
+			utilidades.exibeMensagem("Deseja quadra com arquibancada (sim/nao)");
+			arquibancada = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
+			
+			utilidades.exibeMensagem("Deseja quadra com area de descanso: (sim/nao)");
+			areaDescanso = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
+			
 			
 			utilidades.exibeMensagem("Reserva Realizada com Sucesso!\n");
+			
+			Quadras.procuraQuadras(data_reserva, hr_inicio_reserva,  hr_fim_reserva, tipo_quadra, cobertura, arquibancada, areaDescanso);
 			
 			reserva.cadastrarReserva(cpf_usuario,nome_reservista, data_reserva, hr_inicio_reserva, hr_fim_reserva, modo_pagamento, parcelas,cobertura,cod_quadra,nome_quadra,tipo_quadra);
 
 		}catch(Exception e) {
 			utilidades.exibeMensagem("Reserva interrompida!\n");
 		}
-		
 	}
 	
 	
-
+	void visualizarReservas() {}
+	
+	
 }
