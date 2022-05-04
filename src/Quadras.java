@@ -80,10 +80,7 @@ public class Quadras{
 		setPossuiAreaDescanso(area);
 		setPreco_reserva(cobertura);
 	}
-<<<<<<< HEAD
-	
-	
-=======
+
 
 	public boolean verificaNumeroQuadra(int numero) {
 		if (numero == this.getCodigoQuadra()) {
@@ -92,7 +89,7 @@ public class Quadras{
 			return false;
 	}
 
->>>>>>> main
+
 	public void bloqueiaQuadraParaAluguel() {
 		this.setEstaBloqueada(true);
 	}
@@ -100,10 +97,7 @@ public class Quadras{
 	public void desbloqueiaQuadraParaAluguel() {
 		this.setEstaBloqueada(false);
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> main
+
 
 	public String identificaTipoQuadra(int identificador) {
 		switch (identificador) {
@@ -123,7 +117,7 @@ public class Quadras{
 			return "OPCAO INVALIDA";
 		}
 	}
-<<<<<<< HEAD
+
 	protected double getPreco_reserva() {
 		return preco_reserva;
 	}
@@ -137,9 +131,7 @@ public class Quadras{
 	}
 	
 	
-=======
 
->>>>>>> main
 	protected int getCodigoQuadra() {
 		return codigoQuadra;
 	}
@@ -168,11 +160,9 @@ public class Quadras{
 		return tipoQuadra;
 	}
 
-<<<<<<< HEAD
-	protected void setTipoQuadra(String tipoQuadra) {
-=======
+
 	private void setTipoQuadra(String tipoQuadra) {
->>>>>>> main
+
 		this.tipoQuadra = tipoQuadra;
 	}
 
@@ -180,11 +170,9 @@ public class Quadras{
 		return possuiCobertura;
 	}
 
-<<<<<<< HEAD
-	protected void setPossuiCobertura(boolean possuiCobertura) {
-=======
+
 	private void setPossuiCobertura(boolean possuiCobertura) {
->>>>>>> main
+
 		this.possuiCobertura = possuiCobertura;
 	}
 
@@ -192,11 +180,9 @@ public class Quadras{
 		return possuiArquibancada;
 	}
 
-<<<<<<< HEAD
-	protected void setPossuiArquibancada(boolean possuiArquibancada) {
-=======
+
 	private void setPossuiArquibancada(boolean possuiArquibancada) {
->>>>>>> main
+
 		this.possuiArquibancada = possuiArquibancada;
 	}
 
@@ -204,11 +190,9 @@ public class Quadras{
 		return possuiAreaDescanso;
 	}
 
-<<<<<<< HEAD
-	protected void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
-=======
+
 	private void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
->>>>>>> main
+
 		this.possuiAreaDescanso = possuiAreaDescanso;
 	}
 
@@ -216,11 +200,9 @@ public class Quadras{
 		return estaBloqueada;
 	}
 
-<<<<<<< HEAD
-	protected void setEstaBloqueada(boolean estaBloqueada) {
-=======
+
 	private void setEstaBloqueada(boolean estaBloqueada) {
->>>>>>> main
+
 		this.estaBloqueada = estaBloqueada;
 	}
 	
