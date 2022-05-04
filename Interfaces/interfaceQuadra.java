@@ -1,15 +1,15 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public final class interfaceQuadra {
 	
 	Scanner scanner = new Scanner(System.in);
-	UtilidadesSimplificadas utilidades = new UtilidadesSimplificadas();
+	ArrayList <Quadras> quadras = new ArrayList<Quadras>();
 	
 	void interfacePrincipalQuadras() {
-		Quadras quadra = new Quadras();
 		int operadorDoMenu = 0;
 		do {
-			utilidades.exibeMensagem("MENU QUADRA"
+			UtilidadesSimplificadas.exibeMensagem("MENU QUADRA"
 					+ "\n1.CADASTRAR QUADRA"
 					+ "\n2.DESBLOQUEAR/BLOQUEAR QUADRAS"
 					+ "\n3.ALTERAR DADOS"
@@ -23,19 +23,19 @@ public final class interfaceQuadra {
 			switch(operadorDoMenu){
 				
 				case 1:
-					this.interfaceCadastrarQuadra(quadra);
+					this.interfaceCadastrarQuadra();
 					break;
 					
 				case 2:
-					this.interfaceBloqueioQuadra(quadra);
+					this.interfaceBloqueioQuadra();
 					break;
 					
 				case 5:
-					utilidades.exibeMensagem("Voltando ao menu anterior!\n");
+					UtilidadesSimplificadas.exibeMensagem("Voltando ao menu anterior!\n");
 					break;
 					
 				default:
-					utilidades.exibeMensagem("Ainda em desenvolvimento!\n");
+					UtilidadesSimplificadas.exibeMensagem("Ainda em desenvolvimento!\n");
 					break;
 			}
 			
@@ -43,7 +43,7 @@ public final class interfaceQuadra {
 		
 	}
 	
-	void interfaceCadastrarQuadra(Quadras quadra) {
+	void interfaceCadastrarQuadra() {
 
 		String nome = "";
 		int numero = 0;
@@ -52,19 +52,20 @@ public final class interfaceQuadra {
 		boolean cobertura = false;
 		boolean arquibancada = false;
 		boolean area = false;
+		Quadras quadra = new Quadras(numero, nome, endereco, tipo, cobertura, arquibancada, area);
 		
 		try {
 			
-			utilidades.exibeMensagem("Nome da quadra: ");
+			UtilidadesSimplificadas.exibeMensagem("Nome da quadra: ");
 			nome = scanner.nextLine();
 			
-			utilidades.exibeMensagem("Número da quadra: ");
+			UtilidadesSimplificadas.exibeMensagem("Número da quadra: ");
 			numero = Integer.parseInt(scanner.nextLine());
 			
-			utilidades.exibeMensagem("Endereço da quadra: ");
+			UtilidadesSimplificadas.exibeMensagem("Endereço da quadra: ");
 			endereco = scanner.nextLine();
 		
-			utilidades.exibeMensagem("Tipo da quadra, selecione uma das opções atráves dos números:"
+			UtilidadesSimplificadas.exibeMensagem("Tipo da quadra, selecione uma das opções atráves dos números:"
 									+ "\n1. SAIBRO"
 									+ "\n2. SUPERFÍCIE SINTÉTICA"
 									+ "\n3. CIMENTO"
@@ -72,27 +73,30 @@ public final class interfaceQuadra {
 									+ "\nOpção: ");
 			tipo = quadra.identificaTipoQuadra(scanner.nextInt());
 			
-			utilidades.exibeMensagem("Possui cobertura (sim/não): ");
-			cobertura = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
+			UtilidadesSimplificadas.exibeMensagem("Possui cobertura (sim/não): ");
+			cobertura = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
 			
-			utilidades.exibeMensagem("Possui arquibancada (sim/não): ");
-			arquibancada = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
+			UtilidadesSimplificadas.exibeMensagem("Possui arquibancada (sim/não): ");
+			arquibancada = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
 			
-			utilidades.exibeMensagem("Possui área de descanso: ");
-			area = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
+			UtilidadesSimplificadas.exibeMensagem("Possui área de descanso: ");
+			area = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
 			
-			utilidades.exibeMensagem("Cadastro Realizado com Sucesso!\n");
-			quadra.cadastraQuadra(numero, nome, endereco, tipo, cobertura, arquibancada, area);
+			UtilidadesSimplificadas.exibeMensagem("Cadastro Realizado com Sucesso!\n");
+			quadra = new Quadras(numero, nome, endereco, tipo, cobertura, arquibancada, area);
+			quadras.add(quadra);
+			
 		}catch(Exception e) {
-			utilidades.exibeMensagem("Cadastro interrompido!\n");
+			UtilidadesSimplificadas.exibeMensagem("Cadastro interrompido!\n");
 		}
 	}
 	
-	void interfaceBloqueioQuadra(Quadras quadra) {
+	void interfaceBloqueioQuadra() {
 		int numero;
 		boolean continuaMetodo, estadoQuadra;
+		Quadras quadra = quadras.get(0);//necessário verificar como fazer isso de uma forma melhor depois
 		
-		utilidades.exibeMensagem("Digite o numero de identificação da quadra: ");
+		UtilidadesSimplificadas.exibeMensagem("Digite o numero de identificação da quadra: ");
 		numero = Integer.parseInt(scanner.nextLine());
 		
 		continuaMetodo = quadra.verificaNumeroQuadra(numero);
@@ -101,12 +105,12 @@ public final class interfaceQuadra {
 			estadoQuadra = quadra.isEstaBloqueada();
 			
 			if(estadoQuadra) 
-				utilidades.exibeMensagem("A quadra está DESBLOQUEADA\n");
+				UtilidadesSimplificadas.exibeMensagem("A quadra está DESBLOQUEADA\n");
 			else
-				utilidades.exibeMensagem("A quadra está BLOQUEADA\n");
+				UtilidadesSimplificadas.exibeMensagem("A quadra está BLOQUEADA\n");
 			
 			do {
-				utilidades.exibeMensagem("Deseja deixar está quadra HABILITADA (digite 1) ou DESABILITADA (digite 0): ");
+				UtilidadesSimplificadas.exibeMensagem("Deseja deixar está quadra HABILITADA (digite 1) ou DESABILITADA (digite 0): ");
 				numero = Integer.parseInt(scanner.nextLine());
 			}while(numero != 1 && numero != 0);		
 			
@@ -115,6 +119,6 @@ public final class interfaceQuadra {
 			else
 				quadra.bloqueiaQuadraParaAluguel();
 		}else
-			utilidades.exibeMensagem("Número digitado não corresponde a nenhuma quadra cadastrada!");
+			UtilidadesSimplificadas.exibeMensagem("Número digitado não corresponde a nenhuma quadra cadastrada!");
 	}
 }

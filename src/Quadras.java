@@ -13,6 +13,15 @@ public class Quadras {
 	private boolean possuiAreaDescanso;
 	private boolean estaBloqueada = false;
 	
+	public Quadras(int codigo, String nome, String endereco, String tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
+		this.setCodigoQuadra(codigo);
+		this.setNomeQuadra(nome);
+		this.setEnderecoQuadra(endereco);
+		this.setTipoQuadra(tipo);
+		this.setPossuiCobertura(cobertura);
+		this.setPossuiArquibancada(arquibancada);
+		this.setPossuiAreaDescanso(descanso);
+	}
 	
 	public static ArrayList<Quadras> procuraQuadras(String dia, String horarioInicio, String horarioFim, 
 			String tipo, boolean cobertura, boolean arquibancada, boolean areaDescanso){
@@ -66,8 +75,7 @@ public class Quadras {
 	}
 		
 
-	public void cadastraQuadra(int numero, String nome, String endereco, String tipo, boolean cobertura,
-			boolean arquibancada, boolean area) {
+	public void alteraDadosQuadra(int numero, String nome, String endereco, String tipo, boolean cobertura, boolean arquibancada, boolean area) {
 		setCodigoQuadra(numero);
 		setNomeQuadra(nome);
 		setEnderecoQuadra(endereco);
@@ -77,7 +85,7 @@ public class Quadras {
 		setPossuiAreaDescanso(area);
 	}
 
-	public boolean verificaNumeroQuadra(int numero) {
+	public  boolean verificaNumeroQuadra(int numero) {
 		if (numero == this.getCodigoQuadra()) {
 			return true;
 		} else

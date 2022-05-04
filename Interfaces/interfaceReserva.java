@@ -3,13 +3,12 @@ import java.util.Scanner;
 public class interfaceReserva {
 
 	Scanner scanner = new Scanner(System.in);
-	UtilidadesSimplificadas utilidades = new UtilidadesSimplificadas();
 	
 	void interfacePrincipalReservas() {
 		Reservas reserva = new Reservas();
 		int operadorDoMenu = 0;
 		do {
-			utilidades.exibeMensagem("MENU RESERVAS"
+			UtilidadesSimplificadas.exibeMensagem("MENU RESERVAS"
 					+ "\n1. FAZER RESERVA"
 					+ "\n2. VISUALIZAR RESERVAS"
 					+ "\n3. CANCELAR RESERVAS"
@@ -32,11 +31,11 @@ public class interfaceReserva {
 				case 3:	
 					break;
 				case 4:
-					utilidades.exibeMensagem("Voltando ao menu anterior!\n");
+					UtilidadesSimplificadas.exibeMensagem("Voltando ao menu anterior!\n");
 					break;
 					
 				default:
-					utilidades.exibeMensagem("Opção Invalida!\n");
+					UtilidadesSimplificadas.exibeMensagem("Opção Invalida!\n");
 					break;
 			}
 			
@@ -55,16 +54,16 @@ public class interfaceReserva {
 		boolean areaDescanso = false;
 		int operadorDoMenu = 0;
 		
-		utilidades.exibeMensagem("Dia da reserva (dd/mm/aaaa) : ");
+		UtilidadesSimplificadas.exibeMensagem("Dia da reserva (dd/mm/aaaa) : ");
 		dia = scanner.nextLine();
 		
-		utilidades.exibeMensagem("Horário de inicio (hh:mm) : ");
+		UtilidadesSimplificadas.exibeMensagem("Horário de inicio (hh:mm) : ");
 		horarioInicio = scanner.nextLine();
 		
-		utilidades.exibeMensagem("Horário de fim (hh:mm) : ");
+		UtilidadesSimplificadas.exibeMensagem("Horário de fim (hh:mm) : ");
 		horarioFim = scanner.nextLine();
 
-		utilidades.exibeMensagem("Tipo de quadra: "
+		UtilidadesSimplificadas.exibeMensagem("Tipo de quadra: "
 				+ "\n1. Saibro"
 				+ "\n2. Superficie sintética"
 				+ "\n3. Cimento"
@@ -79,17 +78,17 @@ public class interfaceReserva {
 				break;
 			case 4 : tipo = "BEACH TENNIS";
 				break;
-			default: utilidades.exibeMensagem("Opção Invalida");
+			default: UtilidadesSimplificadas.exibeMensagem("Opção Invalida");
 				break;
 		
 		}
 		
-		utilidades.exibeMensagem("Deseja quadra com cobertura: (sim/nao)");
-		cobertura = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
-		utilidades.exibeMensagem("Deseja quadra com arquibancada (sim/nao)");
-		arquibancada = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
-		utilidades.exibeMensagem("Deseja quadra com area de descanso: (sim/nao)");
-		areaDescanso = utilidades.transformaString(utilidades.persistirValor(scanner.next()));
+		UtilidadesSimplificadas.exibeMensagem("Deseja quadra com cobertura: (sim/nao)");
+		cobertura = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
+		UtilidadesSimplificadas.exibeMensagem("Deseja quadra com arquibancada (sim/nao)");
+		arquibancada = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
+		UtilidadesSimplificadas.exibeMensagem("Deseja quadra com area de descanso: (sim/nao)");
+		areaDescanso = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
 	
 		Quadras.procuraQuadras(dia, horarioInicio, horarioFim, tipo, cobertura, arquibancada, areaDescanso);
 		
