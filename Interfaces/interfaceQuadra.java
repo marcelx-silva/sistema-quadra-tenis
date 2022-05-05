@@ -94,10 +94,10 @@ public final class interfaceQuadra {
 	void interfaceBloqueioQuadra() {
 		int numero;
 		boolean continuaMetodo, estadoQuadra;
-		Quadras quadra = quadras.get(0);//necessário verificar como fazer isso de uma forma melhor depois
 		
 		UtilidadesSimplificadas.exibeMensagem("Digite o numero de identificação da quadra: ");
 		numero = Integer.parseInt(scanner.nextLine());
+		Quadras quadra = quadras.get(numero);//necessário verificar como fazer isso de uma forma melhor depois
 		
 		continuaMetodo = quadra.verificaNumeroQuadra(numero);
 		
@@ -118,6 +118,63 @@ public final class interfaceQuadra {
 				quadra.desbloqueiaQuadraParaAluguel();
 			else
 				quadra.bloqueiaQuadraParaAluguel();
+		}else
+			UtilidadesSimplificadas.exibeMensagem("Número digitado não corresponde a nenhuma quadra cadastrada!");
+	}
+	
+	private void interfaceAlteraDados() {
+		int numero, operador = 100;
+		boolean continuaMetodo;
+		
+		UtilidadesSimplificadas.exibeMensagem("Digite o numero de identificação da quadra: ");
+		numero = Integer.parseInt(scanner.nextLine());
+		Quadras quadra = quadras.get(numero);//necessário verificar como fazer isso de uma forma melhor depois
+		
+		continuaMetodo = quadra.verificaNumeroQuadra(numero);
+		
+		if(continuaMetodo) {
+			UtilidadesSimplificadas.exibeMensagem("Dados atuais: "
+					+ "\n Número da Quadra (Inalterável): " + quadra.getCodigoQuadra()
+					+ "\nNome da Quadra: " + quadra.getNomeQuadra()
+					+ "\nEndereço da Quadra: " + quadra.getEnderecoQuadra()
+					+ "\nTipo da Quadra: " + quadra.getTipoQuadra()
+					+ "\nTem Cobertura: " + quadra.isPossuiCobertura()
+					+ "\nTem Arquibancada: " + quadra.isPossuiArquibancada()
+					+ "\nTem Área de Descanso: " + quadra.isPossuiAreaDescanso());
+			do {
+				UtilidadesSimplificadas.exibeMensagem("\nOpções para trocar: "
+						+ "\n1. Nome da Quadra"
+						+ "\n2. Endereço da Quadra"
+						+ "\n3. Tipo da Quadra"
+						+ "\n4. Tem Cobertura"
+						+ "\n5. Tem Arquibancada"
+						+ "\n6. Tem Área de Descanso");
+				operador = Integer.parseInt(scanner.nextLine());
+				switch(operador) {
+				
+				case 1:
+					break;
+				
+				case 2:
+					break;
+					
+				case 3:
+					break;
+					
+				case 4:
+					break;
+					
+				case 5:
+					break;
+					
+				case 6:
+					break;
+					
+				default:
+					break;
+				}
+			}while(true);
+			
 		}else
 			UtilidadesSimplificadas.exibeMensagem("Número digitado não corresponde a nenhuma quadra cadastrada!");
 	}
