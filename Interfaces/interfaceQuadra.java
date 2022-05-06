@@ -30,6 +30,10 @@ public final class interfaceQuadra {
 					this.interfaceBloqueioQuadra();
 					break;
 					
+				case 3:
+					this.interfaceAlteraDados();
+					break;
+					
 				case 5:
 					UtilidadesSimplificadas.exibeMensagem("Voltando ao menu anterior!\n");
 					break;
@@ -138,9 +142,9 @@ public final class interfaceQuadra {
 					+ "\nNome da Quadra: " + quadra.getNomeQuadra()
 					+ "\nEndereço da Quadra: " + quadra.getEnderecoQuadra()
 					+ "\nTipo da Quadra: " + quadra.getTipoQuadra()
-					+ "\nTem Cobertura: " + quadra.isPossuiCobertura()
-					+ "\nTem Arquibancada: " + quadra.isPossuiArquibancada()
-					+ "\nTem Área de Descanso: " + quadra.isPossuiAreaDescanso());
+					+ "\nTem Cobertura: " + UtilidadesSimplificadas.transformaBoolean(quadra.isPossuiCobertura())
+					+ "\nTem Arquibancada: " + UtilidadesSimplificadas.transformaBoolean(quadra.isPossuiArquibancada())
+					+ "\nTem Área de Descanso: " + UtilidadesSimplificadas.transformaBoolean(quadra.isPossuiAreaDescanso()));
 			do {
 				UtilidadesSimplificadas.exibeMensagem("\nOpções para trocar: "
 						+ "\n1. Nome da Quadra"
@@ -153,24 +157,42 @@ public final class interfaceQuadra {
 				switch(operador) {
 				
 				case 1:
+					UtilidadesSimplificadas.exibeMensagem("Digite o novo nome da quadra: ");
+					quadra.setNomeQuadra(scanner.nextLine());
 					break;
 				
 				case 2:
+					UtilidadesSimplificadas.exibeMensagem("Digite o novo endereço da quadra: ");
+					quadra.setEnderecoQuadra(scanner.nextLine());
 					break;
 					
 				case 3:
+					UtilidadesSimplificadas.exibeMensagem("Digite o novo tipo da quadra, selecione uma das opções atráves dos números:"
+							+ "\n1. SAIBRO"
+							+ "\n2. SUPERFÍCIE SINTÉTICA"
+							+ "\n3. CIMENTO"
+							+ "\n4. BEACH TENNIS"
+							+ "\nOpção: ");
+					quadra.setTipoQuadra(quadra.identificaTipoQuadra(scanner.nextInt()));
 					break;
 					
 				case 4:
+					UtilidadesSimplificadas.exibeMensagem("Digite se a quadra agora possui cobertura (sim/não): ");
+					quadra.setPossuiCobertura(UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next())));
 					break;
 					
 				case 5:
+					UtilidadesSimplificadas.exibeMensagem("Digite se a quadra agora possui arquibancada (sim/não): ");
+					quadra.setPossuiArquibancada(UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next())));
 					break;
 					
 				case 6:
+					UtilidadesSimplificadas.exibeMensagem("Digite se a quadra agora possui área de descanso (sim/não): ");
+					quadra.setPossuiAreaDescanso(UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next())));
 					break;
 					
 				default:
+					UtilidadesSimplificadas.exibeMensagem("Opção Inválida!");
 					break;
 				}
 			}while(true);

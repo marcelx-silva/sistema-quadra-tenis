@@ -16,6 +16,13 @@ public class UtilidadesSimplificadas {
 			return false;
 	}
 	
+	static String transformaBoolean(boolean valor) {
+		if(valor)
+			return "Sim";
+		else
+			return "Não";
+	}
+	
 	static String persistirValor(String valor) {
 		if(valor.contentEquals("Sim") || valor.contentEquals("sim") || valor.contentEquals("SIM") || valor.contentEquals("NÃO")  || valor.contentEquals("Não")  || valor.contentEquals("não"))
 			return valor;
