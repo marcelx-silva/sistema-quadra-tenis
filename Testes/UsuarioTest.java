@@ -7,9 +7,9 @@ class UsuarioTest {
 
 	@BeforeAll
 	void before() {
-		InterfaceUsuario interf = new InterfaceUsuario(); 
-		Usuario firstUser = new Usuario();
-		Usuario secondUser = new Usuario();
+		//InterfaceUsuario interf = new InterfaceUsuario(); 
+		//Usuario firstUser = new Usuario();
+		//Usuario secondUser = new Usuario();
 		
 	}
 	

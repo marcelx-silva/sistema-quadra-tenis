@@ -1,15 +1,14 @@
+import java.util.ArrayList;
 
 public class Usuario {
 	
 	private String nomeUsuario, emailUsuario, senhaUsuario;
 	private int cpfUsuario;		
 	private boolean	estaDesabilitado, estaBloqueado, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador;
+	static ArrayList <Usuario> usuarios = new ArrayList<Usuario>();
 	
-	public Usuario(int cpfDigitado) {
-		this.verificarUsuario(cpfDigitado);
-	}
-	
-	public Usuario(String nomeUsuario, int cpfUsuario, String emailUsuario, String senhaUsuario, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
+	public Usuario(String nomeUsuario, int cpfUsuario, String emailUsuario, String senhaUsuario, 
+				boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setNomeUsuario(nomeUsuario);
 		this.setCpfUsuario(cpfUsuario);
 		this.setEmailUsuario(emailUsuario);
@@ -18,13 +17,6 @@ public class Usuario {
 		this.setAcessoGestorUsuarios(acessoGestorUsuarios);
 		this.setAcessoRelatorios(acessoRelatorios);
 		this.setAcessoZelador(acessoZelador);
-	}
-
-	public boolean verificarUsuario(int cpfDigitado) {
-		if(cpfDigitado == this.getCpfUsuario())
-			return true;
-		else
-			return false;
 	}
 
 	public void desabilitarUsuario() {
@@ -124,4 +116,19 @@ public class Usuario {
 		this.acessoZelador = acessoZelador;
 	}
 	
+	public void adicionarUsuario(Usuario user) {
+		usuarios.add(user);
+	}
+	
+	static public ArrayList<Usuario> getLista(){
+		return usuarios;
+	}
+	
+	static public Usuario buscaUsuarioPor(int cpfDigitado) {
+		for(Usuario user:usuarios) {
+			if( user.getCpfUsuario() == cpfDigitado)
+				return user;
+		}
+		return null;
+	}
 }
