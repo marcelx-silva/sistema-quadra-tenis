@@ -32,6 +32,27 @@ public class Quadras {
 		
 	}
 	
+	public static String[][] procuraQuadrasCadastradas(){
+				
+		int colunaTeste = 8;
+		int linhaTeste = 2;
+		String[][] quadras;
+		
+		String[][] exemploRetornoBD = {{"01", "nome1", "tipo1", "endereco1", "cobertura1", "arquibancada1", "descanco1", "status1"},
+				{"02", "nome2", "tipo2", "endereco2", "cobertura2", "arquibancada2", "descanco2", "status2"}};
+	
+
+		quadras = new String[linhaTeste][colunaTeste];
+		
+		for (int linha=0; linha < linhaTeste; linha++) {
+			for (int coluna=0; coluna < colunaTeste; coluna++) { 
+				quadras[linha][coluna] = exemploRetornoBD[linha][coluna]; 				
+			}
+		}
+		
+		return quadras;
+	}
+	
 	public String[][] verificaDisponibilidadeQuadra(int quantidadeDias) {
 		//hashmap
 		int aberturaSemana = 6;
