@@ -1,103 +1,150 @@
 import java.util.Scanner;
 
-public class interfaceReserva {
+
+public final class interfaceReserva {
+
 
 	Scanner scanner = new Scanner(System.in);
 	
-	void interfacePrincipalReservas() {
-		Reservas reserva = new Reservas();
-		int operadorDoMenu = 0;
+	void interfaceMenuReserva() {
+		Reservas reserva = new Reservas(0,"","","","","","","","",1,false);
+		Quadras quadra = new Quadras(0,"","","",false,false,false);
+		int operadorMenu = 0;
+		
 		do {
+
 			UtilidadesSimplificadas.exibeMensagem("MENU RESERVAS"
 					+ "\n1. FAZER RESERVA"
 					+ "\n2. VISUALIZAR RESERVAS"
 					+ "\n3. CANCELAR RESERVAS"
 					+ "\n4. SAIR DO MENU"
-					+ "\nOPÃ‡ÃƒO: ");
+					+ "\nOPÇÃO: ");
 			
-			operadorDoMenu = scanner.nextInt();
+			operadorMenu = scanner.nextInt();
 			scanner.nextLine();
 			
-			switch(operadorDoMenu){
-				
+			switch(operadorMenu) {
 				case 1:
-					this.fazerReserva();
+					this.interfaceCadastroReserva(reserva,quadra);
 					break;
-					
 				case 2:
 					this.visualizarReservas();
 					break;
-					
-				case 3:	
+				case 3:
 					break;
 				case 4:
 					UtilidadesSimplificadas.exibeMensagem("Voltando ao menu anterior!\n");
 					break;
-					
 				default:
-					UtilidadesSimplificadas.exibeMensagem("OpÃ§Ã£o Invalida!\n");
-					break;
+					UtilidadesSimplificadas.exibeMensagem("Opção Inválida!! \n"); 
+					
+
 			}
 			
-		}while(operadorDoMenu != 4);
-		
+		}while(operadorMenu!=5);
 	}
-
-	void fazerReserva() {
+	
+	void interfaceCadastroReserva(Reservas reserva, Quadras quadra){
 		
-		String dia = "";
-		String horarioInicio = "";
-		String horarioFim = "";
-		String tipo = "";
+	
+		int cod_quadra = 0;
+		String nome_quadra = "";
+		String tipo_quadra = "";
 		boolean cobertura = false;
 		boolean arquibancada = false;
 		boolean areaDescanso = false;
-		int operadorDoMenu = 0;
 		
-		UtilidadesSimplificadas.exibeMensagem("Dia da reserva (dd/mm/aaaa) : ");
-		dia = scanner.nextLine();
+		String nome_reservista = "";
+		String cpf_usuario = "";
 		
-		UtilidadesSimplificadas.exibeMensagem("HorÃ¡rio de inicio (hh:mm) : ");
-		horarioInicio = scanner.nextLine();
+		String data_reserva = "";
+		String hr_inicio_reserva = "";
+		String hr_fim_reserva = "";
 		
-		UtilidadesSimplificadas.exibeMensagem("HorÃ¡rio de fim (hh:mm) : ");
-		horarioFim = scanner.nextLine();
+		String modo_pagamento = "";
+		int parcelas = 1;
+		
+		
+		
+			
+		
+		try {
+			
+			UtilidadesSimplificadas.exibeMensagem("CPF do reservista: ");
+			cpf_usuario = scanner.nextLine();
+			
+			UtilidadesSimplificadas.exibeMensagem("Nome do reservista:");
+			nome_reservista = scanner.nextLine();
+			
+			UtilidadesSimplificadas.exibeMensagem("Data da reserva (dd/mm/aaaa):");
+			data_reserva = scanner.nextLine();
+			
+			UtilidadesSimplificadas.exibeMensagem("Horário da reserva - INÍCIO (hh:mm) :");
+			hr_inicio_reserva = scanner.nextLine();
+			
+			UtilidadesSimplificadas.exibeMensagem("Horário da reserva - FIM (hh:mm):");
+			hr_fim_reserva = scanner.nextLine();
+			
+			UtilidadesSimplificadas.exibeMensagem("Modo de Pagamento, meio pelo qual o reservista pagará a sua reserva:"
+					+ "\n1. CRÉDITO"
+					+ "\n2. DÉBITO"
+					+ "\n3. DINHEIRO"
+					+ "\n4. PIX"
+					+ "\nOpção: ");
+			
+			modo_pagamento = reserva.selecionarModoPagamento(Integer.parseInt(scanner.nextLine()));
+			
+			if(modo_pagamento.equals("CRÉDITO") || modo_pagamento.equals("PIX")) {
+				UtilidadesSimplificadas.exibeMensagem("Utilizando "+modo_pagamento+" como modo de pagamento é possível parcelar em:"
+						+ "\n1. A vista"
+						+ "\n2. 2x"
+						+ "\n3. 4x"
+						+ "\n Opção: ");
+				parcelas = reserva.parcelarReserva(Integer.parseInt(scanner.nextLine()));
+			}else {
+				parcelas = 1;
+			}
+			
+			
+			
+			UtilidadesSimplificadas.exibeMensagem("Nome da Quadra: ");
+			nome_quadra = (scanner.nextLine());
+			
+			UtilidadesSimplificadas.exibeMensagem("Código da quadra: ");
+			cod_quadra = Integer.parseInt(scanner.nextLine());
+			
+			UtilidadesSimplificadas.exibeMensagem("Tipo da quadra, selecione uma das opções atráves dos números:"
+					+ "\n1. SAIBRO"
+					+ "\n2. SUPERFÍCIE SINTÉTICA"
+					+ "\n3. CIMENTO"
+					+ "\n4. BEACH TENNIS"
+					+ "\nOpção: ");
+			tipo_quadra = quadra.identificaTipoQuadra(scanner.nextInt());
+		
+			
+			UtilidadesSimplificadas.exibeMensagem("Possui cobertura (sim/não): ");
+			cobertura = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
+			
+			UtilidadesSimplificadas.exibeMensagem("Deseja quadra com arquibancada (sim/nao)");
+			arquibancada = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
+			
+			UtilidadesSimplificadas.exibeMensagem("Deseja quadra com area de descanso: (sim/nao)");
+			areaDescanso = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
+			
+			
+			UtilidadesSimplificadas.exibeMensagem("Reserva Realizada com Sucesso!\n");
+			
+			Quadras.procuraQuadras(data_reserva, hr_inicio_reserva,  hr_fim_reserva, tipo_quadra, cobertura, arquibancada, areaDescanso);
+			
+			reserva.cadastrarReserva(cpf_usuario,nome_reservista, data_reserva, hr_inicio_reserva, hr_fim_reserva, modo_pagamento, parcelas,cobertura,cod_quadra,nome_quadra,tipo_quadra);
 
-		UtilidadesSimplificadas.exibeMensagem("Tipo de quadra: "
-				+ "\n1. Saibro"
-				+ "\n2. Superficie sintÃ©tica"
-				+ "\n3. Cimento"
-				+ "\n4. Beach Tennis"
-				+ "\nOPÃ‡ÃƒO: ");
-		switch(operadorDoMenu) {
-			case 1 : tipo = "SAIBRO";
-				break;
-			case 2 : tipo = "SUPERFï¿½CIE SINTï¿½TICA";
-				break;
-			case 3 : tipo = "CIMENTO";
-				break;
-			case 4 : tipo = "BEACH TENNIS";
-				break;
-			default: UtilidadesSimplificadas.exibeMensagem("OpÃ§Ã£o Invalida");
-				break;
-		
+		}catch(Exception e) {
+			UtilidadesSimplificadas.exibeMensagem("Reserva interrompida!\n");
 		}
-		
-		UtilidadesSimplificadas.exibeMensagem("Deseja quadra com cobertura: (sim/nao)");
-		cobertura = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
-		UtilidadesSimplificadas.exibeMensagem("Deseja quadra com arquibancada (sim/nao)");
-		arquibancada = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
-		UtilidadesSimplificadas.exibeMensagem("Deseja quadra com area de descanso: (sim/nao)");
-		areaDescanso = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
-	
-		Quadras.procuraQuadras(dia, horarioInicio, horarioFim, tipo, cobertura, arquibancada, areaDescanso);
-		
 	}
 	
 	
-	void visualizarReservas() {
-		
-	}
+	void visualizarReservas() {}
 	
 	
 }
