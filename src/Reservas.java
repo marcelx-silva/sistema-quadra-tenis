@@ -41,16 +41,10 @@ public class Reservas{
 	private String modo_pagamento;
 	private int parcelas; 
 	
-	private boolean cobertura = false;
-	private String nome_quadra;
-	private int cod_quadra;
-	private String tipo_quadra;
-
+	private Quadras codigoQuadra;
 	
-	public Reservas(int cod_quadra,String nome_quadra, String tipo_quadra,String cpf_usuario,String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas, boolean cobertura){
-		this.cod_quadra = cod_quadra;
-		this.nome_quadra = nome_quadra;
-		this.tipo_quadra = tipo_quadra;
+	public Reservas(Quadras cod_quadra,String cpf_usuario,String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas){
+		this.codigoQuadra = cod_quadra;
 		this.cpf_usuario = cpf_usuario;
 		this.nome_reservista = nome_reservista;
 		this.data_reserva = data_reserva;
@@ -58,7 +52,6 @@ public class Reservas{
 		this.hr_fim_reserva = hr_fim_reserva;
 		this.modo_pagamento = modo_pagamento;
 		this.parcelas = parcelas;
-		this.cobertura = cobertura;
 	}
 	
 
@@ -70,18 +63,16 @@ public class Reservas{
 		
 	}
 	
-	public void cadastrarReserva(String cpf_usu,String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, boolean cobertura, int cod_qua, String nm_qua, String tipo_qua){
+	public void cadastrarReserva(String cpf_usu,String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, int cod_qua){
 		setCpf_usuario(cpf_usu);
 		setNome_reservista(nm_reservista);
 		setData_reserva(dt_reserva);
 		setHr_inicio_reserva(hr_ini_reserva);
 		setHr_fim_reserva(hr_fim_reserva);
 		setModo_pagamento(md_pag);
-		setParcelas(quant_parcelas);
-		setCobertura(cobertura);		
-		setCod_quadra(cod_qua);
-		setNome_quadra(nm_qua);
-		setTipo_quadra(tipo_qua);
+		setParcelas(quant_parcelas);		
+		//setCodigoQuadra(cod_qua);
+
 	}
 	
 
@@ -122,16 +113,9 @@ public class Reservas{
 		return cpf_usuario;
 	}
 	
-	protected String getNome_quadra() {
-		return nome_quadra; 
-	}
-	
-	protected String getTipo_quadra() {
-		return tipo_quadra;
-	}
-	
-	protected int getCod_quadra() {
-		return cod_quadra;
+
+	protected Quadras getCodigoQuadra() {
+		return codigoQuadra;
 	}
 	
 	protected String getData_reserva(){
@@ -152,10 +136,6 @@ public class Reservas{
 	
 	protected int getParcelas(){
 		return parcelas;
-	}
-	
-	protected boolean isCobertura() {
-		return cobertura;
 	}
 	
 	
@@ -184,24 +164,13 @@ public class Reservas{
 		this.parcelas = parcelas;
 	}
 		
-	protected void setCobertura(boolean cobertura) {
-		this.cobertura = cobertura;
-	}
-	
 	protected void setCpf_usuario(String cpf_usuario) {
 		this.cpf_usuario = cpf_usuario;
 	}
 	
-	protected void setNome_quadra(String nome_quadra) {
-		this.nome_quadra = nome_quadra; 
-	}
 	
-	protected void setTipo_quadra(String tipo_quadra) {
-		this.tipo_quadra = tipo_quadra;
-	}
-	
-	protected void setCod_quadra(int cod_quadra) {
-		this.cod_quadra = cod_quadra;
+	protected void setCodigoQuadra(Quadras cod_quadra) {
+		this.codigoQuadra = cod_quadra;
 	}
 	
 }

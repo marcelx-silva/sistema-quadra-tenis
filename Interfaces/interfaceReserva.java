@@ -7,8 +7,8 @@ public final class interfaceReserva {
 	Scanner scanner = new Scanner(System.in);
 	
 	void interfaceMenuReserva() {
-		Reservas reserva = new Reservas(0,"","","","","","","","",1,false);
 		Quadras quadra = new Quadras(0,"","","",false,false,false);
+		Reservas reserva = new Reservas(quadra,"","","","","","",1);
 		int operadorMenu = 0;
 		
 		do {
@@ -25,7 +25,7 @@ public final class interfaceReserva {
 			
 			switch(operadorMenu) {
 				case 1:
-					this.interfaceCadastroReserva(reserva,quadra);
+					this.interfaceCadastroReserva(reserva);
 					break;
 				case 2:
 					this.visualizarReservas();
@@ -44,16 +44,10 @@ public final class interfaceReserva {
 		}while(operadorMenu!=5);
 	}
 	
-	void interfaceCadastroReserva(Reservas reserva, Quadras quadra){
+	void interfaceCadastroReserva(Reservas reserva){
 		
 	
-		int cod_quadra = 0;
-		String nome_quadra = "";
-		String tipo_quadra = "";
-		boolean cobertura = false;
-		boolean arquibancada = false;
-		boolean areaDescanso = false;
-		
+		int cod_quadra;
 		String nome_reservista = "";
 		String cpf_usuario = "";
 		
@@ -106,37 +100,17 @@ public final class interfaceReserva {
 			}
 			
 			
-			
-			UtilidadesSimplificadas.exibeMensagem("Nome da Quadra: ");
-			nome_quadra = (scanner.nextLine());
-			
 			UtilidadesSimplificadas.exibeMensagem("Código da quadra: ");
 			cod_quadra = Integer.parseInt(scanner.nextLine());
 			
-			UtilidadesSimplificadas.exibeMensagem("Tipo da quadra, selecione uma das opções atráves dos números:"
-					+ "\n1. SAIBRO"
-					+ "\n2. SUPERFÍCIE SINTÉTICA"
-					+ "\n3. CIMENTO"
-					+ "\n4. BEACH TENNIS"
-					+ "\nOpção: ");
-			tipo_quadra = quadra.identificaTipoQuadra(scanner.nextInt());
-		
-			
-			UtilidadesSimplificadas.exibeMensagem("Possui cobertura (sim/não): ");
-			cobertura = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
-			
-			UtilidadesSimplificadas.exibeMensagem("Deseja quadra com arquibancada (sim/nao)");
-			arquibancada = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
-			
-			UtilidadesSimplificadas.exibeMensagem("Deseja quadra com area de descanso: (sim/nao)");
-			areaDescanso = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
+			Quadras codigoQuadra = new Quadras(cod_quadra);
 			
 			
 			UtilidadesSimplificadas.exibeMensagem("Reserva Realizada com Sucesso!\n");
 			
-			Quadras.procuraQuadras(data_reserva, hr_inicio_reserva,  hr_fim_reserva, tipo_quadra, cobertura, arquibancada, areaDescanso);
+			//Quadras.procuraQuadras(data_reserva, hr_inicio_reserva,  hr_fim_reserva, tipo_quadra, cobertura, arquibancada, areaDescanso);
 			
-			reserva.cadastrarReserva(cpf_usuario,nome_reservista, data_reserva, hr_inicio_reserva, hr_fim_reserva, modo_pagamento, parcelas,cobertura,cod_quadra,nome_quadra,tipo_quadra);
+			reserva.cadastrarReserva(cpf_usuario,nome_reservista, data_reserva, hr_inicio_reserva, hr_fim_reserva, modo_pagamento, parcelas,codigoQuadra.getCodigoQuadra());
 
 		}catch(Exception e) {
 			UtilidadesSimplificadas.exibeMensagem("Reserva interrompida!\n");
