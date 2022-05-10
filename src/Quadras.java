@@ -15,8 +15,11 @@ public class Quadras{
 	private boolean estaBloqueada = false;
 	private double preco_reserva;
 
-	public Quadras(int codigo) {
-		this.setCodigoQuadra(codigo);
+	public Quadras(int codigoQuadra, String nomeQuadra, String tipoQuadra, boolean cobertura) {
+		this.setCodigoQuadra(codigoQuadra);
+		this.setNomeQuadra(nomeQuadra);
+		this.setTipoQuadra(tipoQuadra);
+		this.setPreco_reserva(cobertura);
 	}
 	
 	public Quadras(int codigo, String nome, String endereco, String tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
@@ -148,7 +151,7 @@ public class Quadras{
 		return codigoQuadra;
 	}
 
-	private void setCodigoQuadra(int codigoQuadra) {
+	protected void setCodigoQuadra(int codigoQuadra) {
 		this.codigoQuadra = codigoQuadra;
 	}
 

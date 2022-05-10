@@ -26,10 +26,7 @@ public class Reservas{
 		
 		return listaReservas;
 	}
-	
-	Quadras quadra = new Quadras(0,"","","",false,false,false);
-	
-	
+		
 
 	private String nome_reservista;
 	private String cpf_usuario;
@@ -40,11 +37,10 @@ public class Reservas{
 	private String hr_fim_reserva;
 	private String modo_pagamento;
 	private int parcelas; 
+	private Quadras quadra;
 	
-	private Quadras codigoQuadra;
-	
-	public Reservas(Quadras cod_quadra,String cpf_usuario,String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas){
-		this.codigoQuadra = cod_quadra;
+	public Reservas(Quadras quadra,String cpf_usuario,String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas){
+		this.quadra = quadra;
 		this.cpf_usuario = cpf_usuario;
 		this.nome_reservista = nome_reservista;
 		this.data_reserva = data_reserva;
@@ -63,7 +59,7 @@ public class Reservas{
 		
 	}
 	
-	public void cadastrarReserva(String cpf_usu,String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, int cod_qua){
+	public void cadastrarReserva(String cpf_usu,String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, int cod_qua, String nome_qua, String tipo_qua, boolean cob_qua){
 		setCpf_usuario(cpf_usu);
 		setNome_reservista(nm_reservista);
 		setData_reserva(dt_reserva);
@@ -71,7 +67,10 @@ public class Reservas{
 		setHr_fim_reserva(hr_fim_reserva);
 		setModo_pagamento(md_pag);
 		setParcelas(quant_parcelas);		
-		//setCodigoQuadra(cod_qua);
+		quadra.setCodigoQuadra(cod_qua);
+		quadra.setNomeQuadra(nome_qua);
+		quadra.setTipoQuadra(tipo_qua);
+		quadra.setPreco_reserva(cob_qua);
 
 	}
 	
@@ -115,7 +114,7 @@ public class Reservas{
 	
 
 	protected Quadras getCodigoQuadra() {
-		return codigoQuadra;
+		return quadra;
 	}
 	
 	protected String getData_reserva(){
@@ -169,8 +168,8 @@ public class Reservas{
 	}
 	
 	
-	protected void setCodigoQuadra(Quadras cod_quadra) {
-		this.codigoQuadra = cod_quadra;
+	protected void setCodigoQuadra(Quadras quadra) {
+		this.quadra = quadra;
 	}
 	
 }

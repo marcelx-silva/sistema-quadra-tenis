@@ -25,7 +25,7 @@ public final class interfaceReserva {
 			
 			switch(operadorMenu) {
 				case 1:
-					this.interfaceCadastroReserva(reserva);
+					this.interfaceCadastroReserva(reserva, quadra);
 					break;
 				case 2:
 					this.visualizarReservas();
@@ -44,10 +44,14 @@ public final class interfaceReserva {
 		}while(operadorMenu!=5);
 	}
 	
-	void interfaceCadastroReserva(Reservas reserva){
+	void interfaceCadastroReserva(Reservas reserva, Quadras quadra){
 		
 	
 		int cod_quadra;
+		String tipo_quadra;
+		String nome_quadra;
+		boolean cobertura = false;
+		
 		String nome_reservista = "";
 		String cpf_usuario = "";
 		
@@ -57,8 +61,6 @@ public final class interfaceReserva {
 		
 		String modo_pagamento = "";
 		int parcelas = 1;
-		
-		
 		
 			
 		
@@ -103,14 +105,35 @@ public final class interfaceReserva {
 			UtilidadesSimplificadas.exibeMensagem("Código da quadra: ");
 			cod_quadra = Integer.parseInt(scanner.nextLine());
 			
-			Quadras codigoQuadra = new Quadras(cod_quadra);
+			
+			UtilidadesSimplificadas.exibeMensagem("Nome da Quadra: ");
+			nome_quadra = (scanner.nextLine());
+			
+			UtilidadesSimplificadas.exibeMensagem("Código da quadra: ");
+			cod_quadra = Integer.parseInt(scanner.nextLine());
+			
+			UtilidadesSimplificadas.exibeMensagem("Tipo da quadra, selecione uma das opções atráves dos números:"
+					+ "\n1. SAIBRO"
+					+ "\n2. SUPERFÍCIE SINTÉTICA"
+					+ "\n3. CIMENTO"
+					+ "\n4. BEACH TENNIS"
+					+ "\nOpção: ");
+			tipo_quadra = quadra.identificaTipoQuadra(scanner.nextInt());
+			
+			UtilidadesSimplificadas.exibeMensagem("Possui cobertura (sim/não): ");
+			cobertura = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
+			
+			Quadras QuadraReserva = new Quadras(cod_quadra,nome_quadra,tipo_quadra,cobertura);
+			
+			
+			reserva.cadastrarReserva(cpf_usuario,nome_reservista, data_reserva, hr_inicio_reserva, hr_fim_reserva, modo_pagamento, parcelas,QuadraReserva.getCodigoQuadra(),QuadraReserva.getNomeQuadra(),QuadraReserva.getTipoQuadra(),QuadraReserva.isPossuiCobertura());
 			
 			
 			UtilidadesSimplificadas.exibeMensagem("Reserva Realizada com Sucesso!\n");
 			
 			//Quadras.procuraQuadras(data_reserva, hr_inicio_reserva,  hr_fim_reserva, tipo_quadra, cobertura, arquibancada, areaDescanso);
 			
-			reserva.cadastrarReserva(cpf_usuario,nome_reservista, data_reserva, hr_inicio_reserva, hr_fim_reserva, modo_pagamento, parcelas,codigoQuadra.getCodigoQuadra());
+			
 
 		}catch(Exception e) {
 			UtilidadesSimplificadas.exibeMensagem("Reserva interrompida!\n");
