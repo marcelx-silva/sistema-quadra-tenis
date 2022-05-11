@@ -11,7 +11,7 @@ public final class InterfaceUsuario {
 		
 		int operadorDoMenu = 9;
 		do {
-			UtilidadesSimplificadas.exibeMensagem
+			UtilidadesGUI.exibeMensagem
 					(  "          + MENU USUÁRIO +\n"
 					+ "\n1 [       CADASTRAR USUÁRIO        ]"
 					+ "\n2 [ HABILITAR/DESABILITAR USUÁRIOS ]"
@@ -42,11 +42,11 @@ public final class InterfaceUsuario {
 					menuExibirUsuario();
 					break;
 				case 6:
-					UtilidadesSimplificadas.exibeMensagem("Voltando ao menu anterior!\n");
+					UtilidadesGUI.exibeMensagem("Voltando ao menu anterior!\n");
 					break;
 					
 				default:
-					UtilidadesSimplificadas.exibeMensagem("Ainda em desenvolvimento!\n");
+					UtilidadesGUI.exibeMensagem("Ainda em desenvolvimento!\n");
 					break;
 			}
 			
@@ -58,65 +58,65 @@ public final class InterfaceUsuario {
 
 		try {
 			
-			UtilidadesSimplificadas.exibeMensagem("Nome: ");
+			UtilidadesGUI.exibeMensagem("Nome: ");
 			String nomeUsuario = scanner.nextLine();
 			
-			UtilidadesSimplificadas.exibeMensagem("CPF: ");
+			UtilidadesGUI.exibeMensagem("CPF: ");
 			int cpfUsuario = Integer.parseInt(scanner.nextLine());	
 				
-			UtilidadesSimplificadas.exibeMensagem("Email: ");
+			UtilidadesGUI.exibeMensagem("Email: ");
 			String emailUsuario = scanner.nextLine();
 				
-			UtilidadesSimplificadas.exibeMensagem("Senha: ");
+			UtilidadesGUI.exibeMensagem("Senha: ");
 			String senhaUsuario = scanner.nextLine();
 			
-			UtilidadesSimplificadas.exibeMensagem("\nEscolha as Permissões do Usuário: "
+			UtilidadesGUI.exibeMensagem("\nEscolha as Permissões do Usuário: "
 										+ "\nGerir Quadras (sim/não): ");
-			boolean acessoGestorQuadras = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
+			boolean acessoGestorQuadras = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 				
-			UtilidadesSimplificadas.exibeMensagem("\nGerir Usuários (sim/não): ");
-			boolean acessoGestorUsuarios = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
+			UtilidadesGUI.exibeMensagem("\nGerir Usuários (sim/não): ");
+			boolean acessoGestorUsuarios = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 				
-			UtilidadesSimplificadas.exibeMensagem("\nGerar/Acessar Relatórios (sim/não): ");
-			boolean acessoRelatorios = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
+			UtilidadesGUI.exibeMensagem("\nGerar/Acessar Relatórios (sim/não): ");
+			boolean acessoRelatorios = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 				
-			UtilidadesSimplificadas.exibeMensagem("\nPermissões de Zelador (sim/não): ");
-			boolean acessoZelador = UtilidadesSimplificadas.transformaString(UtilidadesSimplificadas.persistirValor(scanner.next()));
+			UtilidadesGUI.exibeMensagem("\nPermissões de Zelador (sim/não): ");
+			boolean acessoZelador = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 				
 			Usuario user = new Usuario(nomeUsuario, cpfUsuario, emailUsuario, senhaUsuario, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador);
 			usuarios.add(user);
 				
-			UtilidadesSimplificadas.exibeMensagem("\nCadastro Realizado com Sucesso!\n");
+			UtilidadesGUI.exibeMensagem("\nCadastro Realizado com Sucesso!\n");
 
 		}catch(Exception e) {
-			UtilidadesSimplificadas.exibeMensagem("\nCadastro interrompido!\n");
+			UtilidadesGUI.exibeMensagem("\nCadastro interrompido!\n");
 		}
 	}
 		
 		
 	public void menuExibirUsuario(){
-		UtilidadesSimplificadas.exibeMensagem("\nLista de usuários:\n\n");
+		UtilidadesGUI.exibeMensagem("\nLista de usuários:\n\n");
 		for(Usuario user:usuarios) {
-			UtilidadesSimplificadas.exibeMensagem("Nome: "+user.getNomeUsuario()+"\n");
-			UtilidadesSimplificadas.exibeMensagem("CPF: "+user.getCpfUsuario()+"\n");
-			UtilidadesSimplificadas.exibeMensagem("Email: "+user.getEmailUsuario()+"\n");
-			UtilidadesSimplificadas.exibeMensagem("Acesso gestor quadras: "+user.isAcessoGestorQuadras()+"\n");
-			UtilidadesSimplificadas.exibeMensagem("Acesso gestor usuarios: "+user.isAcessoGestorUsuarios()+"\n");
-			UtilidadesSimplificadas.exibeMensagem("Acesso relatorios: "+user.isAcessoRelatorios()+"\n");
-			UtilidadesSimplificadas.exibeMensagem("Acesso zelador: "+user.isAcessoZelador()+"\n\n");		
+			UtilidadesGUI.exibeMensagem("Nome: "+user.getNomeUsuario()+"\n");
+			UtilidadesGUI.exibeMensagem("CPF: "+user.getCpfUsuario()+"\n");
+			UtilidadesGUI.exibeMensagem("Email: "+user.getEmailUsuario()+"\n");
+			UtilidadesGUI.exibeMensagem("Acesso gestor quadras: "+user.isAcessoGestorQuadras()+"\n");
+			UtilidadesGUI.exibeMensagem("Acesso gestor usuarios: "+user.isAcessoGestorUsuarios()+"\n");
+			UtilidadesGUI.exibeMensagem("Acesso relatorios: "+user.isAcessoRelatorios()+"\n");
+			UtilidadesGUI.exibeMensagem("Acesso zelador: "+user.isAcessoZelador()+"\n\n");		
 		}
 	}
 		
 		
 	public void menuDesabilitaUsuario() {
 			
-		UtilidadesSimplificadas.exibeMensagem("\nDigite o CPF do Usuário: ");
+		UtilidadesGUI.exibeMensagem("\nDigite o CPF do Usuário: ");
 		int cpfDigitado = Integer.parseInt(scanner.nextLine());	
 		Usuario thisUser;
 		
 		if( buscaUsuarioPor(cpfDigitado) != null ) {
 			thisUser = buscaUsuarioPor(cpfDigitado);	
-			UtilidadesSimplificadas.exibeMensagem( "\n1 [     DESABILITAR O USUÁRIO      ]"
+			UtilidadesGUI.exibeMensagem( "\n1 [     DESABILITAR O USUÁRIO      ]"
 									+ "\n2 [      HABILITAR O USUÁRIO       ]"
 									+ "\n0 [         SAIR DO MENU           ]"
 									+ "\nOPÇÃO: \"");
@@ -127,37 +127,37 @@ public final class InterfaceUsuario {
 
 			case 1: 
 				thisUser.desabilitarUsuario();
-				UtilidadesSimplificadas.exibeMensagem( "\nUsuário desabilitado!\n");
+				UtilidadesGUI.exibeMensagem( "\nUsuário desabilitado!\n");
 				break;
 	
 			case 2:
 				thisUser.habilitarUsuario();
-				UtilidadesSimplificadas.exibeMensagem( "\nUsuário habilitado!\n");
+				UtilidadesGUI.exibeMensagem( "\nUsuário habilitado!\n");
 				break;
 	
 			case 0:
 				break;
 	
 			default:
-				UtilidadesSimplificadas.exibeMensagem( "\nOPÇÃO INVÁLIDA!\n");
+				UtilidadesGUI.exibeMensagem( "\nOPÇÃO INVÁLIDA!\n");
 				break;
 			}
 		}
 		else
-			UtilidadesSimplificadas.exibeMensagem("\n\nUsuário inexistente!\n\n");
+			UtilidadesGUI.exibeMensagem("\n\nUsuário inexistente!\n\n");
 		menuUsuario();
 	}	
 	
 	
 	public void menuBloqueioUsuario() {
 			
-		UtilidadesSimplificadas.exibeMensagem("\nDigite o CPF do Usuário: ");
+		UtilidadesGUI.exibeMensagem("\nDigite o CPF do Usuário: ");
 		int cpfDigitado = Integer.parseInt(scanner.nextLine());	
 		Usuario thisUser;
 			
 		if( buscaUsuarioPor(cpfDigitado) != null ) {
 			thisUser = buscaUsuarioPor(cpfDigitado);
-			UtilidadesSimplificadas.exibeMensagem( "\n1 [      BLOQUEAR O USUÁRIO        ]"
+			UtilidadesGUI.exibeMensagem( "\n1 [      BLOQUEAR O USUÁRIO        ]"
 									+ "\n2 [     DESBLOQUEAR O USUÁRIO      ]"
 									+ "\n0 [         SAIR DO MENU           ]"
 									+ "\nOPÇÃO: \"");
@@ -168,24 +168,24 @@ public final class InterfaceUsuario {
 			
 				case 1: 
 					thisUser.bloquearUsuario();
-					UtilidadesSimplificadas.exibeMensagem( "\nUsuário bloqueado!\n");
+					UtilidadesGUI.exibeMensagem( "\nUsuário bloqueado!\n");
 					break;
 					
 				case 2:
 					thisUser.desbloquearUsuario();
-					UtilidadesSimplificadas.exibeMensagem( "\nUsuário desbloqueado!\n");
+					UtilidadesGUI.exibeMensagem( "\nUsuário desbloqueado!\n");
 					break;
 					
 				case 0:
 					break;
 					
 				default:
-					UtilidadesSimplificadas.exibeMensagem( "\nOPÇÃO INVÁLIDA!\n");
+					UtilidadesGUI.exibeMensagem( "\nOPÇÃO INVÁLIDA!\n");
 					break;
 			}
 		}
 		else
-			UtilidadesSimplificadas.exibeMensagem("\n\nUsuário inexistente!\n\n");
+			UtilidadesGUI.exibeMensagem("\n\nUsuário inexistente!\n\n");
 		menuUsuario();
 	}
 	

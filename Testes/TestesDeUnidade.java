@@ -6,7 +6,7 @@ class TestesDeUnidade {
 	interfaceQuadra interfaceQua = new interfaceQuadra();
 	Quadras qua = new Quadras(0,"","","",false,false,false);
 	
-	UtilidadesSimplificadas utilidades = new UtilidadesSimplificadas();
+	UtilidadesGUI utilidades = new UtilidadesGUI();
 	
 	@Test
 	void testeDeCadastro() {

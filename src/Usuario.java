@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Usuario {
 	
@@ -19,7 +20,7 @@ public class Usuario {
 		this.setAcessoRelatorios(acessoRelatorios);
 		this.setAcessoZelador(acessoZelador);
 	}
-
+	
 	public boolean verificarUsuario(int cpfDigitado) {
 		if(cpfDigitado == this.getCpfUsuario())
 			return true;
