@@ -13,13 +13,20 @@ public class Quadras{
 	private boolean possuiArquibancada;
 	private boolean possuiAreaDescanso;
 	private boolean estaBloqueada = false;
-	private double preco_reserva;
+	private double precoReserva;
 
+	enum TipoQuadras{
+		SAIBRO,
+		SUPERFICIE_SITENTICA,
+		CIMENTO,
+		BEACH_TENNIS
+	}
+	
 	public Quadras(int codigoQuadra, String nomeQuadra, String tipoQuadra, boolean cobertura) {
 		this.setCodigoQuadra(codigoQuadra);
 		this.setNomeQuadra(nomeQuadra);
 		this.setTipoQuadra(tipoQuadra);
-		this.setPreco_reserva(cobertura);
+		this.setPrecoReserva(cobertura);
 	}
 	
 	public Quadras(int codigo, String nome, String endereco, String tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
@@ -114,7 +121,7 @@ public class Quadras{
 		setPossuiCobertura(cobertura);
 		setPossuiArquibancada(arquibancada);
 		setPossuiAreaDescanso(area);
-		setPreco_reserva(cobertura);
+		setPrecoReserva(cobertura);
 	}
 
 
@@ -138,31 +145,31 @@ public class Quadras{
 	public String identificaTipoQuadra(int identificador) {
 		switch (identificador) {
 		case 1:
-			return "SAIBRO";
+			return TipoQuadras.SAIBRO.toString();
 
 		case 2:
-			return "SUPERFICIE SINTETICA";
+			return TipoQuadras.SUPERFICIE_SITENTICA.toString();
 
 		case 3:
-			return "CIMENTO";
+			return TipoQuadras.CIMENTO.toString();
 
 		case 4:
-			return "BEACH TENNIS";
+			return TipoQuadras.BEACH_TENNIS.toString();
 
 		default:
 			return "OPCAO INVALIDA";
 		}
 	}
 
-	protected double getPreco_reserva() {
-		return preco_reserva;
+	protected double getPrecoReserva() {
+		return precoReserva;
 	}
 	
-	protected void setPreco_reserva(boolean cobertura) {
+	protected void setPrecoReserva(boolean cobertura) {
 		if(cobertura) {
-			this.preco_reserva = 70.00;
+			this.precoReserva = 70.00;
 		}else {
-			this.preco_reserva = 40.00;
+			this.precoReserva = 40.00;
 		}
 	}
 	

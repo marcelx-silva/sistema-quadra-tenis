@@ -28,25 +28,25 @@ public class Reservas{
 	}
 		
 
-	private String nome_reservista;
-	private String cpf_usuario;
+	private String nomeReservista;
+	private String cpfUsuario;
 
 	
-	private String data_reserva;
-	private String hr_inicio_reserva;
-	private String hr_fim_reserva;
-	private String modo_pagamento;
+	private String dataReserva;
+	private String horarioInicioReserva;
+	private String horarioFimReserva;
+	private String modoPagamento;
 	private int parcelas; 
 	private Quadras quadra;
 	
-	public Reservas(Quadras quadra,String cpf_usuario,String nome_reservista,String data_reserva, String hr_inicio_reserva, String hr_fim_reserva, String modo_pagamento, int parcelas){
+	public Reservas(Quadras quadra,String cpfUsuario,String nomeReservista,String dataReserva, String horarioInicioReserva, String horarioFimReserva, String modoPagamento, int parcelas){
 		this.quadra = quadra;
-		this.cpf_usuario = cpf_usuario;
-		this.nome_reservista = nome_reservista;
-		this.data_reserva = data_reserva;
-		this.hr_inicio_reserva = hr_inicio_reserva;
-		this.hr_fim_reserva = hr_fim_reserva;
-		this.modo_pagamento = modo_pagamento;
+		this.cpfUsuario = cpfUsuario;
+		this.nomeReservista = nomeReservista;
+		this.dataReserva = dataReserva;
+		this.horarioInicioReserva = horarioInicioReserva;
+		this.horarioFimReserva = horarioFimReserva;
+		this.modoPagamento = modoPagamento;
 		this.parcelas = parcelas;
 	}
 	
@@ -59,18 +59,18 @@ public class Reservas{
 		
 	}
 	
-	public void cadastrarReserva(String cpf_usu,String nm_reservista, String dt_reserva, String hr_ini_reserva, String hr_fim_reserva, String md_pag, int quant_parcelas, int cod_qua, String nome_qua, String tipo_qua, boolean cob_qua){
-		setCpf_usuario(cpf_usu);
-		setNome_reservista(nm_reservista);
-		setData_reserva(dt_reserva);
-		setHr_inicio_reserva(hr_ini_reserva);
-		setHr_fim_reserva(hr_fim_reserva);
-		setModo_pagamento(md_pag);
-		setParcelas(quant_parcelas);		
-		quadra.setCodigoQuadra(cod_qua);
-		quadra.setNomeQuadra(nome_qua);
-		quadra.setTipoQuadra(tipo_qua);
-		quadra.setPreco_reserva(cob_qua);
+	public void cadastrarReserva(String cpfUsuario,String nomeReservista, String dataReserva, String horarioInicioReserva, String horarioFimReserva, String modoPagamento, int quantidadeParcelas, int codigoQuadra, String nomeQuadra, String tipoQuadra, boolean temCobertura){
+		setCpfUsuario(cpfUsuario);
+		setNomeReservista(nomeReservista);
+		setDataReserva(dataReserva);
+		setHorarioInicioReserva(horarioInicioReserva);
+		setHorarioFimReserva(horarioFimReserva);
+		setModoPagamento(modoPagamento);
+		setParcelas(quantidadeParcelas);		
+		quadra.setCodigoQuadra(codigoQuadra);
+		quadra.setNomeQuadra(nomeQuadra);
+		quadra.setTipoQuadra(tipoQuadra);
+		quadra.setPrecoReserva(temCobertura);
 
 	}
 	
@@ -103,79 +103,100 @@ public class Reservas{
 			return 0;
 		}
 	}
-	
-	protected String getNome_reservista() {
-		return nome_reservista;
+
+
+
+	protected String getNomeReservista() {
+		return nomeReservista;
 	}
 
-	protected String getCpf_usuario() {
-		return cpf_usuario;
-	}
-	
 
-	protected Quadras getCodigoQuadra() {
-		return quadra;
+
+	protected void setNomeReservista(String nomeReservista) {
+		this.nomeReservista = nomeReservista;
 	}
-	
-	protected String getData_reserva(){
-		return data_reserva;
+
+
+
+	protected String getCpfUsuario() {
+		return cpfUsuario;
 	}
-	
-	protected String getHr_inicio_reserva() {
-		return hr_inicio_reserva;
+
+
+
+	protected void setCpfUsuario(String cpfUsuario) {
+		this.cpfUsuario = cpfUsuario;
 	}
-	
-	protected String getHr_fim_reserva() {
-		return hr_fim_reserva;
+
+
+
+	protected String getDataReserva() {
+		return dataReserva;
 	}
-	
-	protected String getModo_pagamento() {
-		return modo_pagamento;
+
+
+
+	protected void setDataReserva(String dataReserva) {
+		this.dataReserva = dataReserva;
 	}
-	
-	protected int getParcelas(){
+
+
+
+	protected String getHorarioInicioReserva() {
+		return horarioInicioReserva;
+	}
+
+
+
+	protected void setHorarioInicioReserva(String horarioInicioReserva) {
+		this.horarioInicioReserva = horarioInicioReserva;
+	}
+
+
+
+	protected String getHorarioFimReserva() {
+		return horarioFimReserva;
+	}
+
+
+
+	protected void setHorarioFimReserva(String horarioFimReserva) {
+		this.horarioFimReserva = horarioFimReserva;
+	}
+
+
+
+	protected String getModoPagamento() {
+		return modoPagamento;
+	}
+
+
+
+	protected void setModoPagamento(String modoPagamento) {
+		this.modoPagamento = modoPagamento;
+	}
+
+
+
+	protected int getParcelas() {
 		return parcelas;
 	}
-	
-	
-	protected void setNome_reservista(String nome_reservista){
-		this.nome_reservista = nome_reservista;
-	}
 
-	
-	protected void setData_reserva(String data_reserva){
-		this.data_reserva = data_reserva;
-	}
-	
-	protected void setHr_inicio_reserva(String hr_inicio_reserva){
-		this.hr_inicio_reserva = hr_inicio_reserva;
-	}
-	
-	protected void setHr_fim_reserva(String hr_fim_reserva){
-		this.hr_fim_reserva = hr_fim_reserva;
-	}
-	
-	protected void setModo_pagamento(String modo_pagamento){
-		this.modo_pagamento = modo_pagamento;
-	}
-	
-	protected void setParcelas(int parcelas){
+
+
+	protected void setParcelas(int parcelas) {
 		this.parcelas = parcelas;
 	}
-		
-	protected void setCpf_usuario(String cpf_usuario) {
-		this.cpf_usuario = cpf_usuario;
+
+
+
+	protected Quadras getQuadra() {
+		return quadra;
 	}
-	
-	
-	protected void setCodigoQuadra(Quadras quadra) {
+
+
+
+	protected void setQuadra(Quadras quadra) {
 		this.quadra = quadra;
 	}
-	
 }
-
-
-	
-
-
-

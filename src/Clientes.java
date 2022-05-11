@@ -1,26 +1,26 @@
 
 public class Clientes {
 	
-	private String nome_cliente;
-	private String email_cliente;
-	private String cpf_cliente;
-	private String data_nascimento;	
+	private String nomeCliente;
+	private String emailCliente;
+	private String cpfCliente;
+	private String dataNascimento;	
 	private boolean bloqueado = false;
 	
 	
-	public Clientes(String nome_cliente,String email_cliente, String cpf_cliente, String data_nascimento, boolean bloqueado){
-		this.nome_cliente = nome_cliente;
-		this.email_cliente = email_cliente;
-		this.cpf_cliente = cpf_cliente;
-		this.data_nascimento = data_nascimento;
+	public Clientes(String nomeCliente,String emailCliente, String cpfCliente, String dataNascimento, boolean bloqueado){
+		this.nomeCliente = nomeCliente;
+		this.emailCliente = emailCliente;
+		this.cpfCliente = cpfCliente;
+		this.dataNascimento = dataNascimento;
 		this.bloqueado = bloqueado;
 	}
 	
-	public void cadastrarCliente(String nome_cliente,String email_cliente, String cpf_cliente, String data_nascimento) {
-		this.setNome_cliente(nome_cliente);
-		this.setEmail_cliente(email_cliente);
-		this.setCpf_cliente(cpf_cliente);
-		this.setData_nascimento(data_nascimento);
+	public void cadastrarCliente(String nomeCliente,String emailCliente, String cpfCliente, String dataNascimento) {
+		this.setNomeCliente(nomeCliente);
+		this.setEmailCliente(emailCliente);
+		this.setCpfCliente(cpfCliente);
+		this.setDataNascimento(dataNascimento);
 	}
 	
 	public void bloqueiaCliente() {
@@ -31,34 +31,42 @@ public class Clientes {
 		this.setBloqueado(false);
 	}
 	
-	
-	protected String getNome_cliente() {
-		return nome_cliente;
+	protected String getNomeCliente() {
+		return nomeCliente;
 	}
-	protected void setNome_cliente(String nome_cliente) {
-		this.nome_cliente = nome_cliente;
+
+	protected void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
 	}
-	protected String getEmail_cliente() {
-		return email_cliente;
+
+	protected String getEmailCliente() {
+		return emailCliente;
 	}
-	protected void setEmail_cliente(String email_cliente) {
-		this.email_cliente = email_cliente;
+
+	protected void setEmailCliente(String emailCliente) {
+		this.emailCliente = emailCliente;
 	}
-	protected String getCpf_cliente() {
-		return cpf_cliente;
+
+	protected String getCpfCliente() {
+		return cpfCliente;
 	}
-	protected void setCpf_cliente(String cpf_cliente) {
-		this.cpf_cliente = cpf_cliente;
+
+	protected void setCpfCliente(String cpfCliente) {
+		this.cpfCliente = cpfCliente;
 	}
-	protected String getData_nascimento() {
-		return data_nascimento;
+
+	protected String getDataNascimento() {
+		return dataNascimento;
 	}
-	protected void setData_nascimento(String data_nascimento) {
-		this.data_nascimento = data_nascimento;
+
+	protected void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
+
 	protected boolean isBloqueado() {
 		return bloqueado;
 	}
+	
 	protected void setBloqueado(boolean bloqueado) {
 		this.bloqueado = bloqueado;
 	}

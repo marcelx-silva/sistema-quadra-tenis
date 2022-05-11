@@ -18,7 +18,7 @@ public final class interfaceReserva {
 					+ "\n2. VISUALIZAR RESERVAS"
 					+ "\n3. CANCELAR RESERVAS"
 					+ "\n4. SAIR DO MENU"
-					+ "\nOPÇÃO: ");
+					+ "\nOPÃ‡ÃƒO: ");
 			
 			operadorMenu = scanner.nextInt();
 			scanner.nextLine();
@@ -36,7 +36,7 @@ public final class interfaceReserva {
 					UtilidadesGUI.exibeMensagem("Voltando ao menu anterior!\n");
 					break;
 				default:
-					UtilidadesGUI.exibeMensagem("Opção Inválida!! \n"); 
+					UtilidadesGUI.exibeMensagem("OpÃ§Ã£o InvÃ¡lida!! \n"); 
 					
 
 			}
@@ -75,52 +75,52 @@ public final class interfaceReserva {
 			UtilidadesGUI.exibeMensagem("Data da reserva (dd/mm/aaaa):");
 			data_reserva = scanner.nextLine();
 			
-			UtilidadesGUI.exibeMensagem("Horário da reserva - INÍCIO (hh:mm) :");
+			UtilidadesGUI.exibeMensagem("HorÃ¡rio da reserva - INÃ�CIO (hh:mm) :");
 			hr_inicio_reserva = scanner.nextLine();
 			
-			UtilidadesGUI.exibeMensagem("Horário da reserva - FIM (hh:mm):");
+			UtilidadesGUI.exibeMensagem("HorÃ¡rio da reserva - FIM (hh:mm):");
 			hr_fim_reserva = scanner.nextLine();
 			
-			UtilidadesGUI.exibeMensagem("Modo de Pagamento, meio pelo qual o reservista pagará a sua reserva:"
-					+ "\n1. CRÉDITO"
-					+ "\n2. DÉBITO"
+			UtilidadesGUI.exibeMensagem("Modo de Pagamento, meio pelo qual o reservista pagarÃ¡ a sua reserva:"
+					+ "\n1. CRÃ‰DITO"
+					+ "\n2. DÃ‰BITO"
 					+ "\n3. DINHEIRO"
 					+ "\n4. PIX"
-					+ "\nOpção: ");
+					+ "\nOpÃ§Ã£o: ");
 			
 			modo_pagamento = reserva.selecionarModoPagamento(Integer.parseInt(scanner.nextLine()));
 			
-			if(modo_pagamento.equals("CRÉDITO") || modo_pagamento.equals("PIX")) {
-				UtilidadesGUI.exibeMensagem("Utilizando "+modo_pagamento+" como modo de pagamento é possível parcelar em:"
+			if(modo_pagamento.equals("CRÃ‰DITO") || modo_pagamento.equals("PIX")) {
+				UtilidadesGUI.exibeMensagem("Utilizando "+modo_pagamento+" como modo de pagamento Ã© possÃ­vel parcelar em:"
 						+ "\n1. A vista"
 						+ "\n2. 2x"
 						+ "\n3. 4x"
-						+ "\n Opção: ");
+						+ "\n OpÃ§Ã£o: ");
 				parcelas = reserva.parcelarReserva(Integer.parseInt(scanner.nextLine()));
 			}else {
 				parcelas = 1;
 			}
 			
 			
-			UtilidadesSimplificadas.exibeMensagem("Código da quadra: ");
+			UtilidadesGUI.exibeMensagem("CÃ³digo da quadra: ");
 			cod_quadra = Integer.parseInt(scanner.nextLine());
 			
 			
 			UtilidadesGUI.exibeMensagem("Nome da Quadra: ");
 			nome_quadra = (scanner.nextLine());
 			
-			UtilidadesGUI.exibeMensagem("Código da quadra: ");
+			UtilidadesGUI.exibeMensagem("CÃ³digo da quadra: ");
 			cod_quadra = Integer.parseInt(scanner.nextLine());
 			
-			UtilidadesGUI.exibeMensagem("Tipo da quadra, selecione uma das opções atráves dos números:"
+			UtilidadesGUI.exibeMensagem("Tipo da quadra, selecione uma das opÃ§Ãµes atrÃ¡ves dos nÃºmeros:"
 					+ "\n1. SAIBRO"
-					+ "\n2. SUPERFÍCIE SINTÉTICA"
+					+ "\n2. SUPERFÃ�CIE SINTÃ‰TICA"
 					+ "\n3. CIMENTO"
 					+ "\n4. BEACH TENNIS"
-					+ "\nOpção: ");
+					+ "\nOpÃ§Ã£o: ");
 			tipo_quadra = quadra.identificaTipoQuadra(scanner.nextInt());
 			
-			UtilidadesGUI.exibeMensagem("Possui cobertura (sim/não): ");
+			UtilidadesGUI.exibeMensagem("Possui cobertura (sim/nÃ£o): ");
 			cobertura = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 
 			Quadras QuadraReserva = new Quadras(cod_quadra,nome_quadra,tipo_quadra,cobertura);
