@@ -6,12 +6,12 @@ class TestesDeUnidadeReserva {
 	
 
 	interfaceReserva interfaceReserva = new interfaceReserva();
-	Reservas res = new Reservas(0,"","","","","","","","",1,false);
-	Quadras qua = new Quadras(0,"","","",false,false,false);
+	Quadras qua = new Quadras(15);
+	Reservas res = new Reservas(qua,"","","","","","",1);
 	
 	@Test
 	void testeCadastroReserva() {
-		interfaceReserva.interfaceCadastroReserva(res,qua);
+		interfaceReserva.interfaceCadastroReserva(res);
 		
 		assertEquals("Luiz Silva",res.getNome_reservista());
 		assertEquals("12345",res.getCpf_usuario());
@@ -22,10 +22,9 @@ class TestesDeUnidadeReserva {
 		assertEquals("DÉBITO",res.getModo_pagamento());
 		assertEquals(1,res.getParcelas());
 		
-		assertEquals("Quadra Municipal de Mogi das Cruzes",res.getNome_quadra());
-		assertEquals(15, res.getCod_quadra());
-		assertEquals("SAIBRO", res.getTipo_quadra());
-		assertEquals(false,res.isCobertura());
+		assertEquals(15, qua.getCodigoQuadra());
+
+		
 	}
 	
 }

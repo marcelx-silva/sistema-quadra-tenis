@@ -7,8 +7,8 @@ public final class interfaceReserva {
 	Scanner scanner = new Scanner(System.in);
 	
 	void interfaceMenuReserva() {
-		Reservas reserva = new Reservas(0,"","","","","","","","",1,false);
 		Quadras quadra = new Quadras(0,"","","",false,false,false);
+		Reservas reserva = new Reservas(quadra,"","","","","","",1);
 		int operadorMenu = 0;
 		
 		do {
@@ -18,14 +18,14 @@ public final class interfaceReserva {
 					+ "\n2. VISUALIZAR RESERVAS"
 					+ "\n3. CANCELAR RESERVAS"
 					+ "\n4. SAIR DO MENU"
-					+ "\nOP«√O: ");
+					+ "\nOP√á√ÉO: ");
 			
 			operadorMenu = scanner.nextInt();
 			scanner.nextLine();
 			
 			switch(operadorMenu) {
 				case 1:
-					this.interfaceCadastroReserva(reserva,quadra);
+					this.interfaceCadastroReserva(reserva, quadra);
 					break;
 				case 2:
 					this.visualizarReservas();
@@ -36,7 +36,7 @@ public final class interfaceReserva {
 					UtilidadesGUI.exibeMensagem("Voltando ao menu anterior!\n");
 					break;
 				default:
-					UtilidadesGUI.exibeMensagem("OpÁ„o Inv·lida!! \n"); 
+					UtilidadesGUI.exibeMensagem("Op√ß√£o Inv√°lida!! \n"); 
 					
 
 			}
@@ -47,12 +47,10 @@ public final class interfaceReserva {
 	void interfaceCadastroReserva(Reservas reserva, Quadras quadra){
 		
 	
-		int cod_quadra = 0;
-		String nome_quadra = "";
-		String tipo_quadra = "";
+		int cod_quadra;
+		String tipo_quadra;
+		String nome_quadra;
 		boolean cobertura = false;
-		boolean arquibancada = false;
-		boolean areaDescanso = false;
 		
 		String nome_reservista = "";
 		String cpf_usuario = "";
@@ -63,8 +61,6 @@ public final class interfaceReserva {
 		
 		String modo_pagamento = "";
 		int parcelas = 1;
-		
-		
 		
 			
 		
@@ -79,64 +75,63 @@ public final class interfaceReserva {
 			UtilidadesGUI.exibeMensagem("Data da reserva (dd/mm/aaaa):");
 			data_reserva = scanner.nextLine();
 			
-			UtilidadesGUI.exibeMensagem("Hor·rio da reserva - INÕCIO (hh:mm) :");
+			UtilidadesGUI.exibeMensagem("Hor√°rio da reserva - IN√çCIO (hh:mm) :");
 			hr_inicio_reserva = scanner.nextLine();
 			
-			UtilidadesGUI.exibeMensagem("Hor·rio da reserva - FIM (hh:mm):");
+			UtilidadesGUI.exibeMensagem("Hor√°rio da reserva - FIM (hh:mm):");
 			hr_fim_reserva = scanner.nextLine();
 			
-			UtilidadesGUI.exibeMensagem("Modo de Pagamento, meio pelo qual o reservista pagar· a sua reserva:"
-					+ "\n1. CR…DITO"
-					+ "\n2. D…BITO"
+			UtilidadesGUI.exibeMensagem("Modo de Pagamento, meio pelo qual o reservista pagar√° a sua reserva:"
+					+ "\n1. CR√âDITO"
+					+ "\n2. D√âBITO"
 					+ "\n3. DINHEIRO"
 					+ "\n4. PIX"
-					+ "\nOpÁ„o: ");
+					+ "\nOp√ß√£o: ");
 			
 			modo_pagamento = reserva.selecionarModoPagamento(Integer.parseInt(scanner.nextLine()));
 			
-			if(modo_pagamento.equals("CR…DITO") || modo_pagamento.equals("PIX")) {
-				UtilidadesGUI.exibeMensagem("Utilizando "+modo_pagamento+" como modo de pagamento È possÌvel parcelar em:"
+			if(modo_pagamento.equals("CR√âDITO") || modo_pagamento.equals("PIX")) {
+				UtilidadesGUI.exibeMensagem("Utilizando "+modo_pagamento+" como modo de pagamento √© poss√≠vel parcelar em:"
 						+ "\n1. A vista"
 						+ "\n2. 2x"
 						+ "\n3. 4x"
-						+ "\n OpÁ„o: ");
+						+ "\n Op√ß√£o: ");
 				parcelas = reserva.parcelarReserva(Integer.parseInt(scanner.nextLine()));
 			}else {
 				parcelas = 1;
 			}
 			
 			
+			UtilidadesSimplificadas.exibeMensagem("C√≥digo da quadra: ");
+			cod_quadra = Integer.parseInt(scanner.nextLine());
+			
 			
 			UtilidadesGUI.exibeMensagem("Nome da Quadra: ");
 			nome_quadra = (scanner.nextLine());
 			
-			UtilidadesGUI.exibeMensagem("CÛdigo da quadra: ");
+			UtilidadesGUI.exibeMensagem("C√≥digo da quadra: ");
 			cod_quadra = Integer.parseInt(scanner.nextLine());
 			
-			UtilidadesGUI.exibeMensagem("Tipo da quadra, selecione uma das opÁıes atr·ves dos n˙meros:"
+			UtilidadesGUI.exibeMensagem("Tipo da quadra, selecione uma das op√ß√µes atr√°ves dos n√∫meros:"
 					+ "\n1. SAIBRO"
-					+ "\n2. SUPERFÕCIE SINT…TICA"
+					+ "\n2. SUPERF√çCIE SINT√âTICA"
 					+ "\n3. CIMENTO"
 					+ "\n4. BEACH TENNIS"
-					+ "\nOpÁ„o: ");
+					+ "\nOp√ß√£o: ");
 			tipo_quadra = quadra.identificaTipoQuadra(scanner.nextInt());
-		
 			
-			UtilidadesGUI.exibeMensagem("Possui cobertura (sim/n„o): ");
+			UtilidadesGUI.exibeMensagem("Possui cobertura (sim/n√£o): ");
 			cobertura = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
+
+			Quadras QuadraReserva = new Quadras(cod_quadra,nome_quadra,tipo_quadra,cobertura);
 			
-			UtilidadesGUI.exibeMensagem("Deseja quadra com arquibancada (sim/nao)");
-			arquibancada = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
-			
-			UtilidadesGUI.exibeMensagem("Deseja quadra com area de descanso: (sim/nao)");
-			areaDescanso = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
-			
-			
+			reserva.cadastrarReserva(cpf_usuario,nome_reservista, data_reserva, hr_inicio_reserva, hr_fim_reserva, modo_pagamento, parcelas,QuadraReserva.getCodigoQuadra(),QuadraReserva.getNomeQuadra(),QuadraReserva.getTipoQuadra(),QuadraReserva.isPossuiCobertura());
+      
 			UtilidadesGUI.exibeMensagem("Reserva Realizada com Sucesso!\n");
 			
-			Quadras.procuraQuadras(data_reserva, hr_inicio_reserva,  hr_fim_reserva, tipo_quadra, cobertura, arquibancada, areaDescanso);
+			//Quadras.procuraQuadras(data_reserva, hr_inicio_reserva,  hr_fim_reserva, tipo_quadra, cobertura, arquibancada, areaDescanso);
 			
-			reserva.cadastrarReserva(cpf_usuario,nome_reservista, data_reserva, hr_inicio_reserva, hr_fim_reserva, modo_pagamento, parcelas,cobertura,cod_quadra,nome_quadra,tipo_quadra);
+			
 
 		}catch(Exception e) {
 			UtilidadesGUI.exibeMensagem("Reserva interrompida!\n");
