@@ -24,7 +24,7 @@ public final class interfaceCliente {
 			
 			switch(operadorMenu) {
 				case 1:
-					UtilidadesSimplificadas.exibeMensagem("Em Desenvolvimento!\n");
+					this.interfaceCadastroCliente(cliente);
 					break;
 				case 2:
 					UtilidadesSimplificadas.exibeMensagem("Em Desenvolvimento!\n");
@@ -45,6 +45,30 @@ public final class interfaceCliente {
 			}
 			
 		}while(operadorMenu!=5);
+	}
+	
+	void interfaceCadastroCliente(Clientes cliente){
+		
+		String nome;
+		String email;
+		String data_nascimento;
+		String cpf;
+		
+		UtilidadesSimplificadas.exibeMensagem("Nome do Cliente:");
+		nome = scanner.nextLine();
+		
+		UtilidadesSimplificadas.exibeMensagem("Email:");
+		email = scanner.nextLine();
+	
+		UtilidadesSimplificadas.exibeMensagem("Data de Nascimento:");
+		data_nascimento = scanner.nextLine();
+		
+		UtilidadesSimplificadas.exibeMensagem("CPF: ");
+		cpf = scanner.nextLine();
+		
+		cliente.cadastrarCliente(nome, email, cpf, data_nascimento);
+		
+		
 	}
 			
 		
