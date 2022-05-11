@@ -11,7 +11,7 @@ public final class interfaceCliente {
 		
 		do {
 
-			UtilidadesSimplificadas.exibeMensagem("MENU CLIENTES"
+			UtilidadesGUI.exibeMensagem("MENU CLIENTES"
 					+ "\n1. CADASTRAR CLIENTE"
 					+ "\n2. VISUALIZAR CLIENTES"
 					+ "\n3. BLOQUEAR/DESBLOQUEAR CLIENTES"
@@ -27,19 +27,19 @@ public final class interfaceCliente {
 					this.interfaceCadastroCliente(cliente);
 					break;
 				case 2:
-					UtilidadesSimplificadas.exibeMensagem("Em Desenvolvimento!\n");
+					UtilidadesGUI.exibeMensagem("Em Desenvolvimento!\n");
 					break;
 				case 3:
-					UtilidadesSimplificadas.exibeMensagem("Em Desenvolvimento!\n");
+					UtilidadesGUI.exibeMensagem("Em Desenvolvimento!\n");
 					break;
 				case 4:
-					UtilidadesSimplificadas.exibeMensagem("Em Desenvolvimento!\n");
+					UtilidadesGUI.exibeMensagem("Em Desenvolvimento!\n");
 					break;
 				case  5:
-					UtilidadesSimplificadas.exibeMensagem("Voltando ao menu anterior!\n");
+					UtilidadesGUI.exibeMensagem("Voltando ao menu anterior!\n");
 					break;
 				default:
-					UtilidadesSimplificadas.exibeMensagem("Opção Inválida!! \n"); 
+					UtilidadesGUI.exibeMensagem("Opção Inválida!! \n"); 
 					
 
 			}
@@ -54,16 +54,16 @@ public final class interfaceCliente {
 		String data_nascimento;
 		String cpf;
 		
-		UtilidadesSimplificadas.exibeMensagem("Nome do Cliente:");
+		UtilidadesGUI.exibeMensagem("Nome do Cliente:");
 		nome = scanner.nextLine();
 		
-		UtilidadesSimplificadas.exibeMensagem("Email:");
+		UtilidadesGUI.exibeMensagem("Email:");
 		email = scanner.nextLine();
 	
-		UtilidadesSimplificadas.exibeMensagem("Data de Nascimento:");
+		UtilidadesGUI.exibeMensagem("Data de Nascimento:");
 		data_nascimento = scanner.nextLine();
 		
-		UtilidadesSimplificadas.exibeMensagem("CPF: ");
+		UtilidadesGUI.exibeMensagem("CPF: ");
 		cpf = scanner.nextLine();
 		
 		cliente.cadastrarCliente(nome, email, cpf, data_nascimento);

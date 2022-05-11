@@ -191,7 +191,7 @@ public class Quadras{
 	}
 
 
-	private void setTipoQuadra(String tipoQuadra) {
+	protected void setTipoQuadra(String tipoQuadra) {
 		this.tipoQuadra = tipoQuadra;
 	}
 
@@ -199,7 +199,7 @@ public class Quadras{
 		return possuiCobertura;
 	}
 
-	private void setPossuiCobertura(boolean possuiCobertura) {
+	protected void setPossuiCobertura(boolean possuiCobertura) {
 		this.possuiCobertura = possuiCobertura;
 	}
 
@@ -208,7 +208,7 @@ public class Quadras{
 	}
 
 
-	private void setPossuiArquibancada(boolean possuiArquibancada) {
+	protected void setPossuiArquibancada(boolean possuiArquibancada) {
 		this.possuiArquibancada = possuiArquibancada;
 	}
 
@@ -217,7 +217,7 @@ public class Quadras{
 	}
 
 
-	private void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
+	protected void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
 		this.possuiAreaDescanso = possuiAreaDescanso;
 	}
 
@@ -226,7 +226,7 @@ public class Quadras{
 	}
 
 
-	private void setEstaBloqueada(boolean estaBloqueada) {
+	protected void setEstaBloqueada(boolean estaBloqueada) {
 		this.estaBloqueada = estaBloqueada;
 	}
 	

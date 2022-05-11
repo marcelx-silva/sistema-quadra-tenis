@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class UtilidadesSimplificadas {
+public class UtilidadesGUI {
 	//Algumas utilidades recorrentes para simplificar o código posteriormente
 	
 	static Scanner scanner = new Scanner(System.in);
@@ -9,22 +9,8 @@ public class UtilidadesSimplificadas {
 		System.out.print(mensagem);
 	}
 	
-	static boolean transformaString(String valor) {
-		if(valor.contentEquals("Sim") || valor.contentEquals("sim") || valor.contentEquals("SIM"))
-			return true;
-		else
-			return false;
-	}
-	
-	static String transformaBoolean(boolean valor) {
-		if(valor)
-			return "Sim";
-		else
-			return "Não";
-	}
-	
 	static String persistirValor(String valor) {
-		if(valor.contentEquals("Sim") || valor.contentEquals("sim") || valor.contentEquals("SIM") || valor.contentEquals("NÃO")  || valor.contentEquals("Não")  || valor.contentEquals("não"))
+		if(valor.equalsIgnoreCase("sim") || valor.equalsIgnoreCase("não"))
 			return valor;
 		exibeMensagem("Digite sim/não: ");
 		valor = scanner.nextLine();
