@@ -1,3 +1,4 @@
+package Enum;
 
 public enum TipoQuadra {
 	SAIBRO,
