@@ -8,7 +8,8 @@ public final class interfaceReserva {
 	
 	void interfaceMenuReserva() {
 		Quadras quadra = new Quadras(0,"","","",false,false,false);
-		Reservas reserva = new Reservas(quadra,"","","","","","",1);
+		Clientes cliente = new Clientes("","","","",false);
+		Reservas reserva = new Reservas(quadra,cliente,"","","","",1);
 		int operadorMenu = 0;
 		
 		do {
@@ -25,7 +26,7 @@ public final class interfaceReserva {
 			
 			switch(operadorMenu) {
 				case 1:
-					this.interfaceCadastroReserva(reserva, quadra);
+					this.interfaceCadastroReserva(reserva, quadra,cliente);
 					break;
 				case 2:
 					this.visualizarReservas();
@@ -44,7 +45,7 @@ public final class interfaceReserva {
 		}while(operadorMenu!=5);
 	}
 	
-	void interfaceCadastroReserva(Reservas reserva, Quadras quadra){
+	void interfaceCadastroReserva(Reservas reserva, Quadras quadra, Clientes cliente){
 		
 	
 		int cod_quadra;
@@ -52,8 +53,9 @@ public final class interfaceReserva {
 		String nome_quadra;
 		boolean cobertura = false;
 		
-		String nome_reservista = "";
-		String cpf_usuario = "";
+		String nomeCliente = "";
+		String cpfCliente = "";
+		
 		
 		String data_reserva = "";
 		String hr_inicio_reserva = "";
@@ -67,10 +69,10 @@ public final class interfaceReserva {
 		try {
 			
 			UtilidadesGUI.exibeMensagem("CPF do reservista: ");
-			cpf_usuario = scanner.nextLine();
+			cpfCliente = scanner.nextLine();
 			
 			UtilidadesGUI.exibeMensagem("Nome do reservista:");
-			nome_reservista = scanner.nextLine();
+			nomeCliente = scanner.nextLine();
 			
 			UtilidadesGUI.exibeMensagem("Data da reserva (dd/mm/aaaa):");
 			data_reserva = scanner.nextLine();
@@ -122,10 +124,12 @@ public final class interfaceReserva {
 			
 			UtilidadesGUI.exibeMensagem("Possui cobertura (sim/nÃ£o): ");
 			cobertura = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
-
+			
+			
+			Clientes clienteReserva = new Clientes(nomeCliente,cpfCliente);
 			Quadras QuadraReserva = new Quadras(cod_quadra,nome_quadra,tipo_quadra,cobertura);
 			
-			reserva.cadastrarReserva(cpf_usuario,nome_reservista, data_reserva, hr_inicio_reserva, hr_fim_reserva, modo_pagamento, parcelas,QuadraReserva.getCodigoQuadra(),QuadraReserva.getNomeQuadra(),QuadraReserva.getTipoQuadra(),QuadraReserva.isPossuiCobertura());
+			reserva.cadastrarReserva(clienteReserva.getNomeCliente(),clienteReserva.getCpfCliente(), data_reserva, hr_inicio_reserva, hr_fim_reserva, modo_pagamento, parcelas,QuadraReserva.getCodigoQuadra(),QuadraReserva.getNomeQuadra(),QuadraReserva.getTipoQuadra(),QuadraReserva.isPossuiCobertura());
       
 			UtilidadesGUI.exibeMensagem("Reserva Realizada com Sucesso!\n");
 			

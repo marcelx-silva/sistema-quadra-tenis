@@ -27,11 +27,7 @@ public class Reservas{
 		return listaReservas;
 	}
 		
-
-	private String nomeReservista;
-	private String cpfUsuario;
-
-	
+	private Clientes cliente;
 	private String dataReserva;
 	private String horarioInicioReserva;
 	private String horarioFimReserva;
@@ -39,10 +35,9 @@ public class Reservas{
 	private int parcelas; 
 	private Quadras quadra;
 	
-	public Reservas(Quadras quadra,String cpfUsuario,String nomeReservista,String dataReserva, String horarioInicioReserva, String horarioFimReserva, String modoPagamento, int parcelas){
+	public Reservas(Quadras quadra,Clientes cliente,String dataReserva, String horarioInicioReserva, String horarioFimReserva, String modoPagamento, int parcelas){
 		this.quadra = quadra;
-		this.cpfUsuario = cpfUsuario;
-		this.nomeReservista = nomeReservista;
+		this.cliente = cliente;
 		this.dataReserva = dataReserva;
 		this.horarioInicioReserva = horarioInicioReserva;
 		this.horarioFimReserva = horarioFimReserva;
@@ -59,9 +54,9 @@ public class Reservas{
 		
 	}
 	
-	public void cadastrarReserva(String cpfUsuario,String nomeReservista, String dataReserva, String horarioInicioReserva, String horarioFimReserva, String modoPagamento, int quantidadeParcelas, int codigoQuadra, String nomeQuadra, String tipoQuadra, boolean temCobertura){
-		setCpfUsuario(cpfUsuario);
-		setNomeReservista(nomeReservista);
+	public void cadastrarReserva(String cpfCliente,String nomeCliente, String dataReserva, String horarioInicioReserva, String horarioFimReserva, String modoPagamento, int quantidadeParcelas, int codigoQuadra, String nomeQuadra, String tipoQuadra, boolean temCobertura){
+		cliente.setNomeCliente(nomeCliente);
+		cliente.setCpfCliente(cpfCliente);
 		setDataReserva(dataReserva);
 		setHorarioInicioReserva(horarioInicioReserva);
 		setHorarioFimReserva(horarioFimReserva);
@@ -105,28 +100,13 @@ public class Reservas{
 
 
 
-	protected String getNomeReservista() {
-		return nomeReservista;
+	protected Clientes getCliente() {
+		return cliente;
 	}
-
-
-
-	protected void setNomeReservista(String nomeReservista) {
-		this.nomeReservista = nomeReservista;
+	
+	protected void setCliente(Clientes cliente) {
+		this.cliente = cliente;
 	}
-
-
-
-	protected String getCpfUsuario() {
-		return cpfUsuario;
-	}
-
-
-
-	protected void setCpfUsuario(String cpfUsuario) {
-		this.cpfUsuario = cpfUsuario;
-	}
-
 
 
 	protected String getDataReserva() {
