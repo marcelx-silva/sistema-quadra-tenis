@@ -126,10 +126,7 @@ public class Quadras{
 
 
 	public boolean verificaNumeroQuadra(int numero) {
-		if (numero == this.getCodigoQuadra()) {
-			return true;
-		} else
-			return false;
+		return (numero == this.getCodigoQuadra());
 	}
 
 
@@ -172,8 +169,6 @@ public class Quadras{
 			this.precoReserva = 40.00;
 		}
 	}
-	
-	
 
 	protected int getCodigoQuadra() {
 		return codigoQuadra;

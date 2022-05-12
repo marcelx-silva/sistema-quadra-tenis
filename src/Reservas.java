@@ -70,7 +70,6 @@ public class Reservas{
 		quadra.setCodigoQuadra(codigoQuadra);
 		quadra.setNomeQuadra(nomeQuadra);
 		quadra.setTipoQuadra(tipoQuadra);
-		quadra.setPrecoReserva(temCobertura);
 
 	}
 	

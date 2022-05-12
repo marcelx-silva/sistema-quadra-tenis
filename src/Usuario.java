@@ -1,14 +1,13 @@
 public class Usuario {
 	
-	private String nomeUsuario, emailUsuario, senhaUsuario;
-	private int cpfUsuario;		
+	private String nomeUsuario, emailUsuario, senhaUsuario, cpfUsuario;	
 	private boolean	estaDesabilitado, estaBloqueado, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador;
 	
-	public Usuario(int cpfDigitado) {
+	public Usuario(String cpfDigitado) {
 		this.verificarUsuario(cpfDigitado);
 	}
 	
-	public Usuario(String nomeUsuario, int cpfUsuario, String emailUsuario, String senhaUsuario, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
+	public Usuario(String nomeUsuario, String cpfUsuario, String emailUsuario, String senhaUsuario, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setNomeUsuario(nomeUsuario);
 		this.setCpfUsuario(cpfUsuario);
 		this.setEmailUsuario(emailUsuario);
@@ -19,11 +18,8 @@ public class Usuario {
 		this.setAcessoZelador(acessoZelador);
 	}
 	
-	public boolean verificarUsuario(int cpfDigitado) {
-		if(cpfDigitado == this.getCpfUsuario())
-			return true;
-		else
-			return false;
+	public boolean verificarUsuario(String cpfDigitado) {
+		return (cpfDigitado == this.getCpfUsuario());
 	}
 
 	public void desabilitarUsuario() {
@@ -54,7 +50,7 @@ public class Usuario {
 		return senhaUsuario;
 	}
 	
-	protected int getCpfUsuario() {
+	protected String getCpfUsuario() {
 		return cpfUsuario;
 	}
 
@@ -70,8 +66,8 @@ public class Usuario {
 		this.senhaUsuario = senhaUsuario;
 	}
 
-	protected void setCpfUsuario(int codigoUsuario) {
-		this.cpfUsuario = codigoUsuario;
+	protected void setCpfUsuario(String cpfUsuario) {
+		this.cpfUsuario = cpfUsuario;
 	}
 
 

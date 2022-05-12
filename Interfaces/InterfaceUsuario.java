@@ -62,7 +62,7 @@ public final class InterfaceUsuario {
 			String nomeUsuario = scanner.nextLine();
 			
 			UtilidadesGUI.exibeMensagem("CPF: ");
-			int cpfUsuario = Integer.parseInt(scanner.nextLine());	
+			String cpfUsuario = scanner.nextLine();	
 				
 			UtilidadesGUI.exibeMensagem("Email: ");
 			String emailUsuario = scanner.nextLine();
@@ -111,7 +111,7 @@ public final class InterfaceUsuario {
 	public void menuDesabilitaUsuario() {
 			
 		UtilidadesGUI.exibeMensagem("\nDigite o CPF do Usuário: ");
-		int cpfDigitado = Integer.parseInt(scanner.nextLine());	
+		String cpfDigitado = scanner.nextLine();	
 		Usuario thisUser;
 		
 		if( buscaUsuarioPor(cpfDigitado) != null ) {
@@ -152,7 +152,7 @@ public final class InterfaceUsuario {
 	public void menuBloqueioUsuario() {
 			
 		UtilidadesGUI.exibeMensagem("\nDigite o CPF do Usuário: ");
-		int cpfDigitado = Integer.parseInt(scanner.nextLine());	
+		String cpfDigitado = scanner.nextLine();	
 		Usuario thisUser;
 			
 		if( buscaUsuarioPor(cpfDigitado) != null ) {
@@ -189,7 +189,7 @@ public final class InterfaceUsuario {
 		menuUsuario();
 	}
 	
-	public Usuario buscaUsuarioPor(int cpfDigitado) {
+	public Usuario buscaUsuarioPor(String cpfDigitado) {
 		for(Usuario user:usuarios) {
 			if( user.getCpfUsuario() == cpfDigitado)
 				return user;
