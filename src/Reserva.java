@@ -31,11 +31,11 @@ public class Reserva{
 	private String dataReserva;
 	private String horarioInicioReserva;
 	private String horarioFimReserva;
-	private String modoPagamento;
+	private TipoPagamento modoPagamento;
 	private int parcelas; 
 	private Quadra quadra;
 	
-	public Reserva(Quadra quadra,Cliente cliente,String dataReserva, String horarioInicioReserva, String horarioFimReserva, String modoPagamento, int parcelas){
+	public Reserva(Quadra quadra,Cliente cliente,String dataReserva, String horarioInicioReserva, String horarioFimReserva, TipoPagamento modoPagamento, int parcelas){
 		this.quadra = quadra;
 		this.cliente = cliente;
 		this.dataReserva = dataReserva;
@@ -52,7 +52,7 @@ public class Reserva{
 		
 	}
 	
-	public void cadastrarReserva(String cpfCliente,String nomeCliente, String dataReserva, String horarioInicioReserva, String horarioFimReserva, String modoPagamento, int quantidadeParcelas, int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean temCobertura){
+	public void cadastrarReserva(String cpfCliente,String nomeCliente, String dataReserva, String horarioInicioReserva, String horarioFimReserva, TipoPagamento modoPagamento, int quantidadeParcelas, int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean temCobertura){
 		cliente.setNomeCliente(nomeCliente);
 		cliente.setCpfCliente(cpfCliente);
 		setDataReserva(dataReserva);
@@ -67,19 +67,23 @@ public class Reserva{
 	}
 	
 
-	public String selecionarModoPagamento(int modo_pagamento) {
+	public TipoPagamento selecionarModoPagamento(int modo_pagamento) {
 		switch(modo_pagamento) {
 		
 		case 1:
-			return "CRÉDITO";
+			return TipoPagamento.CREDITO;
+			
 		case 2:
-			return "DÉBITO";
+			return TipoPagamento.DEBITO;
+			
 		case 3:
-			return "DINHEIRO";
+			return TipoPagamento.DINHEIRO;
+			
 		case 4:
-			return "PIX";
+			return TipoPagamento.PIX;
+			
 		default:
-			return "OPÇÃO INVÁLIDA !";
+			return TipoPagamento.INVALIDO;
 		}
 	}
 
@@ -143,13 +147,13 @@ public class Reserva{
 
 
 
-	protected String getModoPagamento() {
+	protected TipoPagamento getModoPagamento() {
 		return modoPagamento;
 	}
 
 
 
-	protected void setModoPagamento(String modoPagamento) {
+	protected void setModoPagamento(TipoPagamento modoPagamento) {
 		this.modoPagamento = modoPagamento;
 	}
 

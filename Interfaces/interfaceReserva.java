@@ -9,7 +9,7 @@ public final class interfaceReserva {
 	void interfaceMenuReserva() {
 		Quadra quadra = new Quadra(0,"","",null,false,false,false);
 		Cliente cliente = new Cliente("","","","",false);
-		Reserva reserva = new Reserva(quadra,cliente,"","","","",1);
+		Reserva reserva = new Reserva(quadra,cliente,"","","",null,1);
 		int operadorMenu = 0;
 		
 		do {
@@ -61,7 +61,7 @@ public final class interfaceReserva {
 		String hr_inicio_reserva = "";
 		String hr_fim_reserva = "";
 		
-		String modo_pagamento = "";
+		TipoPagamento modo_pagamento = null;
 		int parcelas = 1;
 		
 			
