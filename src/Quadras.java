@@ -8,27 +8,20 @@ public class Quadras{
 	private String nomeQuadra;
 	private String enderecoQuadra;
 
-	private String tipoQuadra;
+	private TipoQuadra tipoQuadra;
 	private boolean possuiCobertura;
 	private boolean possuiArquibancada;
 	private boolean possuiAreaDescanso;
 	private boolean estaBloqueada = false;
 	private double precoReserva;
-
-	enum TipoQuadras{
-		SAIBRO,
-		SUPERFICIE_SITENTICA,
-		CIMENTO,
-		BEACH_TENNIS
-	}
 	
-	public Quadras(int codigoQuadra, String nomeQuadra, String tipoQuadra, boolean cobertura) {
+	public Quadras(int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean cobertura) {
 		this.setCodigoQuadra(codigoQuadra);
 		this.setNomeQuadra(nomeQuadra);
 		this.setTipoQuadra(tipoQuadra);
 	}
 	
-	public Quadras(int codigo, String nome, String endereco, String tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
+	public Quadras(int codigo, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
 		this.setCodigoQuadra(codigo);
 		this.setNomeQuadra(nome);
 		this.setEnderecoQuadra(endereco);
@@ -111,7 +104,7 @@ public class Quadras{
 	}
 
 
-	public void cadastraQuadra(int numero, String nome, String endereco, String tipo, boolean cobertura,
+	public void cadastraQuadra(int numero, String nome, String endereco, TipoQuadra tipo, boolean cobertura,
 			boolean arquibancada, boolean area) {
 		setCodigoQuadra(numero);
 		setNomeQuadra(nome);
@@ -137,22 +130,22 @@ public class Quadras{
 	}
 
 
-	public String identificaTipoQuadra(int identificador) {
+	public TipoQuadra identificaTipoQuadra(int identificador) {
 		switch (identificador) {
 		case 1:
-			return TipoQuadras.SAIBRO.toString();
+			return TipoQuadra.SAIBRO;
 
 		case 2:
-			return TipoQuadras.SUPERFICIE_SITENTICA.toString();
+			return TipoQuadra.SUPERFICIE_SITENTICA;
 
 		case 3:
-			return TipoQuadras.CIMENTO.toString();
+			return TipoQuadra.CIMENTO;
 
 		case 4:
-			return TipoQuadras.BEACH_TENNIS.toString();
-
+			return TipoQuadra.BEACH_TENNIS;
+			
 		default:
-			return "OPCAO INVALIDA";
+			return TipoQuadra.INVALIDO;
 		}
 	}
 
@@ -188,12 +181,12 @@ public class Quadras{
 		this.enderecoQuadra = enderecoQuadra;
 	}
 
-	protected String getTipoQuadra() {
+	protected TipoQuadra getTipoQuadra() {
 		return tipoQuadra;
 	}
 
 
-	protected void setTipoQuadra(String tipoQuadra) {
+	protected void setTipoQuadra(TipoQuadra tipoQuadra) {
 		this.tipoQuadra = tipoQuadra;
 	}
 

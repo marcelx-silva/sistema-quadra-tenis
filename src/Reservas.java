@@ -54,7 +54,7 @@ public class Reservas{
 		
 	}
 	
-	public void cadastrarReserva(String cpfCliente,String nomeCliente, String dataReserva, String horarioInicioReserva, String horarioFimReserva, String modoPagamento, int quantidadeParcelas, int codigoQuadra, String nomeQuadra, String tipoQuadra, boolean temCobertura){
+	public void cadastrarReserva(String cpfCliente,String nomeCliente, String dataReserva, String horarioInicioReserva, String horarioFimReserva, String modoPagamento, int quantidadeParcelas, int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean temCobertura){
 		cliente.setNomeCliente(nomeCliente);
 		cliente.setCpfCliente(cpfCliente);
 		setDataReserva(dataReserva);

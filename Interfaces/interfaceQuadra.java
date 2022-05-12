@@ -52,7 +52,7 @@ public final class interfaceQuadra {
 		String nome = "";
 		int numero = 0;
 		String endereco = "";
-		String tipo = "";
+		TipoQuadra tipo = null;
 		boolean cobertura = false;
 		boolean arquibancada = false;
 		boolean area = false;

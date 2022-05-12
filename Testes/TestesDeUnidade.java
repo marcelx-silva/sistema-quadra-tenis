@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 class TestesDeUnidade {
 	
-	Quadras qua = new Quadras(15,"Quadra Municipal de Mogi das Cruzes","Rua da Quadra","SAIBRO",true,true,true);
+	Quadras qua = new Quadras(15,"Quadra Municipal de Mogi das Cruzes","Rua da Quadra",TipoQuadra.SAIBRO,true,true,true);
 	Clientes cli = new Clientes("Leandro","emailDoLeandro@gmail.com", "123.456.789-10", "10/10/2010", false);
 	Usuario usu = new Usuario("Nathan", "132.456.879-10", "emailDoNathan@gmail.com", "senha segura", false, true, false, false);
 	
@@ -13,7 +13,7 @@ class TestesDeUnidade {
 		assertEquals("Quadra Municipal de Mogi das Cruzes", qua.getNomeQuadra());
 		assertEquals(15, qua.getCodigoQuadra());
 		assertEquals("Rua da Quadra", qua.getEnderecoQuadra());
-		assertEquals("SAIBRO", qua.getTipoQuadra());
+		assertEquals(TipoQuadra.SAIBRO, qua.getTipoQuadra());
 		assertEquals(true, qua.isPossuiCobertura());
 		assertEquals(true, qua.isPossuiArquibancada());
 		assertEquals(true, qua.isPossuiAreaDescanso());

@@ -7,7 +7,7 @@ public final class interfaceReserva {
 	Scanner scanner = new Scanner(System.in);
 	
 	void interfaceMenuReserva() {
-		Quadras quadra = new Quadras(0,"","","",false,false,false);
+		Quadras quadra = new Quadras(0,"","",null,false,false,false);
 		Clientes cliente = new Clientes("","","","",false);
 		Reservas reserva = new Reservas(quadra,cliente,"","","","",1);
 		int operadorMenu = 0;
@@ -49,7 +49,7 @@ public final class interfaceReserva {
 		
 	
 		int cod_quadra;
-		String tipo_quadra;
+		TipoQuadra tipo_quadra;
 		String nome_quadra;
 		boolean cobertura = false;
 		
