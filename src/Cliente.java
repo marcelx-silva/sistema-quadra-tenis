@@ -74,7 +74,4 @@ public class Cliente {
 	protected void setBloqueado(boolean bloqueado) {
 		this.bloqueado = bloqueado;
 	}
-	
-	
-
 }

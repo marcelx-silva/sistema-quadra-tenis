@@ -100,10 +100,9 @@ public class Reserva{
 		}
 	}
 
-
-
 	protected Cliente getCliente() {
-		return cliente;
+		Cliente c = cliente;
+		return c;
 	}
 	
 	protected void setCliente(Cliente cliente) {
@@ -115,67 +114,46 @@ public class Reserva{
 		return dataReserva;
 	}
 
-
-
 	protected void setDataReserva(String dataReserva) {
 		this.dataReserva = dataReserva;
 	}
-
-
 
 	protected String getHorarioInicioReserva() {
 		return horarioInicioReserva;
 	}
 
-
-
 	protected void setHorarioInicioReserva(String horarioInicioReserva) {
 		this.horarioInicioReserva = horarioInicioReserva;
 	}
-
-
 
 	protected String getHorarioFimReserva() {
 		return horarioFimReserva;
 	}
 
-
-
 	protected void setHorarioFimReserva(String horarioFimReserva) {
 		this.horarioFimReserva = horarioFimReserva;
 	}
-
-
 
 	protected TipoPagamento getModoPagamento() {
 		return modoPagamento;
 	}
 
-
-
 	protected void setModoPagamento(TipoPagamento modoPagamento) {
 		this.modoPagamento = modoPagamento;
 	}
-
-
 
 	protected int getParcelas() {
 		return parcelas;
 	}
 
-
-
 	protected void setParcelas(int parcelas) {
 		this.parcelas = parcelas;
 	}
 
-
-
 	protected Quadra getQuadra() {
-		return quadra;
+		Quadra q = quadra;
+		return q;
 	}
-
-
 
 	protected void setQuadra(Quadra quadra) {
 		this.quadra = quadra;

@@ -22,7 +22,5 @@ class TestesDeReserva {
 		assertEquals(1,res.getParcelas());
 		assertEquals(15, res.getQuadra().getCodigoQuadra());
 
-		
-	}
-	
+	}	
 }
