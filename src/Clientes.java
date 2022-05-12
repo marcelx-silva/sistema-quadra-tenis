@@ -7,6 +7,10 @@ public class Clientes {
 	private String dataNascimento;	
 	private boolean bloqueado = false;
 	
+	public Clientes(String nomeCliente, String cpfCliente) {
+		this.nomeCliente = nomeCliente;
+		this.cpfCliente = cpfCliente;
+	}
 	
 	public Clientes(String nomeCliente,String emailCliente, String cpfCliente, String dataNascimento, boolean bloqueado){
 		this.nomeCliente = nomeCliente;
