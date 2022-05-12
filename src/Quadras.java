@@ -26,7 +26,6 @@ public class Quadras{
 		this.setCodigoQuadra(codigoQuadra);
 		this.setNomeQuadra(nomeQuadra);
 		this.setTipoQuadra(tipoQuadra);
-		this.setPrecoReserva(cobertura);
 	}
 	
 	public Quadras(int codigo, String nome, String endereco, String tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
@@ -121,7 +120,6 @@ public class Quadras{
 		setPossuiCobertura(cobertura);
 		setPossuiArquibancada(arquibancada);
 		setPossuiAreaDescanso(area);
-		setPrecoReserva(cobertura);
 	}
 
 
@@ -162,12 +160,8 @@ public class Quadras{
 		return precoReserva;
 	}
 	
-	protected void setPrecoReserva(boolean cobertura) {
-		if(cobertura) {
-			this.precoReserva = 70.00;
-		}else {
-			this.precoReserva = 40.00;
-		}
+	protected void setPrecoReserva(double valor) {
+		this.precoReserva = valor;
 	}
 
 	protected int getCodigoQuadra() {
@@ -209,6 +203,10 @@ public class Quadras{
 
 	protected void setPossuiCobertura(boolean possuiCobertura) {
 		this.possuiCobertura = possuiCobertura;
+		if(possuiCobertura)
+			setPrecoReserva(70);
+		else
+			setPrecoReserva(40);
 	}
 
 	protected boolean isPossuiArquibancada() {

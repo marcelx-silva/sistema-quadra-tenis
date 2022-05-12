@@ -86,4 +86,13 @@ class TestesDeUnidade {
 		qua.desbloqueiaQuadraParaAluguel();
 		assertFalse(qua.isEstaBloqueada());
 	}
+	
+	@Test void testeDePrecoReservaComCobertura() {
+		assertEquals(70, qua.getPrecoReserva());
+	}
+	
+	@Test void testeDePrecoReservaSemCobertura() {
+		qua.setPossuiCobertura(false);
+		assertEquals(40, qua.getPrecoReserva());
+	}
 }
