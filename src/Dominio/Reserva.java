@@ -1,9 +1,12 @@
+package Dominio;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import Enum.TipoPagamento;
+import Enum.TipoQuadra;
 
 
 public class Reserva{

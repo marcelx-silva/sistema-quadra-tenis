@@ -1,6 +1,9 @@
+package Dominio;
+
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import Enum.TipoQuadra;
 
 public class Quadra{
 	
