@@ -1,5 +1,5 @@
 
-public class Clientes {
+public class Cliente {
 	
 	private String nomeCliente;
 	private String emailCliente;
@@ -7,12 +7,12 @@ public class Clientes {
 	private String dataNascimento;	
 	private boolean bloqueado = false;
 	
-	public Clientes(String nomeCliente, String cpfCliente) {
+	public Cliente(String nomeCliente, String cpfCliente) {
 		this.nomeCliente = nomeCliente;
 		this.cpfCliente = cpfCliente;
 	}
 	
-	public Clientes(String nomeCliente,String emailCliente, String cpfCliente, String dataNascimento, boolean bloqueado){
+	public Cliente(String nomeCliente,String emailCliente, String cpfCliente, String dataNascimento, boolean bloqueado){
 		this.nomeCliente = nomeCliente;
 		this.emailCliente = emailCliente;
 		this.cpfCliente = cpfCliente;

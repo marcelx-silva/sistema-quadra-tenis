@@ -2,7 +2,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Quadras{
+public class Quadra{
 	
 	private int codigoQuadra;
 	private String nomeQuadra;
@@ -15,13 +15,13 @@ public class Quadras{
 	private boolean estaBloqueada = false;
 	private double precoReserva;
 	
-	public Quadras(int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean cobertura) {
+	public Quadra(int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean cobertura) {
 		this.setCodigoQuadra(codigoQuadra);
 		this.setNomeQuadra(nomeQuadra);
 		this.setTipoQuadra(tipoQuadra);
 	}
 	
-	public Quadras(int codigo, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
+	public Quadra(int codigo, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
 		this.setCodigoQuadra(codigo);
 		this.setNomeQuadra(nome);
 		this.setEnderecoQuadra(endereco);
@@ -31,10 +31,10 @@ public class Quadras{
 		this.setPossuiAreaDescanso(descanso);
 	}
 	
-	public static ArrayList<Quadras> procuraQuadras(String dia, String horarioInicio, String horarioFim, 
+	public static ArrayList<Quadra> procuraQuadras(String dia, String horarioInicio, String horarioFim, 
 			String tipo, boolean cobertura, boolean arquibancada, boolean areaDescanso){
 		
-		ArrayList<Quadras> Quadras = new ArrayList<Quadras>();
+		ArrayList<Quadra> Quadras = new ArrayList<Quadra>();
 		
 		return Quadras;
 		
@@ -68,7 +68,7 @@ public class Quadras{
 		int periodosTempo = (24 - ((24 - fechamentoSemana) + aberturaSemana)) * 2; 
 		
 		String[][] disponibilidade = new String[quantidadeDias][periodosTempo];
-		ArrayList<String> horariosReservados = Reservas.horariosReservas(codigoQuadra);
+		ArrayList<String> horariosReservados = Reserva.horariosReservas(codigoQuadra);
 		DateTimeFormatter horarioFormatoPadrao = DateTimeFormatter.ofPattern("HH:mm");
 		LocalDateTime horario = LocalDateTime.now();
 		

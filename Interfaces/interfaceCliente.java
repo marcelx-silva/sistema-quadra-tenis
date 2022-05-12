@@ -6,7 +6,7 @@ public final class interfaceCliente {
 	
 	void interfaceMenuCliente(){
 		
-		Clientes cliente = new Clientes("","","","",false);
+		Cliente cliente = new Cliente("","","","",false);
 		int operadorMenu = 0;
 		
 		do {
@@ -47,7 +47,7 @@ public final class interfaceCliente {
 		}while(operadorMenu!=5);
 	}
 	
-	void interfaceCadastroCliente(Clientes cliente){
+	void interfaceCadastroCliente(Cliente cliente){
 		
 		String nome;
 		String email;

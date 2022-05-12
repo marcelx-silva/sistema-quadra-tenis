@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
-public class Reservas{
+public class Reserva{
 	
 	
 	public static ArrayList<String> horariosReservas(int codigoQuadra){
@@ -27,15 +27,15 @@ public class Reservas{
 		return listaReservas;
 	}
 		
-	private Clientes cliente;
+	private Cliente cliente;
 	private String dataReserva;
 	private String horarioInicioReserva;
 	private String horarioFimReserva;
 	private String modoPagamento;
 	private int parcelas; 
-	private Quadras quadra;
+	private Quadra quadra;
 	
-	public Reservas(Quadras quadra,Clientes cliente,String dataReserva, String horarioInicioReserva, String horarioFimReserva, String modoPagamento, int parcelas){
+	public Reserva(Quadra quadra,Cliente cliente,String dataReserva, String horarioInicioReserva, String horarioFimReserva, String modoPagamento, int parcelas){
 		this.quadra = quadra;
 		this.cliente = cliente;
 		this.dataReserva = dataReserva;
@@ -44,8 +44,6 @@ public class Reservas{
 		this.modoPagamento = modoPagamento;
 		this.parcelas = parcelas;
 	}
-	
-
 	
 	public BigDecimal calcularParcela(double preco_reserva,int parcela) {
 		BigDecimal prc_res = new BigDecimal(String.valueOf(preco_reserva));
@@ -100,11 +98,11 @@ public class Reservas{
 
 
 
-	protected Clientes getCliente() {
+	protected Cliente getCliente() {
 		return cliente;
 	}
 	
-	protected void setCliente(Clientes cliente) {
+	protected void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
@@ -169,13 +167,13 @@ public class Reservas{
 
 
 
-	protected Quadras getQuadra() {
+	protected Quadra getQuadra() {
 		return quadra;
 	}
 
 
 
-	protected void setQuadra(Quadras quadra) {
+	protected void setQuadra(Quadra quadra) {
 		this.quadra = quadra;
 	}
 }

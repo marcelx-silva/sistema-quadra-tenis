@@ -7,9 +7,9 @@ public final class interfaceReserva {
 	Scanner scanner = new Scanner(System.in);
 	
 	void interfaceMenuReserva() {
-		Quadras quadra = new Quadras(0,"","",null,false,false,false);
-		Clientes cliente = new Clientes("","","","",false);
-		Reservas reserva = new Reservas(quadra,cliente,"","","","",1);
+		Quadra quadra = new Quadra(0,"","",null,false,false,false);
+		Cliente cliente = new Cliente("","","","",false);
+		Reserva reserva = new Reserva(quadra,cliente,"","","","",1);
 		int operadorMenu = 0;
 		
 		do {
@@ -45,7 +45,7 @@ public final class interfaceReserva {
 		}while(operadorMenu!=5);
 	}
 	
-	void interfaceCadastroReserva(Reservas reserva, Quadras quadra, Clientes cliente){
+	void interfaceCadastroReserva(Reserva reserva, Quadra quadra, Cliente cliente){
 		
 	
 		int cod_quadra;
@@ -126,8 +126,8 @@ public final class interfaceReserva {
 			cobertura = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 			
 			
-			Clientes clienteReserva = new Clientes(nomeCliente,cpfCliente);
-			Quadras QuadraReserva = new Quadras(cod_quadra,nome_quadra,tipo_quadra,cobertura);
+			Cliente clienteReserva = new Cliente(nomeCliente,cpfCliente);
+			Quadra QuadraReserva = new Quadra(cod_quadra,nome_quadra,tipo_quadra,cobertura);
 			
 			reserva.cadastrarReserva(clienteReserva.getNomeCliente(),clienteReserva.getCpfCliente(), data_reserva, hr_inicio_reserva, hr_fim_reserva, modo_pagamento, parcelas,QuadraReserva.getCodigoQuadra(),QuadraReserva.getNomeQuadra(),QuadraReserva.getTipoQuadra(),QuadraReserva.isPossuiCobertura());
       

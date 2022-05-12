@@ -4,7 +4,7 @@ import java.util.Scanner;
 public final class interfaceQuadra {
 	
 	Scanner scanner = new Scanner(System.in);
-	ArrayList <Quadras> quadras = new ArrayList<Quadras>();
+	ArrayList <Quadra> quadras = new ArrayList<Quadra>();
 	
 	void interfacePrincipalQuadras() {
 		int operadorDoMenu = 0;
@@ -56,7 +56,7 @@ public final class interfaceQuadra {
 		boolean cobertura = false;
 		boolean arquibancada = false;
 		boolean area = false;
-		Quadras quadra = new Quadras(numero, nome, endereco, tipo, cobertura, arquibancada, area);
+		Quadra quadra = new Quadra(numero, nome, endereco, tipo, cobertura, arquibancada, area);
 		
 		try {
 			
@@ -87,7 +87,7 @@ public final class interfaceQuadra {
 			area = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 			
 			UtilidadesGUI.exibeMensagem("Cadastro Realizado com Sucesso!\n");
-			quadra = new Quadras(numero, nome, endereco, tipo, cobertura, arquibancada, area);
+			quadra = new Quadra(numero, nome, endereco, tipo, cobertura, arquibancada, area);
 			quadras.add(quadra);
 			
 		}catch(Exception e) {
@@ -101,7 +101,7 @@ public final class interfaceQuadra {
 		
 		UtilidadesGUI.exibeMensagem("Digite o numero de identificação da quadra: ");
 		numero = Integer.parseInt(scanner.nextLine());
-		Quadras quadra = quadras.get(numero);//necessário verificar como fazer isso de uma forma melhor depois
+		Quadra quadra = quadras.get(numero);//necessário verificar como fazer isso de uma forma melhor depois
 		
 		continuaMetodo = quadra.verificaNumeroQuadra(numero);
 		
@@ -132,7 +132,7 @@ public final class interfaceQuadra {
 		
 		UtilidadesGUI.exibeMensagem("Digite o numero de identificação da quadra: ");
 		numero = Integer.parseInt(scanner.nextLine());
-		Quadras quadra = quadras.get(numero);//necessário verificar como fazer isso de uma forma melhor depois
+		Quadra quadra = quadras.get(numero);//necessário verificar como fazer isso de uma forma melhor depois
 		
 		continuaMetodo = quadra.verificaNumeroQuadra(numero);
 		
