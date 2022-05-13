@@ -2,13 +2,14 @@ package Conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 //import com.mysql.cj.jdbc.Driver;
 
 public class ConexaoBD {
 	
-	public Connection conectaBD() {
+	public static Connection conectaBD() {
 		
 		Connection c = null;
 		
@@ -30,5 +31,29 @@ public class ConexaoBD {
 		}
 		
 		return (c);
+	}
+	
+	public static void encerrarConexaoBD(Connection c){
+			
+		if(c != null) {
+			try {
+				c.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void encerrarConexaoBD(Connection c, PreparedStatement stmt){
+		
+		if(stmt != null) {
+			try {
+				stmt.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		encerrarConexaoBD(c);
 	}
 }
