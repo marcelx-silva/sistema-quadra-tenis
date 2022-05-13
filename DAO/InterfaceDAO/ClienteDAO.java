@@ -21,6 +21,9 @@ public interface ClienteDAO {
 	//Atualizar Dados do Cliente
 	boolean AlterarDadosCliente(Cliente c);
 	
+	//Bloquear e Desbloquear Cliente
+	boolean HabilitarCliente(int id, boolean bloqueado);
+	
 	//Deletar cliente
 	boolean DeletarCliente(int id);
 }
