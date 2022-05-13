@@ -10,18 +10,6 @@ CREATE TABLE tipo_quadra(
 	PRIMARY KEY (tp_id)
 );
 
-CREATE TABLE manutencao(
-	man_id INTEGER NOT NULL AUTO_INCREMENT,
-	man_desc VARCHAR(100) NOT NULL,
-	man_dt_inicio DATE NOT NULL,
-	man_dt_fim DATE NOT NULL,
-	man_prev BOOLEAN NOT NULL,
-	man_cod_quadra INTEGER NOT NULL,
-	
-	PRIMARY KEY(man_id),
-	FOREIGN KEY(man_cod_quadra) REFERENCES quadra(qua_id)
-);
-
 
 CREATE TABLE quadra(
 	qua_id INTEGER NOT NULL AUTO_INCREMENT,
@@ -40,6 +28,17 @@ CREATE TABLE quadra(
 	FOREIGN KEY (qua_id_tipo) REFERENCES tipo_quadra(tp_id)
 );
 
+CREATE TABLE manutencao(
+	man_id INTEGER NOT NULL AUTO_INCREMENT,
+	man_desc VARCHAR(100) NOT NULL,
+	man_dt_inicio DATE NOT NULL,
+	man_dt_fim DATE NOT NULL,
+	man_prev BOOLEAN NOT NULL,
+	man_cod_quadra INTEGER NOT NULL,
+	
+	PRIMARY KEY(man_id),
+	FOREIGN KEY(man_cod_quadra) REFERENCES quadra(qua_id)
+);
 
 
 
@@ -80,8 +79,6 @@ CREATE TABLE pagamento(
 	PRIMARY KEY(pag_id),
 	FOREIGN KEY(pag_id_forma_pagamento) REFERENCES forma_pagamento(fp_id)
 );
-
-
 
 
 CREATE TABLE cliente(
