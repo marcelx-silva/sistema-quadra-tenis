@@ -55,6 +55,8 @@ CREATE TABLE usuario(
 	usu_email VARCHAR(50) NOT NULL,
 	usu_dt_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	usu_id_permissao INTEGER NOT NULL,
+	usu_bloqueado BOOL NOT NULL DEFAULT 0, 
+	usu_habilitado BOOL NOT NULL DEFAULT 1,
 	
 	PRIMARY KEY (usu_id),
 	FOREIGN KEY (usu_id_permissao) REFERENCES permissao(perm_id)
