@@ -26,7 +26,7 @@ public class ConexaoBD {
 			
 		
 		}catch(SQLException e) {
-			e.printStackTrace();
+			throw new  RuntimeException("Erro na Conexão",e);
 		}
 		
 		return (c);
