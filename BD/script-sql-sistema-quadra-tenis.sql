@@ -89,6 +89,9 @@ CREATE TABLE cliente(
 	cli_nome VARCHAR(50) NOT NULL,
 	cli_cpf VARCHAR(11) NOT NULL,
 	cli_dt_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	cli_bloqueado BOOL NOT NULL DEFAULT  0, 
+	cli_habilitado BOOL NOT NULL DEFAULT 1,
+	cli_invalidado BOOL NOT NULL DEFAULT 0,
 	
 	PRIMARY KEY(cli_id)
 );
@@ -116,8 +119,6 @@ CREATE TABLE reserva(
 );
 
 
-ALTER TABLE quadra
-MODIFY COLUMN qua_preco FLOAT NOT NULL;
 
 ALTER TABLE pagamento
 MODIFY COLUMN pag_valor FLOAT NOT NULL;
