@@ -25,14 +25,12 @@ CREATE TABLE manutencao(
 
 CREATE TABLE quadra(
 	qua_id INTEGER NOT NULL AUTO_INCREMENT,
-	qua_cod INTEGER NOT NULL,
 	qua_nome VARCHAR(50) NOT NULL,
 	qua_endereco VARCHAR(50) NOT NULL,
 	qua_cobertura BOOLEAN NOT NULL,
 	qua_arquibancada BOOLEAN NOT NULL,
 	qua_area_descanso BOOLEAN NOT NULL,
 	qua_status BOOLEAN NOT NULL,
-	qua_preco DOUBLE(10,2) NOT NULL,
 	qua_dt_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	qua_id_tipo INTEGER NOT NULL,
 	
@@ -94,7 +92,7 @@ CREATE TABLE cliente(
 );
 
 CREATE TABLE reserva(
-	res_id INTEGER NOT NULL AUTO_INCREMENT,
+    res_id INTEGER NOT NULL AUTO_INCREMENT,
     res_id_cliente INTEGER NOT NULL,
     res_nome_cliente VARCHAR(50) NOT NULL,
     res_cpf_cliente VARCHAR(11) NOT NULL,
@@ -106,7 +104,7 @@ CREATE TABLE reserva(
     res_cod_quadra INTEGER NOT NULL,
     res_nome_quadra VARCHAR(50) NOT NULL,
     res_endereco_quadra VARCHAR(50) NOT NULL,
-	res_tipo_quadra VARCHAR(20) NOT NULL,
+    res_tipo_quadra VARCHAR(20) NOT NULL,
     res_cobertura BOOL NOT NULL,
     
     PRIMARY KEY(res_id),
