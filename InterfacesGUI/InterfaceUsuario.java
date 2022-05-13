@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import Dominio.Usuario;
 
 public final class InterfaceUsuario {
 	

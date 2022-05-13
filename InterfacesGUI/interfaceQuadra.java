@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import Dominio.Quadra;
+import Enum.TipoQuadra;
 
 public final class interfaceQuadra {
 	

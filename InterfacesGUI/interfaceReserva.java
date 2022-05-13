@@ -1,5 +1,9 @@
 import java.util.Scanner;
-
+import Dominio.Reserva;
+import Dominio.Cliente;
+import Dominio.Quadra;
+import Enum.TipoQuadra;
+import Enum.TipoPagamento;
 
 public final class interfaceReserva {
 

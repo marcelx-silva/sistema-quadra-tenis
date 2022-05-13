@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import Dominio.Cliente;
 
 public final class interfaceCliente {
 	
