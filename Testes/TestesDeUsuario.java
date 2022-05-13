@@ -40,5 +40,28 @@ class TestesDeUsuario {
 	void testeVerificaUsuarioNaoExistente() {
 		assertFalse(usu.verificarUsuario("133.456.879-10"));
 	}
-
+	
+	@Test
+	void testeMudarNomeUsuario() {
+		usu.alteraUsuario("Nathan Soares", 1);
+		assertEquals("Nathan Soares", usu.getNomeUsuario());
+	}
+	
+	@Test
+	void testeMudarCPFUsuario() {
+		usu.alteraUsuario("111.456.879-10", 2);
+		assertEquals("111.456.879-10", usu.getCpfUsuario());
+	}
+	
+	@Test
+	void testeMudarEmailUsuario() {
+		usu.alteraUsuario("emailNovo@gmail.com", 3);
+		assertEquals("emailNovo@gmail.com", usu.getEmailUsuario());
+	}
+	
+	@Test
+	void testeMudarSenhaUsuario() {
+		usu.alteraUsuario("senha mais segura ainda", 4);
+		assertEquals("senha mais segura ainda", usu.getSenhaUsuario());
+	}
 }
