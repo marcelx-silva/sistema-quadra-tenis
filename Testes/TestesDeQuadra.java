@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import java.math.BigDecimal;
 
 class TestesDeQuadra {
 	
@@ -30,11 +31,11 @@ class TestesDeQuadra {
 	}
 	
 	@Test void testeDePrecoReservaComCobertura() {
-		assertEquals(70, qua.getPrecoReserva());
+		assertEquals(new BigDecimal("70"), qua.getPrecoReservaTempoMinimo());
 	}
 	
 	@Test void testeDePrecoReservaSemCobertura() {
 		qua.setPossuiCobertura(false);
-		assertEquals(40, qua.getPrecoReserva());
+		assertEquals(new BigDecimal("40"), qua.getPrecoReservaTempoMinimo());
 	}
 }
