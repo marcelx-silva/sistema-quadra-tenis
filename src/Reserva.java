@@ -4,7 +4,8 @@ import java.math.RoundingMode;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
+import java.time.LocalTime;
+import java.time.LocalDate;
 
 public class Reserva{
 	
@@ -28,14 +29,14 @@ public class Reserva{
 	}
 		
 	private Cliente cliente;
-	private String dataReserva;
-	private String horarioInicioReserva;
-	private String horarioFimReserva;
+	private LocalDate dataReserva;
+	private LocalTime horarioInicioReserva;
+	private LocalTime horarioFimReserva;
 	private TipoPagamento modoPagamento;
 	private int parcelas; 
 	private Quadra quadra;
 	
-	public Reserva(Quadra quadra,Cliente cliente,String dataReserva, String horarioInicioReserva, String horarioFimReserva, TipoPagamento modoPagamento, int parcelas){
+	public Reserva(Quadra quadra,Cliente cliente,LocalDate dataReserva, LocalTime horarioInicioReserva, LocalTime horarioFimReserva, TipoPagamento modoPagamento, int parcelas){
 		this.quadra = quadra;
 		this.cliente = cliente;
 		this.dataReserva = dataReserva;
@@ -52,7 +53,7 @@ public class Reserva{
 		
 	}
 	
-	public void cadastrarReserva(String cpfCliente,String nomeCliente, String dataReserva, String horarioInicioReserva, String horarioFimReserva, TipoPagamento modoPagamento, int quantidadeParcelas, int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean temCobertura){
+	public void cadastrarReserva(String cpfCliente,String nomeCliente, LocalDate dataReserva, LocalTime horarioInicioReserva, LocalTime horarioFimReserva, TipoPagamento modoPagamento, int quantidadeParcelas, int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean temCobertura){
 		cliente.setNomeCliente(nomeCliente);
 		cliente.setCpfCliente(cpfCliente);
 		setDataReserva(dataReserva);
@@ -110,27 +111,27 @@ public class Reserva{
 	}
 
 
-	protected String getDataReserva() {
+	protected LocalDate getDataReserva() {
 		return dataReserva;
 	}
 
-	protected void setDataReserva(String dataReserva) {
+	protected void setDataReserva(LocalDate dataReserva) {
 		this.dataReserva = dataReserva;
 	}
 
-	protected String getHorarioInicioReserva() {
+	protected LocalTime getHorarioInicioReserva() {
 		return horarioInicioReserva;
 	}
 
-	protected void setHorarioInicioReserva(String horarioInicioReserva) {
+	protected void setHorarioInicioReserva(LocalTime horarioInicioReserva) {
 		this.horarioInicioReserva = horarioInicioReserva;
 	}
 
-	protected String getHorarioFimReserva() {
+	protected LocalTime getHorarioFimReserva() {
 		return horarioFimReserva;
 	}
 
-	protected void setHorarioFimReserva(String horarioFimReserva) {
+	protected void setHorarioFimReserva(LocalTime horarioFimReserva) {
 		this.horarioFimReserva = horarioFimReserva;
 	}
 

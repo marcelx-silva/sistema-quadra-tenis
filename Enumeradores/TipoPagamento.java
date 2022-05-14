@@ -1,4 +1,5 @@
 
+
 public enum TipoPagamento {
 	
 	CREDITO,
