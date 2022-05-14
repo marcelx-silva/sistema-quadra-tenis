@@ -37,6 +37,47 @@ public class Usuario {
 	public void desbloquearUsuario() {
 		this.setEstaBloqueado(false);
 	}
+	
+	public void alteraUsuario(String alteracao, int operador) {
+		switch(operador) {
+		
+			case 1:
+				this.setNomeUsuario(alteracao);
+				break;
+			
+			case 2:
+				this.setCpfUsuario(alteracao);
+				break;
+				
+			case 3:
+				this.setEmailUsuario(alteracao);
+				break;
+				
+			case 4:
+				this.setSenhaUsuario(alteracao);
+				break;
+				
+			case 5:
+				this.setAcessoGestorQuadras(UtilidadesConversao.transformaString(alteracao));
+				break;
+				
+			case 6:
+				this.setAcessoGestorUsuarios(UtilidadesConversao.transformaString(alteracao));
+				break;
+				
+			case 7:
+				this.setAcessoRelatorios(UtilidadesConversao.transformaString(alteracao));
+				break;
+				
+			case 8:
+				this.setAcessoZelador(UtilidadesConversao.transformaString(alteracao));
+				break;
+				
+			default:
+				UtilidadesGUI.exibeMensagem("Opção Inválida!");
+				break;
+		}
+	}
 
 	protected String getNomeUsuario() {
 		return nomeUsuario;

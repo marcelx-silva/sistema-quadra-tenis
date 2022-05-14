@@ -1,4 +1,5 @@
 import java.time.format.DateTimeFormatter;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -13,7 +14,6 @@ public class Quadra{
 	private boolean possuiArquibancada;
 	private boolean possuiAreaDescanso;
 	private boolean estaBloqueada = false;
-	private double precoReserva;
 	
 	public Quadra(int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean cobertura) {
 		this.setCodigoQuadra(codigoQuadra);
@@ -104,8 +104,7 @@ public class Quadra{
 	}
 
 
-	public void cadastraQuadra(int numero, String nome, String endereco, TipoQuadra tipo, boolean cobertura,
-			boolean arquibancada, boolean area) {
+	public void cadastraQuadra(int numero, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean area) {
 		setCodigoQuadra(numero);
 		setNomeQuadra(nome);
 		setEnderecoQuadra(endereco);
@@ -149,14 +148,13 @@ public class Quadra{
 		}
 	}
 
-	protected double getPrecoReserva() {
-		return precoReserva;
+	public BigDecimal getPrecoReservaTempoMinimo() {
+		if(this.isPossuiCobertura())
+			return new BigDecimal("70");
+		else
+			return new BigDecimal("40");
 	}
 	
-	protected void setPrecoReserva(double valor) {
-		this.precoReserva = valor;
-	}
-
 	protected int getCodigoQuadra() {
 		return codigoQuadra;
 	}
@@ -196,10 +194,6 @@ public class Quadra{
 
 	protected void setPossuiCobertura(boolean possuiCobertura) {
 		this.possuiCobertura = possuiCobertura;
-		if(possuiCobertura)
-			setPrecoReserva(70);
-		else
-			setPrecoReserva(40);
 	}
 
 	protected boolean isPossuiArquibancada() {
