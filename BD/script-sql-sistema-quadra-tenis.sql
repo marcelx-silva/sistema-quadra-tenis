@@ -85,6 +85,10 @@ CREATE TABLE cliente(
 	cli_id INTEGER NOT NULL AUTO_INCREMENT,
 	cli_nome VARCHAR(50) NOT NULL,
 	cli_cpf VARCHAR(11) NOT NULL,
+    cli_dt_nasc DATE NOT NULL,
+    cli_email VARCHAR(50),
+    cli_celular VARCHAR(15),
+    cli_tel_fixo VARCHAR(14),
 	cli_dt_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	cli_bloqueado BOOL NOT NULL DEFAULT  0, 
 	cli_habilitado BOOL NOT NULL DEFAULT 1,
@@ -92,7 +96,6 @@ CREATE TABLE cliente(
 	
 	PRIMARY KEY(cli_id)
 );
-
 CREATE TABLE reserva(
     res_id INTEGER NOT NULL AUTO_INCREMENT,
     res_id_cliente INTEGER NOT NULL,
