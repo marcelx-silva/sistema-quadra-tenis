@@ -21,6 +21,9 @@ CREATE TABLE quadra(
 	qua_status BOOLEAN NOT NULL,
 	qua_dt_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	qua_id_tipo INTEGER NOT NULL,
+    qua_bloqueado BOOL NOT NULL DEFAULT 0, 
+	qua_habilitado BOOL NOT NULL DEFAULT 1,
+    
 	
 	PRIMARY KEY (qua_id),
 	FOREIGN KEY (qua_id_tipo) REFERENCES tipo_quadra(tp_id)
