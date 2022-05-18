@@ -49,43 +49,28 @@ INSERT INTO cliente (cli_nome,cli_cpf,cli_dt_nasc,cli_dt_nasc,cli_email,cli_celu
 /*Atualizar Dados do Cliente*/
 
 /*NOME*/
-UPDATE cliente 
-SET cli_nome = '?'
-WHERE cli_id = '?';
+UPDATE cliente  SET cli_nome = '?' WHERE cli_id = '?';
 
 /*EMAIL*/
-UPDATE cliente 
-SET cli_email = '?'
-WHERE cli_id = '?';
+UPDATE cliente  SET cli_email = '?' WHERE cli_id = '?';
 
 /*CELULAR*/
-UPDATE cliente 
-SET cli_celular = '?'
-WHERE cli_id = '?';
+UPDATE cliente  SET cli_celular = '?' WHERE cli_id = '?';
 
 /*TELEFONE-FIXO*/
-UPDATE cliente
-SET cli_tel_fixo = '?'
-WHERE cli_id = '?';
+UPDATE cliente SET cli_tel_fixo = '?' WHERE cli_id = '?';
 
 /*Bloquear e Desbloquear Cliente*/
-UPDATE cliente
-SET cli_bloqueado = '?'
-WHERE cli_id = '?';
+UPDATE cliente SET cli_bloqueado = '?' WHERE cli_id = '?';
 
 /*Validar e Invalidar Cliente*/
-UPDATE cliente
-SET cli_invalidado = '?'
-WHERE cli_id = '?';
+UPDATE cliente SET cli_invalidado = '?' WHERE cli_id = '?';
 
 /*Habilitar e Desabilitar Cliente*/
-UPDATE cliente
-SET cli_habilitado = '?'
-WHERE cli_id = '?';
+UPDATE cliente SET cli_habilitado = '?' WHERE cli_id = '?';
 
 /*Deletar cliente*/
-DELETE FROM cliente
-WHERE cli_id = '?';
+DELETE FROM cliente WHERE cli_id = '?';
 
 
 SELECT date_format(CURRENT_TIMESTAMP,"%d-%m-%y");
