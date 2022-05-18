@@ -1,4 +1,4 @@
-package InterfaceDAO;
+package interfaceDAO;
 
 import java.util.List;
 import Dominio.Reserva;

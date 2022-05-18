@@ -1,4 +1,4 @@
-package InterfaceDAO;
+package interfaceDAO;
 
 import Dominio.Cliente;
 import java.util.List;

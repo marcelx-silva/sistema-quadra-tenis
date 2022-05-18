@@ -1,4 +1,4 @@
-package InterfaceDAO;
+package interfaceDAO;
 
 import Dominio.Quadra;
 import java.util.List;
