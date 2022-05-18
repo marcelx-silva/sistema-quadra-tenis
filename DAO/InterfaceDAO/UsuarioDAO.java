@@ -7,7 +7,9 @@ public interface UsuarioDAO {
 	
 	List<Usuario> obterTodasUsuario();
 	
-	List<Usuario> obterUsuarioHabilitados(boolean bloqueado);
+	List<Usuario> obterUsuarioHabilitados(boolean habilitado);
+	
+	List<Usuario> obterUsuarioBloqueados(boolean bloqueado);
 	
 	List<Usuario> obterUsuarioPelaPermissao(String permissao);
 	
@@ -15,7 +17,7 @@ public interface UsuarioDAO {
 	
 	boolean CadastrarUsuario(Usuario u);
 	
-	boolean AlterarDadosUsuario(Usuario u);
+	boolean AlterarDadosUsuario(String alterecao, int escolha);
 	
 	boolean HabilitarUsuario(int id, boolean bloqueado);
 	

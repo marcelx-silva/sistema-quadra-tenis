@@ -7,15 +7,19 @@ public interface QuadraDAO {
 	
 	List<Quadra> obterTodasQuadras();
 	
-	List<Quadra> obterQuadraHabilitadas(boolean bloqueado);
+	List<Quadra> obterQuadraHabilitadas(boolean habilitado);
+	
+	List<Quadra> obterQuadraBloqueadas(boolean bloqueado);
 	
 	Quadra obterQuadraPeloId(int id);
 	
 	boolean CadastrarQuadra(Quadra q);
 	
-	boolean AlterarDadosQuadra(Quadra q);
+	boolean AlterarDadosQuadra(String alteracao, int escolha);
 	
-	boolean HabilitarQuadra(int id, boolean bloqueado);
+	boolean HabilitarQuadra(int id, boolean habilitado);
+	
+	boolean BloquearQuadra(int id, boolean bloqueado);
 	
 	boolean DeletarQuadra(int id);
 	

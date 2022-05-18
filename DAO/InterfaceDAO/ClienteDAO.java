@@ -19,10 +19,14 @@ public interface ClienteDAO {
 	void CadastrarCliente(Cliente c);
 	
 	//Atualizar Dados do Cliente
-	boolean AlterarDadosCliente(Cliente c);
+	boolean AlterarDadosCliente(String alteracao, int escolha);
 	
 	//Bloquear e Desbloquear Cliente
-	boolean HabilitarCliente(int id, boolean bloqueado);
+	boolean DesabilitarCliente(int id, boolean habilitado);
+	
+	boolean BloquearCliente(int id, boolean bloqueado);
+	
+	boolean InvalidarCliente(int id, boolean validado);
 	
 	//Deletar cliente
 	boolean DeletarCliente(int id);
