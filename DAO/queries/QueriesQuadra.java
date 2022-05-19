@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class QueriesQuadra {
 
-	Properties queriesQuadra = new Properties();
+	public Properties queriesQuadra = new Properties();
 	
 	protected void consultaQuadra() throws IOException{
 		
