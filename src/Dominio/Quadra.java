@@ -24,7 +24,7 @@ public class Quadra{
 		this.setTipoQuadra(tipoQuadra);
 	}
 	
-	public Quadra(int codigo, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
+	public Quadra(int codigo, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso, boolean bloqueado) {
 		this.setCodigoQuadra(codigo);
 		this.setNomeQuadra(nome);
 		this.setEnderecoQuadra(endereco);
@@ -32,6 +32,7 @@ public class Quadra{
 		this.setPossuiCobertura(cobertura);
 		this.setPossuiArquibancada(arquibancada);
 		this.setPossuiAreaDescanso(descanso);
+		this.setEstaBloqueada(bloqueado);
 	}
 		
 	
