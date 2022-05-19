@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public final class interfaceCliente {
+public class interfaceCliente {
 	
 	Scanner scanner = new Scanner(System.in);
 	
@@ -26,18 +26,23 @@ public final class interfaceCliente {
 				case 1:
 					this.interfaceCadastroCliente(cliente);
 					break;
+					
 				case 2:
-					UtilidadesGUI.exibeMensagem("Em Desenvolvimento!\n");
+					this.interfaceExibirCliente(cliente);
 					break;
+					
 				case 3:
 					UtilidadesGUI.exibeMensagem("Em Desenvolvimento!\n");
 					break;
+					
 				case 4:
 					UtilidadesGUI.exibeMensagem("Em Desenvolvimento!\n");
 					break;
+					
 				case  5:
 					UtilidadesGUI.exibeMensagem("Voltando ao menu anterior!\n");
 					break;
+					
 				default:
 					UtilidadesGUI.exibeMensagem("Opção Inválida!! \n"); 
 					
@@ -67,9 +72,15 @@ public final class interfaceCliente {
 		cpf = scanner.nextLine();
 		
 		cliente.cadastrarCliente(nome, email, cpf, data_nascimento);
-		
-		
 	}
-			
+	
+	void interfaceExibirCliente(Cliente cliente){
 		
+		cliente = cliente.clientes.get(0);
+		
+		UtilidadesGUI.exibeMensagem("Nome: " + cliente.getNomeCliente());
+		UtilidadesGUI.exibeMensagem("\nEmail: " + cliente.getEmailCliente());
+		UtilidadesGUI.exibeMensagem("\nData de Nascimento: " + cliente.getDataNascimento());
+		UtilidadesGUI.exibeMensagem("\nCPF: " + cliente.getCpfCliente());
+	}	
 }

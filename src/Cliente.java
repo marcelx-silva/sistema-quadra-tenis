@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Cliente {
 	
@@ -6,6 +7,8 @@ public class Cliente {
 	private String cpfCliente;
 	private String dataNascimento;	
 	private boolean bloqueado = false;
+	
+	ArrayList <Cliente> clientes = new ArrayList<Cliente>();
 	
 	public Cliente(String nomeCliente, String cpfCliente) {
 		this.nomeCliente = nomeCliente;
@@ -25,6 +28,7 @@ public class Cliente {
 		this.setEmailCliente(emailCliente);
 		this.setCpfCliente(cpfCliente);
 		this.setDataNascimento(dataNascimento);
+		clientes.add(this);
 	}
 	
 	public void bloqueiaCliente() {
