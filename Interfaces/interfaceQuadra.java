@@ -136,7 +136,8 @@ public class interfaceQuadra {
 					+ "\n1. Cadastradas"
 					+ "\n2. Habilitadas"
 					+ "\n3. Desabilitadas"
-					+ "\n4. Voltar");
+					+ "\n4. Voltar"
+					+ "\nOpção: ");
 			
 			operadorDoMenu = scanner.nextInt();
 			scanner.nextLine();
@@ -197,7 +198,6 @@ public class interfaceQuadra {
 	}
 	
 	void formatarColunas(String conteudo, int tamanhoM) {
-		//System.out.println(conteudo + " " +tamanhoM + " "+ conteudo.length());
 		UtilidadesSimplificadas.exibeMensagem(conteudo);
 		for (int i = conteudo.length(); i <= tamanhoM; i++) 
 			UtilidadesSimplificadas.exibeMensagem(" ");
