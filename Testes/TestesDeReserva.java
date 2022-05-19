@@ -2,6 +2,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import Dominio.Cliente;
+import Dominio.Quadra;
+import Dominio.Reserva;
+import Enum.TipoPagamento;
+import Enum.TipoQuadra;
+
 class TestesDeReserva {
 	
 

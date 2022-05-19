@@ -103,7 +103,7 @@ public class Reserva{
 		}
 	}
 
-	protected Cliente getCliente() {
+	public Cliente getCliente() {
 		Cliente c = cliente;
 		return c;
 	}
@@ -113,7 +113,7 @@ public class Reserva{
 	}
 
 
-	protected String getDataReserva() {
+	public String getDataReserva() {
 		return dataReserva;
 	}
 
@@ -121,7 +121,7 @@ public class Reserva{
 		this.dataReserva = dataReserva;
 	}
 
-	protected String getHorarioInicioReserva() {
+	public String getHorarioInicioReserva() {
 		return horarioInicioReserva;
 	}
 
@@ -129,7 +129,7 @@ public class Reserva{
 		this.horarioInicioReserva = horarioInicioReserva;
 	}
 
-	protected String getHorarioFimReserva() {
+	public String getHorarioFimReserva() {
 		return horarioFimReserva;
 	}
 
@@ -137,7 +137,7 @@ public class Reserva{
 		this.horarioFimReserva = horarioFimReserva;
 	}
 
-	protected TipoPagamento getModoPagamento() {
+	public TipoPagamento getModoPagamento() {
 		return modoPagamento;
 	}
 
@@ -145,7 +145,7 @@ public class Reserva{
 		this.modoPagamento = modoPagamento;
 	}
 
-	protected int getParcelas() {
+	public int getParcelas() {
 		return parcelas;
 	}
 
@@ -153,7 +153,7 @@ public class Reserva{
 		this.parcelas = parcelas;
 	}
 
-	protected Quadra getQuadra() {
+	public Quadra getQuadra() {
 		Quadra q = quadra;
 		return q;
 	}

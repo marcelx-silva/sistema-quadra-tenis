@@ -33,6 +33,7 @@ public class Quadra{
 		this.setPossuiArquibancada(arquibancada);
 		this.setPossuiAreaDescanso(descanso);
 	}
+		
 	
 	public static ArrayList<Quadra> procuraQuadras(String dia, String horarioInicio, String horarioFim, 
 			String tipo, boolean cobertura, boolean arquibancada, boolean areaDescanso){
@@ -160,44 +161,44 @@ public class Quadra{
 		this.precoReserva = valor;
 	}
 
-	protected int getCodigoQuadra() {
+	public int getCodigoQuadra() {
 		return codigoQuadra;
 	}
 
-	protected void setCodigoQuadra(int codigoQuadra) {
+	public void setCodigoQuadra(int codigoQuadra) {
 		this.codigoQuadra = codigoQuadra;
 	}
 
-	protected String getNomeQuadra() {
+	public String getNomeQuadra() {
 		return nomeQuadra;
 	}
 
-	protected void setNomeQuadra(String nomeQuadra) {
+	public void setNomeQuadra(String nomeQuadra) {
 		this.nomeQuadra = nomeQuadra;
 	}
 
-	protected String getEnderecoQuadra() {
+	public String getEnderecoQuadra() {
 		return enderecoQuadra;
 	}
 
-	protected void setEnderecoQuadra(String enderecoQuadra) {
+	public void setEnderecoQuadra(String enderecoQuadra) {
 		this.enderecoQuadra = enderecoQuadra;
 	}
 
-	protected TipoQuadra getTipoQuadra() {
+	public TipoQuadra getTipoQuadra() {
 		return tipoQuadra;
 	}
 
 
-	protected void setTipoQuadra(TipoQuadra tipoQuadra) {
+	public void setTipoQuadra(TipoQuadra tipoQuadra) {
 		this.tipoQuadra = tipoQuadra;
 	}
 
-	protected boolean isPossuiCobertura() {
+	public boolean isPossuiCobertura() {
 		return possuiCobertura;
 	}
 
-	protected void setPossuiCobertura(boolean possuiCobertura) {
+	public void setPossuiCobertura(boolean possuiCobertura) {
 		this.possuiCobertura = possuiCobertura;
 		if(possuiCobertura)
 			setPrecoReserva(70);
@@ -205,30 +206,30 @@ public class Quadra{
 			setPrecoReserva(40);
 	}
 
-	protected boolean isPossuiArquibancada() {
+	public boolean isPossuiArquibancada() {
 		return possuiArquibancada;
 	}
 
 
-	protected void setPossuiArquibancada(boolean possuiArquibancada) {
+	public void setPossuiArquibancada(boolean possuiArquibancada) {
 		this.possuiArquibancada = possuiArquibancada;
 	}
 
-	protected boolean isPossuiAreaDescanso() {
+	public boolean isPossuiAreaDescanso() {
 		return possuiAreaDescanso;
 	}
 
 
-	protected void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
+	public void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
 		this.possuiAreaDescanso = possuiAreaDescanso;
 	}
 
-	protected boolean isEstaBloqueada() {
+	public boolean isEstaBloqueada() {
 		return estaBloqueada;
 	}
 
 
-	protected void setEstaBloqueada(boolean estaBloqueada) {
+	public void setEstaBloqueada(boolean estaBloqueada) {
 		this.estaBloqueada = estaBloqueada;
 	}
 	

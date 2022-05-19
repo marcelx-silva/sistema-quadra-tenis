@@ -39,19 +39,19 @@ public class Usuario {
 		this.setEstaBloqueado(false);
 	}
 
-	protected String getNomeUsuario() {
+	public String getNomeUsuario() {
 		return nomeUsuario;
 	}
 
-	protected String getEmailUsuario() {
+	public String getEmailUsuario() {
 		return emailUsuario;
 	}
 
-	protected String getSenhaUsuario() {
+	public String getSenhaUsuario() {
 		return senhaUsuario;
 	}
 	
-	protected String getCpfUsuario() {
+	public String getCpfUsuario() {
 		return cpfUsuario;
 	}
 
@@ -72,11 +72,11 @@ public class Usuario {
 	}
 
 
-	protected boolean isEstaDesabilitado() {
+	public boolean isEstaDesabilitado() {
 		return estaDesabilitado;
 	}
 
-	protected boolean isEstaBloqueado() {
+	public boolean isEstaBloqueado() {
 		return estaBloqueado;
 	}
 	
@@ -88,19 +88,19 @@ public class Usuario {
 		this.estaBloqueado = estaBloqueado;
 	}
 	
-	protected boolean isAcessoGestorQuadras() {
+	public boolean isAcessoGestorQuadras() {
 		return acessoGestorQuadras;
 	}
 
-	protected boolean isAcessoGestorUsuarios() {
+	public boolean isAcessoGestorUsuarios() {
 		return acessoGestorUsuarios;
 	}
 
-	protected boolean isAcessoRelatorios() {
+	public boolean isAcessoRelatorios() {
 		return acessoRelatorios;
 	}
 	
-	protected boolean isAcessoZelador() {
+	public boolean isAcessoZelador() {
 		return acessoZelador;
 	}
 	

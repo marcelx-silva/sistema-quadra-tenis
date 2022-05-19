@@ -36,7 +36,7 @@ public class Cliente {
 		this.setBloqueado(false);
 	}
 	
-	protected String getNomeCliente() {
+	public String getNomeCliente() {
 		return nomeCliente;
 	}
 
@@ -44,7 +44,7 @@ public class Cliente {
 		this.nomeCliente = nomeCliente;
 	}
 
-	protected String getEmailCliente() {
+	public String getEmailCliente() {
 		return emailCliente;
 	}
 
@@ -52,7 +52,7 @@ public class Cliente {
 		this.emailCliente = emailCliente;
 	}
 
-	protected String getCpfCliente() {
+	public String getCpfCliente() {
 		return cpfCliente;
 	}
 
@@ -60,7 +60,7 @@ public class Cliente {
 		this.cpfCliente = cpfCliente;
 	}
 
-	protected String getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
@@ -68,7 +68,7 @@ public class Cliente {
 		this.dataNascimento = dataNascimento;
 	}
 
-	protected boolean isBloqueado() {
+	public boolean isBloqueado() {
 		return bloqueado;
 	}
 	

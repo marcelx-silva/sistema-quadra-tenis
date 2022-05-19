@@ -1,13 +1,18 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
+
+import Dominio.Quadra;
+import Enum.TipoQuadra;
 
 class TestesDeQuadra {
 	
 	Quadra qua = new Quadra(15,"Quadra Municipal de Mogi das Cruzes","Rua da Quadra",TipoQuadra.SAIBRO,true,true,true);
 	
 	@Test
-	void testeDeCadastroQuadra() {	
+	void testeDeCadastroQuadra() throws IOException {	
 		assertEquals("Quadra Municipal de Mogi das Cruzes", qua.getNomeQuadra());
 		assertEquals(15, qua.getCodigoQuadra());
 		assertEquals("Rua da Quadra", qua.getEnderecoQuadra());
