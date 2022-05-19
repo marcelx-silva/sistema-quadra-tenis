@@ -1,11 +1,15 @@
 package interfaceDAO;
 
 import Dominio.Quadra;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
+
 
 public interface QuadraDAO {
 	
-	List<Quadra> obterTodasQuadras();
+	List<Quadra> obterTodasQuadras() throws IOException, SQLException;
 	
 	List<Quadra> obterQuadraHabilitadas(boolean habilitado);
 	
