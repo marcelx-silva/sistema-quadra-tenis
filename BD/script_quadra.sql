@@ -1,41 +1,42 @@
-
-/*PROJETAR TODAS AS QUADRAS*/
-SELECT  qua_id 'ID', qua_nome 'Nome', qua_endereco 'Localidade', IF(qua_cobertura,'Possui','N√£o Possui') 'Cobertura', 
-        IF(qua_arquibancada,'Possui','N√£o Possui') 'Arquibancada', IF(qua_area_descanso,'Possui','N√£o Possui') '√Årea de Descanso' , 
-	    date_format(qua_dt_cadastro,"%d-%m-%Y") 'Data de Cadastro', qua_id_tipo 'Tipo', IF(qua_bloqueado ,'Sim','N√£o') 'Bloqueada', 
-	    IF(qua_habilitado ,'Sim','N√£o')  'Habilitada'
-FROM quadra;
+SELECT  q.qua_id 'ID', q.qua_nome 'Nome', q.qua_endereco 'Localidade', IF(q.qua_cobertura,'Possui','N„o Possui') 'Cobertura', 
+        IF(q.qua_arquibancada,'Possui','N„o Possui') 'Arquibancada', IF(q.qua_area_descanso,'Possui','N„o Possui') '¡rea de Descanso' , 
+	    date_format(q.qua_dt_cadastro,"%d-%m-%Y") 'Data de Cadastro', q.qua_id_tipo 'Tipo ID', tp.tp_nome 'Tipo', IF(q.qua_bloqueado ,'Sim','N„o') 'Bloqueada', 
+	    IF(q.qua_habilitado ,'Sim','N„o')  'Habilitada'
+FROM quadra q JOIN tipo_quadra tp
+ON (q.qua_id_tipo = tp_id);
 
 
 /*PROJETAR QUADRAS HABILITAS OU DESABILITADAS*/
-SELECT  qua_id 'ID', qua_nome 'Nome', qua_endereco 'Localidade', IF(qua_cobertura,'Possui','N√£o Possui') 'Cobertura', 
-        IF(qua_arquibancada,'Possui','N√£o Possui') 'Arquibancada', IF(qua_area_descanso,'Possui','N√£o Possui') '√Årea de Descanso' , 
-	   date_format(qua_dt_cadastro,"%d-%m-%Y") 'Data de Cadastro', qua_id_tipo 'Tipo', IF(qua_bloqueado ,'Sim','N√£o') 'Bloqueada', 
-	    IF(qua_habilitado ,'Sim','N√£o')  'Habilitada'
-FROM quadra
-WHERE qua_habilitada = ?;
+SELECT  q.qua_id 'ID', q.qua_nome 'Nome', q.qua_endereco 'Localidade', IF(q.qua_cobertura,'Possui','N„o Possui') 'Cobertura', 
+        IF(q.qua_arquibancada,'Possui','N„o Possui') 'Arquibancada', IF(q.qua_area_descanso,'Possui','N„o Possui') '¡rea de Descanso' , 
+	    date_format(q.qua_dt_cadastro,"%d-%m-%Y") 'Data de Cadastro', q.qua_id_tipo 'Tipo ID', tp.tp_nome 'Tipo', IF(q.qua_bloqueado ,'Sim','N„o') 'Bloqueada', 
+	    IF(q.qua_habilitado ,'Sim','N„o')  'Habilitada'
+FROM quadra q JOIN tipo_quadra tp
+ON (q.qua_id_tipo = tp_id)
+WHERE q.qua_habilitado = ?;
 
 
 
 /*PROJETAR QUADRAS BLOQUEADAS OU DESBLOQUEADAS*/
-SELECT  qua_id 'ID', qua_nome 'Nome', qua_endereco 'Localidade', IF(qua_cobertura,'Possui','N√£o Possui') 'Cobertura', 
-        IF(qua_arquibancada,'Possui','N√£o Possui') 'Arquibancada', IF(qua_area_descanso,'Possui','N√£o Possui') '√Årea de Descanso' , 
-	    date_format(qua_dt_cadastro,"%d-%m-%Y") 'Data de Cadastro', qua_id_tipo 'Tipo', IF(qua_bloqueado ,'Sim','N√£o') 'Bloqueada', 
-	    IF(qua_habilitado ,'Sim','N√£o')  'Habilitada'
-FROM quadra
-WHERE qua_bloqueada = ?;
+SELECT  q.qua_id 'ID', q.qua_nome 'Nome', q.qua_endereco 'Localidade', IF(q.qua_cobertura,'Possui','N„o Possui') 'Cobertura', 
+        IF(q.qua_arquibancada,'Possui','N„o Possui') 'Arquibancada', IF(q.qua_area_descanso,'Possui','N„o Possui') '¡rea de Descanso' , 
+	    date_format(q.qua_dt_cadastro,"%d-%m-%Y") 'Data de Cadastro', q.qua_id_tipo 'Tipo ID', tp.tp_nome 'Tipo', IF(q.qua_bloqueado ,'Sim','N„o') 'Bloqueada', 
+	    IF(q.qua_habilitado ,'Sim','N„o')  'Habilitada'
+FROM quadra q JOIN tipo_quadra tp
+ON (q.qua_id_tipo = tp_id)
+WHERE qua_bloqueado = ?;
 
 /* PROJETAR QUADRA PELO ID*/
-SELECT  qua_id 'ID', qua_nome 'Nome', qua_endereco 'Localidade', IF(qua_cobertura,'Possui','N√£o Possui') 'Cobertura', 
-        IF(qua_arquibancada,'Possui','N√£o Possui') 'Arquibancada', IF(qua_area_descanso,'Possui','N√£o Possui') '√Årea de Descanso' , 
-	    date_format(qua_dt_cadastro,"%d-%m-%Y") 'Data de Cadastro', qua_id_tipo 'Tipo', IF(qua_bloqueado ,'Sim','N√£o') 'Bloqueada', 
-	    IF(qua_habilitado ,'Sim','N√£o')  'Habilitada'
-FROM quadra
-WHERE qua_id = ?;
+SELECT  q.qua_id 'ID', q.qua_nome 'Nome', q.qua_endereco 'Localidade', IF(q.qua_cobertura,'Possui','N„o Possui') 'Cobertura', 
+        IF(q.qua_arquibancada,'Possui','N„o Possui') 'Arquibancada', IF(q.qua_area_descanso,'Possui','N„o Possui') '¡rea de Descanso' , 
+	    date_format(q.qua_dt_cadastro,"%d-%m-%Y") 'Data de Cadastro', q.qua_id_tipo 'Tipo ID', tp.tp_nome 'Tipo', IF(q.qua_bloqueado ,'Sim','N„o') 'Bloqueada', 
+	    IF(q.qua_habilitado ,'Sim','N„o')  'Habilitada'
+FROM quadra q JOIN tipo_quadra tp
+ON (q.qua_id_tipo = tp_id)
+WHERE q.qua_id = ?;
 
 /*CADASTRAR QUADRA*/
-INSERT INTO quadra (qua_nome,qua_endereco,qua_cobertura,qua_arquibancada,qua_area_descanso,qua_id_tipo)
-VALUES (?,?,?,?,?,?);
+INSERT INTO quadra (qua_nome,qua_endereco,qua_cobertura,qua_arquibancada,qua_area_descanso,qua_id_tipo) VALUES (?,?,?,?,?,?);
 
 /*ALTERAR DADOS DA QUADRA*/
 
