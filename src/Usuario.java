@@ -1,16 +1,13 @@
-import java.util.ArrayList;
-
 public class Usuario {
 	
-	private String nomeUsuario, emailUsuario, senhaUsuario;
-	private int cpfUsuario;		
+	private String nomeUsuario, emailUsuario, senhaUsuario, cpfUsuario;	
 	private boolean	estaDesabilitado, estaBloqueado, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador;
 	
-	public Usuario(int cpfDigitado) {
+	public Usuario(String cpfDigitado) {
 		this.verificarUsuario(cpfDigitado);
 	}
 	
-	public Usuario(String nomeUsuario, int cpfUsuario, String emailUsuario, String senhaUsuario, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
+	public Usuario(String nomeUsuario, String cpfUsuario, String emailUsuario, String senhaUsuario, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setNomeUsuario(nomeUsuario);
 		this.setCpfUsuario(cpfUsuario);
 		this.setEmailUsuario(emailUsuario);
@@ -21,11 +18,8 @@ public class Usuario {
 		this.setAcessoZelador(acessoZelador);
 	}
 	
-	public boolean verificarUsuario(int cpfDigitado) {
-		if(cpfDigitado == this.getCpfUsuario())
-			return true;
-		else
-			return false;
+	public boolean verificarUsuario(String cpfDigitado) {
+		return (cpfDigitado == this.getCpfUsuario());
 	}
 
 	public void desabilitarUsuario() {
@@ -43,6 +37,47 @@ public class Usuario {
 	public void desbloquearUsuario() {
 		this.setEstaBloqueado(false);
 	}
+	
+	public void alteraUsuario(String alteracao, int operador) {
+		switch(operador) {
+		
+			case 1:
+				this.setNomeUsuario(alteracao);
+				break;
+			
+			case 2:
+				this.setCpfUsuario(alteracao);
+				break;
+				
+			case 3:
+				this.setEmailUsuario(alteracao);
+				break;
+				
+			case 4:
+				this.setSenhaUsuario(alteracao);
+				break;
+				
+			case 5:
+				this.setAcessoGestorQuadras(UtilidadesConversao.transformaString(alteracao));
+				break;
+				
+			case 6:
+				this.setAcessoGestorUsuarios(UtilidadesConversao.transformaString(alteracao));
+				break;
+				
+			case 7:
+				this.setAcessoRelatorios(UtilidadesConversao.transformaString(alteracao));
+				break;
+				
+			case 8:
+				this.setAcessoZelador(UtilidadesConversao.transformaString(alteracao));
+				break;
+				
+			default:
+				UtilidadesGUI.exibeMensagem("Opção Inválida!");
+				break;
+		}
+	}
 
 	protected String getNomeUsuario() {
 		return nomeUsuario;
@@ -56,7 +91,7 @@ public class Usuario {
 		return senhaUsuario;
 	}
 	
-	protected int getCpfUsuario() {
+	protected String getCpfUsuario() {
 		return cpfUsuario;
 	}
 
@@ -72,8 +107,8 @@ public class Usuario {
 		this.senhaUsuario = senhaUsuario;
 	}
 
-	protected void setCpfUsuario(int codigoUsuario) {
-		this.cpfUsuario = codigoUsuario;
+	protected void setCpfUsuario(String cpfUsuario) {
+		this.cpfUsuario = cpfUsuario;
 	}
 
 

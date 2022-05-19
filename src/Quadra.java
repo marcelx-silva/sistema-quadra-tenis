@@ -1,19 +1,27 @@
 import java.time.format.DateTimeFormatter;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Quadras {
+public class Quadra{
 	
 	private int codigoQuadra;
 	private String nomeQuadra;
 	private String enderecoQuadra;
-	private String tipoQuadra;
+
+	private TipoQuadra tipoQuadra;
 	private boolean possuiCobertura;
 	private boolean possuiArquibancada;
 	private boolean possuiAreaDescanso;
 	private boolean estaBloqueada = false;
 	
-	public Quadras(int codigo, String nome, String endereco, String tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
+	public Quadra(int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean cobertura) {
+		this.setCodigoQuadra(codigoQuadra);
+		this.setNomeQuadra(nomeQuadra);
+		this.setTipoQuadra(tipoQuadra);
+	}
+	
+	public Quadra(int codigo, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
 		this.setCodigoQuadra(codigo);
 		this.setNomeQuadra(nome);
 		this.setEnderecoQuadra(endereco);
@@ -23,10 +31,10 @@ public class Quadras {
 		this.setPossuiAreaDescanso(descanso);
 	}
 	
-	public static ArrayList<Quadras> procuraQuadras(String dia, String horarioInicio, String horarioFim, 
+	public static ArrayList<Quadra> procuraQuadras(String dia, String horarioInicio, String horarioFim, 
 			String tipo, boolean cobertura, boolean arquibancada, boolean areaDescanso){
 		
-		ArrayList<Quadras> Quadras = new ArrayList<Quadras>();
+		ArrayList<Quadra> Quadras = new ArrayList<Quadra>();
 		
 		return Quadras;
 		
@@ -60,7 +68,7 @@ public class Quadras {
 		int periodosTempo = (24 - ((24 - fechamentoSemana) + aberturaSemana)) * 2; 
 		
 		String[][] disponibilidade = new String[quantidadeDias][periodosTempo];
-		ArrayList<String> horariosReservados = Reservas.horariosReservas(codigoQuadra);
+		ArrayList<String> horariosReservados = Reserva.horariosReservas(codigoQuadra);
 		DateTimeFormatter horarioFormatoPadrao = DateTimeFormatter.ofPattern("HH:mm");
 		LocalDateTime horario = LocalDateTime.now();
 		
@@ -95,12 +103,22 @@ public class Quadras {
 		return disponibilidade;  
 	}
 
-	public  boolean verificaNumeroQuadra(int numero) {
-		if (numero == this.getCodigoQuadra()) {
-			return true;
-		} else
-			return false;
+
+	public void cadastraQuadra(int numero, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean area) {
+		setCodigoQuadra(numero);
+		setNomeQuadra(nome);
+		setEnderecoQuadra(endereco);
+		setTipoQuadra(tipo);
+		setPossuiCobertura(cobertura);
+		setPossuiArquibancada(arquibancada);
+		setPossuiAreaDescanso(area);
 	}
+
+
+	public boolean verificaNumeroQuadra(int numero) {
+		return (numero == this.getCodigoQuadra());
+	}
+
 
 	public void bloqueiaQuadraParaAluguel() {
 		this.setEstaBloqueada(true);
@@ -110,30 +128,38 @@ public class Quadras {
 		this.setEstaBloqueada(false);
 	}
 
-	public String identificaTipoQuadra(int identificador) {
+
+	public TipoQuadra identificaTipoQuadra(int identificador) {
 		switch (identificador) {
 		case 1:
-			return "SAIBRO";
+			return TipoQuadra.SAIBRO;
 
 		case 2:
-			return "SUPERFICIE SINTETICA";
+			return TipoQuadra.SUPERFICIE_SITENTICA;
 
 		case 3:
-			return "CIMENTO";
+			return TipoQuadra.CIMENTO;
 
 		case 4:
-			return "BEACH TENNIS";
-
+			return TipoQuadra.BEACH_TENNIS;
+			
 		default:
-			return "OPCAO INVALIDA";
+			return TipoQuadra.INVALIDO;
 		}
 	}
 
+	public BigDecimal getPrecoReservaTempoMinimo() {
+		if(this.isPossuiCobertura())
+			return new BigDecimal("70");
+		else
+			return new BigDecimal("40");
+	}
+	
 	protected int getCodigoQuadra() {
 		return codigoQuadra;
 	}
 
-	private void setCodigoQuadra(int codigoQuadra) {
+	protected void setCodigoQuadra(int codigoQuadra) {
 		this.codigoQuadra = codigoQuadra;
 	}
 
@@ -153,11 +179,12 @@ public class Quadras {
 		this.enderecoQuadra = enderecoQuadra;
 	}
 
-	protected String getTipoQuadra() {
+	protected TipoQuadra getTipoQuadra() {
 		return tipoQuadra;
 	}
 
-	protected void setTipoQuadra(String tipoQuadra) {
+
+	protected void setTipoQuadra(TipoQuadra tipoQuadra) {
 		this.tipoQuadra = tipoQuadra;
 	}
 
@@ -173,6 +200,7 @@ public class Quadras {
 		return possuiArquibancada;
 	}
 
+
 	protected void setPossuiArquibancada(boolean possuiArquibancada) {
 		this.possuiArquibancada = possuiArquibancada;
 	}
@@ -180,6 +208,7 @@ public class Quadras {
 	protected boolean isPossuiAreaDescanso() {
 		return possuiAreaDescanso;
 	}
+
 
 	protected void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
 		this.possuiAreaDescanso = possuiAreaDescanso;
@@ -189,7 +218,9 @@ public class Quadras {
 		return estaBloqueada;
 	}
 
+
 	protected void setEstaBloqueada(boolean estaBloqueada) {
 		this.estaBloqueada = estaBloqueada;
 	}
+	
 }
