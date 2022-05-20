@@ -2,8 +2,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class TestesDeUsuario {
-	
+class TestesUsuario {
+
 	Usuario usu = new Usuario("Nathan", "132.456.879-10", "emailDoNathan@gmail.com", "senha segura", false, false, false, false);
 
 	@Test
@@ -112,4 +112,5 @@ class TestesDeUsuario {
 		usu.alteraUsuario("não", 8);
 		assertFalse(usu.isAcessoZelador());
 	}
+
 }
