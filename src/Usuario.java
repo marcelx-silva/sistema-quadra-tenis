@@ -1,17 +1,17 @@
 public class Usuario {
 	
-	private String nomeUsuario, emailUsuario, senhaUsuario, cpfUsuario;	
+	private String nome, email, senha, cpf;	
 	private boolean	estaDesabilitado, estaBloqueado, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador;
 	
 	public Usuario(String cpfDigitado) {
 		this.verificarUsuario(cpfDigitado);
 	}
 	
-	public Usuario(String nomeUsuario, String cpfUsuario, String emailUsuario, String senhaUsuario, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
-		this.setNomeUsuario(nomeUsuario);
-		this.setCpfUsuario(cpfUsuario);
-		this.setEmailUsuario(emailUsuario);
-		this.setSenhaUsuario(senhaUsuario);
+	public Usuario(String nome, String cpfUsuario, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
+		this.setNome(nome);
+		this.setCpf(cpf);
+		this.setEmail(email);
+		this.setSenha(senha);
 		this.setAcessoGestorQuadras(acessoGestorQuadras);
 		this.setAcessoGestorUsuarios(acessoGestorUsuarios);
 		this.setAcessoRelatorios(acessoRelatorios);
@@ -19,7 +19,7 @@ public class Usuario {
 	}
 	
 	public boolean verificarUsuario(String cpfDigitado) {
-		return (cpfDigitado == this.getCpfUsuario());
+		return (cpfDigitado == this.getCpf());
 	}
 
 	public void desabilitarUsuario() {
@@ -42,19 +42,19 @@ public class Usuario {
 		switch(operador) {
 		
 			case 1:
-				this.setNomeUsuario(alteracao);
+				this.setNome(alteracao);
 				break;
 			
 			case 2:
-				this.setCpfUsuario(alteracao);
+				this.setCpf(alteracao);
 				break;
 				
 			case 3:
-				this.setEmailUsuario(alteracao);
+				this.setEmail(alteracao);
 				break;
 				
 			case 4:
-				this.setSenhaUsuario(alteracao);
+				this.setSenha(alteracao);
 				break;
 				
 			case 5:
@@ -79,36 +79,36 @@ public class Usuario {
 		}
 	}
 
-	protected String getNomeUsuario() {
-		return nomeUsuario;
+	protected String getNome() {
+		return nome;
 	}
 
-	protected String getEmailUsuario() {
-		return emailUsuario;
+	protected String getEmail() {
+		return email;
 	}
 
-	protected String getSenhaUsuario() {
-		return senhaUsuario;
+	protected String getSenha() {
+		return senha;
 	}
 	
-	protected String getCpfUsuario() {
-		return cpfUsuario;
+	protected String getCpf() {
+		return cpf;
 	}
 
-	protected void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
+	protected void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	protected void setEmailUsuario(String emailUsuario) {
-		this.emailUsuario = emailUsuario;
+	protected void setEmail(String email) {
+		this.email = email;
 	}
 
-	protected void setSenhaUsuario(String senhaUsuario) {
-		this.senhaUsuario = senhaUsuario;
+	protected void setSenha(String senha) {
+		this.senha = senha;
 	}
 
-	protected void setCpfUsuario(String cpfUsuario) {
-		this.cpfUsuario = cpfUsuario;
+	protected void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 
