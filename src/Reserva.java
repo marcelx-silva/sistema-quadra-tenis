@@ -38,6 +38,7 @@ public class Reserva{
 	private Quadra quadra;
 	
 	public Reserva(String codigo, Quadra quadra,Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, int parcelas){
+		this.codigo = codigo;
 		this.quadra = quadra;
 		this.cliente = cliente;
 		this.data = data;
