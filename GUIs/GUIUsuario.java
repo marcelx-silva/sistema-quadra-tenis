@@ -96,9 +96,9 @@ public class GUIUsuario {
 	public void GUIExibirUsuario(){
 		UtilidadesGUI.exibeMensagem("\nLista de usuários:\n\n");
 		for(Usuario user:usuarios) {
-			UtilidadesGUI.exibeMensagem("Nome: "+user.getNomeUsuario()+"\n");
-			UtilidadesGUI.exibeMensagem("CPF: "+user.getCpfUsuario()+"\n");
-			UtilidadesGUI.exibeMensagem("Email: "+user.getEmailUsuario()+"\n");
+			UtilidadesGUI.exibeMensagem("Nome: "+user.getNome()+"\n");
+			UtilidadesGUI.exibeMensagem("CPF: "+user.getCpf()+"\n");
+			UtilidadesGUI.exibeMensagem("Email: "+user.getEmail()+"\n");
 			UtilidadesGUI.exibeMensagem("Acesso gestor quadras: "+user.isAcessoGestorQuadras()+"\n");
 			UtilidadesGUI.exibeMensagem("Acesso gestor usuarios: "+user.isAcessoGestorUsuarios()+"\n");
 			UtilidadesGUI.exibeMensagem("Acesso relatorios: "+user.isAcessoRelatorios()+"\n");
@@ -190,7 +190,7 @@ public class GUIUsuario {
 	
 	public Usuario buscaUsuarioPor(String cpfDigitado) {
 		for(Usuario user:usuarios) {
-			if( user.getCpfUsuario() == cpfDigitado)
+			if( user.getCpf() == cpfDigitado)
 				return user;
 		}
 		return null;
