@@ -77,7 +77,7 @@ public class Quadra{
 		int periodosTempo = (24 - ((24 - fechamentoSemana) + aberturaSemana)) * 2; 
 		
 		String[][] disponibilidade = new String[quantidadeDias][periodosTempo];
-		ArrayList<String> horariosReservados = Reserva.horariosReservas(Integer.parseInt(codigo));
+		ArrayList<String> horariosReservados = Reserva.horariosAgendamento(codigo);
 		DateTimeFormatter horarioFormatoPadrao = DateTimeFormatter.ofPattern("HH:mm");
 		LocalDateTime horario = LocalDateTime.now();
 		
