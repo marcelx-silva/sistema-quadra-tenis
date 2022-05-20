@@ -1,13 +1,15 @@
+import java.util.ArrayList;
+
 public class Usuario {
 	
-	private String nomeUsuario, emailUsuario, senhaUsuario, cpfUsuario;	
+	private String nomeUsuario, emailUsuario, senhaUsuario;
+	private int cpfUsuario;		
 	private boolean	estaDesabilitado, estaBloqueado, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador;
+	private Usuario userAtual;
+	static ArrayList <Usuario> usuarios = new ArrayList<Usuario>();
 	
-	public Usuario(String cpfDigitado) {
-		this.verificarUsuario(cpfDigitado);
-	}
-	
-	public Usuario(String nomeUsuario, String cpfUsuario, String emailUsuario, String senhaUsuario, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
+	public Usuario( String nomeUsuario, int cpfUsuario, String emailUsuario, String senhaUsuario, 
+					boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setNomeUsuario(nomeUsuario);
 		this.setCpfUsuario(cpfUsuario);
 		this.setEmailUsuario(emailUsuario);
@@ -16,10 +18,6 @@ public class Usuario {
 		this.setAcessoGestorUsuarios(acessoGestorUsuarios);
 		this.setAcessoRelatorios(acessoRelatorios);
 		this.setAcessoZelador(acessoZelador);
-	}
-	
-	public boolean verificarUsuario(String cpfDigitado) {
-		return (cpfDigitado == this.getCpfUsuario());
 	}
 
 	public void desabilitarUsuario() {
@@ -37,47 +35,6 @@ public class Usuario {
 	public void desbloquearUsuario() {
 		this.setEstaBloqueado(false);
 	}
-	
-	public void alteraUsuario(String alteracao, int operador) {
-		switch(operador) {
-		
-			case 1:
-				this.setNomeUsuario(alteracao);
-				break;
-			
-			case 2:
-				this.setCpfUsuario(alteracao);
-				break;
-				
-			case 3:
-				this.setEmailUsuario(alteracao);
-				break;
-				
-			case 4:
-				this.setSenhaUsuario(alteracao);
-				break;
-				
-			case 5:
-				this.setAcessoGestorQuadras(UtilidadesConversao.transformaString(alteracao));
-				break;
-				
-			case 6:
-				this.setAcessoGestorUsuarios(UtilidadesConversao.transformaString(alteracao));
-				break;
-				
-			case 7:
-				this.setAcessoRelatorios(UtilidadesConversao.transformaString(alteracao));
-				break;
-				
-			case 8:
-				this.setAcessoZelador(UtilidadesConversao.transformaString(alteracao));
-				break;
-				
-			default:
-				UtilidadesGUI.exibeMensagem("Opção Inválida!");
-				break;
-		}
-	}
 
 	protected String getNomeUsuario() {
 		return nomeUsuario;
@@ -91,7 +48,7 @@ public class Usuario {
 		return senhaUsuario;
 	}
 	
-	protected String getCpfUsuario() {
+	protected int getCpfUsuario() {
 		return cpfUsuario;
 	}
 
@@ -107,8 +64,8 @@ public class Usuario {
 		this.senhaUsuario = senhaUsuario;
 	}
 
-	protected void setCpfUsuario(String cpfUsuario) {
-		this.cpfUsuario = cpfUsuario;
+	protected void setCpfUsuario(int codigoUsuario) {
+		this.cpfUsuario = codigoUsuario;
 	}
 
 
@@ -158,6 +115,35 @@ public class Usuario {
 
 	protected void setAcessoZelador(boolean acessoZelador) {
 		this.acessoZelador = acessoZelador;
+	}
+	
+	public void adicionarUsuario(Usuario user) {
+		usuarios.add(user);
+	}
+	
+	static public ArrayList<Usuario> getLista(){
+		return usuarios;
+	}
+	
+	static public Usuario buscaUsuarioPor(int cpfDigitado) {
+		for(Usuario user:usuarios) {
+			if( user.getCpfUsuario() == cpfDigitado)
+				return user;
+		}
+		return null;
+	}
+	
+	 public boolean UsuarioAutenticado(int cpfDigitado, String senhaDigitada){
+		userAtual = Usuario.buscaUsuarioPor(cpfDigitado);
+		
+		if(userAtual != null )
+			if( senhaDigitada.equals(userAtual.getSenhaUsuario()))
+				return true;
+		return false;
+	}
+	
+	protected Usuario getUsuarioAtual() {
+		return userAtual;
 	}
 	
 }

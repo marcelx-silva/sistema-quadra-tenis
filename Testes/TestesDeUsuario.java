@@ -73,7 +73,7 @@ class TestesDeUsuario {
 	
 	@Test
 	void retirarAcessoGestorQuadras() {
-		usu.alteraUsuario("não", 5);
+		usu.alteraUsuario("nï¿½o", 5);
 		assertFalse(usu.isAcessoGestorQuadras());
 	}
 	
@@ -85,7 +85,7 @@ class TestesDeUsuario {
 	
 	@Test
 	void retirarAcessoGestorUsuario() {
-		usu.alteraUsuario("não", 6);
+		usu.alteraUsuario("nï¿½o", 6);
 		assertFalse(usu.isAcessoGestorUsuarios());
 	}
 	
@@ -97,7 +97,7 @@ class TestesDeUsuario {
 	
 	@Test
 	void retirarAcessoRelatorio() {
-		usu.alteraUsuario("não", 7);
+		usu.alteraUsuario("nï¿½o", 7);
 		assertFalse(usu.isAcessoRelatorios());
 	}
 	
@@ -109,7 +109,32 @@ class TestesDeUsuario {
 	
 	@Test
 	void retirarAcessoZelador() {
-		usu.alteraUsuario("não", 8);
+		usu.alteraUsuario("nï¿½o", 8);
 		assertFalse(usu.isAcessoZelador());
 	}
+	
+	@Test
+	void AutenticarTestIsTrue() {
+		Acesso acess = new Acesso();
+		
+		Usuario user = new Usuario("admin", 0001, "", "admin", true, true, true, true);
+		user.adicionarUsuario(user);
+		acess.setCpfDigitado(0001);
+		acess.setSenhaDigitada("admin");
+		
+		Assert.assertTrue( acess.UsuarioAutenticado());
+	}
+
+	@Test
+	void AutenticarTestIsFalse() {
+		Acesso acess = new Acesso();
+		
+		Usuario user = new Usuario("admin", 0001, "", "admin", true, true, true, true);
+		user.adicionarUsuario(user);
+		acess.setCpfDigitado(0001);
+		acess.setSenhaDigitada("senhafalsa");
+		
+		Assert.assertFalse( acess.UsuarioAutenticado());
+	}
+	
 }
