@@ -27,7 +27,8 @@ public class Reserva{
 		
 		return listaReservas;
 	}
-		
+	
+	private String codigo;
 	private Cliente cliente;
 	private LocalDate data;
 	private LocalTime horarioInicio;
@@ -35,6 +36,16 @@ public class Reserva{
 	private TipoPagamento modoPagamento;
 	private int parcelas; 
 	private Quadra quadra;
+	
+	public Reserva(String codigo, Quadra quadra,Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, int parcelas){
+		this.quadra = quadra;
+		this.cliente = cliente;
+		this.data = data;
+		this.horarioInicio = horarioInicio;
+		this.horarioFim = horarioFim;
+		this.modoPagamento = modoPagamento;
+		this.parcelas = parcelas;
+	}
 	
 	public Reserva(Quadra quadra,Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, int parcelas){
 		this.quadra = quadra;
@@ -53,7 +64,7 @@ public class Reserva{
 		
 	}
 	
-	public void cadastrarReserva(String cpfCliente,String nomeCliente, LocalDate dataReserva, LocalTime horarioInicioReserva, LocalTime horarioFimReserva, TipoPagamento modoPagamento, int quantidadeParcelas, int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean temCobertura){
+	public void cadastrarReserva(String cpfCliente,String nomeCliente, LocalDate dataReserva, LocalTime horarioInicioReserva, LocalTime horarioFimReserva, TipoPagamento modoPagamento, int quantidadeParcelas, String codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean temCobertura){
 		cliente.setNome(nomeCliente);
 		cliente.setCpf(cpfCliente);
 		setData(dataReserva);
@@ -101,9 +112,17 @@ public class Reserva{
 		}
 	}
 
+	
+	protected String getCodigo() {
+		return codigo;
+	}
+
+	protected void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
 	protected Cliente getCliente() {
-		Cliente c = cliente;
-		return c;
+		return cliente;
 	}
 	
 	protected void setCliente(Cliente cliente) {
@@ -152,8 +171,7 @@ public class Reserva{
 	}
 
 	protected Quadra getQuadra() {
-		Quadra q = quadra;
-		return q;
+		return quadra;
 	}
 
 	protected void setQuadra(Quadra quadra) {
