@@ -49,7 +49,7 @@ public class GUIQuadras {
 	void GUICadastrarQuadra() {
 
 		String nome = "";
-		int numero = 0;
+		String numero = "";
 		String endereco = "";
 		TipoQuadra tipo = null;
 		boolean cobertura = false;
@@ -63,7 +63,7 @@ public class GUIQuadras {
 			nome = scanner.nextLine();
 			
 			UtilidadesGUI.exibeMensagem("NÃºmero da quadra: ");
-			numero = Integer.parseInt(scanner.nextLine());
+			numero = scanner.nextLine();
 			
 			UtilidadesGUI.exibeMensagem("EndereÃ§o da quadra: ");
 			endereco = scanner.nextLine();
