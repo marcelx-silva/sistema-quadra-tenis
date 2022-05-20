@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 
 public class Usuario {
-	
-	private int cpfUsuario;		
+		
 	private String nome, email, senha, cpf, codigo;	
 	private boolean	estaDesabilitado, estaBloqueado, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador;
 	private Usuario userAtual;
@@ -99,8 +98,8 @@ public class Usuario {
 		return senha;
 	}
 	
-	protected int getCpf() {
-		return cpfUsuario;
+	protected String getCpf() {
+		return cpf;
 	}
 
 	protected String getCodigo() {
@@ -123,8 +122,8 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	protected void setCpf(int codigoUsuario) {
-		this.cpfUsuario = codigoUsuario;
+	protected void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 
@@ -184,15 +183,15 @@ public class Usuario {
 		return usuarios;
 	}
 	
-	static public Usuario buscaUsuarioPor(int cpfDigitado) {
+	static public Usuario buscaUsuarioPor(String cpfDigitado) {
 		for(Usuario user:usuarios) {
-			if( user.getCpf() == cpfDigitado)
+			if(user.getCpf() == cpfDigitado)
 				return user;
 		}
 		return null;
 	}
 	
-	 public boolean UsuarioAutenticado(int cpfDigitado, String senhaDigitada){
+	 public boolean UsuarioAutenticado(String cpfDigitado, String senhaDigitada){
 		userAtual = Usuario.buscaUsuarioPor(cpfDigitado);
 		
 		if(userAtual != null )
