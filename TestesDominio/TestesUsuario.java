@@ -116,17 +116,17 @@ class TestesUsuario {
 	@Test
 	void AutenticarTestIsTrue() {
 		
-		Usuario user = new Usuario("admin", 0001, "", "admin", true, true, true, true);
+		Usuario user = new Usuario("admin", "0001", "", "admin", true, true, true, true);
 		user.adicionarUsuario(user);
-		Assert.assertTrue( user.UsuarioAutenticado(0001, "admin"));
+		assertTrue( user.UsuarioAutenticado("0001", "admin"));
 	}
 
 	@Test
 	void AutenticarTestIsFalse() {
 		
-		Usuario user = new Usuario("admin", 0001, "", "admin", true, true, true, true);
+		Usuario user = new Usuario("admin", "0001", "", "admin", true, true, true, true);
 		user.adicionarUsuario(user);
-		Assert.assertFalse( user.UsuarioAutenticado(0001, "senhafalsa"));
+		assertFalse( user.UsuarioAutenticado("0001", "senhafalsa"));
 	}
 
 }

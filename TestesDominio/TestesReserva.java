@@ -23,7 +23,7 @@ class TestesReserva {
 		assertEquals("123.456.789-10",res.getCliente().getCpf());		
 		assertEquals("12/05/2022", res.getData().format(dataFormatoPadrao));
 		assertEquals("10:00",res.getHorarioInicio().format(horarioFormatoPadrao).toString());	
-		assertEquals("11:00",res.getHorarioFimReserva().format(horarioFormatoPadrao).toString());
+		assertEquals("11:00",res.getHorarioFim().format(horarioFormatoPadrao).toString());
 		assertEquals(TipoPagamento.DINHEIRO,res.getModoPagamento());
 		assertEquals(1,res.getParcelas());
 		assertEquals("15", res.getQuadra().getCodigo());
