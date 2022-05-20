@@ -3,16 +3,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class TestesCliente {
-	
-	Cliente cli = new Cliente("Leandro","emailDoLeandro@gmail.com", "123.456.789-10", "10/10/2010", false);
+
+	Cliente cli = new Cliente("Leandro","emailDoLeandro@gmail.com", "123.456.789-10", "10/10/2010", false, false, true);
 
 	@Test
 	void testeDeCadastroCliente() {	
-		assertEquals("Leandro", cli.getNomeCliente());
-		assertEquals("emailDoLeandro@gmail.com", cli.getEmailCliente());
-		assertEquals("123.456.789-10", cli.getCpfCliente());
+		assertEquals("Leandro", cli.getNome());
+		assertEquals("emailDoLeandro@gmail.com", cli.getEmail());
+		assertEquals("123.456.789-10", cli.getCpf());
 		assertEquals("10/10/2010", cli.getDataNascimento());
-		assertEquals(false, cli.isBloqueado());
+		assertFalse(cli.isBloqueado());
+		assertFalse(cli.isInvalidado());
+		assertTrue(cli.isHabilitado());
 	}
 	
 	@Test

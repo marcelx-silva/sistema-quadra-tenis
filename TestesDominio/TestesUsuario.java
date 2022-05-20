@@ -2,8 +2,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class TestesDeUsuario {
-	
+class TestesUsuario {
+
 	Usuario usu = new Usuario("Nathan", "132.456.879-10", "emailDoNathan@gmail.com", "senha segura", false, false, false, false);
 
 	@Test
@@ -115,26 +115,18 @@ class TestesDeUsuario {
 	
 	@Test
 	void AutenticarTestIsTrue() {
-		Acesso acess = new Acesso();
 		
 		Usuario user = new Usuario("admin", 0001, "", "admin", true, true, true, true);
 		user.adicionarUsuario(user);
-		acess.setCpfDigitado(0001);
-		acess.setSenhaDigitada("admin");
-		
-		Assert.assertTrue( acess.UsuarioAutenticado());
+		Assert.assertTrue( user.UsuarioAutenticado(0001, "admin"));
 	}
 
 	@Test
 	void AutenticarTestIsFalse() {
-		Acesso acess = new Acesso();
 		
 		Usuario user = new Usuario("admin", 0001, "", "admin", true, true, true, true);
 		user.adicionarUsuario(user);
-		acess.setCpfDigitado(0001);
-		acess.setSenhaDigitada("senhafalsa");
-		
-		Assert.assertFalse( acess.UsuarioAutenticado());
+		Assert.assertFalse( user.UsuarioAutenticado(0001, "senhafalsa"));
 	}
-	
+
 }

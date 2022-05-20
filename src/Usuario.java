@@ -2,24 +2,34 @@ import java.util.ArrayList;
 
 public class Usuario {
 	
-	private String nomeUsuario, emailUsuario, senhaUsuario;
 	private int cpfUsuario;		
+	private String nome, email, senha, cpf, codigo;	
 	private boolean	estaDesabilitado, estaBloqueado, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador;
 	private Usuario userAtual;
 	static ArrayList <Usuario> usuarios = new ArrayList<Usuario>();
 	
-	public Usuario( String nomeUsuario, int cpfUsuario, String emailUsuario, String senhaUsuario, 
-					boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
-		this.setNomeUsuario(nomeUsuario);
-		this.setCpfUsuario(cpfUsuario);
-		this.setEmailUsuario(emailUsuario);
-		this.setSenhaUsuario(senhaUsuario);
+	
+	public Usuario(String cpfDigitado) {
+		this.verificarUsuario(cpfDigitado);
+	}
+	
+	public Usuario(String codigo, String nome, String cpf, String email, String senha, 
+			boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
+		this.setCodigo(codigo);
+		this.setNome(nome);
+		this.setCpf(cpf);
+		this.setEmail(email);
+		this.setSenha(senha);
 		this.setAcessoGestorQuadras(acessoGestorQuadras);
 		this.setAcessoGestorUsuarios(acessoGestorUsuarios);
 		this.setAcessoRelatorios(acessoRelatorios);
 		this.setAcessoZelador(acessoZelador);
 	}
-
+	
+	public boolean verificarUsuario(String cpfDigitado) {
+		return (cpfDigitado == this.getCpf());
+	}
+	
 	public void desabilitarUsuario() {
 		this.setEstaDesabilitado(true);
 	}
@@ -35,36 +45,85 @@ public class Usuario {
 	public void desbloquearUsuario() {
 		this.setEstaBloqueado(false);
 	}
-
-	protected String getNomeUsuario() {
-		return nomeUsuario;
-	}
-
-	protected String getEmailUsuario() {
-		return emailUsuario;
-	}
-
-	protected String getSenhaUsuario() {
-		return senhaUsuario;
+	
+	public void alteraUsuario(String alteracao, int operador) {
+		switch(operador) {
+		
+			case 1:
+				this.setNome(alteracao);
+				break;
+			
+			case 2:
+				this.setCpf(alteracao);
+				break;
+				
+			case 3:
+				this.setEmail(alteracao);
+				break;
+				
+			case 4:
+				this.setSenha(alteracao);
+				break;
+				
+			case 5:
+				this.setAcessoGestorQuadras(UtilidadesConversao.transformaString(alteracao));
+				break;
+				
+			case 6:
+				this.setAcessoGestorUsuarios(UtilidadesConversao.transformaString(alteracao));
+				break;
+				
+			case 7:
+				this.setAcessoRelatorios(UtilidadesConversao.transformaString(alteracao));
+				break;
+				
+			case 8:
+				this.setAcessoZelador(UtilidadesConversao.transformaString(alteracao));
+				break;
+				
+			default:
+				UtilidadesGUI.exibeMensagem("Op��o Inv�lida!");
+				break;
+		}
 	}
 	
-	protected int getCpfUsuario() {
+	protected String getNome() {
+		return nome;
+	}
+
+	protected String getEmail() {
+		return email;
+	}
+
+	protected String getSenha() {
+		return senha;
+	}
+	
+	protected int getCpf() {
 		return cpfUsuario;
 	}
 
-	protected void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
+	protected String getCodigo() {
+		return codigo;
 	}
 
-	protected void setEmailUsuario(String emailUsuario) {
-		this.emailUsuario = emailUsuario;
+	protected void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
-	protected void setSenhaUsuario(String senhaUsuario) {
-		this.senhaUsuario = senhaUsuario;
+	protected void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	protected void setCpfUsuario(int codigoUsuario) {
+	protected void setEmail(String email) {
+		this.email = email;
+	}
+
+	protected void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	protected void setCpf(int codigoUsuario) {
 		this.cpfUsuario = codigoUsuario;
 	}
 
@@ -127,7 +186,7 @@ public class Usuario {
 	
 	static public Usuario buscaUsuarioPor(int cpfDigitado) {
 		for(Usuario user:usuarios) {
-			if( user.getCpfUsuario() == cpfDigitado)
+			if( user.getCpf() == cpfDigitado)
 				return user;
 		}
 		return null;
@@ -137,7 +196,7 @@ public class Usuario {
 		userAtual = Usuario.buscaUsuarioPor(cpfDigitado);
 		
 		if(userAtual != null )
-			if( senhaDigitada.equals(userAtual.getSenhaUsuario()))
+			if( senhaDigitada.equals(userAtual.getSenha()))
 				return true;
 		return false;
 	}

@@ -4,8 +4,8 @@ public class GUIReserva {
 Scanner scanner = new Scanner(System.in);
 	
 	void interfaceMenuReserva() {
-		Quadra quadra = new Quadra(0,"","",null,false,false,false);
-		Cliente cliente = new Cliente("","","","",false);
+		Quadra quadra = new Quadra("","","",null,false,false,false);
+		Cliente cliente = new Cliente("","","","",false,false,true);
 		Reserva reserva = new Reserva(null, null, null, null, null, null, 0);
 		int operadorMenu = 0;
 		
@@ -45,7 +45,7 @@ Scanner scanner = new Scanner(System.in);
 	void GUICadastroReserva(Reserva reserva, Quadra quadra, Cliente cliente){
 		
 	
-		int cod_quadra;
+		String cod_quadra;
 		TipoQuadra tipo_quadra;
 		String nome_quadra;
 		boolean cobertura = false;
@@ -102,15 +102,12 @@ Scanner scanner = new Scanner(System.in);
 			
 			
 			UtilidadesGUI.exibeMensagem("CÃ³digo da quadra: ");
-			cod_quadra = Integer.parseInt(scanner.nextLine());
+			cod_quadra = scanner.nextLine();
 			
 			
 			UtilidadesGUI.exibeMensagem("Nome da Quadra: ");
 			nome_quadra = (scanner.nextLine());
-			
-			UtilidadesGUI.exibeMensagem("CÃ³digo da quadra: ");
-			cod_quadra = Integer.parseInt(scanner.nextLine());
-			
+
 			UtilidadesGUI.exibeMensagem("Tipo da quadra, selecione uma das opÃ§Ãµes atrÃ¡ves dos nÃºmeros:"
 					+ "\n1. SAIBRO"
 					+ "\n2. SUPERFÃ�CIE SINTÃ‰TICA"

@@ -27,21 +27,32 @@ public class Reserva{
 		
 		return listaReservas;
 	}
-		
+	
+	private String codigo;
 	private Cliente cliente;
-	private LocalDate dataReserva;
-	private LocalTime horarioInicioReserva;
-	private LocalTime horarioFimReserva;
+	private LocalDate data;
+	private LocalTime horarioInicio;
+	private LocalTime horarioFim;
 	private TipoPagamento modoPagamento;
 	private int parcelas; 
 	private Quadra quadra;
 	
-	public Reserva(Quadra quadra,Cliente cliente,LocalDate dataReserva, LocalTime horarioInicioReserva, LocalTime horarioFimReserva, TipoPagamento modoPagamento, int parcelas){
+	public Reserva(String codigo, Quadra quadra,Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, int parcelas){
 		this.quadra = quadra;
 		this.cliente = cliente;
-		this.dataReserva = dataReserva;
-		this.horarioInicioReserva = horarioInicioReserva;
-		this.horarioFimReserva = horarioFimReserva;
+		this.data = data;
+		this.horarioInicio = horarioInicio;
+		this.horarioFim = horarioFim;
+		this.modoPagamento = modoPagamento;
+		this.parcelas = parcelas;
+	}
+	
+	public Reserva(Quadra quadra,Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, int parcelas){
+		this.quadra = quadra;
+		this.cliente = cliente;
+		this.data = data;
+		this.horarioInicio = horarioInicio;
+		this.horarioFim = horarioFim;
 		this.modoPagamento = modoPagamento;
 		this.parcelas = parcelas;
 	}
@@ -53,17 +64,17 @@ public class Reserva{
 		
 	}
 	
-	public void cadastrarReserva(String cpfCliente,String nomeCliente, LocalDate dataReserva, LocalTime horarioInicioReserva, LocalTime horarioFimReserva, TipoPagamento modoPagamento, int quantidadeParcelas, int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean temCobertura){
-		cliente.setNomeCliente(nomeCliente);
-		cliente.setCpfCliente(cpfCliente);
-		setDataReserva(dataReserva);
-		setHorarioInicioReserva(horarioInicioReserva);
-		setHorarioFimReserva(horarioFimReserva);
+	public void cadastrarReserva(String cpfCliente,String nomeCliente, LocalDate dataReserva, LocalTime horarioInicioReserva, LocalTime horarioFimReserva, TipoPagamento modoPagamento, int quantidadeParcelas, String codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean temCobertura){
+		cliente.setNome(nomeCliente);
+		cliente.setCpf(cpfCliente);
+		setData(dataReserva);
+		setHorarioInicio(horarioInicioReserva);
+		setHorarioFim(horarioFimReserva);
 		setModoPagamento(modoPagamento);
 		setParcelas(quantidadeParcelas);		
-		quadra.setCodigoQuadra(codigoQuadra);
-		quadra.setNomeQuadra(nomeQuadra);
-		quadra.setTipoQuadra(tipoQuadra);
+		quadra.setCodigo(codigoQuadra);
+		quadra.setNome(nomeQuadra);
+		quadra.setTipo(tipoQuadra);
 
 	}
 	
@@ -101,9 +112,17 @@ public class Reserva{
 		}
 	}
 
+	
+	protected String getCodigo() {
+		return codigo;
+	}
+
+	protected void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
 	protected Cliente getCliente() {
-		Cliente c = cliente;
-		return c;
+		return cliente;
 	}
 	
 	protected void setCliente(Cliente cliente) {
@@ -111,28 +130,28 @@ public class Reserva{
 	}
 
 
-	protected LocalDate getDataReserva() {
-		return dataReserva;
+	protected LocalDate getData() {
+		return data;
 	}
 
-	protected void setDataReserva(LocalDate dataReserva) {
-		this.dataReserva = dataReserva;
+	protected void setData(LocalDate data) {
+		this.data = data;
 	}
 
-	protected LocalTime getHorarioInicioReserva() {
-		return horarioInicioReserva;
+	protected LocalTime getHorarioInicio() {
+		return horarioInicio;
 	}
 
-	protected void setHorarioInicioReserva(LocalTime horarioInicioReserva) {
-		this.horarioInicioReserva = horarioInicioReserva;
+	protected void setHorarioInicio(LocalTime horarioInicio) {
+		this.horarioInicio = horarioInicio;
 	}
 
 	protected LocalTime getHorarioFimReserva() {
-		return horarioFimReserva;
+		return horarioFim;
 	}
 
-	protected void setHorarioFimReserva(LocalTime horarioFimReserva) {
-		this.horarioFimReserva = horarioFimReserva;
+	protected void setHorarioFim(LocalTime horarioFim) {
+		this.horarioFim = horarioFim;
 	}
 
 	protected TipoPagamento getModoPagamento() {
@@ -152,8 +171,7 @@ public class Reserva{
 	}
 
 	protected Quadra getQuadra() {
-		Quadra q = quadra;
-		return q;
+		return quadra;
 	}
 
 	protected void setQuadra(Quadra quadra) {
