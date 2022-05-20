@@ -12,9 +12,19 @@ public class Usuario {
 		this.verificarUsuario(cpfDigitado);
 	}
 	
-	public Usuario(String codigo, String nome, String cpf, String email, String senha, 
-			boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
+	public Usuario(String codigo, String nome, String cpf, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setCodigo(codigo);
+		this.setNome(nome);
+		this.setCpf(cpf);
+		this.setEmail(email);
+		this.setSenha(senha);
+		this.setAcessoGestorQuadras(acessoGestorQuadras);
+		this.setAcessoGestorUsuarios(acessoGestorUsuarios);
+		this.setAcessoRelatorios(acessoRelatorios);
+		this.setAcessoZelador(acessoZelador);
+	}
+	
+	public Usuario(String nome, String cpf, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setNome(nome);
 		this.setCpf(cpf);
 		this.setEmail(email);
