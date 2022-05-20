@@ -14,7 +14,7 @@ public class GUIQuadras {
 					+ "\n3.ALTERAR DADOS"
 					+ "\n4.VISUALIZAR QUADRAS"
 					+ "\n5.SAIR DO MENU"
-					+ "\nOP«√O: ");
+					+ "\nOP√á√ÉO: ");
 			
 			operadorDoMenu = scanner.nextInt();
 			scanner.nextLine();
@@ -62,27 +62,27 @@ public class GUIQuadras {
 			UtilidadesGUI.exibeMensagem("Nome da quadra: ");
 			nome = scanner.nextLine();
 			
-			UtilidadesGUI.exibeMensagem("N˙mero da quadra: ");
+			UtilidadesGUI.exibeMensagem("N√∫mero da quadra: ");
 			numero = Integer.parseInt(scanner.nextLine());
 			
-			UtilidadesGUI.exibeMensagem("EndereÁo da quadra: ");
+			UtilidadesGUI.exibeMensagem("Endere√ßo da quadra: ");
 			endereco = scanner.nextLine();
 		
-			UtilidadesGUI.exibeMensagem("Tipo da quadra, selecione uma das opÁıes atr·ves dos n˙meros:"
+			UtilidadesGUI.exibeMensagem("Tipo da quadra, selecione uma das op√ß√µes atr√°ves dos n√∫meros:"
 									+ "\n1. SAIBRO"
-									+ "\n2. SUPERFÕCIE SINT…TICA"
+									+ "\n2. SUPERF√çCIE SINT√âTICA"
 									+ "\n3. CIMENTO"
 									+ "\n4. BEACH TENNIS"
-									+ "\nOpÁ„o: ");
+									+ "\nOp√ß√£o: ");
 			tipo = quadra.identificaTipoQuadra(scanner.nextInt());
 			
-			UtilidadesGUI.exibeMensagem("Possui cobertura (sim/n„o): ");
+			UtilidadesGUI.exibeMensagem("Possui cobertura (sim/n√£o): ");
 			cobertura = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 			
-			UtilidadesGUI.exibeMensagem("Possui arquibancada (sim/n„o): ");
+			UtilidadesGUI.exibeMensagem("Possui arquibancada (sim/n√£o): ");
 			arquibancada = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 			
-			UtilidadesGUI.exibeMensagem("Possui ·rea de descanso: ");
+			UtilidadesGUI.exibeMensagem("Possui √°rea de descanso: ");
 			area = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 			
 			UtilidadesGUI.exibeMensagem("Cadastro Realizado com Sucesso!\n");
@@ -98,9 +98,9 @@ public class GUIQuadras {
 		int numero;
 		boolean continuaMetodo, estadoQuadra;
 		
-		UtilidadesGUI.exibeMensagem("Digite o numero de identificaÁ„o da quadra: ");
+		UtilidadesGUI.exibeMensagem("Digite o numero de identifica√ß√£o da quadra: ");
 		numero = Integer.parseInt(scanner.nextLine());
-		Quadra quadra = quadras.get(numero);//necess·rio verificar como fazer isso de uma forma melhor depois
+		Quadra quadra = quadras.get(numero);//necess√°rio verificar como fazer isso de uma forma melhor depois
 		
 		continuaMetodo = quadra.verificaNumeroQuadra(numero);
 		
@@ -108,12 +108,12 @@ public class GUIQuadras {
 			estadoQuadra = quadra.isEstaBloqueada();
 			
 			if(estadoQuadra) 
-				UtilidadesGUI.exibeMensagem("A quadra est· DESBLOQUEADA\n");
+				UtilidadesGUI.exibeMensagem("A quadra est√° DESBLOQUEADA\n");
 			else
-				UtilidadesGUI.exibeMensagem("A quadra est· BLOQUEADA\n");
+				UtilidadesGUI.exibeMensagem("A quadra est√° BLOQUEADA\n");
 			
 			do {
-				UtilidadesGUI.exibeMensagem("Deseja deixar est· quadra HABILITADA (digite 1) ou DESABILITADA (digite 0): ");
+				UtilidadesGUI.exibeMensagem("Deseja deixar est√° quadra HABILITADA (digite 1) ou DESABILITADA (digite 0): ");
 				numero = Integer.parseInt(scanner.nextLine());
 			}while(numero != 1 && numero != 0);		
 			
@@ -122,36 +122,36 @@ public class GUIQuadras {
 			else
 				quadra.bloqueiaQuadraParaAluguel();
 		}else
-			UtilidadesGUI.exibeMensagem("N˙mero digitado n„o corresponde a nenhuma quadra cadastrada!");
+			UtilidadesGUI.exibeMensagem("N√∫mero digitado n√£o corresponde a nenhuma quadra cadastrada!");
 	}
 	
 	private void GUIAlteraDados() {
 		int numero, operador = 100;
 		boolean continuaMetodo;
 		
-		UtilidadesGUI.exibeMensagem("Digite o numero de identificaÁ„o da quadra: ");
+		UtilidadesGUI.exibeMensagem("Digite o numero de identifica√ß√£o da quadra: ");
 		numero = Integer.parseInt(scanner.nextLine());
-		Quadra quadra = quadras.get(numero);//necess·rio verificar como fazer isso de uma forma melhor depois
+		Quadra quadra = quadras.get(numero);//necess√°rio verificar como fazer isso de uma forma melhor depois
 		
 		continuaMetodo = quadra.verificaNumeroQuadra(numero);
 		
 		if(continuaMetodo) {
 			UtilidadesGUI.exibeMensagem("Dados atuais: "
-					+ "\n N˙mero da Quadra (Inalter·vel): " + quadra.getCodigoQuadra()
+					+ "\n N√∫mero da Quadra (Inalter√°vel): " + quadra.getCodigoQuadra()
 					+ "\nNome da Quadra: " + quadra.getNomeQuadra()
-					+ "\nEndereÁo da Quadra: " + quadra.getEnderecoQuadra()
+					+ "\nEndere√ßo da Quadra: " + quadra.getEnderecoQuadra()
 					+ "\nTipo da Quadra: " + quadra.getTipoQuadra()
 					+ "\nTem Cobertura: " + UtilidadesConversao.transformaBoolean(quadra.isPossuiCobertura())
 					+ "\nTem Arquibancada: " + UtilidadesConversao.transformaBoolean(quadra.isPossuiArquibancada())
-					+ "\nTem ¡rea de Descanso: " + UtilidadesConversao.transformaBoolean(quadra.isPossuiAreaDescanso()));
+					+ "\nTem √Årea de Descanso: " + UtilidadesConversao.transformaBoolean(quadra.isPossuiAreaDescanso()));
 			do {
-				UtilidadesGUI.exibeMensagem("\nOpÁıes para trocar: "
+				UtilidadesGUI.exibeMensagem("\nOp√ß√µes para trocar: "
 						+ "\n1. Nome da Quadra"
-						+ "\n2. EndereÁo da Quadra"
+						+ "\n2. Endere√ßo da Quadra"
 						+ "\n3. Tipo da Quadra"
 						+ "\n4. Tem Cobertura"
 						+ "\n5. Tem Arquibancada"
-						+ "\n6. Tem ¡rea de Descanso");
+						+ "\n6. Tem √Årea de Descanso");
 				operador = Integer.parseInt(scanner.nextLine());
 				switch(operador) {
 				
@@ -161,42 +161,119 @@ public class GUIQuadras {
 					break;
 				
 				case 2:
-					UtilidadesGUI.exibeMensagem("Digite o novo endereÁo da quadra: ");
+					UtilidadesGUI.exibeMensagem("Digite o novo endere√ßo da quadra: ");
 					quadra.setEnderecoQuadra(scanner.nextLine());
 					break;
 					
 				case 3:
-					UtilidadesGUI.exibeMensagem("Digite o novo tipo da quadra, selecione uma das opÁıes atr·ves dos n˙meros:"
+					UtilidadesGUI.exibeMensagem("Digite o novo tipo da quadra, selecione uma das op√ß√µes atr√°ves dos n√∫meros:"
 							+ "\n1. SAIBRO"
-							+ "\n2. SUPERFÕCIE SINT…TICA"
+							+ "\n2. SUPERF√çCIE SINT√âTICA"
 							+ "\n3. CIMENTO"
 							+ "\n4. BEACH TENNIS"
-							+ "\nOpÁ„o: ");
+							+ "\nOp√ß√£o: ");
 					quadra.setTipoQuadra(quadra.identificaTipoQuadra(scanner.nextInt()));
 					break;
 					
 				case 4:
-					UtilidadesGUI.exibeMensagem("Digite se a quadra agora possui cobertura (sim/n„o): ");
+					UtilidadesGUI.exibeMensagem("Digite se a quadra agora possui cobertura (sim/n√£o): ");
 					quadra.setPossuiCobertura(UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next())));
 					break;
 					
 				case 5:
-					UtilidadesGUI.exibeMensagem("Digite se a quadra agora possui arquibancada (sim/n„o): ");
+					UtilidadesGUI.exibeMensagem("Digite se a quadra agora possui arquibancada (sim/n√£o): ");
 					quadra.setPossuiArquibancada(UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next())));
 					break;
 					
 				case 6:
-					UtilidadesGUI.exibeMensagem("Digite se a quadra agora possui ·rea de descanso (sim/n„o): ");
+					UtilidadesGUI.exibeMensagem("Digite se a quadra agora possui √°rea de descanso (sim/n√£o): ");
 					quadra.setPossuiAreaDescanso(UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next())));
 					break;
 					
 				default:
-					UtilidadesGUI.exibeMensagem("OpÁ„o Inv·lida!");
+					UtilidadesGUI.exibeMensagem("Op√ß√£o Inv√°lida!");
 					break;
 				}
 			}while(true);
 			
 		}else
-			UtilidadesGUI.exibeMensagem("N˙mero digitado n„o corresponde a nenhuma quadra cadastrada!");
+			UtilidadesGUI.exibeMensagem("N√∫mero digitado n√£o corresponde a nenhuma quadra cadastrada!");
+	}
+
+	void interfaceVisualizarQuadras() {
+		
+		String[][] quadras;
+		int operadorDoMenu = 0;
+		do {
+			UtilidadesGUI.exibeMensagem("Visualizar quadras: "
+					+ "\n1. Cadastradas"
+					+ "\n2. Habilitadas"
+					+ "\n3. Desabilitadas"
+					+ "\n4. Voltar"
+					+ "\nOp√ß√£o: ");
+			
+			operadorDoMenu = scanner.nextInt();
+			scanner.nextLine();
+			
+			switch(operadorDoMenu){
+				
+				case 1:
+					quadras = Quadra.procuraQuadrasCadastradas();
+					exibirQuadras(quadras);
+					break;
+					
+				case 2:
+					UtilidadesGUI.exibeMensagem("Em desenvolvimento!\n");
+					break;
+					
+				case 3:
+					UtilidadesGUI.exibeMensagem("Em desenvolvimento!\n");
+					break;
+					
+				case 4:
+					UtilidadesGUI.exibeMensagem("Voltando ao menu anterior!\n");
+					break;
+					
+				default:
+					UtilidadesGUI.exibeMensagem("Op√ß√£o invalida!\n");
+					break;
+			}
+			
+		}while(operadorDoMenu != 4);	
+		
+	}
+	
+	void exibirQuadras(String[][] quadras) {
+		
+		
+		String[][] colunas = {{"COD", "3"}, 
+							 {"NOME", "50"},
+							 {"TIPO", "20"},
+							 {"ENDERECO", "50"},
+							 {"COBERTURA", "10"},
+							 {"ARQUIBANCADA", "12"},
+							 {"√ÅREA DE DESCANSO", "16"},
+							 {"STATUS", "12"}};
+		
+		for (int i=0; i < colunas.length; i++) {
+			formatarColunas(colunas[i][0], Integer.parseInt(colunas[i][1]));
+		}
+		UtilidadesGUI.exibeMensagem("\n");
+		
+		for (int i=0; i < quadras.length; i++) {
+			for (int j=0; j < 8; j++) {
+				formatarColunas(quadras[i][j], Integer.parseInt(colunas[j][1]));
+			}
+			UtilidadesGUI.exibeMensagem("\n");
+		}
+		
+
+	}
+	
+	void formatarColunas(String conteudo, int tamanhoM) {
+		UtilidadesGUI.exibeMensagem(conteudo);
+		for (int i = conteudo.length(); i <= tamanhoM; i++) 
+			UtilidadesGUI.exibeMensagem(" ");
+				
 	}
 }
