@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Quadra{
 	
-	private int codigo;
+	private String codigo;
 	private String nome;
 	private String endereco;
 
@@ -15,13 +15,13 @@ public class Quadra{
 	private boolean possuiAreaDescanso;
 	private boolean estaBloqueada = false;
 	
-	public Quadra(int codigo, String nome, TipoQuadra tipo, boolean cobertura) {
+	public Quadra(String codigo, String nome, TipoQuadra tipo, boolean cobertura) {
 		this.setCodigo(codigo);
 		this.setNome(nome);
 		this.setTipo(tipo);
 	}
 	
-	public Quadra(int codigo, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
+	public Quadra(String codigo, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
 		this.setCodigo(codigo);
 		this.setNome(nome);
 		this.setEndereco(endereco);
@@ -68,7 +68,7 @@ public class Quadra{
 		int periodosTempo = (24 - ((24 - fechamentoSemana) + aberturaSemana)) * 2; 
 		
 		String[][] disponibilidade = new String[quantidadeDias][periodosTempo];
-		ArrayList<String> horariosReservados = Reserva.horariosReservas(codigo);
+		ArrayList<String> horariosReservados = Reserva.horariosReservas(Integer.parseInt(codigo));
 		DateTimeFormatter horarioFormatoPadrao = DateTimeFormatter.ofPattern("HH:mm");
 		LocalDateTime horario = LocalDateTime.now();
 		
@@ -104,7 +104,7 @@ public class Quadra{
 	}
 
 
-	public void cadastraQuadra(int numero, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean area) {
+	public void cadastraQuadra(String numero, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean area) {
 		setCodigo(numero);
 		setNome(nome);
 		setEndereco(endereco);
@@ -116,7 +116,7 @@ public class Quadra{
 
 
 	public boolean verificaNumeroQuadra(int numero) {
-		return (numero == this.getCodigo());
+		return (numero == Integer.parseInt(this.getCodigo()));
 	}
 
 
@@ -155,11 +155,11 @@ public class Quadra{
 			return new BigDecimal("40");
 	}
 	
-	protected int getCodigo() {
+	protected String getCodigo() {
 		return codigo;
 	}
 
-	protected void setCodigo(int codigo) {
+	protected void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
