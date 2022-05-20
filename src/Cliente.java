@@ -2,31 +2,31 @@ import java.util.ArrayList;
 
 public class Cliente {
 	
-	private String nomeCliente;
-	private String emailCliente;
-	private String cpfCliente;
+	private String nome;
+	private String email;
+	private String cpf;
 	private String dataNascimento;	
 	private boolean bloqueado = false;
 	
 	ArrayList <Cliente> clientes = new ArrayList<Cliente>();
 	
-	public Cliente(String nomeCliente, String cpfCliente) {
-		this.nomeCliente = nomeCliente;
-		this.cpfCliente = cpfCliente;
+	public Cliente(String nome, String cpf) {
+		this.nome = nome;
+		this.cpf = cpf;
 	}
 	
-	public Cliente(String nomeCliente,String emailCliente, String cpfCliente, String dataNascimento, boolean bloqueado){
-		this.nomeCliente = nomeCliente;
-		this.emailCliente = emailCliente;
-		this.cpfCliente = cpfCliente;
+	public Cliente(String nome,String email, String cpf, String dataNascimento, boolean bloqueado){
+		this.nome = nome;
+		this.email = email;
+		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
 		this.bloqueado = bloqueado;
 	}
 	
-	public void cadastrarCliente(String nomeCliente,String emailCliente, String cpfCliente, String dataNascimento) {
-		this.setNomeCliente(nomeCliente);
-		this.setEmailCliente(emailCliente);
-		this.setCpfCliente(cpfCliente);
+	public void cadastrarCliente(String nome,String email, String cpf, String dataNascimento) {
+		this.setNome(nome);
+		this.setEmail(email);
+		this.setCpf(cpf);
 		this.setDataNascimento(dataNascimento);
 		clientes.add(this);
 	}
@@ -39,28 +39,28 @@ public class Cliente {
 		this.setBloqueado(false);
 	}
 	
-	protected String getNomeCliente() {
-		return nomeCliente;
+	protected String getNome() {
+		return nome;
 	}
 
-	protected void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
+	protected void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	protected String getEmailCliente() {
-		return emailCliente;
+	protected String getEmail() {
+		return email;
 	}
 
-	protected void setEmailCliente(String emailCliente) {
-		this.emailCliente = emailCliente;
+	protected void setEmail(String email) {
+		this.email = email;
 	}
 
-	protected String getCpfCliente() {
-		return cpfCliente;
+	protected String getCpf() {
+		return cpf;
 	}
 
-	protected void setCpfCliente(String cpfCliente) {
-		this.cpfCliente = cpfCliente;
+	protected void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	protected String getDataNascimento() {
