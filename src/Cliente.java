@@ -9,7 +9,7 @@ public class Cliente {
 	private String dataNascimento;	
 	private boolean bloqueado = false;
 	private boolean invalidado = false;
-	
+	private boolean habilitado = true;
 
 
 	ArrayList <Cliente> clientes = new ArrayList<Cliente>();
@@ -19,12 +19,14 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 	
-	public Cliente(String nome,String email, String cpf, String dataNascimento, boolean bloqueado){
+	public Cliente(String nome,String email, String cpf, String dataNascimento, boolean bloqueado, boolean invalidado, boolean habilitado){
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
 		this.bloqueado = bloqueado;
+		this.invalidado = invalidado;
+		this.habilitado = habilitado;
 	}
 	
 	public void cadastrarCliente(String nome,String email, String cpf, String dataNascimento) {
@@ -97,5 +99,13 @@ public class Cliente {
 
 	protected void setInvalidado(boolean invalidado) {
 		this.invalidado = invalidado;
+	}
+
+	protected boolean isHabilitado() {
+		return habilitado;
+	}
+
+	protected void setHabilitado(boolean habilitado) {
+		this.habilitado = habilitado;
 	}
 }

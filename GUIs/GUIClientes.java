@@ -7,7 +7,7 @@ Scanner scanner = new Scanner(System.in);
 	
 	void GUIMenuCliente(){
 		
-		Cliente cliente = new Cliente("","","","",false);
+		Cliente cliente = new Cliente("","","","",false,false,true);
 		int operadorMenu = 0;
 		
 		do {

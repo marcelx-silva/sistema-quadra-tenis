@@ -5,7 +5,7 @@ Scanner scanner = new Scanner(System.in);
 	
 	void interfaceMenuReserva() {
 		Quadra quadra = new Quadra(0,"","",null,false,false,false);
-		Cliente cliente = new Cliente("","","","",false);
+		Cliente cliente = new Cliente("","","","",false,false,true);
 		Reserva reserva = new Reserva(null, null, null, null, null, null, 0);
 		int operadorMenu = 0;
 		
