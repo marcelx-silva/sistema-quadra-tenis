@@ -79,9 +79,9 @@ Scanner scanner = new Scanner(System.in);
 		
 		cliente = cliente.clientes.get(0);
 		
-		UtilidadesGUI.exibeMensagem("Nome: " + cliente.getNomeCliente());
-		UtilidadesGUI.exibeMensagem("\nEmail: " + cliente.getEmailCliente());
+		UtilidadesGUI.exibeMensagem("Nome: " + cliente.getNome());
+		UtilidadesGUI.exibeMensagem("\nEmail: " + cliente.getEmail());
 		UtilidadesGUI.exibeMensagem("\nData de Nascimento: " + cliente.getDataNascimento());
-		UtilidadesGUI.exibeMensagem("\nCPF: " + cliente.getCpfCliente());
+		UtilidadesGUI.exibeMensagem("\nCPF: " + cliente.getCpf());
 	}
 }
