@@ -2,12 +2,16 @@ import java.util.ArrayList;
 
 public class Cliente {
 	
+	private String codigo;
 	private String nome;
 	private String email;
 	private String cpf;
 	private String dataNascimento;	
 	private boolean bloqueado = false;
+	private boolean invalidado = false;
 	
+
+
 	ArrayList <Cliente> clientes = new ArrayList<Cliente>();
 	
 	public Cliente(String nome, String cpf) {
@@ -37,6 +41,14 @@ public class Cliente {
 
 	public void desbloqueiaCliente() {
 		this.setBloqueado(false);
+	}
+	
+	protected String getCodigo() {
+		return codigo;
+	}
+
+	protected void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 	
 	protected String getNome() {
@@ -77,5 +89,13 @@ public class Cliente {
 	
 	protected void setBloqueado(boolean bloqueado) {
 		this.bloqueado = bloqueado;
+	}
+	
+	protected boolean isInvalidado() {
+		return invalidado;
+	}
+
+	protected void setInvalidado(boolean invalidado) {
+		this.invalidado = invalidado;
 	}
 }
