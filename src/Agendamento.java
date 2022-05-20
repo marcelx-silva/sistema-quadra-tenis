@@ -10,7 +10,11 @@ public class Agendamento {
 	private LocalTime horarioFim;
 	
 	public Agendamento(Quadra q, Cliente c, LocalDate data, LocalTime horarioInicio, LocalTime horarioFim) {
-		
+		this.setQuadra(q);
+		this.setCliente(c);
+		this.setData(data);
+		this.setHorarioInicio(horarioInicio);
+		this.setHorarioFim(horarioFim);
 	}
 
 	protected Quadra getQuadra() {
