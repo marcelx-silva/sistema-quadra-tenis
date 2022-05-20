@@ -73,7 +73,7 @@ class TestesUsuario {
 	
 	@Test
 	void retirarAcessoGestorQuadras() {
-		usu.alteraUsuario("não", 5);
+		usu.alteraUsuario("nï¿½o", 5);
 		assertFalse(usu.isAcessoGestorQuadras());
 	}
 	
@@ -85,7 +85,7 @@ class TestesUsuario {
 	
 	@Test
 	void retirarAcessoGestorUsuario() {
-		usu.alteraUsuario("não", 6);
+		usu.alteraUsuario("nï¿½o", 6);
 		assertFalse(usu.isAcessoGestorUsuarios());
 	}
 	
@@ -97,7 +97,7 @@ class TestesUsuario {
 	
 	@Test
 	void retirarAcessoRelatorio() {
-		usu.alteraUsuario("não", 7);
+		usu.alteraUsuario("nï¿½o", 7);
 		assertFalse(usu.isAcessoRelatorios());
 	}
 	
@@ -109,8 +109,24 @@ class TestesUsuario {
 	
 	@Test
 	void retirarAcessoZelador() {
-		usu.alteraUsuario("não", 8);
+		usu.alteraUsuario("nï¿½o", 8);
 		assertFalse(usu.isAcessoZelador());
+	}
+	
+	@Test
+	void AutenticarTestIsTrue() {
+		
+		Usuario user = new Usuario("admin", 0001, "", "admin", true, true, true, true);
+		user.adicionarUsuario(user);
+		Assert.assertTrue( user.UsuarioAutenticado(0001, "admin"));
+	}
+
+	@Test
+	void AutenticarTestIsFalse() {
+		
+		Usuario user = new Usuario("admin", 0001, "", "admin", true, true, true, true);
+		user.adicionarUsuario(user);
+		Assert.assertFalse( user.UsuarioAutenticado(0001, "senhafalsa"));
 	}
 
 }

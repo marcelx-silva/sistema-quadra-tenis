@@ -1,25 +1,20 @@
+import java.util.ArrayList;
+
 public class Usuario {
-	
+		
 	private String nome, email, senha, cpf, codigo;	
 	private boolean	estaDesabilitado, estaBloqueado, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador;
+	private Usuario userAtual;
+	static ArrayList <Usuario> usuarios = new ArrayList<Usuario>();
+	
 	
 	public Usuario(String cpfDigitado) {
 		this.verificarUsuario(cpfDigitado);
 	}
 	
-	public Usuario(String codigo, String nome, String cpfUsuario, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
+	public Usuario(String codigo, String nome, String cpf, String email, String senha, 
+			boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setCodigo(codigo);
-		this.setNome(nome);
-		this.setCpf(cpf);
-		this.setEmail(email);
-		this.setSenha(senha);
-		this.setAcessoGestorQuadras(acessoGestorQuadras);
-		this.setAcessoGestorUsuarios(acessoGestorUsuarios);
-		this.setAcessoRelatorios(acessoRelatorios);
-		this.setAcessoZelador(acessoZelador);
-	}
-	
-	public Usuario(String nome, String cpfUsuario, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setNome(nome);
 		this.setCpf(cpf);
 		this.setEmail(email);
@@ -33,7 +28,7 @@ public class Usuario {
 	public boolean verificarUsuario(String cpfDigitado) {
 		return (cpfDigitado == this.getCpf());
 	}
-
+	
 	public void desabilitarUsuario() {
 		this.setEstaDesabilitado(true);
 	}
@@ -86,11 +81,11 @@ public class Usuario {
 				break;
 				
 			default:
-				UtilidadesGUI.exibeMensagem("Opção Inválida!");
+				UtilidadesGUI.exibeMensagem("Opï¿½ï¿½o Invï¿½lida!");
 				break;
 		}
 	}
-
+	
 	protected String getNome() {
 		return nome;
 	}
@@ -178,6 +173,35 @@ public class Usuario {
 
 	protected void setAcessoZelador(boolean acessoZelador) {
 		this.acessoZelador = acessoZelador;
+	}
+	
+	public void adicionarUsuario(Usuario user) {
+		usuarios.add(user);
+	}
+	
+	static public ArrayList<Usuario> getLista(){
+		return usuarios;
+	}
+	
+	static public Usuario buscaUsuarioPor(String cpfDigitado) {
+		for(Usuario user:usuarios) {
+			if(user.getCpf() == cpfDigitado)
+				return user;
+		}
+		return null;
+	}
+	
+	 public boolean UsuarioAutenticado(String cpfDigitado, String senhaDigitada){
+		userAtual = Usuario.buscaUsuarioPor(cpfDigitado);
+		
+		if(userAtual != null )
+			if( senhaDigitada.equals(userAtual.getSenha()))
+				return true;
+		return false;
+	}
+	
+	protected Usuario getUsuarioAtual() {
+		return userAtual;
 	}
 	
 }
