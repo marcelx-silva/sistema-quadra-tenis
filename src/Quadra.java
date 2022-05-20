@@ -31,6 +31,15 @@ public class Quadra{
 		this.setPossuiAreaDescanso(descanso);
 	}
 	
+	public Quadra(String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
+		this.setNome(nome);
+		this.setEndereco(endereco);
+		this.setTipo(tipo);
+		this.setPossuiCobertura(cobertura);
+		this.setPossuiArquibancada(arquibancada);
+		this.setPossuiAreaDescanso(descanso);
+	}
+	
 	public static ArrayList<Quadra> procuraQuadras(String dia, String horarioInicio, String horarioFim, 
 			String tipo, boolean cobertura, boolean arquibancada, boolean areaDescanso){
 		
