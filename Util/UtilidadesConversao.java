@@ -12,6 +12,6 @@ public class UtilidadesConversao {
 		if(valor)
 			return "Sim";
 		else
-			return "Não";
+			return "NÃ£o";
 	}
 }
