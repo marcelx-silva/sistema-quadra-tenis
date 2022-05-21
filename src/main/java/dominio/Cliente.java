@@ -1,5 +1,7 @@
-package objetos;
+
+package Dominio;
 import java.util.ArrayList;
+
 
 public class Cliente {
 	
@@ -59,6 +61,7 @@ public class Cliente {
 	
 	protected String getCodigo() {
 		return codigo;
+
 	}
 
 	protected void setCodigo(String codigo) {
@@ -69,16 +72,20 @@ public class Cliente {
 		return nome;
 	}
 
+
 	protected void setNome(String nome) {
 		this.nome = nome;
+
 	}
 
 	protected String getEmail() {
 		return email;
 	}
 
+
 	protected void setEmail(String email) {
 		this.email = email;
+
 	}
 
 	protected String getCpf() {
@@ -89,7 +96,7 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	protected String getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
@@ -97,7 +104,7 @@ public class Cliente {
 		this.dataNascimento = dataNascimento;
 	}
 
-	protected boolean isBloqueado() {
+	public boolean isBloqueado() {
 		return bloqueado;
 	}
 	

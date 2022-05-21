@@ -1,12 +1,17 @@
-package objetos;
+package Dominio;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+<<<<<<< HEAD:src/Dominio/Reserva.java
+import Enum.TipoPagamento;
+import Enum.TipoQuadra;
+=======
 import java.time.LocalTime;
 import java.time.LocalDate;
+>>>>>>> Development:src/Reserva.java
 
 public class Reserva extends Agendamento{
 	
@@ -82,16 +87,49 @@ public class Reserva extends Agendamento{
 		}
 	}
 
+<<<<<<< HEAD:src/Dominio/Reserva.java
+	public Cliente getCliente() {
+		Cliente c = cliente;
+		return c;
+	}
+=======
+>>>>>>> Development:src/Reserva.java
 	
 	protected String getCodigo() {
 		return codigo;
 	}
 
-	protected void setCodigo(String codigo) {
-		this.codigo = codigo;
+<<<<<<< HEAD:src/Dominio/Reserva.java
+
+	public String getDataReserva() {
+		return dataReserva;
 	}
 
-	protected TipoPagamento getModoPagamento() {
+	protected void setDataReserva(String dataReserva) {
+		this.dataReserva = dataReserva;
+	}
+
+	public String getHorarioInicioReserva() {
+		return horarioInicioReserva;
+	}
+
+	protected void setHorarioInicioReserva(String horarioInicioReserva) {
+		this.horarioInicioReserva = horarioInicioReserva;
+	}
+
+	public String getHorarioFimReserva() {
+		return horarioFimReserva;
+	}
+
+	protected void setHorarioFimReserva(String horarioFimReserva) {
+		this.horarioFimReserva = horarioFimReserva;
+=======
+	protected void setCodigo(String codigo) {
+		this.codigo = codigo;
+>>>>>>> Development:src/Reserva.java
+	}
+
+	public TipoPagamento getModoPagamento() {
 		return modoPagamento;
 	}
 
@@ -99,11 +137,23 @@ public class Reserva extends Agendamento{
 		this.modoPagamento = modoPagamento;
 	}
 
-	protected int getParcelas() {
+	public int getParcelas() {
 		return parcelas;
 	}
 
 	protected void setParcelas(int parcelas) {
 		this.parcelas = parcelas;
 	}
+<<<<<<< HEAD:src/Dominio/Reserva.java
+
+	public Quadra getQuadra() {
+		Quadra q = quadra;
+		return q;
+	}
+
+	protected void setQuadra(Quadra quadra) {
+		this.quadra = quadra;
+	}
+=======
+>>>>>>> Development:src/Reserva.java
 }

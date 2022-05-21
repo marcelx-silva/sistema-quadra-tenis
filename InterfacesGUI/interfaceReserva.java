@@ -10,11 +10,11 @@ public final class interfaceReserva {
 
 
 	Scanner scanner = new Scanner(System.in);
-
+========
 
 public class GUIReserva {
-	Scanner scanner = new Scanner(System.in);
-
+Scanner scanner = new Scanner(System.in);
+>>>>>>>> Development:GUIs/GUIReserva.java
 	
 	void interfaceMenuReserva() {
 		Quadra quadra = new Quadra("","","",null,false,false,false);

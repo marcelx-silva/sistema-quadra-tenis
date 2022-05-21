@@ -19,7 +19,7 @@ Scanner scanner = new Scanner(System.in);
 					+ "\n3. BLOQUEAR/DESBLOQUEAR CLIENTES"
 					+ "\n4. ALTERAR DADOS DE CLIENTES"
 					+ "\n5. SAIR DO MENU"
-					+ "\nOPï¿½ï¿½O: ");
+					+ "\nOPÇÃO: ");
 			
 			operadorMenu = scanner.nextInt();
 			scanner.nextLine();
@@ -46,7 +46,7 @@ Scanner scanner = new Scanner(System.in);
 					break;
 					
 				default:
-					UtilidadesGUI.exibeMensagem("Opï¿½ï¿½o Invï¿½lida!! \n"); 
+					UtilidadesGUI.exibeMensagem("Opção Inválida!! \n"); 
 					
 
 			}
