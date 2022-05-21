@@ -15,9 +15,9 @@ public class ConexaoBD {
 		
 		try {
 			
-			String urlConexao = "";
-			String usuAdmin = "";
-			String senhaAdmin = "";
+			String urlConexao = "jdbc:mysql://127.0.0.1:3306/mysql";
+			String usuAdmin = "root";
+			String senhaAdmin = "5432es";
 			
 			//Driver driver = new Driver();
 			//DriverManager.registerDriver(driver);
@@ -27,7 +27,7 @@ public class ConexaoBD {
 			
 		
 		}catch(SQLException e) {
-			throw new  RuntimeException("Erro na Conexão",e);
+			throw new  RuntimeException("Erro na Conexï¿½o",e);
 		}
 		
 		return (c);
