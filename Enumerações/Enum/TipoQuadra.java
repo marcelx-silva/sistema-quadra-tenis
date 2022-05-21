@@ -1,7 +1,8 @@
+package Enum;
 
 public enum TipoQuadra {
 	SAIBRO,
-	SUPERFICIE_SITENTICA,
+	SUPERFICIE_SINTETICA,
 	CIMENTO,
 	BEACH_TENNIS,
 	INVALIDO
