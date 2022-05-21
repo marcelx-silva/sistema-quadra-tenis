@@ -5,13 +5,10 @@ import java.math.RoundingMode;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-<<<<<<< HEAD:src/Dominio/Reserva.java
 import Enum.TipoPagamento;
 import Enum.TipoQuadra;
-=======
 import java.time.LocalTime;
 import java.time.LocalDate;
->>>>>>> Development:src/Reserva.java
 
 public class Reserva extends Agendamento{
 	
@@ -74,6 +71,8 @@ public class Reserva extends Agendamento{
 		}
 	}
 
+	/* terminar implementação
+ * 
 	public int parcelarReserva(int parcelas) {
 		switch(parcelas) {
 		case 1:
@@ -86,21 +85,20 @@ public class Reserva extends Agendamento{
 			return 0;
 		}
 	}
-
-<<<<<<< HEAD:src/Dominio/Reserva.java
+*/
+	
+	/* ERRO LINHA 93
+	 *  
 	public Cliente getCliente() {
 		Cliente c = cliente;
 		return c;
 	}
-=======
->>>>>>> Development:src/Reserva.java
+	*/
 	
 	protected String getCodigo() {
 		return codigo;
 	}
-
-<<<<<<< HEAD:src/Dominio/Reserva.java
-
+	
 	public String getDataReserva() {
 		return dataReserva;
 	}
@@ -123,10 +121,10 @@ public class Reserva extends Agendamento{
 
 	protected void setHorarioFimReserva(String horarioFimReserva) {
 		this.horarioFimReserva = horarioFimReserva;
-=======
+	}
+		
 	protected void setCodigo(String codigo) {
 		this.codigo = codigo;
->>>>>>> Development:src/Reserva.java
 	}
 
 	public TipoPagamento getModoPagamento() {
@@ -144,7 +142,6 @@ public class Reserva extends Agendamento{
 	protected void setParcelas(int parcelas) {
 		this.parcelas = parcelas;
 	}
-<<<<<<< HEAD:src/Dominio/Reserva.java
 
 	public Quadra getQuadra() {
 		Quadra q = quadra;
@@ -154,6 +151,5 @@ public class Reserva extends Agendamento{
 	protected void setQuadra(Quadra quadra) {
 		this.quadra = quadra;
 	}
-=======
->>>>>>> Development:src/Reserva.java
+	
 }
