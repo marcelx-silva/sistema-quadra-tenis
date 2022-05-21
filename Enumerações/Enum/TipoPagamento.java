@@ -1,5 +1,6 @@
 package Enum;
 
+
 public enum TipoPagamento {
 	
 	CREDITO,

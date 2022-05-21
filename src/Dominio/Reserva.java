@@ -5,45 +5,29 @@ import java.math.RoundingMode;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+<<<<<<< HEAD:src/Dominio/Reserva.java
 import Enum.TipoPagamento;
 import Enum.TipoQuadra;
+=======
+import java.time.LocalTime;
+import java.time.LocalDate;
+>>>>>>> Development:src/Reserva.java
 
-
-public class Reserva{
+public class Reserva extends Agendamento{
 	
-	
-	public static ArrayList<String> horariosReservas(int codigoQuadra){
-		
-		//Teste
-        DateTimeFormatter horarioFormatoPadrao = DateTimeFormatter.ofPattern("HH:mm");
-		ArrayList<String> listaReservas = new ArrayList<String>();
-		
-		LocalDateTime horarioEx = LocalDateTime.now();//.plusDays(1);
-		
-		listaReservas.add(horarioEx.minusHours(0).minusMinutes(30).withMinute(0).format(horarioFormatoPadrao).toString());
-		listaReservas.add(horarioEx.minusHours(15).minusMinutes(12).withMinute(0).format(horarioFormatoPadrao).toString());
-		listaReservas.add(horarioEx.minusHours(18).minusMinutes(50).withMinute(0).format(horarioFormatoPadrao).toString());
-		listaReservas.add(horarioEx.minusHours(8).minusMinutes(30).withMinute(0).format(horarioFormatoPadrao).toString());
-		listaReservas.add(horarioEx.minusHours(6).withMinute(0).format(horarioFormatoPadrao).toString());
-		listaReservas.add(horarioEx.minusHours(2).withMinute(0).format(horarioFormatoPadrao).toString());
-		
-		return listaReservas;
-	}
-		
-	private Cliente cliente;
-	private String dataReserva;
-	private String horarioInicioReserva;
-	private String horarioFimReserva;
+	private String codigo;
 	private TipoPagamento modoPagamento;
-	private int parcelas; 
-	private Quadra quadra;
+	private int parcelas;
 	
-	public Reserva(Quadra quadra,Cliente cliente,String dataReserva, String horarioInicioReserva, String horarioFimReserva, TipoPagamento modoPagamento, int parcelas){
-		this.quadra = quadra;
-		this.cliente = cliente;
-		this.dataReserva = dataReserva;
-		this.horarioInicioReserva = horarioInicioReserva;
-		this.horarioFimReserva = horarioFimReserva;
+	public Reserva(String codigo, Quadra quadra,Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, int parcelas){
+		super(quadra, cliente, data, horarioInicio, horarioFim);
+		this.codigo = codigo;
+		this.modoPagamento = modoPagamento;
+		this.parcelas = parcelas;
+	}
+	
+	public Reserva(Quadra quadra,Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, int parcelas){
+		super(quadra, cliente, data, horarioInicio, horarioFim);
 		this.modoPagamento = modoPagamento;
 		this.parcelas = parcelas;
 	}
@@ -55,17 +39,17 @@ public class Reserva{
 		
 	}
 	
-	public void cadastrarReserva(String cpfCliente,String nomeCliente, String dataReserva, String horarioInicioReserva, String horarioFimReserva, TipoPagamento modoPagamento, int quantidadeParcelas, int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean temCobertura){
-		cliente.setNomeCliente(nomeCliente);
-		cliente.setCpfCliente(cpfCliente);
-		setDataReserva(dataReserva);
-		setHorarioInicioReserva(horarioInicioReserva);
-		setHorarioFimReserva(horarioFimReserva);
+	public void cadastrarReserva(String cpfCliente,String nomeCliente, LocalDate dataReserva, LocalTime horarioInicioReserva, LocalTime horarioFimReserva, TipoPagamento modoPagamento, int quantidadeParcelas, String codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean temCobertura){
+		super.getCliente().setNome(nomeCliente);
+		super.getCliente().setCpf(cpfCliente);
+		setData(dataReserva);
+		setHorarioInicio(horarioInicioReserva);
+		setHorarioFim(horarioFimReserva);
 		setModoPagamento(modoPagamento);
 		setParcelas(quantidadeParcelas);		
-		quadra.setCodigoQuadra(codigoQuadra);
-		quadra.setNomeQuadra(nomeQuadra);
-		quadra.setTipoQuadra(tipoQuadra);
+		super.getQuadra().setCodigo(codigoQuadra);
+		super.getQuadra().setNome(nomeQuadra);
+		super.getQuadra().setTipo(tipoQuadra);
 
 	}
 	
@@ -103,15 +87,19 @@ public class Reserva{
 		}
 	}
 
+<<<<<<< HEAD:src/Dominio/Reserva.java
 	public Cliente getCliente() {
 		Cliente c = cliente;
 		return c;
 	}
+=======
+>>>>>>> Development:src/Reserva.java
 	
-	protected void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	protected String getCodigo() {
+		return codigo;
 	}
 
+<<<<<<< HEAD:src/Dominio/Reserva.java
 
 	public String getDataReserva() {
 		return dataReserva;
@@ -135,6 +123,10 @@ public class Reserva{
 
 	protected void setHorarioFimReserva(String horarioFimReserva) {
 		this.horarioFimReserva = horarioFimReserva;
+=======
+	protected void setCodigo(String codigo) {
+		this.codigo = codigo;
+>>>>>>> Development:src/Reserva.java
 	}
 
 	public TipoPagamento getModoPagamento() {
@@ -152,6 +144,7 @@ public class Reserva{
 	protected void setParcelas(int parcelas) {
 		this.parcelas = parcelas;
 	}
+<<<<<<< HEAD:src/Dominio/Reserva.java
 
 	public Quadra getQuadra() {
 		Quadra q = quadra;
@@ -161,4 +154,6 @@ public class Reserva{
 	protected void setQuadra(Quadra quadra) {
 		this.quadra = quadra;
 	}
+=======
+>>>>>>> Development:src/Reserva.java
 }

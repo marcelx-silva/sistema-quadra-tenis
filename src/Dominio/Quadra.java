@@ -1,34 +1,44 @@
 package Dominio;
 
 import java.time.format.DateTimeFormatter;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import Enum.TipoQuadra;
 
 public class Quadra{
 	
-	private int codigoQuadra;
-	private String nomeQuadra;
-	private String enderecoQuadra;
+	private String codigo;
+	private String nome;
+	private String endereco;
 
-	private TipoQuadra tipoQuadra;
+	private TipoQuadra tipo;
 	private boolean possuiCobertura;
 	private boolean possuiArquibancada;
 	private boolean possuiAreaDescanso;
 	private boolean estaBloqueada = false;
-	private double precoReserva;
 	
-	public Quadra(int codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean cobertura) {
-		this.setCodigoQuadra(codigoQuadra);
-		this.setNomeQuadra(nomeQuadra);
-		this.setTipoQuadra(tipoQuadra);
+	public Quadra(String codigo, String nome, TipoQuadra tipo, boolean cobertura) {
+		this.setCodigo(codigo);
+		this.setNome(nome);
+		this.setTipo(tipo);
 	}
 	
-	public Quadra(int codigo, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso, boolean bloqueado) {
-		this.setCodigoQuadra(codigo);
-		this.setNomeQuadra(nome);
-		this.setEnderecoQuadra(endereco);
-		this.setTipoQuadra(tipo);
+
+	public Quadra(String codigo, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
+		this.setCodigo(codigo);
+		this.setNome(nome);
+		this.setEndereco(endereco);
+		this.setTipo(tipo);
+		this.setPossuiCobertura(cobertura);
+		this.setPossuiArquibancada(arquibancada);
+		this.setPossuiAreaDescanso(descanso);
+	}
+	
+	public Quadra(String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso, boolean bloqueado) {
+		this.setNome(nome);
+		this.setEndereco(endereco);
+		this.setTipo(tipo);
 		this.setPossuiCobertura(cobertura);
 		this.setPossuiArquibancada(arquibancada);
 		this.setPossuiAreaDescanso(descanso);
@@ -73,7 +83,7 @@ public class Quadra{
 		int periodosTempo = (24 - ((24 - fechamentoSemana) + aberturaSemana)) * 2; 
 		
 		String[][] disponibilidade = new String[quantidadeDias][periodosTempo];
-		ArrayList<String> horariosReservados = Reserva.horariosReservas(codigoQuadra);
+		ArrayList<String> horariosReservados = Reserva.horariosAgendamento(codigo);
 		DateTimeFormatter horarioFormatoPadrao = DateTimeFormatter.ofPattern("HH:mm");
 		LocalDateTime horario = LocalDateTime.now();
 		
@@ -109,12 +119,11 @@ public class Quadra{
 	}
 
 
-	public void cadastraQuadra(int numero, String nome, String endereco, TipoQuadra tipo, boolean cobertura,
-			boolean arquibancada, boolean area) {
-		setCodigoQuadra(numero);
-		setNomeQuadra(nome);
-		setEnderecoQuadra(endereco);
-		setTipoQuadra(tipo);
+	public void cadastraQuadra(String numero, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean area) {
+		setCodigo(numero);
+		setNome(nome);
+		setEndereco(endereco);
+		setTipo(tipo);
 		setPossuiCobertura(cobertura);
 		setPossuiArquibancada(arquibancada);
 		setPossuiAreaDescanso(area);
@@ -122,7 +131,7 @@ public class Quadra{
 
 
 	public boolean verificaNumeroQuadra(int numero) {
-		return (numero == this.getCodigoQuadra());
+		return (numero == Integer.parseInt(this.getCodigo()));
 	}
 
 
@@ -141,7 +150,7 @@ public class Quadra{
 			return TipoQuadra.SAIBRO;
 
 		case 2:
-			return TipoQuadra.SUPERFICIE_SITENTICA;
+			return TipoQuadra.SUPERFICIE_SINTETICA;
 
 		case 3:
 			return TipoQuadra.CIMENTO;
@@ -154,45 +163,46 @@ public class Quadra{
 		}
 	}
 
-	protected double getPrecoReserva() {
-		return precoReserva;
+	public BigDecimal getPrecoReservaTempoMinimo() {
+		if(this.isPossuiCobertura())
+			return new BigDecimal("70");
+		else
+			return new BigDecimal("40");
 	}
 	
-	protected void setPrecoReserva(double valor) {
-		this.precoReserva = valor;
-	}
-
-	public int getCodigoQuadra() {
-		return codigoQuadra;
-	}
-
-	public void setCodigoQuadra(int codigoQuadra) {
-		this.codigoQuadra = codigoQuadra;
-	}
-
-	public String getNomeQuadra() {
-		return nomeQuadra;
-	}
-
-	public void setNomeQuadra(String nomeQuadra) {
-		this.nomeQuadra = nomeQuadra;
-	}
-
-	public String getEnderecoQuadra() {
-		return enderecoQuadra;
-	}
-
-	public void setEnderecoQuadra(String enderecoQuadra) {
-		this.enderecoQuadra = enderecoQuadra;
-	}
-
-	public TipoQuadra getTipoQuadra() {
-		return tipoQuadra;
+	public String getCodigo() {
+		return codigo;
 	}
 
 
-	public void setTipoQuadra(TipoQuadra tipoQuadra) {
-		this.tipoQuadra = tipoQuadra;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	protected void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public TipoQuadra getTipo() {
+		return tipo;
+	}
+
+
+	public void setTipo(TipoQuadra tipo) {
+		this.tipo = tipo;
+
 	}
 
 	public boolean isPossuiCobertura() {
@@ -201,10 +211,6 @@ public class Quadra{
 
 	public void setPossuiCobertura(boolean possuiCobertura) {
 		this.possuiCobertura = possuiCobertura;
-		if(possuiCobertura)
-			setPrecoReserva(70);
-		else
-			setPrecoReserva(40);
 	}
 
 	public boolean isPossuiArquibancada() {

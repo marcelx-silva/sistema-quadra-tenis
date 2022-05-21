@@ -1,31 +1,54 @@
+
 package Dominio;
+import java.util.ArrayList;
+
 
 public class Cliente {
 	
-	private String nomeCliente;
-	private String emailCliente;
-	private String cpfCliente;
+	private String codigo;
+	private String nome;
+	private String email;
+	private String cpf;
 	private String dataNascimento;	
 	private boolean bloqueado = false;
+	private boolean invalidado = false;
+	private boolean habilitado = true;
+
+
+	ArrayList <Cliente> clientes = new ArrayList<Cliente>();
 	
-	public Cliente(String nomeCliente, String cpfCliente) {
-		this.nomeCliente = nomeCliente;
-		this.cpfCliente = cpfCliente;
+	public Cliente(String nome, String cpf) {
+		this.nome = nome;
+		this.cpf = cpf;
 	}
 	
-	public Cliente(String nomeCliente,String emailCliente, String cpfCliente, String dataNascimento, boolean bloqueado){
-		this.nomeCliente = nomeCliente;
-		this.emailCliente = emailCliente;
-		this.cpfCliente = cpfCliente;
+	public Cliente(String codigo, String nome,String email, String cpf, String dataNascimento, boolean bloqueado, boolean invalidado, boolean habilitado){
+		this.codigo = codigo;
+		this.nome = nome;
+		this.email = email;
+		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
 		this.bloqueado = bloqueado;
+		this.invalidado = invalidado;
+		this.habilitado = habilitado;
 	}
 	
-	public void cadastrarCliente(String nomeCliente,String emailCliente, String cpfCliente, String dataNascimento) {
-		this.setNomeCliente(nomeCliente);
-		this.setEmailCliente(emailCliente);
-		this.setCpfCliente(cpfCliente);
+	public Cliente(String nome,String email, String cpf, String dataNascimento, boolean bloqueado, boolean invalidado, boolean habilitado){
+		this.nome = nome;
+		this.email = email;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
+		this.bloqueado = bloqueado;
+		this.invalidado = invalidado;
+		this.habilitado = habilitado;
+	}
+	
+	public void cadastrarCliente(String nome,String email, String cpf, String dataNascimento) {
+		this.setNome(nome);
+		this.setEmail(email);
+		this.setCpf(cpf);
 		this.setDataNascimento(dataNascimento);
+		clientes.add(this);
 	}
 	
 	public void bloqueiaCliente() {
@@ -36,28 +59,41 @@ public class Cliente {
 		this.setBloqueado(false);
 	}
 	
-	public String getNomeCliente() {
-		return nomeCliente;
+	protected String getCodigo() {
+		return codigo;
+
 	}
 
-	protected void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
+	protected void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+	
+	protected String getNome() {
+		return nome;
 	}
 
-	public String getEmailCliente() {
-		return emailCliente;
+
+	protected void setNome(String nome) {
+		this.nome = nome;
+
 	}
 
-	protected void setEmailCliente(String emailCliente) {
-		this.emailCliente = emailCliente;
+	protected String getEmail() {
+		return email;
 	}
 
-	public String getCpfCliente() {
-		return cpfCliente;
+
+	protected void setEmail(String email) {
+		this.email = email;
+
 	}
 
-	protected void setCpfCliente(String cpfCliente) {
-		this.cpfCliente = cpfCliente;
+	protected String getCpf() {
+		return cpf;
+	}
+
+	protected void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getDataNascimento() {
@@ -74,5 +110,21 @@ public class Cliente {
 	
 	protected void setBloqueado(boolean bloqueado) {
 		this.bloqueado = bloqueado;
+	}
+	
+	protected boolean isInvalidado() {
+		return invalidado;
+	}
+
+	protected void setInvalidado(boolean invalidado) {
+		this.invalidado = invalidado;
+	}
+
+	protected boolean isHabilitado() {
+		return habilitado;
+	}
+
+	protected void setHabilitado(boolean habilitado) {
+		this.habilitado = habilitado;
 	}
 }
