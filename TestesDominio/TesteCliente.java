@@ -1,15 +1,19 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import Dominio.Cliente;
 
-class TestesCliente {
+public class TesteCliente {
 
 	Cliente cli = new Cliente("Leandro","emailDoLeandro@gmail.com", "123.456.789-10", "10/10/2010", false, false, true);
 
 	@Test
-	void testeDeCadastroCliente() {	
+	public void testeDeCadastroCliente() {	
 		assertEquals("Leandro", cli.getNome());
 		assertEquals("emailDoLeandro@gmail.com", cli.getEmail());
 		assertEquals("123.456.789-10", cli.getCpf());
@@ -20,13 +24,13 @@ class TestesCliente {
 	}
 	
 	@Test
-	void testeDeBloqueioDeCliente() {
+	public void testeDeBloqueioDeCliente() {
 		cli.bloqueiaCliente();
 		assertTrue(cli.isBloqueado());
 	}
 	
 	@Test
-	void testeDeDesbloqueioDeCliente() {
+	public void testeDeDesbloqueioDeCliente() {
 		cli.desbloqueiaCliente();
 		assertFalse(cli.isBloqueado());
 	}

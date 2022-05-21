@@ -1,13 +1,16 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class TestesUsuario {
+public class TesteUsuario {
 
 	Usuario usu = new Usuario("Nathan", "132.456.879-10", "emailDoNathan@gmail.com", "senha segura", false, false, false, false);
 
 	@Test
-	void testeDeCadastroUsuario() {	
+	public void testeDeCadastroUsuario() {	
 		assertEquals("Nathan", usu.getNome());
 		assertEquals("emailDoNathan@gmail.com", usu.getEmail());
 		assertEquals("132.456.879-10", usu.getCpf());
@@ -20,101 +23,101 @@ class TestesUsuario {
 	}	
 	
 	@Test
-	void testeDeBloqueioDeUsuario() {
+	public void testeDeBloqueioDeUsuario() {
 		usu.bloquearUsuario();
 		assertTrue(usu.isEstaBloqueado());
 	}
 	
 	@Test
-	void testeDeDesbloqueioDeUsuario() {
+	public void testeDeDesbloqueioDeUsuario() {
 		usu.desbloquearUsuario();
 		assertFalse(usu.isEstaBloqueado());
 	}
 	
 	@Test
-	void testeVerificaUsuarioExistente() {
+	public void testeVerificaUsuarioExistente() {
 		assertTrue(usu.verificarUsuario("132.456.879-10"));
 	}
 	
 	@Test
-	void testeVerificaUsuarioNaoExistente() {
+	public void testeVerificaUsuarioNaoExistente() {
 		assertFalse(usu.verificarUsuario("133.456.879-10"));
 	}
 	
 	@Test
-	void testeMudarNomeUsuario() {
+	public void testeMudarNomeUsuario() {
 		usu.alteraUsuario("Nathan Soares", 1);
 		assertEquals("Nathan Soares", usu.getNome());
 	}
 	
 	@Test
-	void testeMudarCPFUsuario() {
+	public void testeMudarCPFUsuario() {
 		usu.alteraUsuario("111.456.879-10", 2);
 		assertEquals("111.456.879-10", usu.getCpf());
 	}
 	
 	@Test
-	void testeMudarEmailUsuario() {
+	public void testeMudarEmailUsuario() {
 		usu.alteraUsuario("emailNovo@gmail.com", 3);
 		assertEquals("emailNovo@gmail.com", usu.getEmail());
 	}
 	
 	@Test
-	void testeMudarSenhaUsuario() {
+	public void testeMudarSenhaUsuario() {
 		usu.alteraUsuario("senha mais segura ainda", 4);
 		assertEquals("senha mais segura ainda", usu.getSenha());
 	}
 	
 	@Test
-	void darAcessoGestorQuadras() {
+	public void darAcessoGestorQuadras() {
 		usu.alteraUsuario("sim", 5);
 		assertTrue(usu.isAcessoGestorQuadras());
 	}
 	
 	@Test
-	void retirarAcessoGestorQuadras() {
+	public void retirarAcessoGestorQuadras() {
 		usu.alteraUsuario("n�o", 5);
 		assertFalse(usu.isAcessoGestorQuadras());
 	}
 	
 	@Test
-	void darAcessoGestorUsuario() {
+	public void darAcessoGestorUsuario() {
 		usu.alteraUsuario("sim", 6);
 		assertTrue(usu.isAcessoGestorUsuarios());
 	}
 	
 	@Test
-	void retirarAcessoGestorUsuario() {
+	public void retirarAcessoGestorUsuario() {
 		usu.alteraUsuario("n�o", 6);
 		assertFalse(usu.isAcessoGestorUsuarios());
 	}
 	
 	@Test
-	void darAcessoRelatorio() {
+	public void darAcessoRelatorio() {
 		usu.alteraUsuario("sim", 7);
 		assertTrue(usu.isAcessoRelatorios());
 	}
 	
 	@Test
-	void retirarAcessoRelatorio() {
+	public void retirarAcessoRelatorio() {
 		usu.alteraUsuario("n�o", 7);
 		assertFalse(usu.isAcessoRelatorios());
 	}
 	
 	@Test
-	void darAcessoZelador() {
+	public void darAcessoZelador() {
 		usu.alteraUsuario("sim", 8);
 		assertTrue(usu.isAcessoZelador());
 	}
 	
 	@Test
-	void retirarAcessoZelador() {
+	public void retirarAcessoZelador() {
 		usu.alteraUsuario("n�o", 8);
 		assertFalse(usu.isAcessoZelador());
 	}
 	
 	@Test
-	void AutenticarTestIsTrue() {
+	public void AutenticarTestIsTrue() {
 		
 		Usuario user = new Usuario("admin", "0001", "", "admin", true, true, true, true);
 		user.adicionarUsuario(user);
@@ -122,7 +125,7 @@ class TestesUsuario {
 	}
 
 	@Test
-	void AutenticarTestIsFalse() {
+	public void AutenticarTestIsFalse() {
 		
 		Usuario user = new Usuario("admin", "0001", "", "admin", true, true, true, true);
 		user.adicionarUsuario(user);

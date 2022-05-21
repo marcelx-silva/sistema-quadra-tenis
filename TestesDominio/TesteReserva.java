@@ -1,14 +1,14 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import java.time.LocalTime;
-import java.time.LocalDate;
+import org.junit.Test;
 
-import org.junit.jupiter.api.Test;
+public class TesteReserva {
 
-class TestesReserva {
-	
 	DateTimeFormatter horarioFormatoPadrao = DateTimeFormatter.ofPattern("HH:mm");
 	DateTimeFormatter dataFormatoPadrao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
@@ -17,7 +17,7 @@ class TestesReserva {
 	Reserva res = new Reserva(qua, cli, LocalDate.of(2022, 5, 12), LocalTime.of(10, 0), LocalTime.of(11, 0), TipoPagamento.DINHEIRO, 1);
 	
 	@Test
-	void testeCadastroReserva() {
+	public void testeCadastroReserva() {
 		
 		assertEquals("Leandro",res.getCliente().getNome());
 		assertEquals("123.456.789-10",res.getCliente().getCpf());		
