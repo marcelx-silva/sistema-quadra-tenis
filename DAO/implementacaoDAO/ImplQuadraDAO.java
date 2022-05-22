@@ -20,6 +20,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 	
 	QueriesQuadra q = new QueriesQuadra(); 
 	//TODO: consertar a diferen�a de tipagem de TipoQuadra 
+	@Override
 	public List<Quadra> obterTodasQuadras() throws IOException, SQLException{
 		
 		List<Quadra> quadrasLista = new ArrayList<>();
@@ -49,21 +50,28 @@ public class ImplQuadraDAO implements QuadraDAO{
 		
 		
 	}
-	
+	@Override
 	public List<Quadra> obterQuadraHabilitadas(boolean habilitado){}
 	
+	@Override
 	public List<Quadra> obterQuadraBloqueadas(boolean bloqueado){}
 	
+	@Override
 	public Quadra obterQuadraPeloId(int id) {}
 	
+	@Override
 	public boolean CadastrarQuadra(Quadra q) {}
 	
+	@Override
 	public boolean AlterarDadosQuadra(String alteracao, int escolha) {}
 	
+	@Override
 	public boolean HabilitarQuadra(int id, boolean habilitado) {}
 	
+	@Override
 	public boolean BloquearQuadra(int id, boolean bloqueado) {}
 	
+	@Override
 	public boolean DeletarQuadra(int id) {}
 	
 }
