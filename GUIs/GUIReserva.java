@@ -1,16 +1,9 @@
 import java.util.Scanner;
-<<<<<<<< HEAD:InterfacesGUI/interfaceReserva.java
-import Dominio.Reserva;
-import Dominio.Cliente;
-import Dominio.Quadra;
 import Enum.TipoQuadra;
 import Enum.TipoPagamento;
-
-public final class interfaceReserva {
-
-
-	Scanner scanner = new Scanner(System.in);
-
+import Utilitario.UtilidadesConversao;
+import Utilitario.UtilidadesGUI;
+import Dominio.*;
 
 public class GUIReserva {
 	Scanner scanner = new Scanner(System.in);

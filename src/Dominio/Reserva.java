@@ -87,12 +87,12 @@ public class Reserva extends Agendamento{
 	}
 */
 	
-	protected String getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 	
 		
-	protected void setCodigo(String codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
@@ -100,7 +100,7 @@ public class Reserva extends Agendamento{
 		return modoPagamento;
 	}
 
-	protected void setModoPagamento(TipoPagamento modoPagamento) {
+	public void setModoPagamento(TipoPagamento modoPagamento) {
 		this.modoPagamento = modoPagamento;
 	}
 
@@ -108,7 +108,7 @@ public class Reserva extends Agendamento{
 		return parcelas;
 	}
 
-	protected void setParcelas(int parcelas) {
+	public void setParcelas(int parcelas) {
 		this.parcelas = parcelas;
 	}	
 }

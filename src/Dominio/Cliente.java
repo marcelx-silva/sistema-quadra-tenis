@@ -59,40 +59,40 @@ public class Cliente {
 		this.setBloqueado(false);
 	}
 	
-	protected String getCodigo() {
+	public String getCodigo() {
 		return codigo;
 
 	}
 
-	protected void setCodigo(String codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 	
-	protected String getNome() {
+	public String getNome() {
 		return nome;
 	}
 
 
-	protected void setNome(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 
 	}
 
-	protected String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
 
-	protected void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 
 	}
 
-	protected String getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	protected void setCpf(String cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -100,7 +100,7 @@ public class Cliente {
 		return dataNascimento;
 	}
 
-	protected void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -108,23 +108,23 @@ public class Cliente {
 		return bloqueado;
 	}
 	
-	protected void setBloqueado(boolean bloqueado) {
+	public void setBloqueado(boolean bloqueado) {
 		this.bloqueado = bloqueado;
 	}
 	
-	protected boolean isInvalidado() {
+	public boolean isInvalidado() {
 		return invalidado;
 	}
 
-	protected void setInvalidado(boolean invalidado) {
+	public void setInvalidado(boolean invalidado) {
 		this.invalidado = invalidado;
 	}
 
-	protected boolean isHabilitado() {
+	public boolean isHabilitado() {
 		return habilitado;
 	}
 
-	protected void setHabilitado(boolean habilitado) {
+	public void setHabilitado(boolean habilitado) {
 		this.habilitado = habilitado;
 	}
 }

@@ -100,92 +100,91 @@ public class Usuario {
 		}
 	}
 	
-	protected String getNome() {
+	public String getNome() {
 		return nome;
 	}
 
-	protected String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	protected String getSenha() {
+	public String getSenha() {
 		return senha;
 	}
 	
-	protected String getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	protected String getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	protected void setCodigo(String codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
-	protected void setNome(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	protected void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	protected void setSenha(String senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 
-	protected void setCpf(String cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-
-	protected boolean isEstaDesabilitado() {
+	public boolean isEstaDesabilitado() {
 		return estaDesabilitado;
 	}
 
-	protected boolean isEstaBloqueado() {
+	public boolean isEstaBloqueado() {
 		return estaBloqueado;
 	}
 	
-	protected void setEstaDesabilitado(boolean estaDesabilitado) {
+	public void setEstaDesabilitado(boolean estaDesabilitado) {
 		this.estaDesabilitado = estaDesabilitado;
 	}
 
-	protected void setEstaBloqueado(boolean estaBloqueado) {
+	public void setEstaBloqueado(boolean estaBloqueado) {
 		this.estaBloqueado = estaBloqueado;
 	}
 	
-	protected boolean isAcessoGestorQuadras() {
+	public boolean isAcessoGestorQuadras() {
 		return acessoGestorQuadras;
 	}
 
-	protected boolean isAcessoGestorUsuarios() {
+	public boolean isAcessoGestorUsuarios() {
 		return acessoGestorUsuarios;
 	}
 
-	protected boolean isAcessoRelatorios() {
+	public boolean isAcessoRelatorios() {
 		return acessoRelatorios;
 	}
 	
-	protected boolean isAcessoZelador() {
+	public boolean isAcessoZelador() {
 		return acessoZelador;
 	}
 	
-	protected void setAcessoGestorQuadras(boolean acessoGestorQuadras) {  
+	public void setAcessoGestorQuadras(boolean acessoGestorQuadras) {  
 		this.acessoGestorQuadras = acessoGestorQuadras;
 	}
 	
-	protected void setAcessoGestorUsuarios(boolean acessoGestorUsuarios) {
+	public void setAcessoGestorUsuarios(boolean acessoGestorUsuarios) {
 		this.acessoGestorUsuarios = acessoGestorUsuarios;
 	}
 
-	protected void setAcessoRelatorios(boolean acessoRelatorios) {
+	public void setAcessoRelatorios(boolean acessoRelatorios) {
 		this.acessoRelatorios = acessoRelatorios;
 	}
 
-	protected void setAcessoZelador(boolean acessoZelador) {
+	public void setAcessoZelador(boolean acessoZelador) {
 		this.acessoZelador = acessoZelador;
 	}
 	
@@ -214,7 +213,7 @@ public class Usuario {
 		return false;
 	}
 	
-	protected Usuario getUsuarioAtual() {
+	 public Usuario getUsuarioAtual() {
 		return userAtual;
 	}
 }

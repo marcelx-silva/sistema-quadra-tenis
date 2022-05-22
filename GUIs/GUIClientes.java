@@ -1,6 +1,10 @@
 import java.util.Scanner;
 import Dominio.Cliente;
 
+import Utilitario.UtilidadesConversao;
+import Utilitario.UtilidadesGUI;
+import Dominio.*;
+
 public class GUIClientes {
 
 Scanner scanner = new Scanner(System.in);
@@ -19,7 +23,7 @@ Scanner scanner = new Scanner(System.in);
 					+ "\n3. BLOQUEAR/DESBLOQUEAR CLIENTES"
 					+ "\n4. ALTERAR DADOS DE CLIENTES"
 					+ "\n5. SAIR DO MENU"
-					+ "\nOPÇÃO: ");
+					+ "\nOPï¿½ï¿½O: ");
 			
 			operadorMenu = scanner.nextInt();
 			scanner.nextLine();
@@ -46,7 +50,7 @@ Scanner scanner = new Scanner(System.in);
 					break;
 					
 				default:
-					UtilidadesGUI.exibeMensagem("Opção Inválida!! \n"); 
+					UtilidadesGUI.exibeMensagem("Opï¿½ï¿½o Invï¿½lida!! \n"); 
 					
 
 			}

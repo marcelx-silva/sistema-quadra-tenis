@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 
 import org.junit.Test;
 
+import Dominio.Quadra;
+import Enum.TipoQuadra;
+
 public class TesteQuadra {
 
 Quadra qua = new Quadra("15","Quadra Municipal de Mogi das Cruzes","Rua da Quadra",TipoQuadra.SAIBRO,true,true,true);

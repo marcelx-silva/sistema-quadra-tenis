@@ -50,6 +50,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 		
 		
 	}
+	
 	@Override
 	public List<Quadra> obterQuadraHabilitadas(boolean habilitado){}
 	

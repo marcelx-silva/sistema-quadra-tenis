@@ -1,14 +1,20 @@
 import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import Dominio.Quadra;
+import Dominio.Reserva;
+import Dominio.Cliente;
+import Enum.TipoQuadra;
+import Enum.TipoPagamento;
+
 import org.junit.Test;
 
 public class TesteReserva {
 
+	
 	DateTimeFormatter horarioFormatoPadrao = DateTimeFormatter.ofPattern("HH:mm");
 	DateTimeFormatter dataFormatoPadrao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	

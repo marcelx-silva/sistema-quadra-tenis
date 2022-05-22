@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import Utilitario.UtilidadesConversao;
+import Utilitario.UtilidadesGUI;
+import Dominio.*;
+import Enum.TipoQuadra;
 
 public class GUIQuadras {
 	Scanner scanner = new Scanner(System.in);

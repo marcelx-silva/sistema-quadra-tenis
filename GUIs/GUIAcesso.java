@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+import Utilitario.UtilidadesConversao;
+import Utilitario.UtilidadesGUI;
+import Dominio.*;
+
 public class GUIAcesso {
 
 	Scanner scanner = new Scanner(System.in);
