@@ -1,6 +1,8 @@
 package Dominio;
 
 import java.util.ArrayList;
+import Utilitario.UtilidadesConversao;
+import Utilitario.UtilidadesGUI;
 
 public class Usuario {	
 	

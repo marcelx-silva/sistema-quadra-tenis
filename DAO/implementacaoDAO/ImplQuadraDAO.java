@@ -19,7 +19,7 @@ import conexao.ConexaoBD;
 public class ImplQuadraDAO implements QuadraDAO{
 	
 	QueriesQuadra q = new QueriesQuadra(); 
-	//TODO: consertar a diferença de tipagem de TipoQuadra 
+	//TODO: consertar a diferenï¿½a de tipagem de TipoQuadra 
 	public List<Quadra> obterTodasQuadras() throws IOException, SQLException{
 		
 		List<Quadra> quadrasLista = new ArrayList<>();
@@ -30,11 +30,11 @@ public class ImplQuadraDAO implements QuadraDAO{
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()) {
-			Quadra quadra = new Quadra(0,"","",null,false,false,false,false);
-			quadra.setCodigoQuadra(rs.getInt("qua_id"));
-			quadra.setNomeQuadra(rs.getString("qua_nome"));
-			quadra.setEnderecoQuadra(rs.getString("qua_endereco"));
-			quadra.setTipoQuadra(rs.getInt("qua_id_tipo"));
+			Quadra quadra = new Quadra("","","",null,false,false,false);
+			quadra.setCodigo(rs.getString("qua_id"));
+			quadra.setNome(rs.getString("qua_nome"));
+			quadra.setEndereco(rs.getString("qua_endereco"));
+			quadra.setTipo(rs.getInt("qua_id_tipo"));
 			quadra.setPossuiCobertura(rs.getBoolean("qua_cobertura"));
 			quadra.setPossuiArquibancada(rs.getBoolean("qua_arquibancada"));
 			quadra.setPossuiAreaDescanso(rs.getBoolean("qua_area_descanso"));
@@ -65,5 +65,5 @@ public class ImplQuadraDAO implements QuadraDAO{
 	public boolean BloquearQuadra(int id, boolean bloqueado) {}
 	
 	public boolean DeletarQuadra(int id) {}
-
+	
 }

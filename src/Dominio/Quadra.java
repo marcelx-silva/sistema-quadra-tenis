@@ -183,7 +183,7 @@ public class Quadra{
 		return nome;
 	}
 
-	protected void setNome(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 

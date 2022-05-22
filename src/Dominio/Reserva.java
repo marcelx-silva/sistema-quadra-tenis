@@ -87,41 +87,10 @@ public class Reserva extends Agendamento{
 	}
 */
 	
-	/* ERRO LINHA 93
-	 *  
-	public Cliente getCliente() {
-		Cliente c = cliente;
-		return c;
-	}
-	*/
-	
 	protected String getCodigo() {
 		return codigo;
 	}
 	
-	public String getDataReserva() {
-		return dataReserva;
-	}
-
-	protected void setDataReserva(String dataReserva) {
-		this.dataReserva = dataReserva;
-	}
-
-	public String getHorarioInicioReserva() {
-		return horarioInicioReserva;
-	}
-
-	protected void setHorarioInicioReserva(String horarioInicioReserva) {
-		this.horarioInicioReserva = horarioInicioReserva;
-	}
-
-	public String getHorarioFimReserva() {
-		return horarioFimReserva;
-	}
-
-	protected void setHorarioFimReserva(String horarioFimReserva) {
-		this.horarioFimReserva = horarioFimReserva;
-	}
 		
 	protected void setCodigo(String codigo) {
 		this.codigo = codigo;
@@ -141,15 +110,5 @@ public class Reserva extends Agendamento{
 
 	protected void setParcelas(int parcelas) {
 		this.parcelas = parcelas;
-	}
-
-	public Quadra getQuadra() {
-		Quadra q = quadra;
-		return q;
-	}
-
-	protected void setQuadra(Quadra quadra) {
-		this.quadra = quadra;
-	}
-	
+	}	
 }
