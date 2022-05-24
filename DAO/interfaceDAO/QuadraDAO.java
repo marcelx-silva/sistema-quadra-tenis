@@ -11,7 +11,7 @@ public interface QuadraDAO {
 	
 	List<Quadra> obterTodasQuadras() throws IOException, SQLException;
 	
-	List<Quadra> obterQuadraHabilitadas(boolean habilitado);
+	List<Quadra> obterQuadrasHabilitadas(boolean habilitado) throws IOException, SQLException;
 	
 	List<Quadra> obterQuadraBloqueadas(boolean bloqueado);
 	

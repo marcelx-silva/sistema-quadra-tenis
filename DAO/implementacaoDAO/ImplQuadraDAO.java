@@ -48,11 +48,39 @@ public class ImplQuadraDAO implements QuadraDAO{
 		
 		return quadrasListaCopia;
 		
-		
 	}
 	
 	@Override
-	public List<Quadra> obterQuadraHabilitadas(boolean habilitado){}
+	public List<Quadra> obterQuadrasHabilitadas(boolean habilitado) throws IOException, SQLException{
+		
+		List<Quadra> quadraLista = new ArrayList<Quadra>();
+		
+		FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA");
+		q.queriesQuadra.load(in);
+		in.close();
+		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_DISABLE_QUADRA"));
+		stmt.setBoolean(1, habilitado);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			
+			String id = rs.getString("qua_id");
+			String nome = rs.getString("qua_nome");
+			String endereco = rs.getString("qua_endereco");
+			int tipo = rs.getInt("qua_id_tipos");
+			boolean coberta = rs.getBoolean("qua_cobertura");
+			boolean arquibancada = rs.getBoolean("qua_arquibancada");
+			boolean descanso = rs.getBoolean("qua_area_descanso");
+			boolean bloqueada = rs.getBoolean("qua_bloqueado");
+			Quadra quadra = new Quadra(id, nome, endereco, tipo, coberta, arquibancada, descanso, bloqueada);
+			quadraLista.add(quadra);
+		}
+		
+		//
+		ConexaoBD.encerrarConexaoBD(null, stmt);
+		
+		return quadraLista;
+	}
 	
 	@Override
 	public List<Quadra> obterQuadraBloqueadas(boolean bloqueado){}

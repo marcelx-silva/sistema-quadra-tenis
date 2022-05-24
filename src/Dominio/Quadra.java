@@ -44,7 +44,17 @@ public class Quadra{
 		this.setPossuiAreaDescanso(descanso);
 		this.setEstaBloqueada(bloqueado);
 	}
-		
+
+	public Quadra(String codigo,String nome, String endereco, int tipo, boolean cobertura, boolean arquibancada, boolean descanso, boolean bloqueado) {
+		this.setCodigo(codigo);	
+		this.setNome(nome);
+		this.setEndereco(endereco);
+		this.setTipo(identificaTipoQuadra(tipo));
+		this.setPossuiCobertura(cobertura);
+		this.setPossuiArquibancada(arquibancada);
+		this.setPossuiAreaDescanso(descanso);
+		this.setEstaBloqueada(bloqueado);
+	}
 	
 	public static ArrayList<Quadra> procuraQuadras(String dia, String horarioInicio, String horarioFim, 
 			String tipo, boolean cobertura, boolean arquibancada, boolean areaDescanso){
