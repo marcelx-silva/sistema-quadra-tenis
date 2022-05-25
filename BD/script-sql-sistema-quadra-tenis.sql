@@ -106,6 +106,14 @@ CREATE TABLE reserva(
     FOREIGN KEY(res_id_quadra) REFERENCES quadra(qua_id) 
 );
 
+ALTER TABLE usuario 
+ADD usu_acesso_gestor_quadra BOOL NOT NULL DEFAULT 0,
+ADD usu_acesso_gestor_usuario BOOL NOT NULL DEFAULT 0,
+ADD usu_acesso_relatorio BOOL NOT NULL DEFAULT 0,
+ADD usu_acesso_zelador BOOL NOT NULL DEFAULT 1,
+DROP COLUMN usu_id_permissao;
+
+DROP TABLE permissao;
 
 SHOW TABLES;
 
