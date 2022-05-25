@@ -10,13 +10,13 @@ public interface UsuarioDAO {
 	
 	List<Usuario> obterTodasUsuario() throws IOException, SQLException;
 	
-	List<Usuario> obterUsuarioHabilitados(boolean habilitado);
+	List<Usuario> obterUsuarioHabilitados(boolean habilitado) throws IOException, SQLException;
 	
-	List<Usuario> obterUsuarioBloqueados(boolean bloqueado);
+	List<Usuario> obterUsuarioBloqueados(boolean bloqueado) throws IOException, SQLException;
 	
-	List<Usuario> obterUsuarioPelaPermissao(String permissao);
+	List<Usuario> obterUsuarioPelaPermissao(String permissao) throws IOException, SQLException;
 	
-	Usuario obterUsuarioPeloId(int id);
+	Usuario obterUsuarioPeloId(int id) throws IOException, SQLException;
 	
 	boolean CadastrarUsuario(Usuario u);
 	

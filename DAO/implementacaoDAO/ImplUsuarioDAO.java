@@ -50,9 +50,9 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	}
 
 	@Override
-	public List<Usuario> obterUsuarioHabilitados(boolean habilitado) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Usuario> obterUsuarioHabilitados(boolean habilitado)  throws IOException, SQLException{
+
+	return null;
 	}
 
 	@Override
