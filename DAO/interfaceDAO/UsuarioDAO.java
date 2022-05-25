@@ -1,11 +1,14 @@
 package interfaceDAO;
 
 import Dominio.Usuario;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UsuarioDAO {
 	
-	List<Usuario> obterTodasUsuario();
+	List<Usuario> obterTodasUsuario() throws IOException, SQLException;
 	
 	List<Usuario> obterUsuarioHabilitados(boolean habilitado);
 	

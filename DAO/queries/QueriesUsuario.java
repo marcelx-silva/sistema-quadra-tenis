@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class QueriesUsuario {
 	
-	Properties queriesUsuario = new Properties();
+	public Properties queriesUsuario = new Properties();
 	
 	protected void consultarUsuario() throws IOException{
 		
