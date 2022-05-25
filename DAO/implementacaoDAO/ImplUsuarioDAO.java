@@ -20,6 +20,7 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	
 	@Override
 	public List<Usuario> obterTodasUsuario() throws IOException, SQLException{
+		
 		List<Usuario> todosUsuarios = new ArrayList<>();
 		
 		FileInputStream in = new FileInputStream("QUERY_CONSULTA_USUARIO");
@@ -52,7 +53,34 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	@Override
 	public List<Usuario> obterUsuarioHabilitados(boolean habilitado)  throws IOException, SQLException{
 
-	return null;
+		List<Usuario> todosUsuariosHabilitados = new ArrayList<>();
+		
+		FileInputStream in = new FileInputStream("QUERY_CONSULTA_USUARIO");
+		q.queriesUsuario.load(in);
+		in.close();
+		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("SELECT_ALL_FROM_USUARIO_HABILITADO"));
+		stmt.setBoolean(1, habilitado);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			Usuario usu = new Usuario("", "", "", "", false, false, false, false);
+			
+			usu.setCodigo(rs.getString("usu_id"));
+			usu.setNome(rs.getString("usu_nome"));
+			usu.setEmail(rs.getString("usu_email"));
+			usu.setSenha(rs.getString("usu_senha"));
+			usu.setAcessoGestorQuadras(rs.getBoolean("usu_acesso_gestor_quadra"));
+			usu.setAcessoGestorUsuarios(rs.getBoolean("usu_acesso_gestor_usuario"));
+			usu.setAcessoRelatorios(rs.getBoolean("usu_acesso_relatorio"));
+			usu.setAcessoZelador(rs.getBoolean("usu_acesso_zelador"));
+			
+			todosUsuariosHabilitados.add(usu);
+		}
+		
+		List<Usuario> copiaTodosUsuariosHabilitados = new ArrayList<>();
+		copiaTodosUsuariosHabilitados.addAll(todosUsuariosHabilitados);
+		
+		return copiaTodosUsuariosHabilitados;
 	}
 
 	@Override
