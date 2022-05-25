@@ -27,12 +27,33 @@ FROM usuario
 WHERE usu_bloqueado = ?;
 
 
-/*PROJETA USUARIOS PELA PERMISSAO*/
+/*PROJETA USUARIOS COM PERMISSAO DE ZELADOR*/
 SELECT usu_id 'ID', usu_nome 'Nome', usu_senha 'Senha', usu_email 'E-mail',date_format(usu_dt_cadastro,"%d-%m-%Y") 'Data de Cadastro', 
 	   IF(usu_acesso_gestor_quadra,'Sim','Não') 'Gestor de Quadras', IF(usu_acesso_gestor_usuario,'Sim','Não') 'Gestor de Usuários', IF(usu_acesso_relatorio,'Sim','Não') 'Acesso a Relatórios', 
        IF(usu_acesso_zelador,'Sim', 'Não') 'Zelador', IF(usu_bloqueado,'Sim','Não') 'Bloqueado', IF(usu_habilitado,'Sim','Não') 'Habilitado'
 FROM usuario
-WHERE usu_permissao = ?;
+WHERE usu_acesso_zelador = ?;
+
+/*PROJETA USUARIOS COM PERMISSAO DE GESTOR DE USUARIO*/
+SELECT usu_id 'ID', usu_nome 'Nome', usu_senha 'Senha', usu_email 'E-mail',date_format(usu_dt_cadastro,"%d-%m-%Y") 'Data de Cadastro', 
+	   IF(usu_acesso_gestor_quadra,'Sim','Não') 'Gestor de Quadras', IF(usu_acesso_gestor_usuario,'Sim','Não') 'Gestor de Usuários', IF(usu_acesso_relatorio,'Sim','Não') 'Acesso a Relatórios', 
+       IF(usu_acesso_zelador,'Sim', 'Não') 'Zelador', IF(usu_bloqueado,'Sim','Não') 'Bloqueado', IF(usu_habilitado,'Sim','Não') 'Habilitado'
+FROM usuario
+WHERE usu_acesso_usuario = ?;
+
+/*PROJETA USUARIOS COM PERMISSAO DE GESTOR DE QUADRAS*/
+SELECT usu_id 'ID', usu_nome 'Nome', usu_senha 'Senha', usu_email 'E-mail',date_format(usu_dt_cadastro,"%d-%m-%Y") 'Data de Cadastro', 
+	   IF(usu_acesso_gestor_quadra,'Sim','Não') 'Gestor de Quadras', IF(usu_acesso_gestor_usuario,'Sim','Não') 'Gestor de Usuários', IF(usu_acesso_relatorio,'Sim','Não') 'Acesso a Relatórios', 
+       IF(usu_acesso_zelador,'Sim', 'Não') 'Zelador', IF(usu_bloqueado,'Sim','Não') 'Bloqueado', IF(usu_habilitado,'Sim','Não') 'Habilitado'
+FROM usuario
+WHERE usu_acesso_gestor_quadra = ?;
+
+/*PROJETA USUARIOS COM PERMISSAO DE RELATORIOS*/
+SELECT usu_id 'ID', usu_nome 'Nome', usu_senha 'Senha', usu_email 'E-mail',date_format(usu_dt_cadastro,"%d-%m-%Y") 'Data de Cadastro', 
+	   IF(usu_acesso_gestor_quadra,'Sim','Não') 'Gestor de Quadras', IF(usu_acesso_gestor_usuario,'Sim','Não') 'Gestor de Usuários', IF(usu_acesso_relatorio,'Sim','Não') 'Acesso a Relatórios', 
+       IF(usu_acesso_zelador,'Sim', 'Não') 'Zelador', IF(usu_bloqueado,'Sim','Não') 'Bloqueado', IF(usu_habilitado,'Sim','Não') 'Habilitado'
+FROM usuario
+WHERE usu_acesso_relatorio = ?;
 
 
 /*CADASTRAR USUARIO*/
