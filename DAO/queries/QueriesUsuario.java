@@ -8,7 +8,7 @@ public class QueriesUsuario {
 	
 	public Properties queriesUsuario = new Properties();
 	
-	protected void consultarUsuario() throws IOException{
+	public void consultarUsuario() throws IOException{
 		
 		queriesUsuario.setProperty("SELECT_ALL_FROM_ALL_USUARIO", "SELECT usu_id 'ID', usu_nome 'Nome', usu_senha 'Senha', usu_email 'E-mail',date_format(usu_dt_cadastro,\"%d-%m-%Y\") 'Data de Cadastro', \r\n"
 				+ "IF(usu_acesso_gestor_quadra,'Sim','Não') 'Gestor de Quadras', IF(usu_acesso_gestor_usuario,'Sim','Não') 'Gestor de Usuários', IF(usu_acesso_relatorio,'Sim','Não') 'Acesso a Relatórios', \r\n"
@@ -64,9 +64,9 @@ public class QueriesUsuario {
 		out.close();
 	}
 	
-	protected void DMLUsuario() throws IOException{
+	public void DMLUsuario() throws IOException{
 		
-		queriesUsuario.setProperty("INSERT_INTO_USUARIO", "INSERT INTO usuario(usu_nome, usu_senha, usu_email, usu_dt_cadastro) VALUES (?,?,?,?);");
+		queriesUsuario.setProperty("INSERT_INTO_USUARIO", "INSERT INTO usuario(usu_nome, usu_email, usu_senha) VALUES (?,?,?);");
 		
 		queriesUsuario.setProperty("UPDATE_USU_NOME", "UPDATE usuario SET usu_nome = ? WHERE usu_id = ?;");
 		queriesUsuario.setProperty("UPDATE_USU_EMAIL", "UPDATE usuario SET usu_email = ? WHERE usu_id = ?;");

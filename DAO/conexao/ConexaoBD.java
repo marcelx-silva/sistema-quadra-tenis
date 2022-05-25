@@ -15,7 +15,7 @@ public class ConexaoBD {
 		
 		try {
 			
-			String urlConexao = "jdbc:mysql://127.0.0.1:3306/mysql";
+			String urlConexao = "jdbc:mysql://127.0.0.1:3306/sistema_clube_tenis";
 			String usuAdmin = "root";
 			String senhaAdmin = "5432es";
 			

@@ -18,7 +18,7 @@ public interface UsuarioDAO {
 	
 	Usuario obterUsuarioPeloId(int id) throws IOException, SQLException;
 	
-	boolean CadastrarUsuario(Usuario u);
+	boolean CadastrarUsuario(Usuario u) throws IOException;
 	
 	boolean AlterarDadosUsuario(String alterecao, int escolha);
 	

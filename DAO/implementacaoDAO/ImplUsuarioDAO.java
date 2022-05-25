@@ -102,9 +102,34 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	}
 
 	@Override
-	public boolean CadastrarUsuario(Usuario u) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean CadastrarUsuario(Usuario u){
+		
+		try {
+			q.DMLUsuario();
+			FileInputStream in = new FileInputStream("DML_USUARIO.properties");
+			q.queriesUsuario.load(in);
+			in.close();
+		
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("INSERT_INTO_USUARIO"));
+
+			stmt.setString(1, u.getNome());
+			stmt.setString(2, u.getEmail());
+			stmt.setString(3, u.getSenha());
+
+			stmt.executeUpdate();
+			
+			return true;
+			
+		}catch(SQLException e) {
+
+			e.printStackTrace();
+			return false;
+			
+		}catch(IOException e) {
+
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
