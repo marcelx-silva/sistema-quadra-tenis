@@ -21,7 +21,7 @@ CREATE TABLE quadra(
 	qua_status BOOLEAN NOT NULL,
 	qua_dt_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	qua_id_tipo INTEGER NOT NULL,
-    qua_bloqueado BOOL NOT NULL DEFAULT 0, 
+    	qua_bloqueado BOOL NOT NULL DEFAULT 0, 
 	qua_habilitado BOOL NOT NULL DEFAULT 1,
     
 	
@@ -41,27 +41,20 @@ CREATE TABLE manutencao(
 	FOREIGN KEY(man_cod_quadra) REFERENCES quadra(qua_id)
 );
 
-
-
-CREATE TABLE permissao(
-	perm_id INTEGER NOT NULL AUTO_INCREMENT,
-	perm_nome VARCHAR(25) NOT NULL,
-	
-	PRIMARY KEY (perm_id)
-);
-
 CREATE TABLE usuario(
 	usu_id INTEGER NOT NULL AUTO_INCREMENT,
 	usu_nome VARCHAR(50) NOT NULL,
 	usu_senha VARCHAR(20) NOT NULL,
 	usu_email VARCHAR(50) NOT NULL,
 	usu_dt_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	usu_id_permissao INTEGER NOT NULL,
+	usu_acesso_gestor_quadra BOOL NOT NULL DEFAULT 0,
+	usu_acesso_gestor_usuario BOOL NOT NULL DEFAULT 0,
+	usu_acesso_relatorio BOOL NOT NULL DEFAULT 0,
+	usu_acesso_zelador BOOL NOT NULL DEFAULT 1,
 	usu_bloqueado BOOL NOT NULL DEFAULT 0, 
 	usu_habilitado BOOL NOT NULL DEFAULT 1,
 	
-	PRIMARY KEY (usu_id),
-	FOREIGN KEY (usu_id_permissao) REFERENCES permissao(perm_id)
+	PRIMARY KEY (usu_id)
 );
 
 
@@ -105,15 +98,6 @@ CREATE TABLE reserva(
     FOREIGN KEY(res_id_cliente) REFERENCES cliente(cli_id),
     FOREIGN KEY(res_id_quadra) REFERENCES quadra(qua_id) 
 );
-
-ALTER TABLE usuario 
-ADD usu_acesso_gestor_quadra BOOL NOT NULL DEFAULT 0,
-ADD usu_acesso_gestor_usuario BOOL NOT NULL DEFAULT 0,
-ADD usu_acesso_relatorio BOOL NOT NULL DEFAULT 0,
-ADD usu_acesso_zelador BOOL NOT NULL DEFAULT 1,
-DROP COLUMN usu_id_permissao;
-
-DROP TABLE permissao;
 
 SHOW TABLES;
 
