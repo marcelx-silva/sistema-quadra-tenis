@@ -6,7 +6,7 @@ import Utilitario.UtilidadesGUI;
 
 public class Usuario {	
 	
-	private String nome, email, senha, cpf, codigo;	
+	private String nome, email, senha, codigo;	
 	private boolean	estaDesabilitado, estaBloqueado, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador;
 	private Usuario userAtual;
 	static ArrayList <Usuario> usuarios = new ArrayList<Usuario>();
@@ -16,10 +16,9 @@ public class Usuario {
 		this.verificarUsuario(cpfDigitado);
 	}
 	
-	public Usuario(String codigo, String nome, String cpf, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
+	public Usuario(String codigo, String nome, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setCodigo(codigo);
 		this.setNome(nome);
-		this.setCpf(cpf);
 		this.setEmail(email);
 		this.setSenha(senha);
 		this.setAcessoGestorQuadras(acessoGestorQuadras);
@@ -28,9 +27,8 @@ public class Usuario {
 		this.setAcessoZelador(acessoZelador);
 	}
 	
-	public Usuario(String nome, String cpf, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
+	public Usuario(String nome, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setNome(nome);
-		this.setCpf(cpf);
 		this.setEmail(email);
 		this.setSenha(senha);
 		this.setAcessoGestorQuadras(acessoGestorQuadras);
@@ -39,8 +37,8 @@ public class Usuario {
 		this.setAcessoZelador(acessoZelador);
 	}
 	
-	public boolean verificarUsuario(String cpfDigitado) {
-		return (cpfDigitado == this.getCpf());
+	public boolean verificarUsuario(String login) {
+		return (login == this.getEmail());
 	}
 	
 	public void desabilitarUsuario() {
@@ -65,32 +63,28 @@ public class Usuario {
 			case 1:
 				this.setNome(alteracao);
 				break;
-			
-			case 2:
-				this.setCpf(alteracao);
-				break;
 				
-			case 3:
+			case 2:
 				this.setEmail(alteracao);
 				break;
 				
-			case 4:
+			case 3:
 				this.setSenha(alteracao);
 				break;
 				
-			case 5:
+			case 4:
 				this.setAcessoGestorQuadras(UtilidadesConversao.transformaString(alteracao));
 				break;
 				
-			case 6:
+			case 5:
 				this.setAcessoGestorUsuarios(UtilidadesConversao.transformaString(alteracao));
 				break;
 				
-			case 7:
+			case 6:
 				this.setAcessoRelatorios(UtilidadesConversao.transformaString(alteracao));
 				break;
 				
-			case 8:
+			case 7:
 				this.setAcessoZelador(UtilidadesConversao.transformaString(alteracao));
 				break;
 				
@@ -112,9 +106,6 @@ public class Usuario {
 		return senha;
 	}
 	
-	public String getCpf() {
-		return cpf;
-	}
 
 	public String getCodigo() {
 		return codigo;
@@ -136,9 +127,6 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
 
 	public boolean isEstaDesabilitado() {
 		return estaDesabilitado;
@@ -196,9 +184,9 @@ public class Usuario {
 		return usuarios;
 	}
 	
-	static public Usuario buscaUsuarioPor(String cpfDigitado) {
+	static public Usuario buscaUsuarioPor(String email) {
 		for(Usuario user:usuarios) {
-			if(user.getCpf() == cpfDigitado)
+			if(user.getEmail() == email)
 				return user;
 		}
 		return null;
