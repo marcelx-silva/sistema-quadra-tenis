@@ -30,7 +30,7 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()) {
-			Usuario usu = new Usuario("", "", "", "", false, false, false, false);
+			Usuario usu = new Usuario("", "", "", false, false, false, false);
 			
 			usu.setCodigo(rs.getString("usu_id"));
 			usu.setNome(rs.getString("usu_nome"));
@@ -100,6 +100,12 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public Usuario obterUsuarioPeloEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public boolean CadastrarUsuario(Usuario u){
@@ -150,4 +156,9 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 		return false;
 	}
 
+	@Override
+	public boolean verificaUsuario(String user, String senha) {
+		
+		return false;
+	}
 }

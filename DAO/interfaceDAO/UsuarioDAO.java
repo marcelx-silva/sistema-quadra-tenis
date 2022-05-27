@@ -18,6 +18,8 @@ public interface UsuarioDAO {
 	
 	Usuario obterUsuarioPeloId(int id) throws IOException, SQLException;
 	
+	Usuario obterUsuarioPeloEmail(String email);
+	
 	boolean CadastrarUsuario(Usuario u) throws IOException;
 	
 	boolean AlterarDadosUsuario(String alterecao, int escolha);
@@ -25,4 +27,6 @@ public interface UsuarioDAO {
 	boolean HabilitarUsuario(int id, boolean bloqueado);
 	
 	boolean DeletarUsuario(int id);
+	
+	boolean verificaUsuario(String user, String senha);
 }
