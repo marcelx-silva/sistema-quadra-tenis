@@ -16,5 +16,15 @@ public class TesteUsuarioDAO {
 	public void TesteCadastroUsuario() {
 		assertTrue(usuDAO.CadastrarUsuario(usu));
 	}
+	
+	@Test
+	public void TesteLoginUsuarioExistente() {
+		assertTrue(usuDAO.verificaUsuario("emailDoNathan@gmail.com", "senha segura"));
+	}
+	
+	@Test
+	public void TesteLoginUsuarioNaoExistente() {
+		assertFalse(usuDAO.verificaUsuario("emailDoThiago@gmail.com", "senha segura"));
+	}
 
 }

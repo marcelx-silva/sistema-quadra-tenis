@@ -161,17 +161,37 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 
 	@Override
 	public boolean verificaUsuario(String user, String senha) {
+		
+		boolean conseguiuLogar = false;
+		
 		try {
 			q.consultarUsuario();
 			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("SELECT_ALL_FROM_USUARIO_BY_USU_EMAIL_AND_USU_SENHA"));
+			
+			stmt.setString(1, user);
+			stmt.setString(2, senha);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				String emailBD = rs.getString("usu_email");
+				String senhaBD = rs.getString("usu_senha");
+				boolean bloqueado = rs.getBoolean("usu_bloqueado");
+				
+				if(emailBD.contentEquals(user) && senhaBD.contentEquals(senha) && !bloqueado) {
+					conseguiuLogar = true;
+				}
+			}
 
 			
 		}catch(IOException e) {
+			e.printStackTrace();
 			
 		}catch(SQLException e) {
+			e.printStackTrace();
 			
 		}
 		
-		return false;
+		return conseguiuLogar;
 	}
 }
