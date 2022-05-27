@@ -57,6 +57,12 @@ public class QueriesUsuario {
 				+ "FROM usuario\r\n"
 				+ "WHERE usu_acesso_relatorio = ?;");
 		
+		queriesUsuario.setProperty("SELECT_ALL_FROM_USUARIO_BY_USU_EMAIL_AND_USU_SENHA", "SELECT usu_email 'E-mail', usu_senha 'Senha', \r\n"
+				+ "IF(usu_acesso_gestor_quadra,'Sim','Não') 'Gestor de Quadras', IF(usu_acesso_gestor_usuario,'Sim','Não') 'Gestor de Usuários', IF(usu_acesso_relatorio,'Sim','Não') 'Acesso a Relatórios', \r\n"
+				+ "IF(usu_acesso_zelador,'Sim', 'Não') 'Zelador', IF(usu_bloqueado,'Sim','Não') 'Bloqueado', IF(usu_habilitado,'Sim','Não') 'Habilitado'\r\n"
+				+ "FROM usuario\r\n"
+				+ "WHERE usu_email = ? AND usu_senha = ?;");
+		
 		FileOutputStream out =  new FileOutputStream("QUERY_CONSULTA_USUARIO.properties");
 
 		

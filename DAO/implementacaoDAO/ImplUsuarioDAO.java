@@ -20,7 +20,8 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	
 	@Override
 	public List<Usuario> obterTodasUsuario() throws IOException, SQLException{
-		
+
+		q.consultarUsuario();
 		List<Usuario> todosUsuarios = new ArrayList<>();
 		
 		FileInputStream in = new FileInputStream("QUERY_CONSULTA_USUARIO");
@@ -30,16 +31,16 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()) {
-			Usuario usu = new Usuario("", "", "", false, false, false, false);
 			
-			usu.setCodigo(rs.getString("usu_id"));
-			usu.setNome(rs.getString("usu_nome"));
-			usu.setEmail(rs.getString("usu_email"));
-			usu.setSenha(rs.getString("usu_senha"));
-			usu.setAcessoGestorQuadras(rs.getBoolean("usu_acesso_gestor_quadra"));
-			usu.setAcessoGestorUsuarios(rs.getBoolean("usu_acesso_gestor_usuario"));
-			usu.setAcessoRelatorios(rs.getBoolean("usu_acesso_relatorio"));
-			usu.setAcessoZelador(rs.getBoolean("usu_acesso_zelador"));
+			String codigo = rs.getString("usu_id");
+			String nome = rs.getString("usu_nome");
+			String email = rs.getString("usu_email");
+			String senha = rs.getString("usu_senha");
+			boolean acessoGestorQuadra = rs.getBoolean("usu_acesso_gestor_quadra");
+			boolean acessoGestorUsuario = rs.getBoolean("usu_acesso_gestor_usuario");
+			boolean acessoRelatorio = rs.getBoolean("usu_acesso_relatorio");
+			boolean acessoZelador = rs.getBoolean("usu_acesso_zelador");
+			Usuario usu = new Usuario(codigo, nome, email, senha, acessoGestorQuadra, acessoGestorUsuario, acessoRelatorio, acessoZelador);
 			
 			todosUsuarios.add(usu);
 		}
@@ -53,6 +54,8 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	@Override
 	public List<Usuario> obterUsuarioHabilitados(boolean habilitado)  throws IOException, SQLException{
 
+
+		q.consultarUsuario();
 		List<Usuario> todosUsuariosHabilitados = new ArrayList<>();
 		
 		FileInputStream in = new FileInputStream("QUERY_CONSULTA_USUARIO");
@@ -63,16 +66,16 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()) {
-			Usuario usu = new Usuario("", "", "", "", false, false, false, false);
-			
-			usu.setCodigo(rs.getString("usu_id"));
-			usu.setNome(rs.getString("usu_nome"));
-			usu.setEmail(rs.getString("usu_email"));
-			usu.setSenha(rs.getString("usu_senha"));
-			usu.setAcessoGestorQuadras(rs.getBoolean("usu_acesso_gestor_quadra"));
-			usu.setAcessoGestorUsuarios(rs.getBoolean("usu_acesso_gestor_usuario"));
-			usu.setAcessoRelatorios(rs.getBoolean("usu_acesso_relatorio"));
-			usu.setAcessoZelador(rs.getBoolean("usu_acesso_zelador"));
+				
+			String codigo = rs.getString("usu_id");
+			String nome = rs.getString("usu_nome");
+			String email = rs.getString("usu_email");
+			String senha = rs.getString("usu_senha");
+			boolean acessoGestorQuadra = rs.getBoolean("usu_acesso_gestor_quadra");
+			boolean acessoGestorUsuario = rs.getBoolean("usu_acesso_gestor_usuario");
+			boolean acessoRelatorio = rs.getBoolean("usu_acesso_relatorio");
+			boolean acessoZelador = rs.getBoolean("usu_acesso_zelador");
+			Usuario usu = new Usuario(codigo, nome, email, senha, acessoGestorQuadra, acessoGestorUsuario, acessoRelatorio, acessoZelador); 
 			
 			todosUsuariosHabilitados.add(usu);
 		}
@@ -158,6 +161,16 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 
 	@Override
 	public boolean verificaUsuario(String user, String senha) {
+		try {
+			q.consultarUsuario();
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("SELECT_ALL_FROM_USUARIO_BY_USU_EMAIL_AND_USU_SENHA"));
+
+			
+		}catch(IOException e) {
+			
+		}catch(SQLException e) {
+			
+		}
 		
 		return false;
 	}
