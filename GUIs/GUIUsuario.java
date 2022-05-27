@@ -1,24 +1,28 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
+import Utilitario.UtilidadesConversao;
+import Utilitario.UtilidadesGUI;
+import Dominio.*;
 
 public class GUIUsuario {
 	Scanner scanner = new Scanner(System.in);
 	ArrayList <Usuario> usuarios = new ArrayList<Usuario>();
-	// Implementar método que verifica se usuario tem permissão para gerir usuário
+	// Implementar mï¿½todo que verifica se usuario tem permissï¿½o para gerir usuï¿½rio
 	
 	public void GUImenuUsuario() {
 		
 		int operadorDoMenu = 9;
 		do {
 			UtilidadesGUI.exibeMensagem
-					(  "          + MENU USUÁRIO +\n"
-					+ "\n1 [       CADASTRAR USUÁRIO        ]"
-					+ "\n2 [ HABILITAR/DESABILITAR USUÁRIOS ]"
-					+ "\n3 [ BLOQUEAR/DESBLOQUEAR USUÁRIOS  ]"
+					(  "          + MENU USUï¿½RIO +\n"
+					+ "\n1 [       CADASTRAR USUï¿½RIO        ]"
+					+ "\n2 [ HABILITAR/DESABILITAR USUï¿½RIOS ]"
+					+ "\n3 [ BLOQUEAR/DESBLOQUEAR USUï¿½RIOS  ]"
 					+ "\n4 [         ALTERAR DADOS          ]"
-					+ "\n5 [      VISUALIZAR USUÁRIOS       ]"
+					+ "\n5 [      VISUALIZAR USUï¿½RIOS       ]"
 					+ "\n0 [         SAIR DO MENU           ]"
-					+ "\nOPÇÃO: ");
+					+ "\nOPï¿½ï¿½O: ");
 			
 			operadorDoMenu = scanner.nextInt();
 			scanner.nextLine();
@@ -50,7 +54,7 @@ public class GUIUsuario {
 			}
 			
 		}while(operadorDoMenu != 0);
-		/* Chamar método do menu principal*/
+		/* Chamar mï¿½todo do menu principal*/
 	}
 		
 	public void GUICadastrarUsuario() {
@@ -69,17 +73,17 @@ public class GUIUsuario {
 			UtilidadesGUI.exibeMensagem("Senha: ");
 			String senhaUsuario = scanner.nextLine();
 			
-			UtilidadesGUI.exibeMensagem("\nEscolha as Permissões do Usuário: "
-										+ "\nGerir Quadras (sim/não): ");
+			UtilidadesGUI.exibeMensagem("\nEscolha as Permissï¿½es do Usuï¿½rio: "
+										+ "\nGerir Quadras (sim/nï¿½o): ");
 			boolean acessoGestorQuadras = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 				
-			UtilidadesGUI.exibeMensagem("\nGerir Usuários (sim/não): ");
+			UtilidadesGUI.exibeMensagem("\nGerir Usuï¿½rios (sim/nï¿½o): ");
 			boolean acessoGestorUsuarios = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 				
-			UtilidadesGUI.exibeMensagem("\nGerar/Acessar Relatórios (sim/não): ");
+			UtilidadesGUI.exibeMensagem("\nGerar/Acessar Relatï¿½rios (sim/nï¿½o): ");
 			boolean acessoRelatorios = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 				
-			UtilidadesGUI.exibeMensagem("\nPermissões de Zelador (sim/não): ");
+			UtilidadesGUI.exibeMensagem("\nPermissï¿½es de Zelador (sim/nï¿½o): ");
 			boolean acessoZelador = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
 				
 			Usuario user = new Usuario(nomeUsuario, cpfUsuario, emailUsuario, senhaUsuario, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador);
@@ -94,7 +98,7 @@ public class GUIUsuario {
 		
 		
 	public void GUIExibirUsuario(){
-		UtilidadesGUI.exibeMensagem("\nLista de usuários:\n\n");
+		UtilidadesGUI.exibeMensagem("\nLista de usuï¿½rios:\n\n");
 		for(Usuario user:usuarios) {
 			UtilidadesGUI.exibeMensagem("Nome: "+user.getNome()+"\n");
 			UtilidadesGUI.exibeMensagem("CPF: "+user.getCpf()+"\n");
@@ -109,16 +113,16 @@ public class GUIUsuario {
 		
 	public void GUIDesabilitaUsuario() {
 			
-		UtilidadesGUI.exibeMensagem("\nDigite o CPF do Usuário: ");
+		UtilidadesGUI.exibeMensagem("\nDigite o CPF do Usuï¿½rio: ");
 		String cpfDigitado = scanner.nextLine();	
 		Usuario thisUser;
 		
 		if( buscaUsuarioPor(cpfDigitado) != null ) {
 			thisUser = buscaUsuarioPor(cpfDigitado);	
-			UtilidadesGUI.exibeMensagem( "\n1 [     DESABILITAR O USUÁRIO      ]"
-									+ "\n2 [      HABILITAR O USUÁRIO       ]"
+			UtilidadesGUI.exibeMensagem( "\n1 [     DESABILITAR O USUï¿½RIO      ]"
+									+ "\n2 [      HABILITAR O USUï¿½RIO       ]"
 									+ "\n0 [         SAIR DO MENU           ]"
-									+ "\nOPÇÃO: \"");
+									+ "\nOPï¿½ï¿½O: \"");
 			int operadorDoMenu = scanner.nextInt();
 			scanner.nextLine();
 
@@ -126,40 +130,40 @@ public class GUIUsuario {
 
 			case 1: 
 				thisUser.desabilitarUsuario();
-				UtilidadesGUI.exibeMensagem( "\nUsuário desabilitado!\n");
+				UtilidadesGUI.exibeMensagem( "\nUsuï¿½rio desabilitado!\n");
 				break;
 	
 			case 2:
 				thisUser.habilitarUsuario();
-				UtilidadesGUI.exibeMensagem( "\nUsuário habilitado!\n");
+				UtilidadesGUI.exibeMensagem( "\nUsuï¿½rio habilitado!\n");
 				break;
 	
 			case 0:
 				break;
 	
 			default:
-				UtilidadesGUI.exibeMensagem( "\nOPÇÃO INVÁLIDA!\n");
+				UtilidadesGUI.exibeMensagem( "\nOPï¿½ï¿½O INVï¿½LIDA!\n");
 				break;
 			}
 		}
 		else
-			UtilidadesGUI.exibeMensagem("\n\nUsuário inexistente!\n\n");
+			UtilidadesGUI.exibeMensagem("\n\nUsuï¿½rio inexistente!\n\n");
 		GUImenuUsuario();
 	}	
 	
 	
 	public void GUIBloqueioUsuario() {
 			
-		UtilidadesGUI.exibeMensagem("\nDigite o CPF do Usuário: ");
+		UtilidadesGUI.exibeMensagem("\nDigite o CPF do Usuï¿½rio: ");
 		String cpfDigitado = scanner.nextLine();	
 		Usuario thisUser;
 			
 		if( buscaUsuarioPor(cpfDigitado) != null ) {
 			thisUser = buscaUsuarioPor(cpfDigitado);
-			UtilidadesGUI.exibeMensagem( "\n1 [      BLOQUEAR O USUÁRIO        ]"
-									+ "\n2 [     DESBLOQUEAR O USUÁRIO      ]"
+			UtilidadesGUI.exibeMensagem( "\n1 [      BLOQUEAR O USUï¿½RIO        ]"
+									+ "\n2 [     DESBLOQUEAR O USUï¿½RIO      ]"
 									+ "\n0 [         SAIR DO MENU           ]"
-									+ "\nOPÇÃO: \"");
+									+ "\nOPï¿½ï¿½O: \"");
 			int operadorDoMenu = scanner.nextInt();
 			scanner.nextLine();
 		
@@ -167,24 +171,24 @@ public class GUIUsuario {
 			
 				case 1: 
 					thisUser.bloquearUsuario();
-					UtilidadesGUI.exibeMensagem( "\nUsuário bloqueado!\n");
+					UtilidadesGUI.exibeMensagem( "\nUsuï¿½rio bloqueado!\n");
 					break;
 					
 				case 2:
 					thisUser.desbloquearUsuario();
-					UtilidadesGUI.exibeMensagem( "\nUsuário desbloqueado!\n");
+					UtilidadesGUI.exibeMensagem( "\nUsuï¿½rio desbloqueado!\n");
 					break;
 					
 				case 0:
 					break;
 					
 				default:
-					UtilidadesGUI.exibeMensagem( "\nOPÇÃO INVÁLIDA!\n");
+					UtilidadesGUI.exibeMensagem( "\nOPï¿½ï¿½O INVï¿½LIDA!\n");
 					break;
 			}
 		}
 		else
-			UtilidadesGUI.exibeMensagem("\n\nUsuário inexistente!\n\n");
+			UtilidadesGUI.exibeMensagem("\n\nUsuï¿½rio inexistente!\n\n");
 		GUImenuUsuario();
 	}
 	
@@ -196,3 +200,4 @@ public class GUIUsuario {
 		return null;
 	}
 }
+

@@ -1,9 +1,12 @@
+package Dominio;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import Enum.TipoPagamento;
+import Enum.TipoQuadra;
 import java.time.LocalTime;
 import java.time.LocalDate;
 
@@ -41,9 +44,9 @@ public class Reserva extends Agendamento{
 		setHorarioFim(horarioFimReserva);
 		setModoPagamento(modoPagamento);
 		setParcelas(quantidadeParcelas);		
-		super.getQuadra().setCodigo(codigoQuadra);
-		super.getQuadra().setNome(nomeQuadra);
-		super.getQuadra().setTipo(tipoQuadra);
+		getQuadra().setCodigo(codigoQuadra);
+		getQuadra().setNome(nomeQuadra);
+		getQuadra().setTipo(tipoQuadra);
 
 	}
 	
@@ -68,6 +71,8 @@ public class Reserva extends Agendamento{
 		}
 	}
 
+	/* terminar implementação
+ * 
 	public int parcelarReserva(int parcelas) {
 		switch(parcelas) {
 		case 1:
@@ -80,29 +85,30 @@ public class Reserva extends Agendamento{
 			return 0;
 		}
 	}
-
+*/
 	
-	protected String getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
-
-	protected void setCodigo(String codigo) {
+	
+		
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
-	protected TipoPagamento getModoPagamento() {
+	public TipoPagamento getModoPagamento() {
 		return modoPagamento;
 	}
 
-	protected void setModoPagamento(TipoPagamento modoPagamento) {
+	public void setModoPagamento(TipoPagamento modoPagamento) {
 		this.modoPagamento = modoPagamento;
 	}
 
-	protected int getParcelas() {
+	public int getParcelas() {
 		return parcelas;
 	}
 
-	protected void setParcelas(int parcelas) {
+	public void setParcelas(int parcelas) {
 		this.parcelas = parcelas;
-	}
+	}	
 }

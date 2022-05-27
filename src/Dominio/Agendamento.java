@@ -1,3 +1,4 @@
+package Dominio;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -38,43 +39,43 @@ public class Agendamento {
 		return listaAgendamentos;
 	}
 	
-	protected Quadra getQuadra() {
+	public Quadra getQuadra() {
 		return quadra;
 	}
 
-	protected void setQuadra(Quadra quadra) {
+	public void setQuadra(Quadra quadra) {
 		this.quadra = quadra;
 	}
 
-	protected Cliente getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	protected void setCliente(Cliente cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
-	protected LocalDate getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	protected void setData(LocalDate data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
-	protected LocalTime getHorarioInicio() {
+	public LocalTime getHorarioInicio() {
 		return horarioInicio;
 	}
 
-	protected void setHorarioInicio(LocalTime horarioInicio) {
+	public void setHorarioInicio(LocalTime horarioInicio) {
 		this.horarioInicio = horarioInicio;
 	}
 
-	protected LocalTime getHorarioFim() {
+	public LocalTime getHorarioFim() {
 		return horarioFim;
 	}
 
-	protected void setHorarioFim(LocalTime horarioFim) {
+	public void setHorarioFim(LocalTime horarioFim) {
 		this.horarioFim = horarioFim;
 	}
 	

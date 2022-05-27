@@ -1,7 +1,10 @@
+package Dominio;
+
 import java.time.format.DateTimeFormatter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import Enum.TipoQuadra;
 
 public class Quadra{
 	
@@ -21,6 +24,7 @@ public class Quadra{
 		this.setTipo(tipo);
 	}
 	
+
 	public Quadra(String codigo, String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
 		this.setCodigo(codigo);
 		this.setNome(nome);
@@ -31,13 +35,25 @@ public class Quadra{
 		this.setPossuiAreaDescanso(descanso);
 	}
 	
-	public Quadra(String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso) {
+	public Quadra(String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso, boolean bloqueado) {
 		this.setNome(nome);
 		this.setEndereco(endereco);
 		this.setTipo(tipo);
 		this.setPossuiCobertura(cobertura);
 		this.setPossuiArquibancada(arquibancada);
 		this.setPossuiAreaDescanso(descanso);
+		this.setEstaBloqueada(bloqueado);
+	}
+
+	public Quadra(String codigo,String nome, String endereco, int tipo, boolean cobertura, boolean arquibancada, boolean descanso, boolean bloqueado) {
+		this.setCodigo(codigo);	
+		this.setNome(nome);
+		this.setEndereco(endereco);
+		this.setTipo(identificaTipoQuadra(tipo));
+		this.setPossuiCobertura(cobertura);
+		this.setPossuiArquibancada(arquibancada);
+		this.setPossuiAreaDescanso(descanso);
+		this.setEstaBloqueada(bloqueado);
 	}
 	
 	public static ArrayList<Quadra> procuraQuadras(String dia, String horarioInicio, String horarioFim, 
@@ -144,7 +160,7 @@ public class Quadra{
 			return TipoQuadra.SAIBRO;
 
 		case 2:
-			return TipoQuadra.SUPERFICIE_SITENTICA;
+			return TipoQuadra.SUPERFICIE_SINTETICA;
 
 		case 3:
 			return TipoQuadra.CIMENTO;
@@ -164,71 +180,73 @@ public class Quadra{
 			return new BigDecimal("40");
 	}
 	
-	protected String getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	protected void setCodigo(String codigo) {
+
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
-	protected String getNome() {
+	public String getNome() {
 		return nome;
 	}
 
-	protected void setNome(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	protected String getEndereco() {
+	public String getEndereco() {
 		return endereco;
 	}
 
-	protected void setEndereco(String endereco) {
+	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
 
-	protected TipoQuadra getTipo() {
+	public TipoQuadra getTipo() {
 		return tipo;
 	}
 
 
-	protected void setTipo(TipoQuadra tipo) {
+	public void setTipo(TipoQuadra tipo) {
 		this.tipo = tipo;
+
 	}
 
-	protected boolean isPossuiCobertura() {
+	public boolean isPossuiCobertura() {
 		return possuiCobertura;
 	}
 
-	protected void setPossuiCobertura(boolean possuiCobertura) {
+	public void setPossuiCobertura(boolean possuiCobertura) {
 		this.possuiCobertura = possuiCobertura;
 	}
 
-	protected boolean isPossuiArquibancada() {
+	public boolean isPossuiArquibancada() {
 		return possuiArquibancada;
 	}
 
 
-	protected void setPossuiArquibancada(boolean possuiArquibancada) {
+	public void setPossuiArquibancada(boolean possuiArquibancada) {
 		this.possuiArquibancada = possuiArquibancada;
 	}
 
-	protected boolean isPossuiAreaDescanso() {
+	public boolean isPossuiAreaDescanso() {
 		return possuiAreaDescanso;
 	}
 
 
-	protected void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
+	public void setPossuiAreaDescanso(boolean possuiAreaDescanso) {
 		this.possuiAreaDescanso = possuiAreaDescanso;
 	}
 
-	protected boolean isEstaBloqueada() {
+	public boolean isEstaBloqueada() {
 		return estaBloqueada;
 	}
 
 
-	protected void setEstaBloqueada(boolean estaBloqueada) {
+	public void setEstaBloqueada(boolean estaBloqueada) {
 		this.estaBloqueada = estaBloqueada;
 	}
 	

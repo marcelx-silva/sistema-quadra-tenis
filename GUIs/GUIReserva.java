@@ -1,7 +1,13 @@
 import java.util.Scanner;
+import Enum.TipoQuadra;
+import Enum.TipoPagamento;
+import Utilitario.UtilidadesConversao;
+import Utilitario.UtilidadesGUI;
+import Dominio.*;
 
 public class GUIReserva {
-Scanner scanner = new Scanner(System.in);
+	Scanner scanner = new Scanner(System.in);
+
 	
 	void interfaceMenuReserva() {
 		Quadra quadra = new Quadra("","","",null,false,false,false);
