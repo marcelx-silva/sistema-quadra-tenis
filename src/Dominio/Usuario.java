@@ -12,8 +12,8 @@ public class Usuario {
 	static ArrayList <Usuario> usuarios = new ArrayList<Usuario>();
 	
 	
-	public Usuario(String cpfDigitado) {
-		this.verificarUsuario(cpfDigitado);
+	public Usuario(String emailDigitado) {
+		this.verificarUsuario(emailDigitado);
 	}
 	
 	public Usuario(String codigo, String nome, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
@@ -192,8 +192,8 @@ public class Usuario {
 		return null;
 	}
 	
-	 public boolean UsuarioAutenticado(String cpfDigitado, String senhaDigitada){
-		userAtual = Usuario.buscaUsuarioPor(cpfDigitado);
+	 public boolean UsuarioAutenticado(String emailDigitado, String senhaDigitada){
+		userAtual = Usuario.buscaUsuarioPor(emailDigitado);
 		
 		if(userAtual != null )
 			if( senhaDigitada.equals(userAtual.getSenha()))

@@ -44,9 +44,9 @@ public class Reserva extends Agendamento{
 		setHorarioFim(horarioFimReserva);
 		setModoPagamento(modoPagamento);
 		setParcelas(quantidadeParcelas);		
-		super.getQuadra().setCodigo(codigoQuadra);
-		super.getQuadra().setNome(nomeQuadra);
-		super.getQuadra().setTipo(tipoQuadra);
+		getQuadra().setCodigo(codigoQuadra);
+		getQuadra().setNome(nomeQuadra);
+		getQuadra().setTipo(tipoQuadra);
 
 	}
 	

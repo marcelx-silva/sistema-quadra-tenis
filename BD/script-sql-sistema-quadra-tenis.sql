@@ -74,7 +74,6 @@ CREATE TABLE cliente(
     cli_dt_nasc DATE NOT NULL,
     cli_email VARCHAR(50),
     cli_celular VARCHAR(15),
-    cli_tel_fixo VARCHAR(14),
 	cli_dt_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	cli_bloqueado BOOL NOT NULL DEFAULT  0, 
 	cli_habilitado BOOL NOT NULL DEFAULT 1,
