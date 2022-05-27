@@ -11,11 +11,6 @@ public class Usuario {
 	private Usuario userAtual;
 	static ArrayList <Usuario> usuarios = new ArrayList<Usuario>();
 	
-	
-	public Usuario(String emailDigitado) {
-		this.verificarUsuario(emailDigitado);
-	}
-	
 	public Usuario(String codigo, String nome, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setCodigo(codigo);
 		this.setNome(nome);
@@ -35,10 +30,6 @@ public class Usuario {
 		this.setAcessoGestorUsuarios(acessoGestorUsuarios);
 		this.setAcessoRelatorios(acessoRelatorios);
 		this.setAcessoZelador(acessoZelador);
-	}
-	
-	public boolean verificarUsuario(String login) {
-		return (login == this.getEmail());
 	}
 	
 	public void desabilitarUsuario() {

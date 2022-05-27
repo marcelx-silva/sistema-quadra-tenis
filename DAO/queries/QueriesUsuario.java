@@ -78,8 +78,8 @@ public class QueriesUsuario {
 		queriesUsuario.setProperty("UPDATE_USU_EMAIL", "UPDATE usuario SET usu_email = ? WHERE usu_id = ?;");
 		queriesUsuario.setProperty("UPDATE_USU_SENHA", "UPDATE usuario SET usu_senha = ? WHERE usu_id = ?;");
 		
-		queriesUsuario.setProperty("BLOCK_USU_BY_ID", "UPDATE usuario SET usu_bloqueado = ? WHERE usu_id = ?");
-		queriesUsuario.setProperty("DISABLE_USU_BY_ID", "UPDATE usuario SET usu_habilitado = ? WHERE usu_id = ?");
+		queriesUsuario.setProperty("BLOCK_USU_BY_EMAIL", "UPDATE usuario SET usu_bloqueado = ? WHERE usu_email = ?");
+		queriesUsuario.setProperty("DISABLE_USU_BY_EMAIL", "UPDATE usuario SET usu_habilitado = ? WHERE usu_email = ?");
 		
 		queriesUsuario.setProperty("UPDATE_USU_ACESSO_GESTOR_QUADRA", "UPDATE usuario SET usu_acesso_gestor_quadra = ? WHERE usu_id = ?;");
 		queriesUsuario.setProperty("UPDATE_USU_ACESSO_GESTOR_USUARIO", "UPDATE usuario SET usu_acesso_gestor_usuario = ? WHERE usu_id = ?;");

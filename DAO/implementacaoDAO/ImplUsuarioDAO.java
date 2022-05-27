@@ -148,7 +148,13 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	}
 
 	@Override
-	public boolean HabilitarUsuario(int id, boolean bloqueado) {
+	public boolean HabilitarUsuario(String email, boolean habilitado) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean BloquearUsuario(String email, boolean bloqueado) {
 		// TODO Auto-generated method stub
 		return false;
 	}

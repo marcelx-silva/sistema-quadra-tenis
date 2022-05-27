@@ -24,7 +24,9 @@ public interface UsuarioDAO {
 	
 	boolean AlterarDadosUsuario(String alterecao, int escolha);
 	
-	boolean HabilitarUsuario(int id, boolean bloqueado);
+	boolean BloquearUsuario(String email, boolean bloqueado);
+	
+	boolean HabilitarUsuario(String email, boolean habilitado);
 	
 	boolean DeletarUsuario(int id);
 	
