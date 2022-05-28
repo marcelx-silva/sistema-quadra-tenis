@@ -21,9 +21,9 @@ public class QueriesUsuario {
 				+ "FROM usuario\r\n"
 				+ "WHERE usu_id = ?;");
 		
-		queriesUsuario.setProperty("SELECT_ALL_FROM_USUARIO_BY_EMAIL", "SELECT usu_id 'ID', usu_nome 'Nome', usu_senha 'Senha', usu_email 'E-mail',date_format(usu_dt_cadastro,\"%d-%m-%Y\") 'Data de Cadastro', \r\n"
-				+ "IF(usu_acesso_gestor_quadra,'Sim','Não') 'Gestor de Quadras', IF(usu_acesso_gestor_usuario,'Sim','Não') 'Gestor de Usuários', IF(usu_acesso_relatorio,'Sim','Não') 'Acesso a Relatórios', \r\n"
-				+ "IF(usu_acesso_zelador,'Sim', 'Não') 'Zelador', IF(usu_bloqueado,'Sim','Não') 'Bloqueado', IF(usu_habilitado,'Sim','Não') 'Habilitado'\r\n"
+		queriesUsuario.setProperty("SELECT_ALL_FROM_USUARIO_BY_EMAIL", "SELECT usu_id, usu_nome, usu_senha, usu_email, \r\n"
+				+ "usu_acesso_gestor_quadra, usu_acesso_gestor_usuario, usu_acesso_relatorio, \r\n"
+				+ "usu_acesso_zelador, usu_bloqueado, usu_habilitado 'usu_habilitado'\r\n"
 				+ "FROM usuario\r\n"
 				+ "WHERE usu_email = ?;");
 		

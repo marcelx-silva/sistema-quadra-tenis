@@ -18,7 +18,7 @@ public interface UsuarioDAO {
 	
 	Usuario obterUsuarioPeloId(int id) throws IOException, SQLException;
 	
-	Usuario obterUsuarioPeloEmail(String email);
+	Usuario obterUsuarioPeloEmail(String email) throws IOException;
 	
 	boolean CadastrarUsuario(Usuario u) throws IOException;
 	

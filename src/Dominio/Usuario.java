@@ -20,6 +20,8 @@ public class Usuario {
 		this.setAcessoGestorUsuarios(acessoGestorUsuarios);
 		this.setAcessoRelatorios(acessoRelatorios);
 		this.setAcessoZelador(acessoZelador);
+		this.setEstaBloqueado(false);
+		this.setEstaDesabilitado(false);
 	}
 	
 	public Usuario(String nome, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
@@ -30,6 +32,20 @@ public class Usuario {
 		this.setAcessoGestorUsuarios(acessoGestorUsuarios);
 		this.setAcessoRelatorios(acessoRelatorios);
 		this.setAcessoZelador(acessoZelador);
+		this.setEstaBloqueado(false);
+		this.setEstaDesabilitado(false);
+	}
+	
+	public Usuario(String nome, String email, String senha) {
+		this.setNome(nome);
+		this.setEmail(email);
+		this.setSenha(senha);
+		this.setAcessoGestorQuadras(false);
+		this.setAcessoGestorUsuarios(false);
+		this.setAcessoRelatorios(false);
+		this.setAcessoZelador(true);
+		this.setEstaBloqueado(false);
+		this.setEstaDesabilitado(false);
 	}
 	
 	public void alteraUsuario(String alteracao, int operador) {

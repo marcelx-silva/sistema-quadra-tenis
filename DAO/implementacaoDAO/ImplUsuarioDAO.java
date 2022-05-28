@@ -24,7 +24,7 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 		q.consultarUsuario();
 		List<Usuario> todosUsuarios = new ArrayList<>();
 		
-		FileInputStream in = new FileInputStream("QUERY_CONSULTA_USUARIO");
+		FileInputStream in = new FileInputStream("QUERY_CONSULTA_USUARIO.properties");
 		q.queriesUsuario.load(in);
 		in.close();
 		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("SELECT_ALL_FROM_ALL_USUARIO"));
@@ -58,7 +58,7 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 		q.consultarUsuario();
 		List<Usuario> todosUsuariosHabilitados = new ArrayList<>();
 		
-		FileInputStream in = new FileInputStream("QUERY_CONSULTA_USUARIO");
+		FileInputStream in = new FileInputStream("QUERY_CONSULTA_USUARIO.properties");
 		q.queriesUsuario.load(in);
 		in.close();
 		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("SELECT_ALL_FROM_USUARIO_HABILITADO"));
@@ -105,9 +105,37 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	}
 	
 	@Override
-	public Usuario obterUsuarioPeloEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+	public Usuario obterUsuarioPeloEmail(String emailBuscado) throws IOException {
+		
+		q.consultarUsuario();
+		Usuario usu = null;
+		
+		FileInputStream in = new FileInputStream("QUERY_CONSULTA_USUARIO.properties");
+		q.queriesUsuario.load(in);
+		in.close();
+		
+		try {
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("SELECT_ALL_FROM_USUARIO_BY_EMAIL"));
+			stmt.setString(1, emailBuscado);
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+					
+				String nome = rs.getString("usu_nome");
+				String email = rs.getString("usu_email");
+				String senha = rs.getString("usu_senha");
+				boolean acessoGestorQuadra = rs.getBoolean("usu_acesso_gestor_quadra");
+				boolean acessoGestorUsuario = rs.getBoolean("usu_acesso_gestor_usuario");
+				boolean acessoRelatorio = rs.getBoolean("usu_acesso_relatorio");
+				boolean acessoZelador = rs.getBoolean("usu_acesso_zelador");
+				usu = new Usuario(nome, email, senha, acessoGestorQuadra, acessoGestorUsuario, acessoRelatorio, acessoZelador); 
+				
+			}			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return usu;
 	}
 
 	@Override
@@ -242,6 +270,10 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 		
 		try {
 			q.consultarUsuario();
+			FileInputStream in = new FileInputStream("QUERY_CONSULTA_USUARIO.properties");
+			q.queriesUsuario.load(in);
+			in.close();
+			
 			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("SELECT_ALL_FROM_USUARIO_BY_USU_EMAIL_AND_USU_SENHA"));
 			
 			stmt.setString(1, user);
