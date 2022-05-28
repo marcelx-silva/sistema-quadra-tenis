@@ -47,4 +47,9 @@ public class TesteUsuarioDAO {
 	public void testeDesbloquearUsuario() {
 		assertTrue(usuDAO.BloquearUsuario("emailDoNathan@gmail.com", true));
 	}
+	
+	@Test
+	public void TesteDeletarUsuario() {
+		assertTrue(usuDAO.DeletarUsuario("emailDoNathan@gmail.com"));
+	}
 }
