@@ -149,8 +149,32 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 
 	@Override
 	public boolean HabilitarUsuario(String email, boolean habilitado) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		try {
+			q.DMLUsuario();
+			FileInputStream in = new FileInputStream("DML_USUARIO.properties");
+			q.queriesUsuario.load(in);
+			in.close();
+		
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("DISABLE_USU_BY_EMAIL"));
+
+			stmt.setBoolean(1, habilitado);
+			stmt.setString(2, email);
+
+			stmt.executeUpdate();
+			
+			return true;
+			
+		}catch(SQLException e) {
+
+			e.printStackTrace();
+			return false;
+			
+		}catch(IOException e) {
+
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	@Override
