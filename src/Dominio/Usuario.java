@@ -32,22 +32,6 @@ public class Usuario {
 		this.setAcessoZelador(acessoZelador);
 	}
 	
-	public void desabilitarUsuario() {
-		this.setEstaDesabilitado(true);
-	}
-	
-	public void habilitarUsuario() {
-		this.setEstaDesabilitado(false);
-	}
-	
-	public void bloquearUsuario() {
-		this.setEstaBloqueado(true);
-	}
-	
-	public void desbloquearUsuario() {
-		this.setEstaBloqueado(false);
-	}
-	
 	public void alteraUsuario(String alteracao, int operador) {
 		switch(operador) {
 		
@@ -173,23 +157,6 @@ public class Usuario {
 	
 	static public ArrayList<Usuario> getLista(){
 		return usuarios;
-	}
-	
-	static public Usuario buscaUsuarioPor(String email) {
-		for(Usuario user:usuarios) {
-			if(user.getEmail() == email)
-				return user;
-		}
-		return null;
-	}
-	
-	 public boolean UsuarioAutenticado(String emailDigitado, String senhaDigitada){
-		userAtual = Usuario.buscaUsuarioPor(emailDigitado);
-		
-		if(userAtual != null )
-			if( senhaDigitada.equals(userAtual.getSenha()))
-				return true;
-		return false;
 	}
 	
 	 public Usuario getUsuarioAtual() {
