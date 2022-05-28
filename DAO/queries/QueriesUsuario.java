@@ -86,7 +86,7 @@ public class QueriesUsuario {
 		queriesUsuario.setProperty("UPDATE_USU_ACESSO_RELATORIO", "UPDATE usuario SET usu_acesso_relatorio = ? WHERE usu_id = ?");
 		queriesUsuario.setProperty("UPDATE_USU_ACESSO_ZELADOR", "UPDATE usuario SET usu_acesso_zelador = ? WHERE usu_us = ?");
 		
-		queriesUsuario.setProperty("DELETE_USUARIO_BY_ID", "DELETE FROM usuario WHERE usu_id = ?");
+		queriesUsuario.setProperty("DELETE_USUARIO_BY_EMAIL", "DELETE FROM usuario WHERE usu_email = ?");
 		
 		FileOutputStream out = new FileOutputStream("DML_USUARIO.properties");
 		queriesUsuario.store(out, null);

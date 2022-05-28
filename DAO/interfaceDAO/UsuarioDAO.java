@@ -28,7 +28,7 @@ public interface UsuarioDAO {
 	
 	boolean HabilitarUsuario(String email, boolean habilitado);
 	
-	boolean DeletarUsuario(int id);
+	boolean DeletarUsuario(String email);
 	
 	boolean verificaUsuario(String user, String senha);
 }

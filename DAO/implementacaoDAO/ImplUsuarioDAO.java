@@ -208,9 +208,31 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	}
 
 	@Override
-	public boolean DeletarUsuario(int id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean DeletarUsuario(String email) {
+		try {
+			q.DMLUsuario();
+			FileInputStream in = new FileInputStream("DML_USUARIO.properties");
+			q.queriesUsuario.load(in);
+			in.close();
+		
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("DELETE_USUARIO_BY_EMAIL"));
+
+			stmt.setString(1, email);
+
+			stmt.executeUpdate();
+			
+			return true;
+			
+		}catch(SQLException e) {
+
+			e.printStackTrace();
+			return false;
+			
+		}catch(IOException e) {
+
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
