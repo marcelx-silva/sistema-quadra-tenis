@@ -12,6 +12,7 @@ public class TesteUsuarioDAO {
 	Usuario usu = new Usuario("Nathan", "emailDoNathan@gmail.com", "senha segura", false, false, false, false);
 	ImplUsuarioDAO usuDAO = new ImplUsuarioDAO();
 	
+	
 	@Test
 	public void TesteCadastroUsuario() {
 		assertTrue(usuDAO.CadastrarUsuario(usu));
@@ -37,4 +38,13 @@ public class TesteUsuarioDAO {
 		assertTrue(usuDAO.HabilitarUsuario("emailDoNathan@gmail.com", true));
 	}
 
+	@Test
+	public void TesteBloquearUsuario() {
+		assertTrue(usuDAO.BloquearUsuario("emailDoNathan@gmail.com", false));
+	}
+	
+	@Test
+	public void testeDesbloquearUsuario() {
+		assertTrue(usuDAO.BloquearUsuario("emailDoNathan@gmail.com", true));
+	}
 }
