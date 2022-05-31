@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import implementacaoDAO.ImplUsuarioDAO;
 import Dominio.Usuario;
+import Exceptions.UserAlreadyRegisteredException;
 
 public class TesteUsuarioDAO {
 
@@ -16,7 +17,12 @@ public class TesteUsuarioDAO {
 	
 	
 	@Test
-	public void TesteCadastroUsuario() {
+	public void TesteCadastroUsuario() throws UserAlreadyRegisteredException {
+		assertTrue(usuDAO.CadastrarUsuario(usu));
+	}
+	
+	@Test(expected=UserAlreadyRegisteredException.class)
+	public void TesteCadastroUsuarioDuplicado() throws UserAlreadyRegisteredException{
 		assertTrue(usuDAO.CadastrarUsuario(usu));
 	}
 	
@@ -46,6 +52,11 @@ public class TesteUsuarioDAO {
 	}
 	
 	@Test
+	public void testeDesbloquearUsuario() {
+		assertTrue(usuDAO.BloquearUsuario("emailDoNathan@gmail.com", true));
+	}
+	
+	@Test
 	public void TesteBuscarUsuarioPorEmail() throws IOException {
 		Usuario usuBuscado = usuDAO.obterUsuarioPeloEmail("emailDoNathan@gmail.com");
 		System.out.println(usuBuscado.isAcessoZelador());
@@ -59,11 +70,6 @@ public class TesteUsuarioDAO {
 		assertEquals(usuBuscado.isAcessoZelador(), usu.isAcessoZelador());
 		assertEquals(usuBuscado.isEstaBloqueado(), usu.isEstaBloqueado());
 		assertEquals(usuBuscado.isEstaDesabilitado(), usu.isEstaDesabilitado());
-	}
-	
-	@Test
-	public void testeDesbloquearUsuario() {
-		assertTrue(usuDAO.BloquearUsuario("emailDoNathan@gmail.com", true));
 	}
 	
 	@Test

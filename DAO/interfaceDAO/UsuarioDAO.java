@@ -1,6 +1,7 @@
 package interfaceDAO;
 
 import Dominio.Usuario;
+import Exceptions.UserAlreadyRegisteredException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ public interface UsuarioDAO {
 	
 	Usuario obterUsuarioPeloEmail(String email) throws IOException;
 	
-	boolean CadastrarUsuario(Usuario u) throws IOException;
+	boolean CadastrarUsuario(Usuario u) throws IOException, UserAlreadyRegisteredException;
 	
 	boolean AlterarDadosUsuario(String alterecao, int escolha);
 	

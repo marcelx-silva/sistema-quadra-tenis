@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Dominio.Usuario;
+import Exceptions.UserAlreadyRegisteredException;
 import interfaceDAO.UsuarioDAO;
 import queries.QueriesUsuario;
 
@@ -139,15 +140,26 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	}
 
 	@Override
-	public boolean CadastrarUsuario(Usuario u){
+	public boolean CadastrarUsuario(Usuario u) throws UserAlreadyRegisteredException{
 		
 		try {
 			q.DMLUsuario();
+			q.consultarUsuario();
 			FileInputStream in = new FileInputStream("DML_USUARIO.properties");
+			FileInputStream in2 = new FileInputStream("QUERY_CONSULTA_USUARIO.properties");
 			q.queriesUsuario.load(in);
+			q.queriesUsuario.load(in2);
 			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("SELECT_ALL_FROM_USUARIO_BY_EMAIL"));
+			stmt.setString(1, u.getEmail());
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				throw new UserAlreadyRegisteredException("Usuário já cadastrado!", u.getEmail());
+			}
 		
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("INSERT_INTO_USUARIO"));
+			stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("INSERT_INTO_USUARIO"));
 
 			stmt.setString(1, u.getNome());
 			stmt.setString(2, u.getEmail());
