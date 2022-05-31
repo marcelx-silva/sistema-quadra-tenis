@@ -69,6 +69,12 @@ public class QueriesUsuario {
 				+ "FROM usuario\r\n"
 				+ "WHERE usu_email = ? AND usu_senha = ?;");
 		
+		queriesUsuario.setProperty("SELECT_ALL_FROM_USUARIO_BY_USU_BLOQUEADO", "SELECT usu_id, usu_nome, usu_senha, usu_email, \r\n"
+				+ "usu_acesso_gestor_quadra, usu_acesso_gestor_usuario, usu_acesso_relatorio, \r\n"
+				+ "usu_acesso_zelador, usu_bloqueado, usu_habilitado 'usu_habilitado'\r\n"
+				+ "FROM usuario\r\n"
+				+ "WHERE usu_bloqueado = ?;");
+		
 		FileOutputStream out =  new FileOutputStream("QUERY_CONSULTA_USUARIO.properties");
 
 		

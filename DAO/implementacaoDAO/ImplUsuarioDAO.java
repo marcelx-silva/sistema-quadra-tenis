@@ -88,9 +88,36 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	}
 
 	@Override
-	public List<Usuario> obterUsuarioBloqueados(boolean bloqueado) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Usuario> obterUsuarioBloqueados(boolean bloqueado) throws IOException, SQLException{
+		q.consultarUsuario();
+		List<Usuario> todosUsuariosBloqueados = new ArrayList<>();
+		
+		FileInputStream in = new FileInputStream("QUERY_CONSULTA_USUARIO.properties");
+		q.queriesUsuario.load(in);
+		in.close();
+		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("SELECT_ALL_FROM_USUARIO_BY_USU_BLOQUEADO"));
+		stmt.setBoolean(1, bloqueado);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+				
+			String codigo = rs.getString("usu_id");
+			String nome = rs.getString("usu_nome");
+			String email = rs.getString("usu_email");
+			String senha = rs.getString("usu_senha");
+			boolean acessoGestorQuadra = rs.getBoolean("usu_acesso_gestor_quadra");
+			boolean acessoGestorUsuario = rs.getBoolean("usu_acesso_gestor_usuario");
+			boolean acessoRelatorio = rs.getBoolean("usu_acesso_relatorio");
+			boolean acessoZelador = rs.getBoolean("usu_acesso_zelador");
+			Usuario usu = new Usuario(codigo, nome, email, senha, acessoGestorQuadra, acessoGestorUsuario, acessoRelatorio, acessoZelador); 
+			
+			todosUsuariosBloqueados.add(usu);
+		}
+		
+		List<Usuario> copiaTodosUsuariosBloqueados = new ArrayList<>();
+		copiaTodosUsuariosBloqueados.addAll(todosUsuariosBloqueados);
+		
+		return copiaTodosUsuariosBloqueados;
 	}
 
 	@Override
