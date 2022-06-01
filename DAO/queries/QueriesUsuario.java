@@ -86,17 +86,17 @@ public class QueriesUsuario {
 		
 		queriesUsuario.setProperty("INSERT_INTO_USUARIO", "INSERT INTO usuario(usu_nome, usu_email, usu_senha) VALUES (?,?,?);");
 		
-		queriesUsuario.setProperty("UPDATE_USU_NOME", "UPDATE usuario SET usu_nome = ? WHERE usu_id = ?;");
-		queriesUsuario.setProperty("UPDATE_USU_EMAIL", "UPDATE usuario SET usu_email = ? WHERE usu_id = ?;");
-		queriesUsuario.setProperty("UPDATE_USU_SENHA", "UPDATE usuario SET usu_senha = ? WHERE usu_id = ?;");
+		queriesUsuario.setProperty("UPDATE_USU_NOME", "UPDATE usuario SET usu_nome = ? WHERE usu_email = ?;");
+		queriesUsuario.setProperty("UPDATE_USU_EMAIL", "UPDATE usuario SET usu_email = ? WHERE usu_email = ?;");
+		queriesUsuario.setProperty("UPDATE_USU_SENHA", "UPDATE usuario SET usu_senha = ? WHERE usu_email = ?;");
 		
 		queriesUsuario.setProperty("BLOCK_USU_BY_EMAIL", "UPDATE usuario SET usu_bloqueado = ? WHERE usu_email = ?");
 		queriesUsuario.setProperty("DISABLE_USU_BY_EMAIL", "UPDATE usuario SET usu_habilitado = ? WHERE usu_email = ?");
 		
-		queriesUsuario.setProperty("UPDATE_USU_ACESSO_GESTOR_QUADRA", "UPDATE usuario SET usu_acesso_gestor_quadra = ? WHERE usu_id = ?;");
-		queriesUsuario.setProperty("UPDATE_USU_ACESSO_GESTOR_USUARIO", "UPDATE usuario SET usu_acesso_gestor_usuario = ? WHERE usu_id = ?;");
-		queriesUsuario.setProperty("UPDATE_USU_ACESSO_RELATORIO", "UPDATE usuario SET usu_acesso_relatorio = ? WHERE usu_id = ?");
-		queriesUsuario.setProperty("UPDATE_USU_ACESSO_ZELADOR", "UPDATE usuario SET usu_acesso_zelador = ? WHERE usu_us = ?");
+		queriesUsuario.setProperty("UPDATE_USU_ACESSO_GESTOR_QUADRA", "UPDATE usuario SET usu_acesso_gestor_quadra = ? WHERE usu_email = ?;");
+		queriesUsuario.setProperty("UPDATE_USU_ACESSO_GESTOR_USUARIO", "UPDATE usuario SET usu_acesso_gestor_usuario = ? WHERE usu_email = ?;");
+		queriesUsuario.setProperty("UPDATE_USU_ACESSO_RELATORIO", "UPDATE usuario SET usu_acesso_relatorio = ? WHERE usu_email = ?");
+		queriesUsuario.setProperty("UPDATE_USU_ACESSO_ZELADOR", "UPDATE usuario SET usu_acesso_zelador = ? WHERE usu_email = ?");
 		
 		queriesUsuario.setProperty("DELETE_USUARIO_BY_EMAIL", "DELETE FROM usuario WHERE usu_email = ?");
 		

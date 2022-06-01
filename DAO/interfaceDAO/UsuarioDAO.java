@@ -17,13 +17,11 @@ public interface UsuarioDAO {
 	
 	List<Usuario> obterUsuarioPelaPermissao(String permissao) throws IOException, SQLException;
 	
-	Usuario obterUsuarioPeloId(int id) throws IOException, SQLException;
-	
 	Usuario obterUsuarioPeloEmail(String email) throws IOException;
 	
 	boolean CadastrarUsuario(Usuario u) throws IOException, UserAlreadyRegisteredException;
 	
-	boolean AlterarDadosUsuario(String alterecao, int escolha);
+	boolean AlterarDadosUsuario(Usuario u, String alterecao, int escolha);
 	
 	boolean BloquearUsuario(String email, boolean bloqueado);
 	

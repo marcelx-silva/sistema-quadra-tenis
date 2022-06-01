@@ -5,6 +5,8 @@ import java.util.List;
 
 import Dominio.Usuario;
 import Exceptions.UserAlreadyRegisteredException;
+import Utilitario.UtilidadesConversao;
+import Utilitario.UtilidadesGUI;
 import interfaceDAO.UsuarioDAO;
 import queries.QueriesUsuario;
 
@@ -125,12 +127,6 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public Usuario obterUsuarioPeloId(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public Usuario obterUsuarioPeloEmail(String emailBuscado) throws IOException {
@@ -209,8 +205,78 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	}
 
 	@Override
-	public boolean AlterarDadosUsuario(String alterecao, int escolha) {
-		// TODO Auto-generated method stub
+	public boolean AlterarDadosUsuario(Usuario u, String alteracao, int escolha) {
+		try {
+			q.DMLUsuario();
+			FileInputStream in = new FileInputStream("DML_USUARIO.properties");
+			q.queriesUsuario.load(in);
+			in.close();
+			
+			PreparedStatement stmt;
+			
+			switch(escolha) {
+			
+				case 1:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("UPDATE_USU_NOME"));
+					stmt.setString(1, alteracao);
+					stmt.setString(2, u.getEmail());
+					stmt.executeUpdate();
+					break;
+					
+				case 2:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("UPDATE_USU_EMAIL"));
+					stmt.setString(1, alteracao);
+					stmt.setString(2, u.getEmail());
+					stmt.executeUpdate();
+					break;
+					
+				case 3:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("UPDATE_USU_SENHA"));
+					stmt.setString(1, alteracao);
+					stmt.setString(2, u.getEmail());
+					stmt.executeUpdate();
+					break;
+					
+				case 4:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("UPDATE_USU_ACESSO_GESTOR_QUADRA"));
+					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setString(2, u.getEmail());
+					stmt.executeUpdate();
+					break;
+					
+				case 5:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("UPDATE_USU_ACESSO_GESTOR_USUARIO"));
+					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setString(2, u.getEmail());
+					stmt.executeUpdate();
+					break;
+					
+				case 6:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("UPDATE_USU_ACESSO_RELATORIO"));
+					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setString(2, u.getEmail());
+					stmt.executeUpdate();
+					break;
+					
+				case 7:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("UPDATE_USU_ACESSO_ZELADOR"));
+					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setString(2, u.getEmail());
+					stmt.executeUpdate();
+					break;
+					
+				default:
+					UtilidadesGUI.exibeMensagem("Opção Inválida!");
+					break;
+			}
+			return true;
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
