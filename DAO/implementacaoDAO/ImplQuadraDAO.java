@@ -29,7 +29,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 	public List<Quadra> obterTodasQuadras() throws IOException, SQLException{
 		
 		List<Quadra> quadrasLista = new ArrayList<>();
-		FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA");
+		FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
 		q.queriesQuadra.load(in);
 		in.close();
 		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_ALL_FROM_ALL_QUADRA"));
