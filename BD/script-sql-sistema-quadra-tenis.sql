@@ -1,7 +1,6 @@
 USE sistema_clube_tenis;
 
-/*CRIACAO DAS TABELAS*/
-
+/* Criação das Tabelas */
 
 CREATE TABLE tipo_quadra(
 	tp_id INTEGER NOT NULL AUTO_INCREMENT,
@@ -10,6 +9,12 @@ CREATE TABLE tipo_quadra(
 	PRIMARY KEY (tp_id)
 );
 
+CREATE TABLE permissao(
+	per_id INTEGER NOT NULL AUTO_INCREMENT,
+	per_nome VARCHAR(20) NOT NULL,
+	
+	PRIMARY KEY (per_id)
+);
 
 CREATE TABLE quadra(
 	qua_id INTEGER NOT NULL AUTO_INCREMENT,
@@ -18,10 +23,10 @@ CREATE TABLE quadra(
 	qua_cobertura BOOLEAN NOT NULL,
 	qua_arquibancada BOOLEAN NOT NULL,
 	qua_area_descanso BOOLEAN NOT NULL,
-	qua_status BOOLEAN NOT NULL,
+	qua_status BOOLEAN NOT NULL DEFAULT 0,
 	qua_dt_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	qua_id_tipo INTEGER NOT NULL,
-    qua_bloqueado BOOL NOT NULL DEFAULT 0, 
+	qua_bloqueado BOOL NOT NULL DEFAULT 0, 
 	qua_habilitado BOOL NOT NULL DEFAULT 1,
     
 	
@@ -57,15 +62,12 @@ CREATE TABLE usuario(
 	PRIMARY KEY (usu_id)
 );
 
-
 CREATE TABLE forma_pagamento(
 	fp_id INTEGER NOT NULL AUTO_INCREMENT,
 	fp_nome VARCHAR(15) NOT NULL,
 	
 	PRIMARY KEY(fp_id)
 );
-
-
 
 CREATE TABLE cliente(
 	cli_id INTEGER NOT NULL AUTO_INCREMENT,
@@ -74,6 +76,7 @@ CREATE TABLE cliente(
     cli_dt_nasc DATE NOT NULL,
     cli_email VARCHAR(50),
     cli_celular VARCHAR(15),
+    cli_tel_fixo VARCHAR(14),
 	cli_dt_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	cli_bloqueado BOOL NOT NULL DEFAULT  0, 
 	cli_habilitado BOOL NOT NULL DEFAULT 1,
@@ -98,5 +101,18 @@ CREATE TABLE reserva(
     FOREIGN KEY(res_id_quadra) REFERENCES quadra(qua_id) 
 );
 
-SHOW TABLES;
+/* Inserção de valores fixos */
 
+INSERT INTO permissao (per_nome) VALUES ('Zelador');
+INSERT INTO permissao (per_nome) VALUES ('Gerente');
+INSERT INTO permissao (per_nome) VALUES ('Atendente');
+
+INSERT INTO tipo_quadra (tp_nome) VALUES('Saibro');
+INSERT INTO tipo_quadra (tp_nome) VALUES('Sintética');
+INSERT INTO tipo_quadra (tp_nome) VALUES('Cimento');
+INSERT INTO tipo_quadra (tp_nome) VALUES('Beach');
+
+INSERT INTO forma_pagamento (fp_nome) VALUES('Crédito');
+INSERT INTO forma_pagamento (fp_nome) VALUES('Dédito');
+INSERT INTO forma_pagamento (fp_nome) VALUES('PIX');
+INSERT INTO forma_pagamento (fp_nome) VALUES('Dinheiro');
