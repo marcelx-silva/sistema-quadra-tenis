@@ -11,11 +11,6 @@ public class Usuario {
 	private Usuario userAtual;
 	static ArrayList <Usuario> usuarios = new ArrayList<Usuario>();
 	
-	
-	public Usuario(String emailDigitado) {
-		this.verificarUsuario(emailDigitado);
-	}
-	
 	public Usuario(String codigo, String nome, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setCodigo(codigo);
 		this.setNome(nome);
@@ -25,6 +20,8 @@ public class Usuario {
 		this.setAcessoGestorUsuarios(acessoGestorUsuarios);
 		this.setAcessoRelatorios(acessoRelatorios);
 		this.setAcessoZelador(acessoZelador);
+		this.setEstaBloqueado(false);
+		this.setEstaDesabilitado(false);
 	}
 	
 	public Usuario(String nome, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
@@ -35,26 +32,20 @@ public class Usuario {
 		this.setAcessoGestorUsuarios(acessoGestorUsuarios);
 		this.setAcessoRelatorios(acessoRelatorios);
 		this.setAcessoZelador(acessoZelador);
-	}
-	
-	public boolean verificarUsuario(String login) {
-		return (login == this.getEmail());
-	}
-	
-	public void desabilitarUsuario() {
-		this.setEstaDesabilitado(true);
-	}
-	
-	public void habilitarUsuario() {
+		this.setEstaBloqueado(false);
 		this.setEstaDesabilitado(false);
 	}
 	
-	public void bloquearUsuario() {
-		this.setEstaBloqueado(true);
-	}
-	
-	public void desbloquearUsuario() {
+	public Usuario(String nome, String email, String senha) {
+		this.setNome(nome);
+		this.setEmail(email);
+		this.setSenha(senha);
+		this.setAcessoGestorQuadras(false);
+		this.setAcessoGestorUsuarios(false);
+		this.setAcessoRelatorios(false);
+		this.setAcessoZelador(true);
 		this.setEstaBloqueado(false);
+		this.setEstaDesabilitado(false);
 	}
 	
 	public void alteraUsuario(String alteracao, int operador) {
@@ -182,23 +173,6 @@ public class Usuario {
 	
 	static public ArrayList<Usuario> getLista(){
 		return usuarios;
-	}
-	
-	static public Usuario buscaUsuarioPor(String email) {
-		for(Usuario user:usuarios) {
-			if(user.getEmail() == email)
-				return user;
-		}
-		return null;
-	}
-	
-	 public boolean UsuarioAutenticado(String emailDigitado, String senhaDigitada){
-		userAtual = Usuario.buscaUsuarioPor(emailDigitado);
-		
-		if(userAtual != null )
-			if( senhaDigitada.equals(userAtual.getSenha()))
-				return true;
-		return false;
 	}
 	
 	 public Usuario getUsuarioAtual() {
