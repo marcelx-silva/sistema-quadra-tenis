@@ -122,9 +122,11 @@ public class ImplQuadraDAO implements QuadraDAO{
 		return quadrasListaCopia;
 		
 	}
-	
 	@Override
-	public Quadra obterQuadraPeloId(int id) { return null;}
+	public Quadra obterQuadraPeloNome(String nome) {
+	
+		return null;
+	}
 	
 	@Override
 	public boolean CadastrarQuadra(Quadra qua) throws CourtAlreadyRegisteredException{ 
