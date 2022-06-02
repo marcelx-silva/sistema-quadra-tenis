@@ -7,6 +7,7 @@ import org.junit.Test;
 import Dominio.Quadra;
 import Enum.TipoQuadra;
 import Exceptions.CourtAlreadyRegisteredException;
+import Exceptions.CourtNotFoundException;
 import implementacaoDAO.ImplQuadraDAO;
 
 public class TesteQuadraDAO {
@@ -21,5 +22,16 @@ public class TesteQuadraDAO {
 	public void TesteCadastroQuadra() throws CourtAlreadyRegisteredException {
 		assertTrue(quaDAO.CadastrarQuadra(qua));
 	}
-
+	
+	@Test
+	public void TesteProcuraQuadraPeloNome() throws CourtNotFoundException{
+		Quadra quadraBuscada = quaDAO.obterQuadraPeloNome("Quadra 1");
+		assertEquals(quadraBuscada.getNome(), qua.getNome());
+		assertEquals(quadraBuscada.getCodigo(), qua.getCodigo());
+		assertEquals(quadraBuscada.getEndereco(), qua.getEndereco());
+		assertEquals(quadraBuscada.isPossuiAreaDescanso(), qua.isPossuiAreaDescanso());
+		assertEquals(quadraBuscada.isEstaBloqueada(), qua.isEstaBloqueada());
+		assertEquals(quadraBuscada.isPossuiArquibancada(), qua.isPossuiArquibancada());
+		assertEquals(quadraBuscada.isPossuiCobertura(), qua.isPossuiCobertura());
+	}
 }

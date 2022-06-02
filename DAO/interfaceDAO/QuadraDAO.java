@@ -2,6 +2,7 @@ package interfaceDAO;
 
 import Dominio.Quadra;
 import Exceptions.CourtAlreadyRegisteredException;
+import Exceptions.CourtNotFoundException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,7 +17,7 @@ public interface QuadraDAO {
 	
 	List<Quadra> obterQuadraBloqueadas(boolean bloqueado);
 	
-	Quadra obterQuadraPeloNome(String nome);
+	Quadra obterQuadraPeloNome(String nome) throws CourtNotFoundException ;
 	
 	boolean CadastrarQuadra(Quadra q) throws CourtAlreadyRegisteredException;
 	
