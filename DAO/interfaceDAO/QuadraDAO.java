@@ -1,6 +1,7 @@
 package interfaceDAO;
 
 import Dominio.Quadra;
+import Exceptions.CourtAlreadyRegisteredException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ public interface QuadraDAO {
 	
 	Quadra obterQuadraPeloId(int id);
 	
-	boolean CadastrarQuadra(Quadra q);
+	boolean CadastrarQuadra(Quadra q) throws CourtAlreadyRegisteredException;
 	
 	boolean AlterarDadosQuadra(String alteracao, int escolha);
 	

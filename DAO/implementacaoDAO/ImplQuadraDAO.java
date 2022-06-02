@@ -5,6 +5,7 @@ import java.util.List;
 
 import Dominio.Quadra;
 import Enum.TipoQuadra;
+import Exceptions.CourtAlreadyRegisteredException;
 import interfaceDAO.QuadraDAO;
 import queries.QueriesQuadra;
 import Utilitario.UtilidadesConversao;
@@ -36,7 +37,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 			
 			String nome = rs.getString("qua_nome");
 			String endereco = rs.getString("qua_endereco");
-			TipoQuadra tipo = UtilidadesConversao.transformaInteiro(rs.getInt("qua_id_tipo"));
+			TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
 			boolean cobertura = rs.getBoolean("qua_cobertura");
 			boolean arquibancada = rs.getBoolean("qua_arquibancada");
 			boolean descanso = rs.getBoolean("qua_area_descanso");
@@ -99,7 +100,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 				
 				String nome = rs.getString("qua_nome");
 				String endereco = rs.getString("qua_endereco");
-				TipoQuadra tipo = UtilidadesConversao.transformaInteiro(rs.getInt("qua_id_tipo"));
+				TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
 				boolean cobertura = rs.getBoolean("qua_cobertura");
 				boolean arquibancada = rs.getBoolean("qua_arquibancada");
 				boolean descanso = rs.getBoolean("qua_area_descanso");
@@ -126,7 +127,50 @@ public class ImplQuadraDAO implements QuadraDAO{
 	public Quadra obterQuadraPeloId(int id) { return null;}
 	
 	@Override
-	public boolean CadastrarQuadra(Quadra q) { return false;}
+	public boolean CadastrarQuadra(Quadra qua) throws CourtAlreadyRegisteredException{ 
+		
+		
+		try {
+			q.DMLQuadra();
+			q.consultaQuadra();
+			
+			FileInputStream in = new FileInputStream("DML_QUADRA.properties");
+			FileInputStream in2 = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
+			q.queriesQuadra.load(in);
+			q.queriesQuadra.load(in2);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty(null));
+			stmt.setString(1, qua.getNome());
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				throw new CourtAlreadyRegisteredException("Uma quadra com esse nome já foi cadastrada!");
+			}
+		
+			stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("INSERT_INTO_QUADRA"));
+		
+			stmt.setString(1, qua.getNome());
+			stmt.setString(2, qua.getEndereco());
+			stmt.setBoolean(3, qua.isPossuiCobertura());
+			stmt.setBoolean(4, qua.isPossuiArquibancada());
+			stmt.setBoolean(5, qua.isPossuiAreaDescanso());
+			stmt.setInt(6, UtilidadesConversao.transformaTipoQuadraEmInteiro(qua.getTipo()));
+	
+			stmt.executeUpdate();
+			
+			return true;
+		
+	}catch(SQLException e) {
+
+		e.printStackTrace();
+		return false;
+		
+	}catch(IOException e) {
+
+		e.printStackTrace();
+		return false;
+	}}
 	
 	@Override
 	public boolean AlterarDadosQuadra(String alteracao, int escolha) { return false;}
