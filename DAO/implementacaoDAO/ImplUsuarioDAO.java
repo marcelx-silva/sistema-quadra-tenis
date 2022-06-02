@@ -121,12 +121,6 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 		
 		return copiaTodosUsuariosBloqueados;
 	}
-
-	@Override
-	public List<Usuario> obterUsuarioPelaPermissao(String permissao) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public Usuario obterUsuarioPeloEmail(String emailBuscado) throws IOException {
