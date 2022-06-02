@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Dominio.Quadra;
+import Enum.TipoQuadra;
 import interfaceDAO.QuadraDAO;
 import queries.QueriesQuadra;
+import Utilitario.UtilidadesConversao;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,15 +33,15 @@ public class ImplQuadraDAO implements QuadraDAO{
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()) {
-			Quadra quadra = new Quadra("","","",null,false,false,false);
-			quadra.setCodigo(rs.getString("qua_id"));
-			quadra.setNome(rs.getString("qua_nome"));
-			quadra.setEndereco(rs.getString("qua_endereco"));
-			quadra.setTipo(rs.getInt("qua_id_tipo"));
-			quadra.setPossuiCobertura(rs.getBoolean("qua_cobertura"));
-			quadra.setPossuiArquibancada(rs.getBoolean("qua_arquibancada"));
-			quadra.setPossuiAreaDescanso(rs.getBoolean("qua_area_descanso"));
-			quadra.setEstaBloqueada(rs.getBoolean("qua_bloqueado"));
+			
+			String nome = rs.getString("qua_nome");
+			String endereco = rs.getString("qua_endereco");
+			TipoQuadra tipo = UtilidadesConversao.transformaInteiro(rs.getInt("qua_id_tipo"));
+			boolean cobertura = rs.getBoolean("qua_cobertura");
+			boolean arquibancada = rs.getBoolean("qua_arquibancada");
+			boolean descanso = rs.getBoolean("qua_area_descanso");
+			boolean bloqueada = rs.getBoolean("qua_bloqueado");
+			Quadra quadra = new Quadra(nome, endereco, tipo, cobertura, arquibancada, descanso, bloqueada);
 			quadrasLista.add(quadra);
 		}
 		
@@ -83,7 +85,42 @@ public class ImplQuadraDAO implements QuadraDAO{
 	}
 	
 	@Override
-	public List<Quadra> obterQuadraBloqueadas(boolean bloqueado){ return null;}
+	public List<Quadra> obterQuadraBloqueadas(boolean bloqueado){ 
+		List<Quadra> quadrasLista = new ArrayList<>();
+		
+		try {
+			FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA");
+			q.queriesQuadra.load(in);
+			in.close();
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_ALL_BLOCKEDL_QUADRA"));
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				String nome = rs.getString("qua_nome");
+				String endereco = rs.getString("qua_endereco");
+				TipoQuadra tipo = UtilidadesConversao.transformaInteiro(rs.getInt("qua_id_tipo"));
+				boolean cobertura = rs.getBoolean("qua_cobertura");
+				boolean arquibancada = rs.getBoolean("qua_arquibancada");
+				boolean descanso = rs.getBoolean("qua_area_descanso");
+				boolean bloqueada = rs.getBoolean("qua_bloqueado");
+				Quadra quadra = new Quadra(nome, endereco, tipo, cobertura, arquibancada, descanso, bloqueada);
+				quadrasLista.add(quadra);
+			}
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		List<Quadra> quadrasListaCopia = new ArrayList<>();
+		quadrasListaCopia.addAll(quadrasLista);
+		
+		return quadrasListaCopia;
+		
+	}
 	
 	@Override
 	public Quadra obterQuadraPeloId(int id) { return null;}
