@@ -63,9 +63,7 @@ public class QueriesUsuario {
 				+ "FROM usuario\r\n"
 				+ "WHERE usu_acesso_relatorio = ?;");
 		
-		queriesUsuario.setProperty("SELECT_ALL_FROM_USUARIO_BY_USU_EMAIL_AND_USU_SENHA", "SELECT usu_email, usu_senha, \r\n"
-				+ "usu_acesso_gestor_quadra, usu_acesso_gestor_usuario, usu_acesso_relatorio, \r\n"
-				+ "usu_acesso_zelador, usu_bloqueado, usu_habilitado\r\n"
+		queriesUsuario.setProperty("VERIFY_USU_EMAIL_AND_USU_SENHA", "SELECT usu_email, usu_senha, usu_bloqueado\r\n"
 				+ "FROM usuario\r\n"
 				+ "WHERE usu_email = ? AND usu_senha = ?;");
 		

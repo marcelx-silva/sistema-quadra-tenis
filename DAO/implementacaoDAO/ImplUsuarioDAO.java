@@ -379,7 +379,7 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 			q.queriesUsuario.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("SELECT_ALL_FROM_USUARIO_BY_USU_EMAIL_AND_USU_SENHA"));
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesUsuario.getProperty("VERIFY_USU_EMAIL_AND_USU_SENHA"));
 			
 			stmt.setString(1, user);
 			stmt.setString(2, senha);
