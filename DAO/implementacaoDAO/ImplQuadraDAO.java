@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Dominio.Quadra;
-import Dominio.Usuario;
 import Enum.TipoQuadra;
 import Exceptions.CourtAlreadyRegisteredException;
 import Exceptions.CourtNotFoundException;
 import interfaceDAO.QuadraDAO;
 import queries.QueriesQuadra;
 import Utilitario.UtilidadesConversao;
+import Utilitario.UtilidadesGUI;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -213,7 +213,73 @@ public class ImplQuadraDAO implements QuadraDAO{
 	}}
 	
 	@Override
-	public boolean AlterarDadosQuadra(String alteracao, int escolha) { return false;}
+	public boolean AlterarDadosQuadra(Quadra qua, String alteracao, int escolha) { 
+		try {
+			q.DMLQuadra();
+			FileInputStream in = new FileInputStream("DML_QUADRA.properties");
+			q.queriesQuadra.load(in);
+			in.close();
+			
+			PreparedStatement stmt;
+			
+			switch(escolha) {
+			
+				case 1:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_NOME"));
+					stmt.setString(1, alteracao);
+					stmt.setString(2, qua.getNome());
+					stmt.executeUpdate();
+					break;
+					
+				case 2:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_ENDERECO"));
+					stmt.setString(1, alteracao);
+					stmt.setString(2, qua.getNome());
+					stmt.executeUpdate();
+					break;
+					
+				case 3:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_COBERTURA"));
+					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setString(2, qua.getNome());
+					stmt.executeUpdate();
+					break;
+					
+				case 4:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_ARQUIBANCADA"));
+					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setString(2, qua.getNome());
+					stmt.executeUpdate();
+					break;
+					
+				case 5:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_AREA_DESCANSO"));
+					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setString(2, qua.getNome());
+					stmt.executeUpdate();
+					break;
+					
+				case 6:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_TIPO"));
+					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setString(2, qua.getNome());
+					stmt.executeUpdate();
+					break;
+					
+				default:
+					UtilidadesGUI.exibeMensagem("Opção Inválida!");
+					break;
+			}
+			return true;
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 	@Override
 	public boolean HabilitarQuadra(int id, boolean habilitado) { return false;}

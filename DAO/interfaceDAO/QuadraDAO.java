@@ -21,7 +21,7 @@ public interface QuadraDAO {
 	
 	boolean CadastrarQuadra(Quadra q) throws CourtAlreadyRegisteredException;
 	
-	boolean AlterarDadosQuadra(String alteracao, int escolha);
+	boolean AlterarDadosQuadra(Quadra qua, String alteracao, int escolha);
 	
 	boolean HabilitarQuadra(int id, boolean habilitado);
 	

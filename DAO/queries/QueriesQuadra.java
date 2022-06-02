@@ -53,23 +53,23 @@ public class QueriesQuadra {
 	public void DMLQuadra() throws IOException{
 		queriesQuadra.setProperty("INSERT_INTO_QUADRA", "INSERT INTO quadra (qua_nome,qua_endereco,qua_cobertura,qua_arquibancada,qua_area_descanso,qua_id_tipo) VALUES (?,?,?,?,?,?)");
 		
-		queriesQuadra.setProperty("UPDATE_QUADRA_NOME", "UPDATE quadra SET qua_nome = ? WHERE qua_id = ?");
+		queriesQuadra.setProperty("UPDATE_QUADRA_NOME", "UPDATE quadra SET qua_nome = ? WHERE qua_nome = ?");
 		
-		queriesQuadra.setProperty("UPDATE_QUADRA_ENDERECO", "UPDATE quadra SET qua_endereco = ? WHERE qua_id = ?");
+		queriesQuadra.setProperty("UPDATE_QUADRA_ENDERECO", "UPDATE quadra SET qua_endereco = ? WHERE qua_nome = ?");
 		
-		queriesQuadra.setProperty("UPDATE_QUADRA_COBERTURA", "UPDATE quadra SET qua_cobertura = ? WHERE qua_id = ?");
+		queriesQuadra.setProperty("UPDATE_QUADRA_COBERTURA", "UPDATE quadra SET qua_cobertura = ? WHERE qua_nome = ?");
 		
-		queriesQuadra.setProperty("UPDATE_QUADRA_ARQUIBANCADA", "UPDATE quadra SET qua_arquibancada = ? WHERE qua_id = ?");
+		queriesQuadra.setProperty("UPDATE_QUADRA_ARQUIBANCADA", "UPDATE quadra SET qua_arquibancada = ? WHERE qua_nome = ?");
 		
-		queriesQuadra.setProperty("UPDATE_QUADRA_AREA_DESCANSO", "UPDATE quadra SET qua_area_descanso = ? WHERE qua_id = ?");
+		queriesQuadra.setProperty("UPDATE_QUADRA_AREA_DESCANSO", "UPDATE quadra SET qua_area_descanso = ? WHERE qua_nome = ?");
 		
-		queriesQuadra.setProperty("UPDATE_QUADRA_TIPO", "UPDATE quadra SET qua_id_tipo = ? WHERE qua_id = ?");
+		queriesQuadra.setProperty("UPDATE_QUADRA_TIPO", "UPDATE quadra SET qua_id_tipo = ? WHERE qua_nome = ?");
 		
-		queriesQuadra.setProperty("UPDATE_QUADRA_BLOQUEADO", "UPDATE quadra SET qua_bloqueado = ? WHERE qua_id = ?");
+		queriesQuadra.setProperty("UPDATE_QUADRA_BLOQUEADO", "UPDATE quadra SET qua_bloqueado = ? WHERE qua_nome = ?");
 		
-		queriesQuadra.setProperty("UPDATE_QUADRA_HABILITADO", "UPDATE quadra SET qua_habilitado = ? WHERE qua_id = ?");
+		queriesQuadra.setProperty("UPDATE_QUADRA_HABILITADO", "UPDATE quadra SET qua_habilitado = ? WHERE qua_nome = ?");
 		
-		queriesQuadra.setProperty("DELETE_QUADRA", "DELETE FROM quadra WHERE qua_id = ?");
+		queriesQuadra.setProperty("DELETE_QUADRA", "DELETE FROM quadra WHERE qua_nome = ?");
 		
 		FileOutputStream out = new FileOutputStream("DML_QUADRA.properties");
 		queriesQuadra.store(out, null);
