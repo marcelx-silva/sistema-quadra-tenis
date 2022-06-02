@@ -282,12 +282,35 @@ public class ImplQuadraDAO implements QuadraDAO{
 	}
 	
 	@Override
-	public boolean HabilitarQuadra(int id, boolean habilitado) { return false;}
+	public boolean HabilitarQuadra(String nome, boolean habilitado) { 
+	
+		try {
+			q.DMLQuadra();
+			FileInputStream in = new FileInputStream("DML_QUADRA.properties");
+			q.queriesQuadra.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_HABILITADO"));
+			stmt.setBoolean(1, habilitado);
+			stmt.setString(2, nome);
+			
+			stmt.executeUpdate();
+			return true;
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			return false;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	@Override
-	public boolean BloquearQuadra(int id, boolean bloqueado) { return false;}
+	public boolean BloquearQuadra(String nome, boolean bloqueado) { return false;}
 	
 	@Override
-	public boolean DeletarQuadra(int id) { return false;}
+	public boolean DeletarQuadra(String nome) { return false;}
 	
 }

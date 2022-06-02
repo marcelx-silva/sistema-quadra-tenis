@@ -23,10 +23,10 @@ public interface QuadraDAO {
 	
 	boolean AlterarDadosQuadra(Quadra qua, String alteracao, int escolha);
 	
-	boolean HabilitarQuadra(int id, boolean habilitado);
+	boolean HabilitarQuadra(String nome, boolean habilitado);
 	
-	boolean BloquearQuadra(int id, boolean bloqueado);
+	boolean BloquearQuadra(String nomed, boolean bloqueado);
 	
-	boolean DeletarQuadra(int id);
+	boolean DeletarQuadra(String nome);
 	
 }
