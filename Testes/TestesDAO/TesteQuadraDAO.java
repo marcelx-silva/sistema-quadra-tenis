@@ -31,7 +31,6 @@ public class TesteQuadraDAO {
 		
 	}
 	
-	
 	@Test
 	public void TesteBuscarTodasQuadras() throws CourtAlreadyRegisteredException, IOException, SQLException {
 		quaDAO.CadastrarQuadra(qua);
@@ -63,5 +62,15 @@ public class TesteQuadraDAO {
 	@Test
 	public void TesteDesabilitarQuadra() {
 		assertTrue(quaDAO.HabilitarQuadra(qua.getNome(), false));
+	}
+	
+	@Test
+	public void TesteBloquearQuadra() {
+		assertTrue(quaDAO.BloquearQuadra(qua.getNome(), true));
+	}
+	
+	@Test
+	public void TesteDebloquearQuadra() {
+		assertTrue(quaDAO.BloquearQuadra(qua.getNome(), false));
 	}
 }
