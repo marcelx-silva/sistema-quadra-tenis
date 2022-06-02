@@ -24,12 +24,13 @@ public class TesteQuadraDAO {
 	
 	ImplQuadraDAO quaDAO = new ImplQuadraDAO();
 	
-	/*
+	
 	@Test
 	public void TesteCadastroQuadra() throws CourtAlreadyRegisteredException {
 		assertTrue(quaDAO.CadastrarQuadra(qua));
 		
-	}*/
+	}
+	
 	
 	@Test
 	public void TesteBuscarTodasQuadras() throws CourtAlreadyRegisteredException, IOException, SQLException {
@@ -41,7 +42,7 @@ public class TesteQuadraDAO {
 		
 		assertEquals(3, listaQuadras.size());
 	}
-	/*
+	
 	@Test
 	public void TesteProcuraQuadraPeloNome() throws CourtNotFoundException{
 		Quadra quadraBuscada = quaDAO.obterQuadraPeloNome("Quadra 1");
@@ -52,5 +53,15 @@ public class TesteQuadraDAO {
 		assertEquals(quadraBuscada.isEstaBloqueada(), qua.isEstaBloqueada());
 		assertEquals(quadraBuscada.isPossuiArquibancada(), qua.isPossuiArquibancada());
 		assertEquals(quadraBuscada.isPossuiCobertura(), qua.isPossuiCobertura());
-	}*/
+	}
+	
+	@Test
+	public void TesteHabilitarQuadra() {
+		assertTrue(quaDAO.HabilitarQuadra(qua.getNome(), true));
+	}
+	
+	@Test
+	public void TesteDesabilitarQuadra() {
+		assertTrue(quaDAO.HabilitarQuadra(qua.getNome(), false));
+	}
 }
