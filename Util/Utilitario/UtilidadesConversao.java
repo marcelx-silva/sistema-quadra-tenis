@@ -18,7 +18,7 @@ public class UtilidadesConversao {
 			return "Não";
 	}
 	
-	public static TipoQuadra transformaInteiro(int id) {
+	public static TipoQuadra transformaInteiroEmTipoQuadra(int id) {
 		switch(id) {
 			case 1:
 				return TipoQuadra.SAIBRO;
@@ -34,6 +34,25 @@ public class UtilidadesConversao {
 				
 			default:
 				return TipoQuadra.INVALIDO;
+		}
+	}
+	
+	public static int transformaTipoQuadraEmInteiro(TipoQuadra tipo) {
+		switch(tipo) {
+			case SAIBRO:
+				return 1;
+			
+			case SUPERFICIE_SINTETICA:
+				return 2;
+				
+			case CIMENTO:
+				return 3;
+				
+			case BEACH_TENNIS:
+				return 4;
+				
+			default:
+				return 0;
 		}
 	}
 }
