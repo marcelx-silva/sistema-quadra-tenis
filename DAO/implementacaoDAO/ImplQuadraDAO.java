@@ -19,7 +19,7 @@ import conexao.ConexaoBD;
 public class ImplQuadraDAO implements QuadraDAO{
 	
 	QueriesQuadra q = new QueriesQuadra(); 
-	//TODO: consertar a diferen�a de tipagem de TipoQuadra 
+	
 	@Override
 	public List<Quadra> obterTodasQuadras() throws IOException, SQLException{
 		
@@ -83,24 +83,24 @@ public class ImplQuadraDAO implements QuadraDAO{
 	}
 	
 	@Override
-	public List<Quadra> obterQuadraBloqueadas(boolean bloqueado){}
+	public List<Quadra> obterQuadraBloqueadas(boolean bloqueado){ return null;}
 	
 	@Override
-	public Quadra obterQuadraPeloId(int id) {}
+	public Quadra obterQuadraPeloId(int id) { return null;}
 	
 	@Override
-	public boolean CadastrarQuadra(Quadra q) {}
+	public boolean CadastrarQuadra(Quadra q) { return false;}
 	
 	@Override
-	public boolean AlterarDadosQuadra(String alteracao, int escolha) {}
+	public boolean AlterarDadosQuadra(String alteracao, int escolha) { return false;}
 	
 	@Override
-	public boolean HabilitarQuadra(int id, boolean habilitado) {}
+	public boolean HabilitarQuadra(int id, boolean habilitado) { return false;}
 	
 	@Override
-	public boolean BloquearQuadra(int id, boolean bloqueado) {}
+	public boolean BloquearQuadra(int id, boolean bloqueado) { return false;}
 	
 	@Override
-	public boolean DeletarQuadra(int id) {}
+	public boolean DeletarQuadra(int id) { return false;}
 	
 }
