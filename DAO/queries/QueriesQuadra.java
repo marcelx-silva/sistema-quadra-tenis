@@ -41,8 +41,8 @@ public class QueriesQuadra {
 				+ "ON (q.qua_id_tipo = tp_id)\r\n"
 				+ "WHERE q.qua_id = ?");
 		
-		queriesQuadra.setProperty("VERIFY_QUADRA_BY_QUA_NOME", "SELECT qua_nome"
-				+ "FROM quadra"
+		queriesQuadra.setProperty("VERIFY_QUADRA_BY_QUA_NOME", "SELECT qua_nome\r\n"
+				+ "FROM quadra\r\n"
 				+ "WHERE qua_nome = ?");
 		
 		FileOutputStream out = new FileOutputStream("QUERY_CONSULTA_QUADRA.properties");
@@ -51,7 +51,7 @@ public class QueriesQuadra {
 	}
 	
 	public void DMLQuadra() throws IOException{
-		queriesQuadra.setProperty("INSERT_INTO_COURT", "INSERT INTO quadra (qua_nome,qua_endereco,qua_cobertura,qua_arquibancada,qua_area_descanso,qua_id_tipo) VALUES (?,?,?,?,?,?)");
+		queriesQuadra.setProperty("INSERT_INTO_QUADRA", "INSERT INTO quadra (qua_nome,qua_endereco,qua_cobertura,qua_arquibancada,qua_area_descanso,qua_id_tipo) VALUES (?,?,?,?,?,?)");
 		
 		queriesQuadra.setProperty("UPDATE_QUADRA_NOME", "UPDATE quadra SET qua_nome = ? WHERE qua_id = ?");
 		

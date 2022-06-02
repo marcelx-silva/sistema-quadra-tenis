@@ -133,14 +133,14 @@ public class ImplQuadraDAO implements QuadraDAO{
 		try {
 			q.DMLQuadra();
 			q.consultaQuadra();
-			
 			FileInputStream in = new FileInputStream("DML_QUADRA.properties");
 			FileInputStream in2 = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
 			q.queriesQuadra.load(in);
 			q.queriesQuadra.load(in2);
 			in.close();
+			in2.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty(null));
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("VERIFY_QUADRA_BY_QUA_NOME"));
 			stmt.setString(1, qua.getNome());
 			ResultSet rs = stmt.executeQuery();
 			
