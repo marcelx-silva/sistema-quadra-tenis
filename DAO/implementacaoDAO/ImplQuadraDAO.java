@@ -333,6 +333,26 @@ public class ImplQuadraDAO implements QuadraDAO{
 	}
 	
 	@Override
-	public boolean DeletarQuadra(String nome) { return false;}
+	public boolean DeletarQuadra(String nome) { 
+	
+		try {
+			q.DMLQuadra();
+			FileInputStream in = new FileInputStream("DML_QUADRA.properties");
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("DELETE_QUADRA"));
+			stmt.setString(1, nome);
+			stmt.executeUpdate();
+			return true;
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			return false;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 }
