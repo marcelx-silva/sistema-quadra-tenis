@@ -85,7 +85,6 @@ public class QueriesUsuario {
 		queriesUsuario.setProperty("INSERT_INTO_USUARIO", "INSERT INTO usuario(usu_nome, usu_email, usu_senha) VALUES (?,?,?);");
 		
 		queriesUsuario.setProperty("UPDATE_USU_NOME", "UPDATE usuario SET usu_nome = ? WHERE usu_email = ?;");
-		queriesUsuario.setProperty("UPDATE_USU_EMAIL", "UPDATE usuario SET usu_email = ? WHERE usu_email = ?;");
 		queriesUsuario.setProperty("UPDATE_USU_SENHA", "UPDATE usuario SET usu_senha = ? WHERE usu_email = ?;");
 		
 		queriesUsuario.setProperty("BLOCK_USU_BY_EMAIL", "UPDATE usuario SET usu_bloqueado = ? WHERE usu_email = ?");
