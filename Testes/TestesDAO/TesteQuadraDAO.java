@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import Dominio.Quadra;
@@ -24,21 +25,27 @@ public class TesteQuadraDAO {
 	
 	ImplQuadraDAO quaDAO = new ImplQuadraDAO();
 	
-	
-	@Test
-	public void TesteCadastroQuadra() throws CourtAlreadyRegisteredException {
-		assertTrue(quaDAO.CadastrarQuadra(qua));
+	@Before
+	public void redefineQuadras() throws CourtAlreadyRegisteredException {
+		quaDAO.DeletarQuadra(qua.getNome());
+		quaDAO.DeletarQuadra(qua2.getNome());
+		quaDAO.DeletarQuadra(qua3.getNome());
 		
+		quaDAO.CadastrarQuadra(qua);
+		quaDAO.CadastrarQuadra(qua2);
+		quaDAO.CadastrarQuadra(qua3);
 	}
 	
 	@Test
-	public void TesteBuscarTodasQuadras() throws CourtAlreadyRegisteredException, IOException, SQLException {
-		quaDAO.CadastrarQuadra(qua);
-		quaDAO.CadastrarQuadra(qua2);
-		quaDAO.CadastrarQuadra(qua3);	
-		
-		listaQuadras = quaDAO.obterTodasQuadras();
-		
+	public void TesteCadastroQuadra() throws CourtAlreadyRegisteredException {
+		quaDAO.DeletarQuadra(qua.getNome());
+		assertTrue(quaDAO.CadastrarQuadra(qua));
+	}
+	
+	
+	@Test
+	public void TesteBuscarTodasQuadras() throws CourtAlreadyRegisteredException, IOException, SQLException {		
+		listaQuadras = quaDAO.obterTodasQuadras();	
 		assertEquals(3, listaQuadras.size());
 	}
 	
@@ -72,5 +79,10 @@ public class TesteQuadraDAO {
 	@Test
 	public void TesteDebloquearQuadra() {
 		assertTrue(quaDAO.BloquearQuadra(qua.getNome(), false));
+	}
+	
+	@Test
+	public void TesteDeletarQuadra() {
+		assertTrue(quaDAO.DeletarQuadra(qua.getNome()));
 	}
 }
