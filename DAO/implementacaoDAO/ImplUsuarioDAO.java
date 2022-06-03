@@ -386,11 +386,8 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 			ResultSet rs = stmt.executeQuery();
 			
 			if(rs.next()) {
-				String emailBD = rs.getString("usu_email");
-				String senhaBD = rs.getString("usu_senha");
-				boolean bloqueado = rs.getBoolean("usu_bloqueado");
 				
-				if(emailBD.contentEquals(user) && senhaBD.contentEquals(senha) && !bloqueado) {
+				if(!rs.getBoolean("usu_bloqueado")) {
 					conseguiuLogar = true;
 				}
 			}else {
