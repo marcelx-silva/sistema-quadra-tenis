@@ -15,8 +15,6 @@ public interface UsuarioDAO {
 	
 	List<Usuario> obterUsuarioBloqueados(boolean bloqueado) throws IOException, SQLException;
 	
-	List<Usuario> obterUsuarioPelaPermissao(String permissao) throws IOException, SQLException;
-	
 	Usuario obterUsuarioPeloEmail(String email) throws IOException;
 	
 	boolean CadastrarUsuario(Usuario u) throws IOException, UserAlreadyRegisteredException;

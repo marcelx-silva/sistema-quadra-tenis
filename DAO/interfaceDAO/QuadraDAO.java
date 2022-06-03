@@ -1,6 +1,8 @@
 package interfaceDAO;
 
 import Dominio.Quadra;
+import Exceptions.CourtAlreadyRegisteredException;
+import Exceptions.CourtNotFoundException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -15,16 +17,16 @@ public interface QuadraDAO {
 	
 	List<Quadra> obterQuadraBloqueadas(boolean bloqueado);
 	
-	Quadra obterQuadraPeloId(int id);
+	Quadra obterQuadraPeloNome(String nome) throws CourtNotFoundException ;
 	
-	boolean CadastrarQuadra(Quadra q);
+	boolean CadastrarQuadra(Quadra q) throws CourtAlreadyRegisteredException;
 	
-	boolean AlterarDadosQuadra(String alteracao, int escolha);
+	boolean AlterarDadosQuadra(Quadra qua, String alteracao, int escolha);
 	
-	boolean HabilitarQuadra(int id, boolean habilitado);
+	boolean HabilitarQuadra(String nome, boolean habilitado);
 	
-	boolean BloquearQuadra(int id, boolean bloqueado);
+	boolean BloquearQuadra(String nomed, boolean bloqueado);
 	
-	boolean DeletarQuadra(int id);
+	boolean DeletarQuadra(String nome);
 	
 }

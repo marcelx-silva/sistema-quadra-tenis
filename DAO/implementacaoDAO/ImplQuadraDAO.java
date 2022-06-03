@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Dominio.Quadra;
+import Enum.TipoQuadra;
+import Exceptions.CourtAlreadyRegisteredException;
+import Exceptions.CourtNotFoundException;
 import interfaceDAO.QuadraDAO;
 import queries.QueriesQuadra;
+import Utilitario.UtilidadesConversao;
+import Utilitario.UtilidadesGUI;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,27 +24,27 @@ import conexao.ConexaoBD;
 public class ImplQuadraDAO implements QuadraDAO{
 	
 	QueriesQuadra q = new QueriesQuadra(); 
-	//TODO: consertar a diferen�a de tipagem de TipoQuadra 
+	
 	@Override
 	public List<Quadra> obterTodasQuadras() throws IOException, SQLException{
 		
 		List<Quadra> quadrasLista = new ArrayList<>();
-		FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA");
+		FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
 		q.queriesQuadra.load(in);
 		in.close();
 		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_ALL_FROM_ALL_QUADRA"));
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()) {
-			Quadra quadra = new Quadra("","","",null,false,false,false);
-			quadra.setCodigo(rs.getString("qua_id"));
-			quadra.setNome(rs.getString("qua_nome"));
-			quadra.setEndereco(rs.getString("qua_endereco"));
-			quadra.setTipo(rs.getInt("qua_id_tipo"));
-			quadra.setPossuiCobertura(rs.getBoolean("qua_cobertura"));
-			quadra.setPossuiArquibancada(rs.getBoolean("qua_arquibancada"));
-			quadra.setPossuiAreaDescanso(rs.getBoolean("qua_area_descanso"));
-			quadra.setEstaBloqueada(rs.getBoolean("qua_bloqueado"));
+			
+			String nome = rs.getString("qua_nome");
+			String endereco = rs.getString("qua_endereco");
+			TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
+			boolean cobertura = rs.getBoolean("qua_cobertura");
+			boolean arquibancada = rs.getBoolean("qua_arquibancada");
+			boolean descanso = rs.getBoolean("qua_area_descanso");
+			boolean bloqueada = rs.getBoolean("qua_bloqueado");
+			Quadra quadra = new Quadra(nome, endereco, tipo, cobertura, arquibancada, descanso, bloqueada);
 			quadrasLista.add(quadra);
 		}
 		
@@ -55,7 +60,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 		
 		List<Quadra> quadraLista = new ArrayList<Quadra>();
 		
-		FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA");
+		FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
 		q.queriesQuadra.load(in);
 		in.close();
 		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_DISABLE_QUADRA"));
@@ -64,15 +69,14 @@ public class ImplQuadraDAO implements QuadraDAO{
 		
 		while(rs.next()) {
 			
-			String id = rs.getString("qua_id");
 			String nome = rs.getString("qua_nome");
 			String endereco = rs.getString("qua_endereco");
-			int tipo = rs.getInt("qua_id_tipos");
+			TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
 			boolean coberta = rs.getBoolean("qua_cobertura");
 			boolean arquibancada = rs.getBoolean("qua_arquibancada");
 			boolean descanso = rs.getBoolean("qua_area_descanso");
 			boolean bloqueada = rs.getBoolean("qua_bloqueado");
-			Quadra quadra = new Quadra(id, nome, endereco, tipo, coberta, arquibancada, descanso, bloqueada);
+			Quadra quadra = new Quadra(nome, endereco, tipo, coberta, arquibancada, descanso, bloqueada);
 			quadraLista.add(quadra);
 		}
 		
@@ -83,24 +87,270 @@ public class ImplQuadraDAO implements QuadraDAO{
 	}
 	
 	@Override
-	public List<Quadra> obterQuadraBloqueadas(boolean bloqueado){}
+	public List<Quadra> obterQuadraBloqueadas(boolean bloqueado){ 
+		List<Quadra> quadrasLista = new ArrayList<>();
+		
+		try {
+			FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
+			q.queriesQuadra.load(in);
+			in.close();
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_ALL_BLOCKED_QUADRA"));
+			stmt.setBoolean(1, bloqueado);
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				String nome = rs.getString("qua_nome");
+				String endereco = rs.getString("qua_endereco");
+				TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
+				boolean cobertura = rs.getBoolean("qua_cobertura");
+				boolean arquibancada = rs.getBoolean("qua_arquibancada");
+				boolean descanso = rs.getBoolean("qua_area_descanso");
+				boolean bloqueada = rs.getBoolean("qua_bloqueado");
+				Quadra quadra = new Quadra(nome, endereco, tipo, cobertura, arquibancada, descanso, bloqueada);
+				quadrasLista.add(quadra);
+			}
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+				
+		return quadrasLista;
+		
+	}
+	@Override
+	public Quadra obterQuadraPeloNome(String nome) throws CourtNotFoundException {
+		
+		Quadra qua = null;
+		
+		try {
+			
+			q.consultaQuadra();
+			
+			FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
+			q.queriesQuadra.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_FROM_QUADRA_BY_QUA_NOME"));
+			stmt.setString(1, nome);
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+					
+				String nomeQuadra = rs.getString("qua_nome");
+				String endereco = rs.getString("qua_endereco");
+				TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
+				boolean cobertura = rs.getBoolean("qua_cobertura");
+				boolean arquibancada = rs.getBoolean("qua_arquibancada");
+				boolean descanso = rs.getBoolean("qua_area_descanso");
+				boolean bloqueada = rs.getBoolean("qua_bloqueado");
+				qua = new Quadra(nomeQuadra, endereco, tipo, cobertura, arquibancada, descanso, bloqueada); 
+				
+			}else {
+				throw new CourtNotFoundException("Não foi encontrada nenhuma quadra com o nome: " + nome);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}
+		
+		return qua;
+	}
 	
 	@Override
-	public Quadra obterQuadraPeloId(int id) {}
+	public boolean CadastrarQuadra(Quadra qua) throws CourtAlreadyRegisteredException{ 
+		
+		
+		try {
+			q.DMLQuadra();
+			q.consultaQuadra();
+			FileInputStream in = new FileInputStream("DML_QUADRA.properties");
+			FileInputStream in2 = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
+			q.queriesQuadra.load(in);
+			q.queriesQuadra.load(in2);
+			in.close();
+			in2.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("VERIFY_QUADRA_BY_QUA_NOME"));
+			stmt.setString(1, qua.getNome());
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				throw new CourtAlreadyRegisteredException("Uma quadra com esse nome já foi cadastrada!");
+			}
+		
+			stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("INSERT_INTO_QUADRA"));
+		
+			stmt.setString(1, qua.getNome());
+			stmt.setString(2, qua.getEndereco());
+			stmt.setBoolean(3, qua.isPossuiCobertura());
+			stmt.setBoolean(4, qua.isPossuiArquibancada());
+			stmt.setBoolean(5, qua.isPossuiAreaDescanso());
+			stmt.setInt(6, UtilidadesConversao.transformaTipoQuadraEmInteiro(qua.getTipo()));
+	
+			stmt.executeUpdate();
+			
+			return true;
+		
+	}catch(SQLException e) {
+
+		e.printStackTrace();
+		return false;
+		
+	}catch(IOException e) {
+
+		e.printStackTrace();
+		return false;
+	}}
 	
 	@Override
-	public boolean CadastrarQuadra(Quadra q) {}
+	public boolean AlterarDadosQuadra(Quadra qua, String alteracao, int escolha) { 
+		try {
+			q.DMLQuadra();
+			FileInputStream in = new FileInputStream("DML_QUADRA.properties");
+			q.queriesQuadra.load(in);
+			in.close();
+			
+			PreparedStatement stmt;
+			
+			switch(escolha) {
+			
+				case 1:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_NOME"));
+					stmt.setString(1, alteracao);
+					stmt.setString(2, qua.getNome());
+					stmt.executeUpdate();
+					break;
+					
+				case 2:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_ENDERECO"));
+					stmt.setString(1, alteracao);
+					stmt.setString(2, qua.getNome());
+					stmt.executeUpdate();
+					break;
+					
+				case 3:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_COBERTURA"));
+					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setString(2, qua.getNome());
+					stmt.executeUpdate();
+					break;
+					
+				case 4:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_ARQUIBANCADA"));
+					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setString(2, qua.getNome());
+					stmt.executeUpdate();
+					break;
+					
+				case 5:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_AREA_DESCANSO"));
+					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setString(2, qua.getNome());
+					stmt.executeUpdate();
+					break;
+					
+				case 6:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_TIPO"));
+					stmt.setInt(1, Integer.valueOf(alteracao));
+					stmt.setString(2, qua.getNome());
+					stmt.executeUpdate();
+					break;
+					
+				default:
+					UtilidadesGUI.exibeMensagem("Opção Inválida!");
+					break;
+			}
+			return true;
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 	@Override
-	public boolean AlterarDadosQuadra(String alteracao, int escolha) {}
+	public boolean HabilitarQuadra(String nome, boolean habilitado) { 
+	
+		try {
+			q.DMLQuadra();
+			FileInputStream in = new FileInputStream("DML_QUADRA.properties");
+			q.queriesQuadra.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_HABILITADO"));
+			stmt.setBoolean(1, habilitado);
+			stmt.setString(2, nome);
+			
+			stmt.executeUpdate();
+			return true;
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			return false;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	@Override
-	public boolean HabilitarQuadra(int id, boolean habilitado) {}
+	public boolean BloquearQuadra(String nome, boolean bloqueado) {
+		
+		try {
+			q.DMLQuadra();
+			FileInputStream in = new FileInputStream("DML_QUADRA.properties");
+			q.queriesQuadra.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_BLOQUEADO"));
+			stmt.setBoolean(1, bloqueado);
+			stmt.setString(2, nome);
+			
+			stmt.executeUpdate();
+			return true;
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			return false;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	@Override
-	public boolean BloquearQuadra(int id, boolean bloqueado) {}
+	public boolean DeletarQuadra(String nome) { 
 	
-	@Override
-	public boolean DeletarQuadra(int id) {}
+		try {
+			q.DMLQuadra();
+			FileInputStream in = new FileInputStream("DML_QUADRA.properties");
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("DELETE_QUADRA"));
+			stmt.setString(1, nome);
+			stmt.executeUpdate();
+			return true;
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			return false;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 }
