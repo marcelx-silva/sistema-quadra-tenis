@@ -10,6 +10,8 @@ import org.junit.Test;
 import implementacaoDAO.ImplUsuarioDAO;
 import Dominio.Usuario;
 import Exceptions.UserAlreadyRegisteredException;
+import Exceptions.UserNotFoundException;
+import Exceptions.WrongUserOrPasswordException;
 
 public class TesteUsuarioDAO {
 
@@ -34,17 +36,17 @@ public class TesteUsuarioDAO {
 	}
 	
 	@Test
-	public void TesteLoginUsuarioExistente() {
+	public void TesteLoginUsuarioExistente() throws WrongUserOrPasswordException {
 		assertTrue(usuDAO.verificaUsuario("emailDoNathan@gmail.com", "senha segura"));
 	}
 	
-	@Test
-	public void TesteLoginUsuarioNaoExistente() {
-		assertFalse(usuDAO.verificaUsuario("emailDoThiago@gmail.com", "senha segura"));
+	@Test(expected=WrongUserOrPasswordException.class)
+	public void TesteLoginUsuarioNaoExistente() throws WrongUserOrPasswordException {
+		usuDAO.verificaUsuario("emailDoThiago@gmail.com", "senha segura");
 	}
 	
 	@Test
-	public void TesteBuscarUsuarioPorEmail() throws IOException {
+	public void TesteBuscarUsuarioPorEmail() throws IOException, UserNotFoundException {
 		Usuario usuBuscado = usuDAO.obterUsuarioPeloEmail("emailDoNathan@gmail.com");
 		assertEquals(usuBuscado.getEmail(), usu.getEmail());
 		assertEquals(usuBuscado.getNome(), usu.getNome());
@@ -83,70 +85,70 @@ public class TesteUsuarioDAO {
 	}
 
 	@Test
-	public void TesteAlteraNome() throws IOException {
+	public void TesteAlteraNome() throws IOException, UserNotFoundException {
 		assertTrue(usuDAO.AlterarDadosUsuario(usu, "Nathan Alterado", 1));
 		Usuario usuBuscado = usuDAO.obterUsuarioPeloEmail("emailDoNathan@gmail.com");
 		assertNotEquals(usu.getNome(), usuBuscado.getNome());
 	}
 
 	@Test
-	public void TesteAlteraSenha() throws IOException {
+	public void TesteAlteraSenha() throws IOException, UserNotFoundException {
 		assertTrue(usuDAO.AlterarDadosUsuario(usu, "nova senha", 3));
 		Usuario usuBuscado = usuDAO.obterUsuarioPeloEmail("emailDoNathan@gmail.com");
 		assertNotEquals(usu.getSenha(), usuBuscado.getSenha());
 	}
 	
 	@Test
-	public void TesteDarPermissãoGestorQuadra() throws IOException {
+	public void TesteDarPermissãoGestorQuadra() throws IOException, UserNotFoundException {
 		assertTrue(usuDAO.AlterarDadosUsuario(usu, "Sim", 4));
 		Usuario usuBuscado = usuDAO.obterUsuarioPeloEmail("emailDoNathan@gmail.com");
 		assertTrue(usuBuscado.isAcessoGestorQuadras());
 	}
 	
 	@Test
-	public void TesteTirarPermissãoGestorQuadra() throws IOException {
+	public void TesteTirarPermissãoGestorQuadra() throws IOException, UserNotFoundException {
 		assertTrue(usuDAO.AlterarDadosUsuario(usu, "Não", 4));
 		Usuario usuBuscado = usuDAO.obterUsuarioPeloEmail("emailDoNathan@gmail.com");
 		assertFalse(usuBuscado.isAcessoGestorQuadras());
 	}
 	
 	@Test
-	public void TesteDarPermissãoGestorUsuario() throws IOException {
+	public void TesteDarPermissãoGestorUsuario() throws IOException, UserNotFoundException {
 		assertTrue(usuDAO.AlterarDadosUsuario(usu, "Sim", 5));
 		Usuario usuBuscado = usuDAO.obterUsuarioPeloEmail("emailDoNathan@gmail.com");
 		assertTrue(usuBuscado.isAcessoGestorUsuarios());
 	}
 	
 	@Test
-	public void TesteTirarPermissãoGestorUsuario() throws IOException {
+	public void TesteTirarPermissãoGestorUsuario() throws IOException, UserNotFoundException {
 		assertTrue(usuDAO.AlterarDadosUsuario(usu, "Não", 5));
 		Usuario usuBuscado = usuDAO.obterUsuarioPeloEmail("emailDoNathan@gmail.com");
 		assertFalse(usuBuscado.isAcessoGestorUsuarios());
 	}
 	
 	@Test
-	public void TesteDarPermissãoRelatorio() throws IOException {
+	public void TesteDarPermissãoRelatorio() throws IOException, UserNotFoundException {
 		assertTrue(usuDAO.AlterarDadosUsuario(usu, "Sim", 6));
 		Usuario usuBuscado = usuDAO.obterUsuarioPeloEmail("emailDoNathan@gmail.com");
 		assertTrue(usuBuscado.isAcessoRelatorios());
 	}
 	
 	@Test
-	public void TesteTirarPermissãoRelatorio() throws IOException {
+	public void TesteTirarPermissãoRelatorio() throws IOException, UserNotFoundException {
 		assertTrue(usuDAO.AlterarDadosUsuario(usu, "Não", 6));
 		Usuario usuBuscado = usuDAO.obterUsuarioPeloEmail("emailDoNathan@gmail.com");
 		assertFalse(usuBuscado.isAcessoRelatorios());
 	}
 	
 	@Test
-	public void TesteDarPermissãoZelador() throws IOException {
+	public void TesteDarPermissãoZelador() throws IOException, UserNotFoundException {
 		assertTrue(usuDAO.AlterarDadosUsuario(usu, "Sim", 7));
 		Usuario usuBuscado = usuDAO.obterUsuarioPeloEmail("emailDoNathan@gmail.com");
 		assertTrue(usuBuscado.isAcessoZelador());
 	}
 	
 	@Test
-	public void TesteTirarPermissãoZelador() throws IOException {
+	public void TesteTirarPermissãoZelador() throws IOException, UserNotFoundException {
 		assertTrue(usuDAO.AlterarDadosUsuario(usu, "Não", 7));
 		Usuario usuBuscado = usuDAO.obterUsuarioPeloEmail("emailDoNathan@gmail.com");
 		assertFalse(usuBuscado.isAcessoZelador());
