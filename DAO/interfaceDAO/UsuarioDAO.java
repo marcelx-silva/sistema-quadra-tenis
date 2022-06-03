@@ -1,6 +1,7 @@
 package interfaceDAO;
 
 import Dominio.Usuario;
+import Exceptions.BlockedUserException;
 import Exceptions.UserAlreadyRegisteredException;
 import Exceptions.UserNotFoundException;
 import Exceptions.WrongUserOrPasswordException;
@@ -29,5 +30,5 @@ public interface UsuarioDAO {
 	
 	boolean DeletarUsuario(String email);
 	
-	boolean verificaUsuario(String user, String senha) throws WrongUserOrPasswordException;
+	boolean verificaUsuario(String user, String senha) throws WrongUserOrPasswordException, BlockedUserException;
 }

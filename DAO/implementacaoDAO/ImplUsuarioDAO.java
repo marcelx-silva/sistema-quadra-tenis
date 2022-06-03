@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Dominio.Usuario;
+import Exceptions.BlockedUserException;
 import Exceptions.UserAlreadyRegisteredException;
 import Exceptions.UserNotFoundException;
 import Exceptions.WrongUserOrPasswordException;
@@ -368,7 +369,7 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	}
 
 	@Override
-	public boolean verificaUsuario(String user, String senha) throws WrongUserOrPasswordException{
+	public boolean verificaUsuario(String user, String senha) throws WrongUserOrPasswordException, BlockedUserException{
 		
 		boolean conseguiuLogar = false;
 		
@@ -389,6 +390,8 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 				
 				if(!rs.getBoolean("usu_bloqueado")) {
 					conseguiuLogar = true;
+				}else {
+					throw new BlockedUserException("Credenciais correspondem a um usuário bloqueado!");
 				}
 			}else {
 				throw new WrongUserOrPasswordException("Email e/ou senha estão errados!");
