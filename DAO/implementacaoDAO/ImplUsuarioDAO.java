@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Dominio.Usuario;
+import Exceptions.BlockedUserException;
 import Exceptions.UserAlreadyRegisteredException;
+import Exceptions.UserNotFoundException;
+import Exceptions.WrongUserOrPasswordException;
 import Utilitario.UtilidadesConversao;
 import Utilitario.UtilidadesGUI;
 import interfaceDAO.UsuarioDAO;
@@ -123,7 +126,7 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	}
 	
 	@Override
-	public Usuario obterUsuarioPeloEmail(String emailBuscado) throws IOException {
+	public Usuario obterUsuarioPeloEmail(String emailBuscado) throws IOException, UserNotFoundException {
 		
 		q.consultarUsuario();
 		Usuario usu = null;
@@ -148,7 +151,9 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 				boolean acessoZelador = rs.getBoolean("usu_acesso_zelador");
 				usu = new Usuario(nome, email, senha, acessoGestorQuadra, acessoGestorUsuario, acessoRelatorio, acessoZelador); 
 				
-			}			
+			}else {
+				throw new UserNotFoundException("Não foi encontrado nenhum usuário cadastrado com o email digitado!");
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -364,7 +369,7 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 	}
 
 	@Override
-	public boolean verificaUsuario(String user, String senha) {
+	public boolean verificaUsuario(String user, String senha) throws WrongUserOrPasswordException, BlockedUserException{
 		
 		boolean conseguiuLogar = false;
 		
@@ -382,13 +387,14 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 			ResultSet rs = stmt.executeQuery();
 			
 			if(rs.next()) {
-				String emailBD = rs.getString("usu_email");
-				String senhaBD = rs.getString("usu_senha");
-				boolean bloqueado = rs.getBoolean("usu_bloqueado");
 				
-				if(emailBD.contentEquals(user) && senhaBD.contentEquals(senha) && !bloqueado) {
+				if(!rs.getBoolean("usu_bloqueado")) {
 					conseguiuLogar = true;
+				}else {
+					throw new BlockedUserException("Credenciais correspondem a um usuário bloqueado!");
 				}
+			}else {
+				throw new WrongUserOrPasswordException("Email e/ou senha estão errados!");
 			}
 
 			
