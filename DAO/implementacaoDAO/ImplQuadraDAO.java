@@ -60,7 +60,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 		
 		List<Quadra> quadraLista = new ArrayList<Quadra>();
 		
-		FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA");
+		FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
 		q.queriesQuadra.load(in);
 		in.close();
 		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_DISABLE_QUADRA"));
@@ -69,15 +69,14 @@ public class ImplQuadraDAO implements QuadraDAO{
 		
 		while(rs.next()) {
 			
-			String id = rs.getString("qua_id");
 			String nome = rs.getString("qua_nome");
 			String endereco = rs.getString("qua_endereco");
-			int tipo = rs.getInt("qua_id_tipos");
+			TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
 			boolean coberta = rs.getBoolean("qua_cobertura");
 			boolean arquibancada = rs.getBoolean("qua_arquibancada");
 			boolean descanso = rs.getBoolean("qua_area_descanso");
 			boolean bloqueada = rs.getBoolean("qua_bloqueado");
-			Quadra quadra = new Quadra(id, nome, endereco, tipo, coberta, arquibancada, descanso, bloqueada);
+			Quadra quadra = new Quadra(nome, endereco, tipo, coberta, arquibancada, descanso, bloqueada);
 			quadraLista.add(quadra);
 		}
 		
@@ -92,10 +91,11 @@ public class ImplQuadraDAO implements QuadraDAO{
 		List<Quadra> quadrasLista = new ArrayList<>();
 		
 		try {
-			FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA");
+			FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
 			q.queriesQuadra.load(in);
 			in.close();
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_ALL_BLOCKEDL_QUADRA"));
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_ALL_BLOCKED_QUADRA"));
+			stmt.setBoolean(1, bloqueado);
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -117,11 +117,8 @@ public class ImplQuadraDAO implements QuadraDAO{
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
-		List<Quadra> quadrasListaCopia = new ArrayList<>();
-		quadrasListaCopia.addAll(quadrasLista);
-		
-		return quadrasListaCopia;
+				
+		return quadrasLista;
 		
 	}
 	@Override
@@ -261,7 +258,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 					
 				case 6:
 					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_TIPO"));
-					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setInt(1, Integer.valueOf(alteracao));
 					stmt.setString(2, qua.getNome());
 					stmt.executeUpdate();
 					break;
@@ -309,6 +306,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 	
 	@Override
 	public boolean BloquearQuadra(String nome, boolean bloqueado) {
+		
 		try {
 			q.DMLQuadra();
 			FileInputStream in = new FileInputStream("DML_QUADRA.properties");
