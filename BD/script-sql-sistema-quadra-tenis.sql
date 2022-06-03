@@ -30,8 +30,7 @@ CREATE TABLE quadra(
 	qua_habilitado BOOL NOT NULL DEFAULT 1,
     
 	
-	PRIMARY KEY (qua_id),
-	FOREIGN KEY (qua_id_tipo) REFERENCES tipo_quadra(tp_id)
+	PRIMARY KEY (qua_id)
 );
 
 CREATE TABLE manutencao(
@@ -42,8 +41,7 @@ CREATE TABLE manutencao(
 	man_prev BOOLEAN NOT NULL,
 	man_cod_quadra INTEGER NOT NULL,
 	
-	PRIMARY KEY(man_id),
-	FOREIGN KEY(man_cod_quadra) REFERENCES quadra(qua_id)
+	PRIMARY KEY(man_id)
 );
 
 CREATE TABLE usuario(
@@ -96,9 +94,7 @@ CREATE TABLE reserva(
 	res_parcelas VARCHAR(1) NOT NULL,
 	res_valor FLOAT NOT NULL,
     
-    PRIMARY KEY(res_id),
-    FOREIGN KEY(res_id_cliente) REFERENCES cliente(cli_id),
-    FOREIGN KEY(res_id_quadra) REFERENCES quadra(qua_id) 
+    PRIMARY KEY(res_id)
 );
 
 /* Inserção de valores fixos */
@@ -116,3 +112,26 @@ INSERT INTO forma_pagamento (fp_nome) VALUES('Crédito');
 INSERT INTO forma_pagamento (fp_nome) VALUES('Dédito');
 INSERT INTO forma_pagamento (fp_nome) VALUES('PIX');
 INSERT INTO forma_pagamento (fp_nome) VALUES('Dinheiro');
+
+/* Constraints */
+
+ALTER TABLE quadra
+ADD CONSTRAINT quadra_tipo
+FOREIGN KEY(qua_id_tipo)
+REFERENCES tipo_quadra(tp_id);
+
+ALTER TABLE manutencao
+ADD CONSTRAINT man_quadra
+FOREIGN KEY (man_cod_quadra)
+REFERENCES quadra(qua_id);
+
+ALTER TABLE reserva
+ADD CONSTRAINT reserva_cliente
+FOREIGN KEY (res_id_cliente)
+REFERENCES cliente(cli_id);
+
+ALTER TABLE reserva
+ADD CONSTRAINT reserva_quadra
+FOREIGN KEY (res_id_quadra)
+REFERENCES quadra(qua_id);
+
