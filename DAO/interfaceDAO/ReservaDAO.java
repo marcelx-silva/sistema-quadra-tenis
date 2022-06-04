@@ -1,5 +1,7 @@
 package interfaceDAO;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import Dominio.Reserva;
 
@@ -7,15 +9,19 @@ public interface ReservaDAO {
 	
 	List<Reserva> obterTodasReservas();
 	
-	List<Reserva> obterReservaPelaData(String data);
+	List<Reserva> obterReservaPorPeriodo(LocalDate data, LocalTime horarioInicio, LocalTime horarioFim);
+
+	List<Reserva> obterReservasPeloDia(LocalDate data);
 	
 	Reserva obterReservaPeloId(int id);
 	
-	List<Reserva> obterReservasPeloDia(String data);
+	boolean registrarPagamento(Reserva r);
+	
+	boolean registrarEntradaCliente(Reserva r);
+	
+	boolean registrarSaidaCliente(Reserva r);
 	
 	boolean CadastrarReserva(Reserva r);
-	
-	boolean AlterarDadosReserva(String alteracao, int escolha);
 	
 	boolean DeletarReserva(int id);
 	
