@@ -9,9 +9,11 @@ public interface ManutencaoDAO {
 
 	List<Manutencao> obterTodasManutencoes();
 	
-	List<Manutencao> obterManutencoesPorPeriodo(LocalDate dataInicio, LocalDate dataFim);
+	List<Manutencao> obterManutencoesPorPeriodoDeDias(LocalDate dataInicio, LocalDate dataFim);
 	
 	List<Manutencao> obterManutencoesPorData(LocalDate data);
+	
+	List<Manutencao> obterManutencoesPorDataHorario(LocalDate data, LocalDate dataInicio, LocalDate dataFim);
 	
 	Manutencao obterManutencaoPeloId(int id);
 	
