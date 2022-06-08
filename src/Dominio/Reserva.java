@@ -35,21 +35,7 @@ public class Reserva extends Agendamento{
 		return prc_res.divide(prl, 2, RoundingMode.UP);
 		
 	}
-	
-	public void cadastrarReserva(String cpfCliente,String nomeCliente, LocalDate dataReserva, LocalTime horarioInicioReserva, LocalTime horarioFimReserva, TipoPagamento modoPagamento, int quantidadeParcelas, String codigoQuadra, String nomeQuadra, TipoQuadra tipoQuadra, boolean temCobertura){
-		super.getCliente().setNome(nomeCliente);
-		super.getCliente().setCpf(cpfCliente);
-		setData(dataReserva);
-		setHorarioInicio(horarioInicioReserva);
-		setHorarioFim(horarioFimReserva);
-		setModoPagamento(modoPagamento);
-		setParcelas(quantidadeParcelas);		
-		getQuadra().setCodigo(codigoQuadra);
-		getQuadra().setNome(nomeQuadra);
-		getQuadra().setTipo(tipoQuadra);
-
-	}
-	
+		
 
 	public TipoPagamento selecionarModoPagamento(int modo_pagamento) {
 		switch(modo_pagamento) {
@@ -70,22 +56,6 @@ public class Reserva extends Agendamento{
 			return TipoPagamento.INVALIDO;
 		}
 	}
-
-	/* terminar implementação
- * 
-	public int parcelarReserva(int parcelas) {
-		switch(parcelas) {
-		case 1:
-			return 1;
-		case 2:
-			return 2;
-		case 3:
-			return 4;
-		default:
-			return 0;
-		}
-	}
-*/
 	
 	public String getCodigo() {
 		return codigo;

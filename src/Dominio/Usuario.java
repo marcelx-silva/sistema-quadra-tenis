@@ -48,43 +48,6 @@ public class Usuario {
 		this.setEstaDesabilitado(false);
 	}
 	
-	public void alteraUsuario(String alteracao, int operador) {
-		switch(operador) {
-		
-			case 1:
-				this.setNome(alteracao);
-				break;
-				
-			case 2:
-				this.setEmail(alteracao);
-				break;
-				
-			case 3:
-				this.setSenha(alteracao);
-				break;
-				
-			case 4:
-				this.setAcessoGestorQuadras(UtilidadesConversao.transformaString(alteracao));
-				break;
-				
-			case 5:
-				this.setAcessoGestorUsuarios(UtilidadesConversao.transformaString(alteracao));
-				break;
-				
-			case 6:
-				this.setAcessoRelatorios(UtilidadesConversao.transformaString(alteracao));
-				break;
-				
-			case 7:
-				this.setAcessoZelador(UtilidadesConversao.transformaString(alteracao));
-				break;
-				
-			default:
-				UtilidadesGUI.exibeMensagem("Opção Inválida!");
-				break;
-		}
-	}
-	
 	public String getNome() {
 		return nome;
 	}

@@ -1,8 +1,6 @@
 
 package Dominio;
 import java.time.LocalDate;
-import java.util.ArrayList;
-
 
 public class Cliente {
 	
@@ -15,9 +13,6 @@ public class Cliente {
 	private boolean bloqueado = false;
 	private boolean invalidado = false;
 	private boolean habilitado = true;
-
-
-	ArrayList <Cliente> clientes = new ArrayList<Cliente>();
 	
 	public Cliente(String nome, String cpf) {
 		this.nome = nome;
@@ -45,14 +40,6 @@ public class Cliente {
 		this.bloqueado = bloqueado;
 		this.invalidado = invalidado;
 		this.habilitado = habilitado;
-	}
-	
-	public void cadastrarCliente(String nome,String email, String cpf, LocalDate dataNascimento) {
-		this.setNome(nome);
-		this.setEmail(email);
-		this.setCpf(cpf);
-		this.setDataNascimento(dataNascimento);
-		clientes.add(this);
 	}
 	
 	public void bloqueiaCliente() {
