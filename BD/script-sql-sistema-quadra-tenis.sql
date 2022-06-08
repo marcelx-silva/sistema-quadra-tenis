@@ -121,20 +121,20 @@ INSERT INTO forma_pagamento (fp_nome) VALUES('Dinheiro');
 ALTER TABLE quadra
 ADD CONSTRAINT quadra_tipo
 FOREIGN KEY(qua_id_tipo)
-REFERENCES tipo_quadra(tp_id);
+REFERENCES tipo_quadra(tp_id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE manutencao
 ADD CONSTRAINT man_quadra
 FOREIGN KEY (man_cod_quadra)
-REFERENCES quadra(qua_id);
+REFERENCES quadra(qua_id)  ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE reserva
 ADD CONSTRAINT reserva_cliente
 FOREIGN KEY (res_id_cliente)
-REFERENCES cliente(cli_id);
+REFERENCES cliente(cli_id)  ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE reserva
 ADD CONSTRAINT reserva_quadra
 FOREIGN KEY (res_id_quadra)
-REFERENCES quadra(qua_id);
+REFERENCES quadra(qua_id) ON UPDATE CASCADE ON DELETE CASCADE;
 
