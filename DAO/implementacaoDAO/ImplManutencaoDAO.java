@@ -123,9 +123,47 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 	}
 
 	@Override
-	public List<Manutencao> obterManutencoesPorData(LocalDate data) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Manutencao> obterManutencoesPorData(LocalDate dataManutencao) {
+		List<Manutencao> listaManutencoes = new ArrayList();
+		
+		try {
+			FileInputStream in = new FileInputStream("QUERY_CONSULTA_MANUTENCAO.properties");
+			qm.queriesManutencao.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO_BY_DAY"));
+			stmt.setString(1, dataManutencao.format(dataFormatoBD));
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				String codigo = rs.getString("m.man_id");
+				String descricao = rs.getString("m.man_desc");
+				String data = rs.getString("m.mand_data");
+				String horarioInicio = rs.getString("m.man_hr_inicio");
+				String horarioFim = rs.getString("m.man_hr_fim");
+				boolean preventiva = rs.getBoolean("m.man_prev");
+				String codigoQuadra = String.valueOf(rs.getInt("m.man_cod_quadra"));
+				
+				Quadra q = quadraDAO.obterQuadraPeloID(codigoQuadra);
+				
+				LocalTime horarioI = LocalTime.parse(horarioInicio, horarioFormatoPadrao);
+				LocalTime horarioF = LocalTime.parse(horarioFim, horarioFormatoPadrao);
+				LocalDate dataM = LocalDate.parse(data, dataFormatoPadrao);
+				Manutencao m = new Manutencao(codigo, q, dataM, horarioI, horarioF, preventiva, descricao);
+				listaManutencoes.add(m);
+			}
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}catch(CourtNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return listaManutencoes;
 	}
 	
 	@Override
