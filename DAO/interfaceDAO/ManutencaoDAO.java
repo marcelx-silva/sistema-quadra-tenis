@@ -13,7 +13,7 @@ public interface ManutencaoDAO {
 	
 	List<Manutencao> obterManutencoesPorData(LocalDate data);
 	
-	List<Manutencao> obterManutencoesPorDataHorario(LocalDate data, LocalDate dataInicio, LocalDate dataFim);
+	List<Manutencao> obterManutencoesPorDataHorario(LocalDate data, LocalTime horarioInicioM, LocalTime horarioFimM);
 	
 	Manutencao obterManutencaoPeloId(int id);
 	

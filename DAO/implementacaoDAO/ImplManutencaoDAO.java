@@ -167,9 +167,49 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 	}
 	
 	@Override
-	public List<Manutencao> obterManutencoesPorDataHorario(LocalDate data,LocalDate dataInicio, LocalDate dataFim) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Manutencao> obterManutencoesPorDataHorario(LocalDate dataManutencao,LocalTime horarioInicioM, LocalTime horarioFimM) {
+		List<Manutencao> listaManutencoes = new ArrayList();
+		
+		try {
+			FileInputStream in = new FileInputStream("QUERY_CONSULTA_MANUTENCAO.properties");
+			qm.queriesManutencao.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO_BY_DAY_AND_TIME"));
+			stmt.setString(1, dataManutencao.format(dataFormatoBD));
+			stmt.setString(2, horarioInicioM.format(horarioFormatoBD));
+			stmt.setString(3, horarioFimM.format(horarioFormatoBD));
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				String codigo = rs.getString("m.man_id");
+				String descricao = rs.getString("m.man_desc");
+				String data = rs.getString("m.mand_data");
+				String horarioInicio = rs.getString("m.man_hr_inicio");
+				String horarioFim = rs.getString("m.man_hr_fim");
+				boolean preventiva = rs.getBoolean("m.man_prev");
+				String codigoQuadra = String.valueOf(rs.getInt("m.man_cod_quadra"));
+				
+				Quadra q = quadraDAO.obterQuadraPeloID(codigoQuadra);
+				
+				LocalTime horarioI = LocalTime.parse(horarioInicio, horarioFormatoPadrao);
+				LocalTime horarioF = LocalTime.parse(horarioFim, horarioFormatoPadrao);
+				LocalDate dataM = LocalDate.parse(data, dataFormatoPadrao);
+				Manutencao m = new Manutencao(codigo, q, dataM, horarioI, horarioF, preventiva, descricao);
+				listaManutencoes.add(m);
+			}
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}catch(CourtNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return listaManutencoes;
 	}
 
 	@Override
