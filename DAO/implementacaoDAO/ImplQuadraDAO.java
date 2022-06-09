@@ -44,7 +44,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 			boolean arquibancada = rs.getBoolean("qua_arquibancada");
 			boolean descanso = rs.getBoolean("qua_area_descanso");
 			boolean bloqueada = rs.getBoolean("qua_bloqueado");
-			Quadra quadra = new Quadra(nome, endereco, tipo, cobertura, arquibancada, descanso, bloqueada);
+			Quadra quadra = montaQuadra(nome, endereco, tipo, cobertura, arquibancada, descanso, bloqueada);
 			quadrasLista.add(quadra);
 		}
 		
@@ -76,7 +76,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 			boolean arquibancada = rs.getBoolean("qua_arquibancada");
 			boolean descanso = rs.getBoolean("qua_area_descanso");
 			boolean bloqueada = rs.getBoolean("qua_bloqueado");
-			Quadra quadra = new Quadra(nome, endereco, tipo, coberta, arquibancada, descanso, bloqueada);
+			Quadra quadra = montaQuadra(nome, endereco, tipo, coberta, arquibancada, descanso, bloqueada);
 			quadraLista.add(quadra);
 		}
 		
@@ -107,7 +107,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 				boolean arquibancada = rs.getBoolean("qua_arquibancada");
 				boolean descanso = rs.getBoolean("qua_area_descanso");
 				boolean bloqueada = rs.getBoolean("qua_bloqueado");
-				Quadra quadra = new Quadra(nome, endereco, tipo, cobertura, arquibancada, descanso, bloqueada);
+				Quadra quadra = montaQuadra(nome, endereco, tipo, cobertura, arquibancada, descanso, bloqueada);
 				quadrasLista.add(quadra);
 			}
 			
@@ -148,7 +148,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 				boolean arquibancada = rs.getBoolean("qua_arquibancada");
 				boolean descanso = rs.getBoolean("qua_area_descanso");
 				boolean bloqueada = rs.getBoolean("qua_bloqueado");
-				qua = new Quadra(nomeQuadra, endereco, tipo, cobertura, arquibancada, descanso, bloqueada); 
+				qua = montaQuadra(nomeQuadra, endereco, tipo, cobertura, arquibancada, descanso, bloqueada);
 				
 			}else {
 				throw new CourtNotFoundException("Não foi encontrada nenhuma quadra com o nome: " + nome);
@@ -190,7 +190,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 				boolean arquibancada = rs.getBoolean("qua_arquibancada");
 				boolean descanso = rs.getBoolean("qua_area_descanso");
 				boolean bloqueada = rs.getBoolean("qua_bloqueado");
-				qua = new Quadra(nomeQuadra, endereco, tipo, cobertura, arquibancada, descanso, bloqueada); 
+				qua = montaQuadra(nomeQuadra, endereco, tipo, cobertura, arquibancada, descanso, bloqueada);
 				
 			}else {
 				throw new CourtNotFoundException("Não foi encontrada nenhuma quadra com o id: " + id);
@@ -396,4 +396,8 @@ public class ImplQuadraDAO implements QuadraDAO{
 		}
 	}
 	
+	public Quadra montaQuadra(String nome, String endereco, TipoQuadra tipo, boolean cobertura, boolean arquibancada, boolean descanso, boolean bloqueado) {
+		
+		return new Quadra(nome, endereco, tipo, cobertura, arquibancada, descanso, bloqueado);
+	}
 }
