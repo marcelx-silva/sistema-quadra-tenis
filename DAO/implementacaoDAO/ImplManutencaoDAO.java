@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import Dominio.Manutencao;
 import Dominio.Quadra;
 import Exceptions.CourtNotFoundException;
+import Exceptions.MaintenanceNotFoundException;
 import conexao.ConexaoBD;
 import interfaceDAO.ManutencaoDAO;
 import queries.QueriesManutencao;
@@ -213,9 +214,48 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 	}
 
 	@Override
-	public Manutencao obterManutencaoPeloId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Manutencao obterManutencaoPeloId(String id) throws MaintenanceNotFoundException{
+		
+		Manutencao m = null;
+		try {
+			FileInputStream in = new FileInputStream("QUERY_CONSULTA_MANUTENCAO.properties");
+			qm.queriesManutencao.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO_BY_ID"));
+			stmt.setInt(1, Integer.valueOf(id));
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				String codigo = rs.getString("m.man_id");
+				String descricao = rs.getString("m.man_desc");
+				String data = rs.getString("m.mand_data");
+				String horarioInicio = rs.getString("m.man_hr_inicio");
+				String horarioFim = rs.getString("m.man_hr_fim");
+				boolean preventiva = rs.getBoolean("m.man_prev");
+				String codigoQuadra = String.valueOf(rs.getInt("m.man_cod_quadra"));
+				
+				Quadra q = quadraDAO.obterQuadraPeloID(codigoQuadra);
+				
+				LocalTime horarioI = LocalTime.parse(horarioInicio, horarioFormatoPadrao);
+				LocalTime horarioF = LocalTime.parse(horarioFim, horarioFormatoPadrao);
+				LocalDate dataM = LocalDate.parse(data, dataFormatoPadrao);
+				m = new Manutencao(codigo, q, dataM, horarioI, horarioF, preventiva, descricao);
+			}else {
+				throw new MaintenanceNotFoundException("Não foi encontrada nenhuma manutenção cadastrada com este código!");
+			}
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}catch(CourtNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return m;
 	}
 
 	@Override

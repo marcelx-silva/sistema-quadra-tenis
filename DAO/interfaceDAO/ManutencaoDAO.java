@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import Dominio.Manutencao;
+import Exceptions.MaintenanceNotFoundException;
 
 public interface ManutencaoDAO {
 
@@ -15,7 +16,7 @@ public interface ManutencaoDAO {
 	
 	List<Manutencao> obterManutencoesPorDataHorario(LocalDate data, LocalTime horarioInicioM, LocalTime horarioFimM);
 	
-	Manutencao obterManutencaoPeloId(int id);
+	Manutencao obterManutencaoPeloId(String id) throws MaintenanceNotFoundException;
 	
 	boolean cadastrarManutencao(Manutencao m);
 	

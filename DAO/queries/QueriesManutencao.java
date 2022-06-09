@@ -33,6 +33,12 @@ public class QueriesManutencao {
 				+ "ON (q.qua_id = m.man_cod_quadra)"
 				+ "WHERE m.man_data >= ? AND m.man_data <= ?");
 		
+		queriesManutencao.setProperty("SELECT_ALL_FROM_MANUTENCAO_BY_ID", "SELECT m.man_id, m.man_desc, DATE_FORMAT(m.man_data, \"%d-%m-%Y\") \r\n"
+				+ "m.man_hr_inicio, m.man_hr_fim, m.man_prev, m.man_cod_quadra \r\n"
+				+ "FROM manutencao m JOIN quadra q \r\n"
+				+ "ON (q.qua_id = m.man_cod_quadra)"
+				+ "WHERE m.man_id = ?");
+		
 		FileOutputStream out = new FileOutputStream("QUERY_CONSULTA_MANUTENCAO.properties");
 		queriesManutencao.store(out, null);
 		out.close();
