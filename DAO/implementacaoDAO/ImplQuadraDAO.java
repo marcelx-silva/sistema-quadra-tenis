@@ -121,6 +121,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 		return quadrasLista;
 		
 	}
+	
 	@Override
 	public Quadra obterQuadraPeloNome(String nome) throws CourtNotFoundException {
 		
@@ -151,6 +152,48 @@ public class ImplQuadraDAO implements QuadraDAO{
 				
 			}else {
 				throw new CourtNotFoundException("Não foi encontrada nenhuma quadra com o nome: " + nome);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}
+		
+		return qua;
+	}
+	
+	@Override
+	public Quadra obterQuadraPeloID(String id) throws CourtNotFoundException {
+		
+		Quadra qua = null;
+		
+		try {
+			
+			q.consultaQuadra();
+			
+			FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
+			q.queriesQuadra.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_FROM_QUADRA_BY_QUA_ID"));
+			stmt.setString(1, id);
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+					
+				String nomeQuadra = rs.getString("qua_nome");
+				String endereco = rs.getString("qua_endereco");
+				TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
+				boolean cobertura = rs.getBoolean("qua_cobertura");
+				boolean arquibancada = rs.getBoolean("qua_arquibancada");
+				boolean descanso = rs.getBoolean("qua_area_descanso");
+				boolean bloqueada = rs.getBoolean("qua_bloqueado");
+				qua = new Quadra(nomeQuadra, endereco, tipo, cobertura, arquibancada, descanso, bloqueada); 
+				
+			}else {
+				throw new CourtNotFoundException("Não foi encontrada nenhuma quadra com o id: " + id);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

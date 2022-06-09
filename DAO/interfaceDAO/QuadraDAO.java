@@ -17,7 +17,9 @@ public interface QuadraDAO {
 	
 	List<Quadra> obterQuadraBloqueadas(boolean bloqueado);
 	
-	Quadra obterQuadraPeloNome(String nome) throws CourtNotFoundException ;
+	Quadra obterQuadraPeloNome(String nome) throws CourtNotFoundException;
+	
+	Quadra obterQuadraPeloID(String id) throws CourtNotFoundException ;
 	
 	boolean CadastrarQuadra(Quadra q) throws CourtAlreadyRegisteredException;
 	

@@ -41,6 +41,14 @@ public class QueriesQuadra {
 				+ "ON (q.qua_id_tipo = tp_id)\r\n"
 				+ "WHERE q.qua_nome = ?");
 		
+		queriesQuadra.setProperty("SELECT_FROM_QUADRA_BY_QUA_ID", "SELECT  q.qua_id , q.qua_nome, q.qua_endereco, q.qua_cobertura, \r\n"
+				+ "q.qua_arquibancada, q.qua_area_descanso, \r\n"
+				+ "date_format(q.qua_dt_cadastro,\"%d-%m-%Y\"), q.qua_id_tipo, tp.tp_nome, q.qua_bloqueado, \r\n"
+				+ "q.qua_habilitado\r\n"
+				+ "FROM quadra q JOIN tipo_quadra tp\r\n"
+				+ "ON (q.qua_id_tipo = tp_id)\r\n"
+				+ "WHERE q.qua_id = ?");
+		
 		queriesQuadra.setProperty("VERIFY_QUADRA_BY_QUA_NOME", "SELECT qua_nome\r\n"
 				+ "FROM quadra\r\n"
 				+ "WHERE qua_nome = ?");
