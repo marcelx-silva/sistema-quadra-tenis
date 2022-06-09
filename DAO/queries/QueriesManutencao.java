@@ -6,9 +6,9 @@ import java.util.Properties;
 
 public class QueriesManutencao {
 	
-	Properties queriesManutencao = new Properties();
+	public Properties queriesManutencao = new Properties();
 	
-	protected void consultaManutencao() throws IOException{
+	public void consultaManutencao() throws IOException{
 		
 		queriesManutencao.setProperty("SELECT_ALL_FROM_MANUTENCAO", "SELECT m.man_id, m.man_desc, DATE_FORMAT(m.man_data, \"%d-%m-%Y\") \r\n"
 				+ "m.man_hr_inicio, m.man_hr_fim, m.man_prev, m.man_cod_quadra "
