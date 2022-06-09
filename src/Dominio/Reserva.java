@@ -12,14 +12,12 @@ import java.time.LocalDate;
 
 public class Reserva extends Agendamento{
 	
-	private String codigo;
 	private TipoPagamento modoPagamento;
 	private String parcelas;
 	private Cliente cliente;
 	
 	public Reserva(String codigo, Quadra quadra, Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, String parcelas){
-		super(quadra, data, horarioInicio, horarioFim);
-		this.codigo = codigo;
+		super(codigo, quadra, data, horarioInicio, horarioFim);
 		this.modoPagamento = modoPagamento;
 		this.parcelas = parcelas;
 	}
@@ -56,14 +54,6 @@ public class Reserva extends Agendamento{
 		default:
 			return TipoPagamento.INVALIDO;
 		}
-	}
-	
-	public String getCodigo() {
-		return codigo;
-	}
-		
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
 	}
 	
 	public Cliente getCliente() {
