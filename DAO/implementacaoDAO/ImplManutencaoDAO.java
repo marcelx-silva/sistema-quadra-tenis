@@ -79,7 +79,6 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 
 	@Override
 	public List<Manutencao> obterManutencoesPorPeriodoDeDias(LocalDate dataInicio, LocalDate dataFim) {
-		
 		List<Manutencao> listaManutencoes = new ArrayList();
 		
 		try {
@@ -87,7 +86,9 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 			qm.queriesManutencao.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO"));
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO_BY_INTERVAL_OF_DAYS"));
+			stmt.setString(1, dataInicio.format(dataFormatoBD));
+			stmt.setString(2, dataFim.format(dataFormatoBD));
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
