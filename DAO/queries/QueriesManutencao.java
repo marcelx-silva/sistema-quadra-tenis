@@ -43,5 +43,21 @@ public class QueriesManutencao {
 		queriesManutencao.store(out, null);
 		out.close();
 	}
+	
+	public void DMLManutencao() throws IOException{
+		
+		queriesManutencao.setProperty("UPDATE_MANUTENCAO_DESC", "UPDATE manutencao SET man_desc = ? WHERE man_id = ?");
+		queriesManutencao.setProperty("UPDATE_MANUTENCAO_DATA", "UPDATE manutencao SET man_data ? WHERE man_id = ?");
+		queriesManutencao.setProperty("UPDATE_MANUTENCAO_HORARIO_INICIO", "UPDATE manutencao SET man_hr_inicio = ? WHERE man_id = ?");
+		queriesManutencao.setProperty("UPDATE_MANUTENCAO_HORARIO_FIM", "UPDATE manutencao SET man_hr_fim = ? WHERE man_id = ?");
+		queriesManutencao.setProperty("UPDATE_MANUTENCAO_QUADRA", "UPDATE manutencao SET man_cod_quadra = ? WHERE man_id = ?");
+		
+		queriesManutencao.setProperty("DELETE_FROM_MANUTENCAO_BY_ID", "DELETE FROM manutencao WHERE man_id = ?");
+		
+		FileOutputStream out = new FileOutputStream("DML_MANUTENCAO.properties");
+		queriesManutencao.store(out, null);
+		out.close();
+		
+	}
 
 }
