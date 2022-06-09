@@ -5,14 +5,12 @@ import java.time.LocalTime;
 public class Agendamento {
 
 	private Quadra quadra;
-	private Cliente cliente;
 	private LocalDate data;
 	private LocalTime horarioInicio;
 	private LocalTime horarioFim;
 	
-	public Agendamento(Quadra q, Cliente c, LocalDate data, LocalTime horarioInicio, LocalTime horarioFim) {
+	public Agendamento(Quadra q, LocalDate data, LocalTime horarioInicio, LocalTime horarioFim) {
 		this.setQuadra(q);
-		this.setCliente(c);
 		this.setData(data);
 		this.setHorarioInicio(horarioInicio);
 		this.setHorarioFim(horarioFim);
@@ -24,14 +22,6 @@ public class Agendamento {
 
 	public void setQuadra(Quadra quadra) {
 		this.quadra = quadra;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	public LocalDate getData() {

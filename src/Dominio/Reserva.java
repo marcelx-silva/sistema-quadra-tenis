@@ -14,17 +14,18 @@ public class Reserva extends Agendamento{
 	
 	private String codigo;
 	private TipoPagamento modoPagamento;
-	private int parcelas;
+	private String parcelas;
+	private Cliente cliente;
 	
-	public Reserva(String codigo, Quadra quadra,Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, int parcelas){
-		super(quadra, cliente, data, horarioInicio, horarioFim);
+	public Reserva(String codigo, Quadra quadra, Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, String parcelas){
+		super(quadra, data, horarioInicio, horarioFim);
 		this.codigo = codigo;
 		this.modoPagamento = modoPagamento;
 		this.parcelas = parcelas;
 	}
 	
-	public Reserva(Quadra quadra,Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, int parcelas){
-		super(quadra, cliente, data, horarioInicio, horarioFim);
+	public Reserva(Quadra quadra, Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, String parcelas){
+		super(quadra, data, horarioInicio, horarioFim);
 		this.modoPagamento = modoPagamento;
 		this.parcelas = parcelas;
 	}
@@ -60,10 +61,17 @@ public class Reserva extends Agendamento{
 	public String getCodigo() {
 		return codigo;
 	}
-	
 		
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
+	}
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public TipoPagamento getModoPagamento() {
@@ -74,11 +82,11 @@ public class Reserva extends Agendamento{
 		this.modoPagamento = modoPagamento;
 	}
 
-	public int getParcelas() {
+	public String getParcelas() {
 		return parcelas;
 	}
 
-	public void setParcelas(int parcelas) {
+	public void setParcelas(String parcelas) {
 		this.parcelas = parcelas;
 	}	
 }

@@ -8,8 +8,6 @@ public class Usuario {
 	
 	private String nome, email, senha, codigo;	
 	private boolean	estaDesabilitado, estaBloqueado, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador;
-	private Usuario userAtual;
-	static ArrayList <Usuario> usuarios = new ArrayList<Usuario>();
 	
 	public Usuario(String codigo, String nome, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setCodigo(codigo);
@@ -128,17 +126,5 @@ public class Usuario {
 
 	public void setAcessoZelador(boolean acessoZelador) {
 		this.acessoZelador = acessoZelador;
-	}
-	
-	public void adicionarUsuario(Usuario user) {
-		usuarios.add(user);
-	}
-	
-	static public ArrayList<Usuario> getLista(){
-		return usuarios;
-	}
-	
-	 public Usuario getUsuarioAtual() {
-		return userAtual;
 	}
 }
