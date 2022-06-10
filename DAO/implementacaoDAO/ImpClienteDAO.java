@@ -394,8 +394,59 @@ public class ImpClienteDAO implements ClienteDAO {
 		
 	}
 	
-	boolean InvalidarCliente(int id, boolean validado) throws  ClientNotFoundException {
+	boolean InvalidarCliente(String cpf, boolean validado) throws  ClientNotFoundException {
 		
+		try {
+			
+			q.DMLCliente();
+			
+			FileInputStream in_dml = new FileInputStream("QUERY_DML_CLIENTE.properties");
+			FileInputStream in_select = new FileInputStream("QUERY_CONSULTA_CLIENTE.properties");
+			
+			q.queriesCliente.load(in_dml);
+			q.queriesCliente.load(in_select);
+			in_dml.close();
+			in_select.close();
+			
+			PreparedStatement stmt;
+			Connection con = null;
+			con = ConexaoBD.conectaBD();
+			
+			stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_INVALID_STATUS_FROM_CLIENT_BY_CPF"));
+			stmt.setString(1, cpf);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				stmt = con.prepareStatement(q.queriesCliente.getProperty("DISABLE_CLIENT"));
+				stmt.setBoolean(1,validado);
+				stmt.setString(2,cpf);	
+			}else{
+				throw new ClientNotFoundException("Cliente de cpf "+cpf+" inexistente !");
+			}
+			
+			int linhaAlterada = stmt.executeUpdate();
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt,rs);
+
+			
+			if(linhaAlterada == 0){
+				return false;
+			}
+			
+			return true;
+			
+			
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}catch(IOException io) {
+			io.printStackTrace();
+			return false;
+		}
 		
 	}
 	
