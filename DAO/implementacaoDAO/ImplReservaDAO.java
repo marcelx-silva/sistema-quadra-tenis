@@ -97,8 +97,31 @@ public class ImplReservaDAO implements ReservaDAO {
 
 	@Override
 	public List<Reserva> obterReservasPeloDia(LocalDate data) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Reserva> listaReservas = new ArrayList();
+		
+		try {
+			FileInputStream in = new FileInputStream("QUERY_RESERVA.properties");
+			qr.queriesReserva.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_DAY"));
+			stmt.setString(1, data.format(dataFormatoBD));
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				Reserva r = montaReserva(rs);
+				listaReservas.add(r);
+			}
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}
+		
+		return listaReservas;
 	}
 
 	@Override
