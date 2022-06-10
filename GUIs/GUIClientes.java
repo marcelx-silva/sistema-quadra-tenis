@@ -1,4 +1,6 @@
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -13,7 +15,8 @@ import implementacaoDAO.ImpClienteDAO;
 
 public class GUIClientes {
 
-Scanner scanner = new Scanner(System.in);
+	Scanner scanner = new Scanner(System.in);
+	ImpClienteDAO clienteDAO = new ImpClienteDAO();
 	
 	
 	void GUIMenuCliente(){
@@ -93,8 +96,17 @@ Scanner scanner = new Scanner(System.in);
 		
 		cliente = new Cliente(nome,email,cel,cpf,dataNascimento);
 		
-		ImpClienteDAO clienteDAO = new ImpClienteDAO();
 		clienteDAO.CadastrarCliente(cliente);
+	}
+	
+	void GUIExibirTodosClientes() {
+		try {
+			clienteDAO.obterTodosClientes();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	void GUIExibirCliente(Cliente cliente){
