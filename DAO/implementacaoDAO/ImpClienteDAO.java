@@ -67,19 +67,17 @@ public class ImpClienteDAO implements ClienteDAO {
 	}
 	
 	public Cliente montaCliente(ResultSet rs) throws SQLException {
-		String codigo = rs.getString("cli_id");
 		String nome = rs.getString("cli_nome");
 		String email = rs.getString("cli_email");
 		String cpf = rs.getString("cli_cpf");
 		String celular = rs.getString("cli_celular");
 		String dataNascimento = rs.getString("cli_dt_nasc");
 		boolean bloqueado = rs.getBoolean("cli_bloqueado");
-		boolean habilitado = rs.getBoolean("cli_habilitado");
 		boolean invalidado = rs.getBoolean("cli_invalidado");
 		
 		LocalDate LocaldataNascimento = LocalDate.parse(dataNascimento,DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		
-		return new Cliente(codigo,nome,email,cpf,celular,LocaldataNascimento,bloqueado,habilitado,invalidado);
+		return new Cliente(nome, email, cpf, celular, LocaldataNascimento, bloqueado, invalidado);
 	}
 	
 	
