@@ -70,5 +70,17 @@ public class QueriesReservas {
 		queriesReserva.store(out, null);
 		out.close();
 	}
+	
+	public void DMLReserva() throws IOException{
+		
+		queriesReserva.setProperty("INSERT_INTO_RESERVA", "INSERT INTO reserva (res_id_cliente, res_hr_inicio, res_hr_fim, res_data, res_id_quadra, res_id_forma_pagamento, res_parcelas,"
+				+ " res_valor, res_cli_entrou, res_cli_saiu) VALUES(?, ?, ?, DATE(?), ?, ?, ?, ?, ?, ?)");
+		
+		queriesReserva.setProperty("DELETE_FROM_RESERVA", "DELETE FROM reserva WHERE res_id = ?");
+				
+		FileOutputStream out = new FileOutputStream("DML_RESERVA.properties");
+		queriesReserva.store(out, null);
+		out.close();
+	}
 
 }
