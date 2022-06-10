@@ -2,6 +2,8 @@ package implementacaoDAO;
 
 import Dominio.Cliente;
 import Exceptions.ClientNotFoundException;
+import Utilitario.UtilidadesConversao;
+import Utilitario.UtilidadesGUI;
 import conexao.ConexaoBD;
 import interfaceDAO.ClienteDAO;
 import queries.QueriesCliente;
@@ -34,6 +36,7 @@ public class ImpClienteDAO implements ClienteDAO {
 			
 			FileInputStream in = new FileInputStream("QUERY_CONSULTA_CLIENTE.properties");
 			q.queriesCliente.load(in);
+			in.close();
 			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_FROM_ALL_CLIENTE"));
 			ResultSet rs = stmt.executeQuery();
 			
@@ -93,8 +96,10 @@ public class ImpClienteDAO implements ClienteDAO {
 		
 		q.consultaCliente();
 		
+		
 		FileInputStream in = new FileInputStream("QUERY_CONSULTA_CLIENTE.properties");
 		q.queriesCliente.load(in);
+		in.close();
 		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_FROM_CLIENT_BY_ID"));
 		stmt.setInt(1,id);
 		ResultSet rs = stmt.executeQuery();
@@ -136,13 +141,14 @@ public class ImpClienteDAO implements ClienteDAO {
 	}
 	
 	
-	List<Cliente> obterClienteHabilitados(boolean bloqueado){
+	public List<Cliente> obterClienteHabilitados(boolean bloqueado) throws IOException, SQLException{
 		
 		q.consultaCliente();
 		List<Cliente> listaClientesBloqueados = new ArrayList<Cliente>();
 		
 		FileInputStream in = new FileInputStream("QUERY_CONSULTA_CLIENTE.properties");
 		q.queriesCliente.load(in);
+		in.close();
 		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_BLOCKED_CLIENT"));
 		stmt.setBoolean(1, bloqueado);
 		ResultSet rs = stmt.executeQuery();
@@ -161,7 +167,7 @@ public class ImpClienteDAO implements ClienteDAO {
 			
 			LocalDate LocaldataNascimento = LocalDate.parse(dataNascimento,dataFormatoPadrao);
 			
-			Cliente cliente = new Cliente(codigo,nome,email,cpf,celular,LocaldataNascimento,bloqueado,habilitado,invalidado);
+			Cliente cliente = new Cliente(codigo,nome,email,cpf,celular,LocaldataNascimento,bloqueadod,habilitado,invalidado);
 			listaClientesBloqueados.add(cliente);
 		}
 		
@@ -174,13 +180,97 @@ public class ImpClienteDAO implements ClienteDAO {
 	}
 		
 	
-	void CadastrarCliente(Cliente c) {
+	public boolean CadastrarCliente(Cliente c){
+		
+		try {
+			
+			q.DMLCliente();
+			
+			FileInputStream in_dml = new FileInputStream("QUERY_DML_CLIENTE.properties");
+			FileInputStream in_select = new FileInputStream("QUERY_CONSULTA_CLIENTE.properties");
+			
+			q.queriesCliente.load(in_dml);
+			q.queriesCliente.load(in_select);
+			in_dml.close();
+			in_select.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("INSERT_INTO_CLIENT"));
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			LocalDate dataNascimento = LocalDate.parse(c.getDataNascimento().toString(),dataFormatoBD);
+			
+			
+			stmt.setString(1, c.getNome());
+			stmt.setString(2, c.getCpf());
+			stmt.setObject(3, dataNascimento);
+			stmt.setString(4, c.getEmail());
+			stmt.setString(5, c.getNumeroCelular());
+			stmt.setString(6, c.getNumeroFixo());
+			
+			
+			return true;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+			
+		}catch(IOException io) {
+			io.printStackTrace();
+			return false;
+		}
+		
+		
 		
 	}
 	
 	
-	boolean AlterarDadosCliente(String alteracao, int escolha) {
-		
+	public boolean AlterarDadosCliente(Cliente c,String alteracao, int escolha) {
+		try {
+			q.DMLCliente();
+			FileInputStream in = new FileInputStream("DML_Cliente.properties");
+			q.queriesCliente.load(in);
+			in.close();
+			
+			PreparedStatement stmt;
+			
+			switch(escolha) {
+			
+				case 1:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENTE_NOME"));
+					stmt.setString(1, alteracao);
+					stmt.setString(2, c.getCpf());
+					stmt.executeUpdate();
+					break;
+					
+				case 2:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_EMAIL"));
+					stmt.setString(1, alteracao);
+					stmt.setString(2, c.getCpf());
+					stmt.executeUpdate();
+					break;
+					
+				case 3:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_PHONE"));
+					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setString(2, c.getCpf());
+					stmt.executeUpdate();
+					break;
+					
+					
+				default:
+					UtilidadesGUI.exibeMensagem("Opção Inválida!");
+					break;
+			}
+			return true;
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	

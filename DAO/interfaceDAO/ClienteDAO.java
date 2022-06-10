@@ -17,13 +17,13 @@ public interface ClienteDAO {
 	Cliente obterClientePeloId(int id) throws ClientNotFoundException;
 	
 	//Seleciona clientes bloqueados ou desbloqueados
-	List<Cliente> obterClienteHabilitados(boolean bloqueado);
+	List<Cliente> obterClienteHabilitados(boolean bloqueado) throws IOException, SQLException;
 		
 	//Cadastra clintes
-	void CadastrarCliente(Cliente c);
+	boolean CadastrarCliente(Cliente c);
 	
 	//Atualizar Dados do Cliente
-	boolean AlterarDadosCliente(String alteracao, int escolha);
+	boolean AlterarDadosCliente(Cliente c,String alteracao, int escolha);
 	
 	//Bloquear e Desbloquear Cliente
 	boolean DesabilitarCliente(int id, boolean habilitado);
