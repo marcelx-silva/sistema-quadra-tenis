@@ -10,36 +10,36 @@ public class QueriesManutencao {
 	
 	public void consultaManutencao() throws IOException{
 		
-		queriesManutencao.setProperty("SELECT_ALL_FROM_MANUTENCAO", "SELECT m.man_id, m.man_desc, DATE_FORMAT(m.man_data, \"%d-%m-%Y\") \r\n"
-				+ "m.man_hr_inicio, m.man_hr_fim, m.man_prev, q.qua_nome, q.qua_endereco, q.qua_id_tipo, q.qua_cobertura, q.qua_arquibancada \r\n"
-				+ "q.qua_area_descando, q.qua_bloqueado \r \n"
+		queriesManutencao.setProperty("SELECT_ALL_FROM_MANUTENCAO", "SELECT m.man_id, m.man_desc, m.man_data, \r\n"
+				+ "m.man_hr_inicio, m.man_hr_fim, m.man_prev, q.qua_nome, q.qua_endereco, q.qua_id_tipo, q.qua_cobertura, q.qua_arquibancada, \r\n"
+				+ "q.qua_area_descanso, q.qua_bloqueado \r \n"
 				+ "FROM manutencao m JOIN quadra q \r\n"
 				+ "ON (q.qua_id = m.man_cod_quadra)");
 				
-		queriesManutencao.setProperty("SELECT_ALL_FROM_MANUTENCAO_BY_DAY", "SELECT m.man_id, m.man_desc, DATE_FORMAT(m.man_data, \"%d-%m-%Y\") \r\n"
-				+ "m.man_hr_inicio, m.man_hr_fim, m.man_prev, q.qua_nome, q.qua_endereco, q.qua_id_tipo, q.qua_cobertura, q.qua_arquibancada \r\n"
-				+ "q.qua_area_descando, q.qua_bloqueado \r \n"
+		queriesManutencao.setProperty("SELECT_ALL_FROM_MANUTENCAO_BY_DAY", "SELECT m.man_id, m.man_desc, m.man_data, \r\n"
+				+ "m.man_hr_inicio, m.man_hr_fim, m.man_prev, q.qua_nome, q.qua_endereco, q.qua_id_tipo, q.qua_cobertura, q.qua_arquibancada, \r\n"
+				+ "q.qua_area_descanso, q.qua_bloqueado \r \n"
 				+ "FROM manutencao m JOIN quadra q \r\n"
 				+ "ON (q.qua_id = m.man_cod_quadra)"
 				+ "WHERE m.man_data = ?");
 		
-		queriesManutencao.setProperty("SELECT_ALL_FROM_MANUTENCAO_BY_DAY_AND_TIME", "SELECT m.man_id, m.man_desc, DATE_FORMAT(m.man_data, \"%d-%m-%Y\") \r\n"
-				+ "m.man_hr_inicio, m.man_hr_fim, m.man_prev, q.qua_nome, q.qua_endereco, q.qua_id_tipo, q.qua_cobertura, q.qua_arquibancada \r\n"
-				+ "q.qua_area_descando, q.qua_bloqueado \r \n"
+		queriesManutencao.setProperty("SELECT_ALL_FROM_MANUTENCAO_BY_DAY_AND_TIME", "SELECT m.man_id, m.man_desc, m.man_data, \r\n"
+				+ "m.man_hr_inicio, m.man_hr_fim, m.man_prev, q.qua_nome, q.qua_endereco, q.qua_id_tipo, q.qua_cobertura, q.qua_arquibancada, \r\n"
+				+ "q.qua_area_descanso, q.qua_bloqueado \r \n"
 				+ "FROM manutencao m JOIN quadra q \r\n"
 				+ "ON (q.qua_id = m.man_cod_quadra)"
 				+ "WHERE m.man_data = ? AND m.man_hr_inicio >= ? AND m.man_hr_fim <= ?");
 		
-		queriesManutencao.setProperty("SELECT_ALL_FROM_MANUTENCAO_BY_INTERVAL_OF_DAYS", "SELECT m.man_id, m.man_desc, DATE_FORMAT(m.man_data, \"%d-%m-%Y\") \r\n"
-				+ "m.man_hr_inicio, m.man_hr_fim, m.man_prev, q.qua_nome, q.qua_endereco, q.qua_id_tipo, q.qua_cobertura, q.qua_arquibancada \r\n"
-				+ "q.qua_area_descando, q.qua_bloqueado \r \n"
+		queriesManutencao.setProperty("SELECT_ALL_FROM_MANUTENCAO_BY_INTERVAL_OF_DAYS", "SELECT m.man_id, m.man_desc, m.man_data, \r\n"
+				+ "m.man_hr_inicio, m.man_hr_fim, m.man_prev, q.qua_nome, q.qua_endereco, q.qua_id_tipo, q.qua_cobertura, q.qua_arquibancada, \r\n"
+				+ "q.qua_area_descanso, q.qua_bloqueado \r \n"
 				+ "FROM manutencao m JOIN quadra q \r\n"
 				+ "ON (q.qua_id = m.man_cod_quadra)"
 				+ "WHERE m.man_data >= ? AND m.man_data <= ?");
 		
-		queriesManutencao.setProperty("SELECT_ALL_FROM_MANUTENCAO_BY_ID", "SELECT m.man_id, m.man_desc, DATE_FORMAT(m.man_data, \"%d-%m-%Y\") \r\n"
-				+ "m.man_hr_inicio, m.man_hr_fim, m.man_prev, q.qua_nome, q.qua_endereco, q.qua_id_tipo, q.qua_cobertura, q.qua_arquibancada \r\n"
-				+ "q.qua_area_descando, q.qua_bloqueado \r \n"
+		queriesManutencao.setProperty("SELECT_ALL_FROM_MANUTENCAO_BY_ID", "SELECT m.man_id, m.man_desc, m.man_data, \r\n"
+				+ "m.man_hr_inicio, m.man_hr_fim, m.man_prev, q.qua_nome, q.qua_endereco, q.qua_id_tipo, q.qua_cobertura, q.qua_arquibancada, \r\n"
+				+ "q.qua_area_descanso, q.qua_bloqueado \r \n"
 				+ "FROM manutencao m JOIN quadra q \r\n"
 				+ "ON (q.qua_id = m.man_cod_quadra)"
 				+ "WHERE m.man_id = ?");
@@ -55,7 +55,7 @@ public class QueriesManutencao {
 				+ "man_prev, man_cod_quadra) VALUES(?, ?, DATE(?), ?, ?, ?, ?)");
 
 		queriesManutencao.setProperty("UPDATE_MANUTENCAO_DESC", "UPDATE manutencao SET man_desc = ? WHERE man_id = ?");
-		queriesManutencao.setProperty("UPDATE_MANUTENCAO_DATA", "UPDATE manutencao SET man_data ? WHERE man_id = ?");
+		queriesManutencao.setProperty("UPDATE_MANUTENCAO_DATA", "UPDATE manutencao SET man_data = ? WHERE man_id = ?");
 		queriesManutencao.setProperty("UPDATE_MANUTENCAO_HORARIO_INICIO", "UPDATE manutencao SET man_hr_inicio = ? WHERE man_id = ?");
 		queriesManutencao.setProperty("UPDATE_MANUTENCAO_HORARIO_FIM", "UPDATE manutencao SET man_hr_fim = ? WHERE man_id = ?");
 		

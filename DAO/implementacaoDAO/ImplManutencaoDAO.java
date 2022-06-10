@@ -206,16 +206,18 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 			stmt.setString(5, m.getHorarioFim().format(horarioFormatoBD));
 			stmt.setBoolean(6, m.isPreventiva());
 			stmt.setInt(7, Integer.valueOf(m.getQuadra().getCodigo()));		
-			stmt.executeQuery();
+			stmt.executeUpdate();
 			
 		}catch(IOException e) {
 			e.printStackTrace();
+			return false;
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
+			return false;
 			
 		}
-		return false;
+		return true;
 	}
 
 	@Override
@@ -239,21 +241,21 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 					
 				case 2:
 					stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_DATA"));
-					stmt.setString(1, alteracao);
+					stmt.setString(1, LocalDate.parse(alteracao, dataFormatoPadrao).format(dataFormatoBD));
 					stmt.setString(2, m.getCodigo());
 					stmt.executeUpdate();
 					break;
 					
 				case 3:
 					stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_HORARIO_INICIO"));
-					stmt.setString(1, String.valueOf(LocalTime.parse(alteracao, dataFormatoBD)));
+					stmt.setString(1, LocalTime.parse(alteracao, horarioFormatoPadrao).format(horarioFormatoBD));
 					stmt.setString(2, m.getCodigo());
 					stmt.executeUpdate();
 					break;
 					
 				case 4:
 					stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_HORARIO_FIM"));
-					stmt.setString(1, String.valueOf(LocalTime.parse(alteracao, dataFormatoBD)));
+					stmt.setString(1, LocalTime.parse(alteracao, horarioFormatoPadrao).format(horarioFormatoBD));
 					stmt.setString(2, m.getCodigo());
 					stmt.executeUpdate();
 					break;
@@ -302,12 +304,12 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 
 	public Manutencao montaManutencao(ResultSet rs) throws SQLException {
 		
-		String codigo = rs.getString("m.man_id");
-		String descricao = rs.getString("m.man_desc");
-		String data = rs.getString("m.mand_data");
-		String horarioInicio = rs.getString("m.man_hr_inicio");
-		String horarioFim = rs.getString("m.man_hr_fim");
-		boolean preventiva = rs.getBoolean("m.man_prev");
+		String codigo = rs.getString("man_id");
+		String descricao = rs.getString("man_desc");
+		String data = rs.getString("man_data");
+		String horarioInicio = rs.getString("man_hr_inicio");
+		String horarioFim = rs.getString("man_hr_fim");
+		boolean preventiva = rs.getBoolean("man_prev");
 		
 		Quadra qua = quadraDAO.montaQuadra(rs);
 		
