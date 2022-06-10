@@ -10,7 +10,6 @@ public class Cliente {
 	private String cpf;
 	private LocalDate dataNascimento;	
 	private String numeroCelular;
-	private String numeroFixo;
 	private boolean bloqueado = false;
 	private boolean invalidado = false;
 	private boolean habilitado = true;
@@ -45,7 +44,6 @@ public class Cliente {
 		this.email = email;
 		this.cpf = cpf;
 		this.numeroCelular = celular;
-		this.numeroFixo = numeroFixo;
 		this.dataNascimento = dataNascimento;
 		this.bloqueado = bloqueado;
 		this.invalidado = invalidado;
@@ -56,8 +54,7 @@ public class Cliente {
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
-		this.numeroCelular = celular;
-		this.numeroFixo = numeroFixo;
+		this.numeroCelular = celular;;
 		this.dataNascimento = dataNascimento;
 		this.bloqueado = bloqueado;
 		this.invalidado = invalidado;
@@ -149,13 +146,7 @@ public class Cliente {
 		this.numeroCelular = numeroCelular;
 	}
 
-	public String getNumeroFixo() {
-		return numeroFixo;
-	}
 
-	public void setNumeroFixo(String numeroFixo) {
-		this.numeroFixo = numeroFixo;
-	}
 
 
 }

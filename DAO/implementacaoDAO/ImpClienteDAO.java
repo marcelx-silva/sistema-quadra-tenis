@@ -172,7 +172,6 @@ public class ImpClienteDAO implements ClienteDAO {
 			stmt.setObject(3, dataNascimento);
 			stmt.setString(4, c.getEmail());
 			stmt.setString(5, c.getNumeroCelular());
-			stmt.setString(6, c.getNumeroFixo());
 			
 			int linhaAlterada =  stmt.executeUpdate();
 			
@@ -230,14 +229,6 @@ public class ImpClienteDAO implements ClienteDAO {
 					break;
 					
 				case 3:
-					stmt = con.prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_PHONE"));
-					stmt.setString(1, alteracao);
-					stmt.setString(2, c.getCpf());
-					linhaAlterada = stmt.executeUpdate();
-					ConexaoBD.encerrarConexaoBD(con, stmt);
-					break;
-					
-				case 4:
 					stmt = con.prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_CELL_PHONE"));
 					stmt.setString(1, alteracao);
 					stmt.setString(2, c.getCpf());
