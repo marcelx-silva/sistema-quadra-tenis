@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import Dominio.Cliente;
 import Exceptions.ClientNotFoundException;
-import Utilitario.UtilidadesConversao;
 import Utilitario.UtilidadesGUI;
 import implementacaoDAO.ImpClienteDAO;
 
@@ -101,7 +100,7 @@ public class GUIClientes {
 	void GUIExibirTodosClientes() {
 		try {
 			for(Cliente c: clienteDAO.obterTodosClientes()) {
-				System.out.println("Nome: "+c.getNome()
+				UtilidadesGUI.exibeMensagem("Nome: "+c.getNome()
 				+"Data de Nascimento: "+c.getDataNascimento()
 				+"CPF: "+c.getCpf()
 				+"Email: "+c.getEmail()
@@ -132,7 +131,7 @@ public class GUIClientes {
 	}
 	
 	void VisualizarDados(Cliente cliente) {
-		System.out.println("Nome: "+cliente.getNome()
+		UtilidadesGUI.exibeMensagem("Nome: "+cliente.getNome()
 		+"Data de Nascimento: "+cliente.getDataNascimento()
 		+"CPF: "+cliente.getCpf()
 		+"Email: "+cliente.getEmail()
@@ -142,5 +141,65 @@ public class GUIClientes {
 	
 	void GUIAlterarDadosCliente(Cliente cliente) {
 		
+		String cpf;
+		int opcao = -1;
+		
+		try {
+			UtilidadesGUI.exibeMensagem("CPF do cliente: ");
+			cpf = scanner.nextLine();
+			
+			cliente = clienteDAO.obterClientePeloCPF(cpf);
+			
+			do {	
+				
+				UtilidadesGUI.exibeMensagem("Qual dado você deseja alterar do Cliente: \n\n"+cliente.getNome());
+				UtilidadesGUI.exibeMensagem("1 - Nome\n2 - Email\n3 - Numero do celular\n0 - Sair");
+				
+				switch(opcao) {
+				
+				case 1:
+					UtilidadesGUI.exibeMensagem("Alteração do nome do Cliente\n\n");
+					UtilidadesGUI.exibeMensagem("Novo nome do cliente");
+					alterarDado(cliente,opcao);
+					break;
+				case 2:
+					UtilidadesGUI.exibeMensagem("Alteração do Email do Cliente\n\n");
+					UtilidadesGUI.exibeMensagem("Novo email do cliente");
+					alterarDado(cliente,opcao);
+					break;
+				case 3:
+					UtilidadesGUI.exibeMensagem("Alteração do Telefone do Cliente\n\n");
+					UtilidadesGUI.exibeMensagem("Novo telefone do cliente");
+					alterarDado(cliente,opcao);
+				}
+				
+			}while(opcao!=0);
+			VisualizarDados(cliente);
+		}catch(ClientNotFoundException e) {
+			
+		}
 	}
+	
+	void alterarDado(Cliente cliente,int escolha) {
+		
+		String alteracao;
+		alteracao = scanner.nextLine();
+		alteracao = alteracao.replaceAll("\\s","");
+		
+		if(alteracao.isEmpty()) {
+			UtilidadesGUI.exibeMensagem("CAMPO VAZIO !!!");
+		}else {
+			boolean alterado = clienteDAO.AlterarDadosCliente(cliente, alteracao, escolha);
+			
+			if(alterado)
+				UtilidadesGUI.exibeMensagem("Alterado com sucesso !");
+			else
+				UtilidadesGUI.exibeMensagem("Erro! Alteração não foi possível");
+			
+		}
+		
+	}
+	
+	
+
 }
