@@ -10,9 +10,11 @@ public class Cliente {
 	private String cpf;
 	private LocalDate dataNascimento;	
 	private String numeroCelular;
+	private String numeroFixo;
 	private boolean bloqueado = false;
 	private boolean invalidado = false;
 	private boolean habilitado = true;
+	
 	
 	public Cliente(String nome, String cpf) {
 		this.nome = nome;
@@ -126,4 +128,14 @@ public class Cliente {
 	public void setNumeroCelular(String numeroCelular) {
 		this.numeroCelular = numeroCelular;
 	}
+
+	public String getNumeroFixo() {
+		return numeroFixo;
+	}
+
+	public void setNumeroFixo(String numeroFixo) {
+		this.numeroFixo = numeroFixo;
+	}
+
+
 }
