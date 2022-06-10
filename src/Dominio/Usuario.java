@@ -8,8 +8,6 @@ public class Usuario {
 	
 	private String nome, email, senha, codigo;	
 	private boolean	estaDesabilitado, estaBloqueado, acessoGestorQuadras, acessoGestorUsuarios, acessoRelatorios, acessoZelador;
-	private Usuario userAtual;
-	static ArrayList <Usuario> usuarios = new ArrayList<Usuario>();
 	
 	public Usuario(String codigo, String nome, String email, String senha, boolean acessoGestorQuadras, boolean acessoGestorUsuarios, boolean acessoRelatorios, boolean acessoZelador) {
 		this.setCodigo(codigo);
@@ -46,43 +44,6 @@ public class Usuario {
 		this.setAcessoZelador(true);
 		this.setEstaBloqueado(false);
 		this.setEstaDesabilitado(false);
-	}
-	
-	public void alteraUsuario(String alteracao, int operador) {
-		switch(operador) {
-		
-			case 1:
-				this.setNome(alteracao);
-				break;
-				
-			case 2:
-				this.setEmail(alteracao);
-				break;
-				
-			case 3:
-				this.setSenha(alteracao);
-				break;
-				
-			case 4:
-				this.setAcessoGestorQuadras(UtilidadesConversao.transformaString(alteracao));
-				break;
-				
-			case 5:
-				this.setAcessoGestorUsuarios(UtilidadesConversao.transformaString(alteracao));
-				break;
-				
-			case 6:
-				this.setAcessoRelatorios(UtilidadesConversao.transformaString(alteracao));
-				break;
-				
-			case 7:
-				this.setAcessoZelador(UtilidadesConversao.transformaString(alteracao));
-				break;
-				
-			default:
-				UtilidadesGUI.exibeMensagem("Opção Inválida!");
-				break;
-		}
 	}
 	
 	public String getNome() {
@@ -165,17 +126,5 @@ public class Usuario {
 
 	public void setAcessoZelador(boolean acessoZelador) {
 		this.acessoZelador = acessoZelador;
-	}
-	
-	public void adicionarUsuario(Usuario user) {
-		usuarios.add(user);
-	}
-	
-	static public ArrayList<Usuario> getLista(){
-		return usuarios;
-	}
-	
-	 public Usuario getUsuarioAtual() {
-		return userAtual;
 	}
 }

@@ -3,6 +3,7 @@ package conexao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 //import com.mysql.cj.jdbc.Driver;
@@ -56,4 +57,19 @@ public class ConexaoBD {
 		
 		encerrarConexaoBD(c);
 	}
+	
+	public static void encerrarConexaoBD(Connection c, PreparedStatement stmt, ResultSet rs) {
+		
+		if(rs != null) {
+			try {
+				rs.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		encerrarConexaoBD(c,stmt);
+	}
+	
+	
 }

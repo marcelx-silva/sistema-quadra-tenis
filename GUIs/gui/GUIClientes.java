@@ -1,9 +1,13 @@
+package gui;
+import java.time.LocalDate;
 import java.util.Scanner;
 import Dominio.Cliente;
 
+
 import Utilitario.UtilidadesConversao;
 import Utilitario.UtilidadesGUI;
-import Dominio.*;
+import DAO.implentacaoDao;
+
 
 public class GUIClientes {
 
@@ -12,7 +16,9 @@ Scanner scanner = new Scanner(System.in);
 	
 	void GUIMenuCliente(){
 		
-		Cliente cliente = new Cliente("","","","",false,false,true);
+		LocalDate dataNascimento = LocalDate.now();
+		Cliente cliente = new Cliente("","","","","","",dataNascimento,false,false,true);
+		
 		int operadorMenu = 0;
 		
 		do {

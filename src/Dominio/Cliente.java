@@ -1,8 +1,6 @@
 
 package Dominio;
 import java.time.LocalDate;
-import java.util.ArrayList;
-
 
 public class Cliente {
 	
@@ -12,47 +10,50 @@ public class Cliente {
 	private String cpf;
 	private LocalDate dataNascimento;	
 	private String numeroCelular;
+	private String numeroFixo;
 	private boolean bloqueado = false;
 	private boolean invalidado = false;
 	private boolean habilitado = true;
-
-
-	ArrayList <Cliente> clientes = new ArrayList<Cliente>();
+	
+	
+	public Cliente(String nome, String email,String cpf, String celular, LocalDate dataNascimento, boolean bloqueado, boolean invalidado) {
+		this.nome = nome;
+		this.email = email;
+		this.cpf = cpf;
+		this.numeroCelular = celular;
+		this.dataNascimento = dataNascimento;
+		this.bloqueado = bloqueado;
+		this.invalidado = invalidado;
+	}
 	
 	public Cliente(String nome, String cpf) {
 		this.nome = nome;
 		this.cpf = cpf;
 	}
 	
-	public Cliente(String codigo, String nome,String email, String cpf, String celular, LocalDate dataNascimento, boolean bloqueado, boolean invalidado, boolean habilitado){
+	public Cliente(String codigo, String nome,String email, String cpf, String celular, String numeroFixo, LocalDate dataNascimento, boolean bloqueado, boolean invalidado, boolean habilitado){
 		this.codigo = codigo;
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
 		this.numeroCelular = celular;
+		this.numeroFixo = numeroFixo;
 		this.dataNascimento = dataNascimento;
 		this.bloqueado = bloqueado;
 		this.invalidado = invalidado;
 		this.habilitado = habilitado;
 	}
 	
-	public Cliente(String nome,String email, String cpf, String celular, LocalDate dataNascimento, boolean bloqueado, boolean invalidado, boolean habilitado){
+	public Cliente(String nome,String email, String cpf, String celular,String numeroFixo, LocalDate dataNascimento, boolean bloqueado, boolean invalidado, boolean habilitado){
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
 		this.numeroCelular = celular;
+		this.numeroFixo = numeroFixo;
 		this.dataNascimento = dataNascimento;
 		this.bloqueado = bloqueado;
 		this.invalidado = invalidado;
 		this.habilitado = habilitado;
-	}
-	
-	public void cadastrarCliente(String nome,String email, String cpf, LocalDate dataNascimento) {
-		this.setNome(nome);
-		this.setEmail(email);
-		this.setCpf(cpf);
-		this.setDataNascimento(dataNascimento);
-		clientes.add(this);
 	}
 	
 	public void bloqueiaCliente() {
@@ -139,4 +140,14 @@ public class Cliente {
 	public void setNumeroCelular(String numeroCelular) {
 		this.numeroCelular = numeroCelular;
 	}
+
+	public String getNumeroFixo() {
+		return numeroFixo;
+	}
+
+	public void setNumeroFixo(String numeroFixo) {
+		this.numeroFixo = numeroFixo;
+	}
+
+
 }

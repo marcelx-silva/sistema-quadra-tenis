@@ -1,5 +1,6 @@
 package Utilitario;
 
+import Enum.TipoPagamento;
 import Enum.TipoQuadra;
 
 public class UtilidadesConversao {
@@ -53,6 +54,46 @@ public class UtilidadesConversao {
 				
 			default:
 				return 0;
+		}
+	}
+	
+	public static TipoPagamento transformaInteiroEmTipoPagamento(int modo_pagamento) {
+		switch(modo_pagamento) {
+		
+		case 1:
+			return TipoPagamento.CREDITO;
+			
+		case 2:
+			return TipoPagamento.DEBITO;
+			
+		case 3:
+			return TipoPagamento.DINHEIRO;
+			
+		case 4:
+			return TipoPagamento.PIX;
+			
+		default:
+			return TipoPagamento.INVALIDO;
+		}
+	}
+	
+	public static int transformaTipoPagamentoEmInteiro(TipoPagamento tipo) {
+		switch(tipo) {
+		
+		case CREDITO:
+			return 1;
+			
+		case DEBITO:
+			return 2;
+			
+		case DINHEIRO:
+			return 3;
+			
+		case PIX:
+			return 4;
+			
+		default:
+			return 0;
 		}
 	}
 }

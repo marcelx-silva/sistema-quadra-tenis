@@ -15,7 +15,8 @@ SELECT cli_id 'ID', cli_nome 'Nome', cli_cpf 'CPF', cli_email 'E-MAIL', cli_celu
 	   date_format(cli_dt_nasc,"%d-%m-%Y") 'Data de Nascimento', date_format(cli_dt_registro,"%d-%m-%Y") 'Data de Cadastro', 
        IF(cli_bloqueado,'SIM','NÃO') 'Bloqueado', IF(cli_habilitado,'SIM','NÃO') 'Habilitado', IF(cli_invalidado,'SIM','NÃO') 'Invalidado' 
 FROM cliente 
-WHERE cli_id = ?;
+WHERE cli_habilitado <> false
+AND  cli_id = ?;
 
 /*Seleciona clientes bloqueados ou desbloqueados*/
 

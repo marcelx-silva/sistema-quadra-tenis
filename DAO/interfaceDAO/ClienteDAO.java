@@ -1,33 +1,30 @@
 package interfaceDAO;
 
 import Dominio.Cliente;
+import Exceptions.ClientNotFoundException;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface ClienteDAO {
 	
 	
-	//Seleciona todos os clientes
-	List<Cliente> obterTodosClientes();
+	List<Cliente> obterTodosClientes() throws IOException, SQLException;
 	
-	//Seleciona cliente pelo identificador
-	Cliente obterClientePeloId(int id);
+	Cliente obterClientePeloId(int id) throws ClientNotFoundException;
 	
-	//Seleciona clientes bloqueados ou desbloqueados
-	List<Cliente> obterClienteHabilitados(boolean bloqueado);
+	List<Cliente> obterClienteHabilitados(boolean bloqueado) throws IOException, SQLException;
 		
-	//Cadastra clintes
-	void CadastrarCliente(Cliente c);
+	boolean CadastrarCliente(Cliente c);
 	
-	//Atualizar Dados do Cliente
-	boolean AlterarDadosCliente(String alteracao, int escolha);
+	boolean AlterarDadosCliente(Cliente c,String alteracao, int escolha);
 	
-	//Bloquear e Desbloquear Cliente
-	boolean DesabilitarCliente(int id, boolean habilitado);
+	boolean DesabilitarCliente(String cpf, boolean habilitado)throws ClientNotFoundException ;
 	
-	boolean BloquearCliente(int id, boolean bloqueado);
+	boolean BloquearCliente(String cpf, boolean bloqueado) throws  ClientNotFoundException;
 	
-	boolean InvalidarCliente(int id, boolean validado);
+	boolean InvalidarCliente(String cpf, boolean validado) throws  ClientNotFoundException;
 	
-	//Deletar cliente
-	boolean DeletarCliente(int id);
+	boolean DeletarCliente(String cpf) throws  ClientNotFoundException;
 }

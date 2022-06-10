@@ -30,20 +30,19 @@ CREATE TABLE quadra(
 	qua_habilitado BOOL NOT NULL DEFAULT 1,
     
 	
-	PRIMARY KEY (qua_id),
-	FOREIGN KEY (qua_id_tipo) REFERENCES tipo_quadra(tp_id)
+	PRIMARY KEY (qua_id)
 );
 
 CREATE TABLE manutencao(
 	man_id INTEGER NOT NULL AUTO_INCREMENT,
 	man_desc VARCHAR(100) NOT NULL,
-	man_dt_inicio DATE NOT NULL,
-	man_dt_fim DATE NOT NULL,
+	man_data DATE NOT NULL,
+	man_hr_inicio TIME NOT NULL,
+	man_hr_fim TIME NOT NULL,
 	man_prev BOOLEAN NOT NULL,
 	man_cod_quadra INTEGER NOT NULL,
 	
-	PRIMARY KEY(man_id),
-	FOREIGN KEY(man_cod_quadra) REFERENCES quadra(qua_id)
+	PRIMARY KEY(man_id)
 );
 
 CREATE TABLE usuario(
@@ -73,32 +72,32 @@ CREATE TABLE cliente(
 	cli_id INTEGER NOT NULL AUTO_INCREMENT,
 	cli_nome VARCHAR(50) NOT NULL,
 	cli_cpf VARCHAR(11) NOT NULL,
-    cli_dt_nasc DATE NOT NULL,
-    cli_email VARCHAR(50),
-    cli_celular VARCHAR(15),
-    cli_tel_fixo VARCHAR(14),
+    	cli_dt_nasc DATE NOT NULL,
+    	cli_email VARCHAR(50),
+   	cli_celular VARCHAR(15),
+    	cli_tel_fixo VARCHAR(14),
 	cli_dt_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	cli_bloqueado BOOL NOT NULL DEFAULT  0, 
 	cli_habilitado BOOL NOT NULL DEFAULT 1,
-	cli_invalidado BOOL NOT NULL DEFAULT 0,
+	cli_restrito BOOL NOT NULL DEFAULT 0,
 	
 	PRIMARY KEY(cli_id)
 );
 
 CREATE TABLE reserva(
-    res_id INTEGER NOT NULL AUTO_INCREMENT,
-    res_id_cliente INTEGER NOT NULL,
-    res_hr_inicio DATETIME NOT NULL,
-    res_hr_fim DATETIME NOT NULL,
-    res_data DATE NOT NULL,
-    res_id_quadra INTEGER NOT NULL,
-    res_id_forma_pagamento INTEGER NOT NULL,
+    	res_id INTEGER NOT NULL AUTO_INCREMENT,
+    	res_id_cliente INTEGER NOT NULL,
+    	res_hr_inicio TIME NOT NULL,
+   	res_hr_fim TIME NOT NULL,
+    	res_data DATE NOT NULL,
+    	res_id_quadra INTEGER NOT NULL,
+    	res_id_forma_pagamento INTEGER NOT NULL,
 	res_parcelas VARCHAR(1) NOT NULL,
 	res_valor FLOAT NOT NULL,
+	res_cli_entrou TIMESTAMP DEFAULT NULL,
+	res_cli_saiu TIMESTAMP DEFAULT NULL,
     
-    PRIMARY KEY(res_id),
-    FOREIGN KEY(res_id_cliente) REFERENCES cliente(cli_id),
-    FOREIGN KEY(res_id_quadra) REFERENCES quadra(qua_id) 
+    PRIMARY KEY(res_id)
 );
 
 /* Inserção de valores fixos */
@@ -116,3 +115,26 @@ INSERT INTO forma_pagamento (fp_nome) VALUES('Crédito');
 INSERT INTO forma_pagamento (fp_nome) VALUES('Dédito');
 INSERT INTO forma_pagamento (fp_nome) VALUES('PIX');
 INSERT INTO forma_pagamento (fp_nome) VALUES('Dinheiro');
+
+/* Constraints */
+
+ALTER TABLE quadra
+ADD CONSTRAINT quadra_tipo
+FOREIGN KEY(qua_id_tipo)
+REFERENCES tipo_quadra(tp_id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE manutencao
+ADD CONSTRAINT man_quadra
+FOREIGN KEY (man_cod_quadra)
+REFERENCES quadra(qua_id)  ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE reserva
+ADD CONSTRAINT reserva_cliente
+FOREIGN KEY (res_id_cliente)
+REFERENCES cliente(cli_id)  ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE reserva
+ADD CONSTRAINT reserva_quadra
+FOREIGN KEY (res_id_quadra)
+REFERENCES quadra(qua_id) ON UPDATE CASCADE ON DELETE CASCADE;
+
