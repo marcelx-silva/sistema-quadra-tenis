@@ -18,7 +18,6 @@ import Dominio.Quadra;
 import Dominio.Reserva;
 import Enum.TipoPagamento;
 import Dominio.Cliente;
-import Exceptions.CourtNotFoundException;
 import Utilitario.UtilidadesConversao;
 import queries.QueriesReservas;
 import conexao.ConexaoBD;
@@ -106,6 +105,36 @@ public class ImplReservaDAO implements ReservaDAO {
 			
 			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_DAY"));
 			stmt.setString(1, data.format(dataFormatoBD));
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				Reserva r = montaReserva(rs);
+				listaReservas.add(r);
+			}
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}
+		
+		return listaReservas;
+	}
+	
+	@Override
+	public List<Reserva> obterReservasPorPeriodoDeDias(LocalDate dataInicio, LocalDate dataFim){
+		List<Reserva> listaReservas = new ArrayList();
+		
+		try {
+			FileInputStream in = new FileInputStream("QUERY_RESERVA.properties");
+			qr.queriesReserva.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_DAY"));
+			stmt.setString(1, dataInicio.format(dataFormatoBD));
+			stmt.setString(2, dataFim.format(dataFormatoBD));
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {

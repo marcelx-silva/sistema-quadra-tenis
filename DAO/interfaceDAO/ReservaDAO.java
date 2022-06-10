@@ -13,6 +13,8 @@ public interface ReservaDAO {
 
 	List<Reserva> obterReservasPeloDia(LocalDate data);
 	
+	List<Reserva> obterReservasPorPeriodoDeDias(LocalDate dataInicio, LocalDate dataFim);
+	
 	Reserva obterReservaPeloId(int id);
 	
 	boolean registrarPagamento(Reserva r);
