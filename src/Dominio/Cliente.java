@@ -16,6 +16,16 @@ public class Cliente {
 	private boolean habilitado = true;
 	
 	
+	public Cliente(String nome, String email,String cpf, String celular, LocalDate dataNascimento, boolean bloqueado, boolean invalidado) {
+		this.nome = nome;
+		this.email = email;
+		this.cpf = cpf;
+		this.numeroCelular = celular;
+		this.dataNascimento = dataNascimento;
+		this.bloqueado = bloqueado;
+		this.invalidado = invalidado;
+	}
+	
 	public Cliente(String nome, String cpf) {
 		this.nome = nome;
 		this.cpf = cpf;

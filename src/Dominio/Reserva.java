@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
 import Enum.TipoPagamento;
 import Enum.TipoQuadra;
 import java.time.LocalTime;
@@ -14,7 +15,7 @@ public class Reserva extends Agendamento{
 	
 	private TipoPagamento modoPagamento;
 	private String parcelas;
-	private Cliente cliente;
+	private Cliente cliente;	
 	
 	public Reserva(String codigo, Quadra quadra, Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, String parcelas){
 		super(codigo, quadra, data, horarioInicio, horarioFim);
@@ -33,27 +34,6 @@ public class Reserva extends Agendamento{
 		BigDecimal prl = new BigDecimal(String.valueOf(parcela));
 		return prc_res.divide(prl, 2, RoundingMode.UP);
 		
-	}
-		
-
-	public TipoPagamento selecionarModoPagamento(int modo_pagamento) {
-		switch(modo_pagamento) {
-		
-		case 1:
-			return TipoPagamento.CREDITO;
-			
-		case 2:
-			return TipoPagamento.DEBITO;
-			
-		case 3:
-			return TipoPagamento.DINHEIRO;
-			
-		case 4:
-			return TipoPagamento.PIX;
-			
-		default:
-			return TipoPagamento.INVALIDO;
-		}
 	}
 	
 	public Cliente getCliente() {

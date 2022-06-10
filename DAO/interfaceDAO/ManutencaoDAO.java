@@ -22,5 +22,5 @@ public interface ManutencaoDAO {
 	
 	boolean alterarDataManutencao(Manutencao m, LocalDate data, LocalTime horarioInicio, LocalTime horarioFIm);
 	
-	boolean deletarManutencao(Manutencao m);
+	boolean deletarManutencao(int id);
 }

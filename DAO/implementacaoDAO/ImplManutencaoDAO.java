@@ -22,8 +22,6 @@ import interfaceDAO.ManutencaoDAO;
 import queries.QueriesManutencao;
 import implementacaoDAO.ImplQuadraDAO;
 import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class ImplManutencaoDAO implements ManutencaoDAO {
 
@@ -260,7 +258,30 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 
 	@Override
 	public boolean cadastrarManutencao(Manutencao m) {
-		// TODO Auto-generated method stub
+		try {
+			qm.DMLManutencao();
+			FileInputStream in = new FileInputStream("DML_MANUTENCAO.properties");
+			qm.queriesManutencao.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("INSERT_INTO_MANUTENCAO"));
+			
+			stmt.setInt(1, Integer.valueOf(m.getCodigo()));
+			stmt.setString(2, m.getDescricao());
+			stmt.setString(3, m.getData().format(dataFormatoBD));
+			stmt.setString(4, m.getHorarioInicio().format(horarioFormatoBD));
+			stmt.setString(5, m.getHorarioFim().format(horarioFormatoBD));
+			stmt.setBoolean(6, m.isPreventiva());
+			stmt.setInt(7, Integer.valueOf(m.getQuadra().getCodigo()));		
+			stmt.executeQuery();
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}
 		return false;
 	}
 
@@ -271,9 +292,30 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 	}
 
 	@Override
-	public boolean deletarManutencao(Manutencao m) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deletarManutencao(int id) {
+		try {
+			qm.DMLManutencao();
+			FileInputStream in = new FileInputStream("DML_MANUTENCAO.properties");
+			qm.queriesManutencao.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("DELETE_FROM_MANUTENCAO"));
+			
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+			
+		}catch(SQLException e) {
+
+			e.printStackTrace();
+			return false;
+			
+		}catch(IOException e) {
+
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 
 }

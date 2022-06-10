@@ -46,6 +46,9 @@ public class QueriesManutencao {
 	
 	public void DMLManutencao() throws IOException{
 		
+		queriesManutencao.setProperty("INSERT_INTO_MANUTENCAO", "INSERT INTO manutencao(man_id, man_desc, man_data, man_hr_inicio, man_hr_fim, "
+				+ "man_prev, man_cod_quadra) VALUES(?, ?, DATE(?), ?, ?, ?, ?)");
+
 		queriesManutencao.setProperty("UPDATE_MANUTENCAO_DESC", "UPDATE manutencao SET man_desc = ? WHERE man_id = ?");
 		queriesManutencao.setProperty("UPDATE_MANUTENCAO_DATA", "UPDATE manutencao SET man_data ? WHERE man_id = ?");
 		queriesManutencao.setProperty("UPDATE_MANUTENCAO_HORARIO_INICIO", "UPDATE manutencao SET man_hr_inicio = ? WHERE man_id = ?");
@@ -53,7 +56,7 @@ public class QueriesManutencao {
 		queriesManutencao.setProperty("UPDATE_MANUTENCAO_QUADRA", "UPDATE manutencao SET man_cod_quadra = ? WHERE man_id = ?");
 		
 		queriesManutencao.setProperty("DELETE_FROM_MANUTENCAO_BY_ID", "DELETE FROM manutencao WHERE man_id = ?");
-		
+				
 		FileOutputStream out = new FileOutputStream("DML_MANUTENCAO.properties");
 		queriesManutencao.store(out, null);
 		out.close();
