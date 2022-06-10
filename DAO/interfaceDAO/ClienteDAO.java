@@ -26,12 +26,12 @@ public interface ClienteDAO {
 	boolean AlterarDadosCliente(Cliente c,String alteracao, int escolha);
 	
 	//Bloquear e Desbloquear Cliente
-	boolean DesabilitarCliente(Cliente c, boolean habilitado);
+	boolean DesabilitarCliente(Cliente c, boolean habilitado)throws ClientNotFoundException ;
 	
-	boolean BloquearCliente(Cliente c, boolean bloqueado);
+	boolean BloquearCliente(Cliente c, boolean bloqueado) throws  ClientNotFoundException;
 	
-	boolean InvalidarCliente(Cliente c, boolean validado);
+	boolean InvalidarCliente(Cliente c, boolean validado) throws  ClientNotFoundException;
 	
 	//Deletar cliente
-	boolean DeletarCliente(int id);
+	boolean DeletarCliente(int id) throws  ClientNotFoundException;
 }

@@ -283,7 +283,7 @@ public class ImpClienteDAO implements ClienteDAO {
 	}
 	
 	
-	boolean DesabilitarCliente(String cpf) throws ClientNotFoundException {
+	boolean DesabilitarCliente(String cpf, boolean habilitado) throws ClientNotFoundException {
 		
 		try {
 			
@@ -305,33 +305,27 @@ public class ImpClienteDAO implements ClienteDAO {
 			
 			ResultSet rs = stmt.executeQuery();
 			
-			
-			if(rs.next()){
-			
+			if(rs.next()) {
 				
-				if(rs.getBoolean("cli_habilitado")) {
-					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("DISABLE_CLIENT"));
-					stmt.setString(1, cpf);
-					stmt.setBoolean(2, false);
-					ConexaoBD.encerrarConexaoBD(con, stmt);
-					
-					
-				}else {
-			
-					PreparedStatement stmt_desabilitar = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("DISABLE_CLIENT"));
-					stmt_desabilitar.setString(1, cpf);
-					stmt_desabilitar.setBoolean(2, true);
-					ConexaoBD.encerrarConexaoBD(con, stmt_desabilitar);
-					
-				}
-				
-				
-				
+				stmt = con.prepareStatement(q.queriesCliente.getProperty("DISABLE_CLIENT"));
+				stmt.setBoolean(1, habilitado);
+				stmt.setString(2,cpf);	
 			}else{
-				throw new ClientNotFoundException("Cliente inexistente !");
+				throw new ClientNotFoundException("Cliente de cpf "+cpf+" inexistente !");
+			}
+			
+			int linhaAlterada = stmt.executeUpdate();
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt,rs);
+
+			
+			if(linhaAlterada == 0){
+				return false;
 			}
 			
 			return true;
+			
+			
 			
 			
 		}catch(SQLException e) {
@@ -344,16 +338,18 @@ public class ImpClienteDAO implements ClienteDAO {
 	}
 	
 
-	boolean BloquearCliente(int id, boolean bloqueado) {
+	boolean BloquearCliente(String cpf, boolean bloqueado) throws ClientNotFoundException {
+		
 		
 	}
 	
-	boolean InvalidarCliente(int id, boolean validado) {
+	boolean InvalidarCliente(int id, boolean validado) throws  ClientNotFoundException {
+		
 		
 	}
 	
 	
-	boolean DeletarCliente(int id) {
+	boolean DeletarCliente(int id) throws  ClientNotFoundException {
 		
 	}
 
