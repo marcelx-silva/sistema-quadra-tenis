@@ -5,8 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import Dominio.Cliente;
-
-
+import Exceptions.ClientNotFoundException;
 import Utilitario.UtilidadesConversao;
 import Utilitario.UtilidadesGUI;
 import implementacaoDAO.ImpClienteDAO;
@@ -101,7 +100,9 @@ public class GUIClientes {
 	
 	void GUIExibirTodosClientes() {
 		try {
-			clienteDAO.obterTodosClientes();
+			for(Cliente c: clienteDAO.obterTodosClientes()) {
+				System.out.printf("Nome: %s\nData de Nascimento: %s\nCPF: %s\nEMAIL: %s\nCelular: %s",c.getNome(),c.getDataNascimento(),c.getCpf(),c.getEmail(),c.getNumeroCelular());
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -109,13 +110,20 @@ public class GUIClientes {
 		}
 	}
 	
-	void GUIExibirCliente(Cliente cliente){
+	void GUIExibirCliente(){
+	
+		try {
+			String cpf;
+			UtilidadesGUI.exibeMensagem("Pesquisa de Clientes:\n\n");
+			UtilidadesGUI.exibeMensagem("Entre com o CPF do cliente que deseja visualizar as informações:\n");
+			cpf = scanner.nextLine();
+			Cliente c = clienteDAO.obterClientePeloCPF(cpf);
+			System.out.printf("Nome: %s\nData de Nascimento: %s\nCPF: %s\nEMAIL: %s\nCelular: %s",c.getNome(),c.getDataNascimento(),c.getCpf(),c.getEmail(),c.getNumeroCelular());
+			
+		} catch (ClientNotFoundException e) {
+			e.printStackTrace();
+		}
 		
-		cliente = cliente.clientes.get(0);
 		
-		UtilidadesGUI.exibeMensagem("Nome: " + cliente.getNome());
-		UtilidadesGUI.exibeMensagem("\nEmail: " + cliente.getEmail());
-		UtilidadesGUI.exibeMensagem("\nData de Nascimento: " + cliente.getDataNascimento());
-		UtilidadesGUI.exibeMensagem("\nCPF: " + cliente.getCpf());
 	}
 }
