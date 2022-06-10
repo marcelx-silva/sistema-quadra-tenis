@@ -34,27 +34,6 @@ public class Reserva extends Agendamento{
 		return prc_res.divide(prl, 2, RoundingMode.UP);
 		
 	}
-		
-
-	public TipoPagamento selecionarModoPagamento(int modo_pagamento) {
-		switch(modo_pagamento) {
-		
-		case 1:
-			return TipoPagamento.CREDITO;
-			
-		case 2:
-			return TipoPagamento.DEBITO;
-			
-		case 3:
-			return TipoPagamento.DINHEIRO;
-			
-		case 4:
-			return TipoPagamento.PIX;
-			
-		default:
-			return TipoPagamento.INVALIDO;
-		}
-	}
 	
 	public Cliente getCliente() {
 		return cliente;
