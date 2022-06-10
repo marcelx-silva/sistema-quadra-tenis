@@ -77,7 +77,12 @@ public class QueriesReservas {
 				+ " res_valor, res_cli_entrou, res_cli_saiu) VALUES(?, ?, ?, DATE(?), ?, ?, ?, ?, ?, ?)");
 		
 		queriesReserva.setProperty("DELETE_FROM_RESERVA", "DELETE FROM reserva WHERE res_id = ?");
-				
+		
+		queriesReserva.setProperty("REGISTER_CUSTOMER_ENTRANCE", "UPDATE reserva SET res_cli_entrou = CURRENT_TIMESTAMP WHERE res_id = ?");
+		queriesReserva.setProperty("REGISTER_CUSTOMER_EXIT", "UPDATE reserva SET res_cli_saiu = CURRENT_TIMESTAMP WHERE res_id = ?");
+		
+		queriesReserva.setProperty("REGISTER_CUSTOMER_PAYMENT", "UPDATE reserva SET res_cli_pagou = ?");
+		
 		FileOutputStream out = new FileOutputStream("DML_RESERVA.properties");
 		queriesReserva.store(out, null);
 		out.close();
