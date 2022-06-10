@@ -157,6 +157,7 @@ public class ImplReservaDAO implements ReservaDAO {
 	public Reserva obterReservaPeloId(int id) {
 		
 		Reserva r = null;
+		
 		try {
 			FileInputStream in = new FileInputStream("QUERY_RESERVA.properties");
 			qr.queriesReserva.load(in);
@@ -184,26 +185,128 @@ public class ImplReservaDAO implements ReservaDAO {
 
 	@Override
 	public boolean registrarPagamento(Reserva r) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		try {
+			FileInputStream in = new FileInputStream("QUERY_RESERVA.properties");
+			qr.queriesReserva.load(in);
+			in.close();
+			
+			in = new FileInputStream("DML_RESERVA.properties");
+			qr.queriesReserva.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_ID"));
+			stmt.setInt(1, Integer.valueOf(r.getCodigo()));
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("REGISTER_CUSTOMER_PAYMENT"));
+				stmt.executeUpdate();
+			}
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			return false;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+
+		}
+		
+		return true;
 	}
 
 	@Override
 	public boolean registrarEntradaCliente(Reserva r) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		try {
+			qr.DMLReserva();
+			FileInputStream in = new FileInputStream("DML_RESERVA.properties");
+			qr.queriesReserva.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("REGISTER_CUSTOMER_ENTRANCE"));
+			
+			stmt.setInt(1, Integer.valueOf(r.getCodigo()));
+			stmt.executeUpdate();
+			
+		}catch(SQLException e) {
+
+			e.printStackTrace();
+			return false;
+			
+		}catch(IOException e) {
+
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 
 	@Override
 	public boolean registrarSaidaCliente(Reserva r) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			qr.DMLReserva();
+			FileInputStream in = new FileInputStream("DML_RESERVA.properties");
+			qr.queriesReserva.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("REGISTER_CUSTOMER_EXIT"));
+			
+			stmt.setInt(1, Integer.valueOf(r.getCodigo()));
+			stmt.executeUpdate();
+			
+		}catch(SQLException e) {
+
+			e.printStackTrace();
+			return false;
+			
+		}catch(IOException e) {
+
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 
 	@Override
 	public boolean CadastrarReserva(Reserva r) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			qr.DMLReserva();
+			FileInputStream in = new FileInputStream("DML_RESERVA.properties");
+			qr.queriesReserva.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("INSERT_INTO_RESERVA"));
+			
+			stmt.setInt(1, Integer.valueOf(r.getCodigo()));
+			stmt.setString(2, r.getHorarioInicio().format(horarioFormatoBD));
+			stmt.setString(3, r.getHorarioFim().format(horarioFormatoBD));
+			stmt.setString(4, r.getData().format(dataFormatoBD));
+			stmt.setInt(5,  Integer.valueOf(r.getQuadra().getCodigo()));
+			stmt.setInt(6, UtilidadesConversao.transformaTipoPagamentoEmInteiro(r.getModoPagamento()));
+			stmt.setString(7, r.getParcelas());
+			stmt.setFloat(8, Float.valueOf(r.calcularParcela(r.getQuadra().isPossuiCobertura(), Integer.valueOf(r.getParcelas()))));
+			stmt.setNull(9, 0);
+			stmt.setNull(10, 0);
+			stmt.executeUpdate();
+			
+		}catch(SQLException e) {
+
+			e.printStackTrace();
+			return false;
+			
+		}catch(IOException e) {
+
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 
 	@Override
