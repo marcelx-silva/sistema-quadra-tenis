@@ -44,19 +44,7 @@ public class ImpClienteDAO implements ClienteDAO {
 			
 			while(rs.next()){
 				
-				String codigo = rs.getString("cli_id");
-				String nome = rs.getString("cli_nome");
-				String email = rs.getString("cli_email");
-				String cpf = rs.getString("cli_cpf");
-				String celular = rs.getString("cli_celular");
-				String dataNascimento = rs.getString("cli_dt_nasc");
-				boolean bloqueado = rs.getBoolean("cli_bloqueado");
-				boolean habilitado = rs.getBoolean("cli_habilitado");
-				boolean invalidado = rs.getBoolean("cli_invalidado");
-				
-				LocalDate LocaldataNascimento = LocalDate.parse(dataNascimento,dataFormatoPadrao);
-				
-				Cliente cliente = new Cliente(codigo,nome,email,cpf,celular,LocaldataNascimento,bloqueado,habilitado,invalidado);
+				Cliente cliente = montaCliente(rs);
 				listaClientes.add(cliente);
 			}
 			
@@ -67,11 +55,7 @@ public class ImpClienteDAO implements ClienteDAO {
 			
 			
 			
-			return listaClientesCopia;
-		
-		
-		
-			
+			return listaClientesCopia;		
 	}
 	
 	public Cliente montaCliente(ResultSet rs) throws SQLException {
@@ -112,19 +96,7 @@ public class ImpClienteDAO implements ClienteDAO {
 		
 		if(rs.next()){
 			
-			String codigo = rs.getString("cli_id");
-			String nome = rs.getString("cli_nome");
-			String email = rs.getString("cli_email");
-			String cpf = rs.getString("cli_cpf");
-			String celular = rs.getString("cli_celular");
-			String dataNascimento = rs.getString("cli_dt_nasc");
-			boolean bloqueado = rs.getBoolean("cli_bloqueado");
-			boolean habilitado = rs.getBoolean("cli_habilitado");
-			boolean invalidado = rs.getBoolean("cli_invalidado");
-			
-			LocalDate LocaldataNascimento = LocalDate.parse(dataNascimento,dataFormatoPadrao);
-			
-			cliente = new Cliente(codigo,nome,email,cpf,celular,LocaldataNascimento,bloqueado,habilitado,invalidado);
+			cliente = montaCliente(rs);
 			
 		}else {
 			throw new ClientNotFoundException("Cliente inexistente");
@@ -161,19 +133,7 @@ public class ImpClienteDAO implements ClienteDAO {
 		
 		while(rs.next()){
 			
-			String codigo = rs.getString("cli_id");
-			String nome = rs.getString("cli_nome");
-			String email = rs.getString("cli_email");
-			String cpf = rs.getString("cli_cpf");
-			String celular = rs.getString("cli_celular");
-			String dataNascimento = rs.getString("cli_dt_nasc");
-			boolean bloqueadod = rs.getBoolean("cli_bloqueado");
-			boolean habilitado = rs.getBoolean("cli_habilitado");
-			boolean invalidado = rs.getBoolean("cli_invalidado");
-			
-			LocalDate LocaldataNascimento = LocalDate.parse(dataNascimento,dataFormatoPadrao);
-			
-			Cliente cliente = new Cliente(codigo,nome,email,cpf,celular,LocaldataNascimento,bloqueadod,habilitado,invalidado);
+			Cliente cliente = montaCliente(rs);
 			listaClientesBloqueados.add(cliente);
 		}
 		
