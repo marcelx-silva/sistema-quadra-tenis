@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
 import Enum.TipoPagamento;
 import Enum.TipoQuadra;
 import java.time.LocalTime;
@@ -14,7 +15,7 @@ public class Reserva extends Agendamento{
 	
 	private TipoPagamento modoPagamento;
 	private String parcelas;
-	private Cliente cliente;
+	private Cliente cliente;	
 	
 	public Reserva(String codigo, Quadra quadra, Cliente cliente,LocalDate data, LocalTime horarioInicio, LocalTime horarioFim, TipoPagamento modoPagamento, String parcelas){
 		super(codigo, quadra, data, horarioInicio, horarioFim);
