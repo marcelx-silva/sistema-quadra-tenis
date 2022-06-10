@@ -1,12 +1,14 @@
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import Dominio.Cliente;
 
 
 import Utilitario.UtilidadesConversao;
 import Utilitario.UtilidadesGUI;
-import DAO.implentacaoDao;
+import implementacaoDAO.ImpClienteDAO;
+
 
 
 public class GUIClientes {
@@ -70,6 +72,7 @@ Scanner scanner = new Scanner(System.in);
 		String email;
 		String data_nascimento;
 		String cpf;
+		String cel;
 		
 		UtilidadesGUI.exibeMensagem("Nome do Cliente:");
 		nome = scanner.nextLine();
@@ -80,10 +83,18 @@ Scanner scanner = new Scanner(System.in);
 		UtilidadesGUI.exibeMensagem("Data de Nascimento:");
 		data_nascimento = scanner.nextLine();
 		
+		LocalDate dataNascimento = LocalDate.parse(data_nascimento,DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		
 		UtilidadesGUI.exibeMensagem("CPF: ");
 		cpf = scanner.nextLine();
 		
-		cliente.cadastrarCliente(nome, email, cpf, data_nascimento);
+		UtilidadesGUI.exibeMensagem("Numero do Celular");
+		cel = scanner.nextLine();
+		
+		cliente = new Cliente(nome,email,cel,cpf,dataNascimento);
+		
+		ImpClienteDAO clienteDAO = new ImpClienteDAO();
+		clienteDAO.CadastrarCliente(cliente);
 	}
 	
 	void GUIExibirCliente(Cliente cliente){

@@ -26,6 +26,14 @@ public class Cliente {
 		this.invalidado = invalidado;
 	}
 	
+	public Cliente(String nome, String email,String cpf, String celular, LocalDate dataNascimento) {
+		this.nome = nome;
+		this.email = email;
+		this.cpf = cpf;
+		this.numeroCelular = celular;
+		this.dataNascimento = dataNascimento;
+	}
+	
 	public Cliente(String nome, String cpf) {
 		this.nome = nome;
 		this.cpf = cpf;
