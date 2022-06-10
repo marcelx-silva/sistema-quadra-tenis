@@ -292,9 +292,30 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 	}
 
 	@Override
-	public boolean deletarManutencao(Manutencao m) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deletarManutencao(int id) {
+		try {
+			qm.DMLManutencao();
+			FileInputStream in = new FileInputStream("DML_MANUTENCAO.properties");
+			qm.queriesManutencao.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("DELETE_FROM_MANUTENCAO"));
+			
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+			
+		}catch(SQLException e) {
+
+			e.printStackTrace();
+			return false;
+			
+		}catch(IOException e) {
+
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 
 }
