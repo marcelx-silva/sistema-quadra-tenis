@@ -2,7 +2,6 @@ package implementacaoDAO;
 
 import Dominio.Cliente;
 import Exceptions.ClientNotFoundException;
-import Utilitario.UtilidadesConversao;
 import Utilitario.UtilidadesGUI;
 import conexao.ConexaoBD;
 import interfaceDAO.ClienteDAO;
@@ -38,7 +37,9 @@ public class ImpClienteDAO implements ClienteDAO {
 			FileInputStream in = new FileInputStream("QUERY_CONSULTA_CLIENTE.properties");
 			q.queriesCliente.load(in);
 			in.close();
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_FROM_ALL_CLIENTE"));
+			
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_FROM_ALL_CLIENTE"));
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()){
@@ -58,6 +59,8 @@ public class ImpClienteDAO implements ClienteDAO {
 				Cliente cliente = new Cliente(codigo,nome,email,cpf,celular,LocaldataNascimento,bloqueado,habilitado,invalidado);
 				listaClientes.add(cliente);
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
 			
 			List<Cliente> listaClientesCopia = new ArrayList<Cliente>();
 			listaClientesCopia.addAll(listaClientes);
@@ -101,7 +104,9 @@ public class ImpClienteDAO implements ClienteDAO {
 		FileInputStream in = new FileInputStream("QUERY_CONSULTA_CLIENTE.properties");
 		q.queriesCliente.load(in);
 		in.close();
-		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_FROM_CLIENT_BY_ID"));
+		
+		Connection con =  ConexaoBD.conectaBD();
+		PreparedStatement stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_FROM_CLIENT_BY_ID"));
 		stmt.setInt(1,id);
 		ResultSet rs = stmt.executeQuery();
 		
@@ -126,6 +131,8 @@ public class ImpClienteDAO implements ClienteDAO {
 		}else {
 			throw new ClientNotFoundException("Cliente inexistente");
 		}
+		
+		ConexaoBD.encerrarConexaoBD(con,stmt,rs);
 	
 		
 	}catch(SQLException e) {
@@ -195,9 +202,9 @@ public class ImpClienteDAO implements ClienteDAO {
 			in_dml.close();
 			in_select.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("INSERT_INTO_CLIENT"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(q.queriesCliente.getProperty("INSERT_INTO_CLIENT"));
 			
-			ResultSet rs = stmt.executeQuery();
 			
 			LocalDate dataNascimento = LocalDate.parse(c.getDataNascimento().toString(),dataFormatoBD);
 			
@@ -209,6 +216,13 @@ public class ImpClienteDAO implements ClienteDAO {
 			stmt.setString(5, c.getNumeroCelular());
 			stmt.setString(6, c.getNumeroFixo());
 			
+			int linhaAlterada =  stmt.executeUpdate();
+			
+			ConexaoBD.encerrarConexaoBD(con,stmt);
+			
+			if(linhaAlterada == 0) {
+				return false;
+			}
 			
 			return true;
 			
@@ -234,36 +248,43 @@ public class ImpClienteDAO implements ClienteDAO {
 			q.queriesCliente.load(in);
 			in.close();
 			
+			Connection con =  ConexaoBD.conectaBD();
 			PreparedStatement stmt;
+			
+			int linhaAlterada = 0;
 			
 			switch(escolha) {
 			
 				case 1:
-					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENTE_NOME"));
+					stmt = con.prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENTE_NOME"));
 					stmt.setString(1, alteracao);
 					stmt.setString(2, c.getCpf());
-					stmt.executeUpdate();
+					linhaAlterada =  stmt.executeUpdate();
+					ConexaoBD.encerrarConexaoBD(con, stmt);
 					break;
 					
 				case 2:
-					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_EMAIL"));
+					stmt = con.prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_EMAIL"));
 					stmt.setString(1, alteracao);
 					stmt.setString(2, c.getCpf());
-					stmt.executeUpdate();
+					linhaAlterada = stmt.executeUpdate();
+					ConexaoBD.encerrarConexaoBD(con, stmt);
 					break;
 					
 				case 3:
-					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_PHONE"));
+					stmt = con.prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_PHONE"));
 					stmt.setString(1, alteracao);
 					stmt.setString(2, c.getCpf());
-					stmt.executeUpdate();
+					linhaAlterada = stmt.executeUpdate();
+					ConexaoBD.encerrarConexaoBD(con, stmt);
 					break;
 					
 				case 4:
-					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_CELL_PHONE"));
+					stmt = con.prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_CELL_PHONE"));
 					stmt.setString(1, alteracao);
 					stmt.setString(2, c.getCpf());
 					stmt.executeUpdate();
+					ConexaoBD.encerrarConexaoBD(con, stmt);
 					break;
 					
 					
@@ -271,6 +292,13 @@ public class ImpClienteDAO implements ClienteDAO {
 					UtilidadesGUI.exibeMensagem("Opção Inválida!");
 					break;
 			}
+			
+			
+			
+			if(linhaAlterada == 0) {
+				return false;
+			}
+			
 			return true;
 			
 		} catch(SQLException e) {
@@ -283,7 +311,7 @@ public class ImpClienteDAO implements ClienteDAO {
 	}
 	
 	
-	boolean DesabilitarCliente(String cpf, boolean habilitado) throws ClientNotFoundException {
+	public boolean DesabilitarCliente(String cpf, boolean habilitado) throws ClientNotFoundException {
 		
 		try {
 			
@@ -298,10 +326,10 @@ public class ImpClienteDAO implements ClienteDAO {
 			in_select.close();
 			
 			PreparedStatement stmt;
-			Connection con = null;
-			con = ConexaoBD.conectaBD();
+			Connection con = ConexaoBD.conectaBD();
 			
 			stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_DISABLE_STATUS_FROM_CLIENT_BY_CPF"));
+			stmt.setString(1, cpf);
 			
 			ResultSet rs = stmt.executeQuery();
 			
@@ -338,7 +366,7 @@ public class ImpClienteDAO implements ClienteDAO {
 	}
 	
 
-	boolean BloquearCliente(String cpf, boolean bloqueado) throws ClientNotFoundException {
+	public boolean BloquearCliente(String cpf, boolean bloqueado) throws ClientNotFoundException {
 		
 		
 		try {
@@ -354,10 +382,10 @@ public class ImpClienteDAO implements ClienteDAO {
 			in_select.close();
 			
 			PreparedStatement stmt;
-			Connection con = null;
-			con = ConexaoBD.conectaBD();
+			Connection con = ConexaoBD.conectaBD();
 			
 			stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_BLOCK_STATUS_FROM_CLIENT_BY_CPF"));
+			stmt.setString(1, cpf);
 			
 			ResultSet rs = stmt.executeQuery();
 			
@@ -394,7 +422,7 @@ public class ImpClienteDAO implements ClienteDAO {
 		
 	}
 	
-	boolean InvalidarCliente(String cpf, boolean validado) throws  ClientNotFoundException {
+	public boolean InvalidarCliente(String cpf, boolean validado) throws  ClientNotFoundException {
 		
 		try {
 			
@@ -409,8 +437,7 @@ public class ImpClienteDAO implements ClienteDAO {
 			in_select.close();
 			
 			PreparedStatement stmt;
-			Connection con = null;
-			con = ConexaoBD.conectaBD();
+			Connection con = ConexaoBD.conectaBD();
 			
 			stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_INVALID_STATUS_FROM_CLIENT_BY_CPF"));
 			stmt.setString(1, cpf);
@@ -451,7 +478,7 @@ public class ImpClienteDAO implements ClienteDAO {
 	}
 	
 	
-	boolean DeletarCliente(String cpf) throws  ClientNotFoundException {
+	public boolean DeletarCliente(String cpf) throws  ClientNotFoundException {
 		
 		try {
 			
@@ -466,10 +493,10 @@ public class ImpClienteDAO implements ClienteDAO {
 			in_select.close();
 			
 			PreparedStatement stmt;
-			Connection con = null;
-			con = ConexaoBD.conectaBD();
+			Connection con = ConexaoBD.conectaBD();
 			
 			stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_FROM_CLIENT_BY_CPF"));
+			stmt.setString(1, cpf);
 			
 			ResultSet rs = stmt.executeQuery();
 			
