@@ -26,11 +26,11 @@ public interface ClienteDAO {
 	boolean AlterarDadosCliente(Cliente c,String alteracao, int escolha);
 	
 	//Bloquear e Desbloquear Cliente
-	boolean DesabilitarCliente(int id, boolean habilitado);
+	boolean DesabilitarCliente(Cliente c, boolean habilitado);
 	
-	boolean BloquearCliente(int id, boolean bloqueado);
+	boolean BloquearCliente(Cliente c, boolean bloqueado);
 	
-	boolean InvalidarCliente(int id, boolean validado);
+	boolean InvalidarCliente(Cliente c, boolean validado);
 	
 	//Deletar cliente
 	boolean DeletarCliente(int id);

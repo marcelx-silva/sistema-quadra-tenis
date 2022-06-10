@@ -10,6 +10,7 @@ import queries.QueriesCliente;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -226,6 +227,7 @@ public class ImpClienteDAO implements ClienteDAO {
 	
 	
 	public boolean AlterarDadosCliente(Cliente c,String alteracao, int escolha) {
+		
 		try {
 			q.DMLCliente();
 			FileInputStream in = new FileInputStream("DML_Cliente.properties");
@@ -252,7 +254,14 @@ public class ImpClienteDAO implements ClienteDAO {
 					
 				case 3:
 					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_PHONE"));
-					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
+					stmt.setString(1, alteracao);
+					stmt.setString(2, c.getCpf());
+					stmt.executeUpdate();
+					break;
+					
+				case 4:
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_CELL_PHONE"));
+					stmt.setString(1, alteracao);
 					stmt.setString(2, c.getCpf());
 					stmt.executeUpdate();
 					break;
@@ -274,10 +283,67 @@ public class ImpClienteDAO implements ClienteDAO {
 	}
 	
 	
-	boolean DesabilitarCliente(int id, boolean habilitado) {
+	boolean DesabilitarCliente(String cpf) throws ClientNotFoundException {
 		
+		try {
+			
+			q.DMLCliente();
+			
+			FileInputStream in_dml = new FileInputStream("QUERY_DML_CLIENTE.properties");
+			FileInputStream in_select = new FileInputStream("QUERY_CONSULTA_CLIENTE.properties");
+			
+			q.queriesCliente.load(in_dml);
+			q.queriesCliente.load(in_select);
+			in_dml.close();
+			in_select.close();
+			
+			PreparedStatement stmt;
+			Connection con = null;
+			con = ConexaoBD.conectaBD();
+			
+			stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_DISABLE_STATUS_FROM_CLIENT_BY_CPF"));
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			
+			if(rs.next()){
+			
+				
+				if(rs.getBoolean("cli_habilitado")) {
+					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("DISABLE_CLIENT"));
+					stmt.setString(1, cpf);
+					stmt.setBoolean(2, false);
+					ConexaoBD.encerrarConexaoBD(con, stmt);
+					
+					
+				}else {
+			
+					PreparedStatement stmt_desabilitar = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("DISABLE_CLIENT"));
+					stmt_desabilitar.setString(1, cpf);
+					stmt_desabilitar.setBoolean(2, true);
+					ConexaoBD.encerrarConexaoBD(con, stmt_desabilitar);
+					
+				}
+				
+				
+				
+			}else{
+				throw new ClientNotFoundException("Cliente inexistente !");
+			}
+			
+			return true;
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}catch(IOException io) {
+			io.printStackTrace();
+			return false;
+		}
 	}
 	
+
 	boolean BloquearCliente(int id, boolean bloqueado) {
 		
 	}
