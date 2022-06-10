@@ -55,21 +55,21 @@ public class QueriesCliente {
 									+ "VALUES(?,?,STR_TO_DATE(?,\"%d-%m-%Y\"),?,?,?,?)");
 		
 		
-		queriesCliente.setProperty("UPDATE_CLIENT_NAME", "UPDATE cliente  SET cli_nome = ? WHERE cli_id = ?");
+		queriesCliente.setProperty("UPDATE_CLIENT_NAME", "UPDATE cliente  SET cli_nome = ? WHERE cli_cpf = ?");
 		
-		queriesCliente.setProperty("UPDATE_CLIENT_EMAIL", "UPDATE cliente  SET cli_email = ? WHERE cli_id = '?");
+		queriesCliente.setProperty("UPDATE_CLIENT_EMAIL", "UPDATE cliente  SET cli_email = ? WHERE cli_cpf = '?");
 	
-		queriesCliente.setProperty("UPDATE_CLIENT_CELL_PHONE", "UPDATE cliente  SET cli_celular = ? WHERE cli_id = ?");
+		queriesCliente.setProperty("UPDATE_CLIENT_CELL_PHONE", "UPDATE cliente  SET cli_celular = ? WHERE cli_cpf = ?");
 		
-		queriesCliente.setProperty("UPDATE_CLIENT_PHONE", "UPDATE cliente SET cli_tel_fixo = ? WHERE cli_id = ?");
+		queriesCliente.setProperty("UPDATE_CLIENT_PHONE", "UPDATE cliente SET cli_tel_fixo = ? WHERE cli_cpf = ?");
 		
-		queriesCliente.setProperty("BLOCK_CLIENT", "UPDATE cliente SET cli_bloqueado = ? WHERE cli_id = ?");
+		queriesCliente.setProperty("BLOCK_CLIENT", "UPDATE cliente SET cli_bloqueado = ? WHERE cli_cpf = ?");
 		
-		queriesCliente.setProperty("INVALIDATE_CLIENT", "UPDATE cliente SET cli_invalidado = ? WHERE cli_id = ?");
+		queriesCliente.setProperty("INVALIDATE_CLIENT", "UPDATE cliente SET cli_invalidado = ? WHEREcli_cpf = ?");
 		
-		queriesCliente.setProperty("DISABLE_CLIENT", "UPDATE cliente SET cli_habilitado = ? WHERE cli_id = ?");
+		queriesCliente.setProperty("DISABLE_CLIENT", "UPDATE cliente SET cli_habilitado = ? WHERE cli_cpf = ?");
 		
-		queriesCliente.setProperty("DELETE_CLIENT", "DELETE FROM cliente WHERE cli_id = ?");
+		queriesCliente.setProperty("DELETE_CLIENT", "DELETE FROM cliente WHERE cli_cpf = ?");
 		
 		FileOutputStream out =  new FileOutputStream("QUERY_DML_CLIENTE.properties");
 
