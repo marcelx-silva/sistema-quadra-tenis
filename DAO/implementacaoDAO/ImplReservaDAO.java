@@ -66,8 +66,33 @@ public class ImplReservaDAO implements ReservaDAO {
 
 	@Override
 	public List<Reserva> obterReservaPorPeriodo(LocalDate data, LocalTime horarioInicio, LocalTime horarioFim) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Reserva> listaReservas = new ArrayList();
+		
+		try {
+			FileInputStream in = new FileInputStream("QUERY_RESERVA.properties");
+			qr.queriesReserva.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_DAY_AND_TIME"));
+			stmt.setString(1, data.format(dataFormatoBD));
+			stmt.setString(2, horarioInicio.format(horarioFormatoBD));
+			stmt.setString(3, horarioFim.format(horarioFormatoBD));
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				Reserva r = montaReserva(rs);
+				listaReservas.add(r);
+			}
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}
+		
+		return listaReservas;
 	}
 
 	@Override
