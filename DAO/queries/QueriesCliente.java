@@ -8,35 +8,35 @@ public class QueriesCliente {
 	
 	Properties queriesCliente = new Properties();
 	
-	protected void consultaCliente() throws IOException {
+	public void consultaCliente() throws IOException {
 		
 		queriesCliente.setProperty("SELECT_ALL_FROM_ALL_CLIENT","SELECT cli_id 'ID', cli_nome 'Nome', cli_cpf 'CPF', cli_email 'E-MAIL', cli_celular 'Celular', cli_tel_fixo 'Telefone Fixo', \r\n"
 				+ "date_format(cli_dt_nasc,\"%d-%m-%Y\") 'Data de Nascimento', date_format(cli_dt_registro,\"%d-%m-%Y\") 'Data de Cadastro', \r\n"
-				+ "IF(cli_bloqueado,'SIM','NÃO') 'Bloqueado', IF(cli_habilitado,'SIM','NÃO') 'Habilitado', IF(cli_invalidado,'SIM','NÃO') 'Invalidado' \r\n"
+				+ "IF(cli_bloqueado,'SIM','Nï¿½O') 'Bloqueado', IF(cli_habilitado,'SIM','Nï¿½O') 'Habilitado', IF(cli_invalidado,'SIM','Nï¿½O') 'Invalidado' \r\n"
 				+ "FROM cliente");
 		
 		queriesCliente.setProperty("SELECT_ALL_FROM_CLIENT_BY_ID","SELECT cli_id 'ID', cli_nome 'Nome', cli_cpf 'CPF', cli_email 'E-MAIL', cli_celular 'Celular', cli_tel_fixo 'Telefone Fixo', \r\n"
 				+ "date_format(cli_dt_nasc,\"%d-%m-%Y\") 'Data de Nascimento', date_format(cli_dt_registro,\"%d-%m-%Y\") 'Data de Cadastro', \r\n"
-				+ "IF(cli_bloqueado,'SIM','NÃO') 'Bloqueado', IF(cli_habilitado,'SIM','NÃO') 'Habilitado', IF(cli_invalidado,'SIM','NÃO') 'Invalidado' \r\n"
+				+ "IF(cli_bloqueado,'SIM','Nï¿½O') 'Bloqueado', IF(cli_habilitado,'SIM','Nï¿½O') 'Habilitado', IF(cli_invalidado,'SIM','Nï¿½O') 'Invalidado' \r\n"
 				+ "FROM cliente \r\n"
 				+ "WHERE cli_id = ?");
 		
 		queriesCliente.setProperty("SELECT_ALL_BLOCKED_CLIENT","SELECT cli_id 'ID', cli_nome 'Nome', cli_cpf 'CPF', cli_email 'E-MAIL', cli_celular 'Celular', cli_tel_fixo 'Telefone Fixo', \r\n"
 				+ "date_format(cli_dt_nasc,\"%d-%m-%Y\") 'Data de Nascimento', date_format(cli_dt_registro,\"%d-%m-%Y\") 'Data de Cadastro', \r\n"
-				+ "IF(cli_bloqueado,'SIM','NÃO') 'Bloqueado', IF(cli_habilitado,'SIM','NÃO') 'Habilitado', IF(cli_invalidado,'SIM','NÃO') 'Invalidado' \r\n"
+				+ "IF(cli_bloqueado,'SIM','Nï¿½O') 'Bloqueado', IF(cli_habilitado,'SIM','Nï¿½O') 'Habilitado', IF(cli_invalidado,'SIM','Nï¿½O') 'Invalidado' \r\n"
 				+ "FROM cliente WHERE cli_bloqueado = ? ");
 		
 		
 		queriesCliente.setProperty("SELECT_ALL_DISABLE_CLIENT","SELECT cli_id 'ID', cli_nome 'Nome', cli_cpf 'CPF', cli_email 'E-MAIL', cli_celular 'Celular', cli_tel_fixo 'Telefone Fixo', \r\n"
 				+ "date_format(cli_dt_nasc,\"%d-%m-%Y\") 'Data de Nascimento', date_format(cli_dt_registro,\"%d-%m-%Y\") 'Data de Cadastro', \r\n"
-				+ "IF(cli_bloqueado,'SIM','NÃO') 'Bloqueado', IF(cli_habilitado,'SIM','NÃO') 'Habilitado', IF(cli_invalidado,'SIM','NÃO') 'Invalidado' \r\n"
+				+ "IF(cli_bloqueado,'SIM','Nï¿½O') 'Bloqueado', IF(cli_habilitado,'SIM','Nï¿½O') 'Habilitado', IF(cli_invalidado,'SIM','Nï¿½O') 'Invalidado' \r\n"
 				+ "FROM cliente \r\n"
 				+ "WHERE cli_habilitado = ?");
 		
 		
 		queriesCliente.setProperty("SELECT_ALL_INVALID_CLIENT","SELECT cli_id 'ID', cli_nome 'Nome', cli_cpf 'CPF', cli_email 'E-MAIL', cli_celular 'Celular', cli_tel_fixo 'Telefone Fixo', \r\n"
 				+ "date_format(cli_dt_nasc,\"%d-%m-%Y\") 'Data de Nascimento', date_format(cli_dt_registro,\"%d-%m-%Y\") 'Data de Cadastro', \r\n"
-				+ "IF(cli_bloqueado,'SIM','NÃO') 'Bloqueado', IF(cli_habilitado,'SIM','NÃO') 'Habilitado', IF(cli_invalidado,'SIM','NÃO') 'Invalidado' \r\n"
+				+ "IF(cli_bloqueado,'SIM','Nï¿½O') 'Bloqueado', IF(cli_habilitado,'SIM','Nï¿½O') 'Habilitado', IF(cli_invalidado,'SIM','Nï¿½O') 'Invalidado' \r\n"
 				+ "FROM cliente \r\n"
 				+ "WHERE cli_invalidado = ?");
 	
@@ -47,7 +47,7 @@ public class QueriesCliente {
 		out.close();
 	}
 	
-	protected void DMLCliente() throws IOException{
+	public void DMLCliente() throws IOException{
 		
 		queriesCliente.setProperty("INSERT_INTO_CLIENT", "INSERT INTO cliente (cli_nome,cli_cpf,cli_dt_nasc,cli_dt_nasc,cli_email,cli_celular,cli_tel_fixo) "
 									+ "VALUES(?,?,STR_TO_DATE(?,\"%d-%m-%Y\"),?,?,?,?)");

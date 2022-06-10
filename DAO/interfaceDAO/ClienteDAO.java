@@ -1,13 +1,16 @@
 package interfaceDAO;
 
 import Dominio.Cliente;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface ClienteDAO {
 	
 	
 	//Seleciona todos os clientes
-	List<Cliente> obterTodosClientes();
+	List<Cliente> obterTodosClientes() throws IOException, SQLException;
 	
 	//Seleciona cliente pelo identificador
 	Cliente obterClientePeloId(int id);
