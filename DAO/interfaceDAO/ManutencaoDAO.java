@@ -20,7 +20,7 @@ public interface ManutencaoDAO {
 	
 	boolean cadastrarManutencao(Manutencao m);
 	
-	boolean alterarDataManutencao(Manutencao m, LocalDate data, LocalTime horarioInicio, LocalTime horarioFIm);
+	boolean alterarDataManutencao(Manutencao m, String alteracao, int escolha);
 	
 	boolean deletarManutencao(int id);
 }

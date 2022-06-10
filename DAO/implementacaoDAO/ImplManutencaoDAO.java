@@ -17,6 +17,7 @@ import Dominio.Manutencao;
 import Dominio.Quadra;
 import Exceptions.CourtNotFoundException;
 import Exceptions.MaintenanceNotFoundException;
+import Utilitario.UtilidadesGUI;
 import conexao.ConexaoBD;
 import interfaceDAO.ManutencaoDAO;
 import queries.QueriesManutencao;
@@ -286,8 +287,57 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 	}
 
 	@Override
-	public boolean alterarDataManutencao(Manutencao m, LocalDate data, LocalTime horarioInicio, LocalTime horarioFIm) {
-		// TODO Auto-generated method stub
+	public boolean alterarDataManutencao(Manutencao m, String alteracao, int escolha) {
+		try {
+			qm.DMLManutencao();
+			FileInputStream in = new FileInputStream("DML_MANUTENCAO.properties");
+			qm.queriesManutencao.load(in);
+			in.close();
+			
+			PreparedStatement stmt;
+			
+			switch(escolha) {
+			
+				case 1:
+					stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_DESC"));
+					stmt.setString(1, alteracao);
+					stmt.setString(2, m.getCodigo());
+					stmt.executeUpdate();
+					break;
+					
+				case 2:
+					stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_DATA"));
+					stmt.setString(1, alteracao);
+					stmt.setString(2, m.getCodigo());
+					stmt.executeUpdate();
+					break;
+					
+				case 3:
+					stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_HORARIO_INICIO"));
+					stmt.setString(1, String.valueOf(LocalTime.parse(alteracao, dataFormatoBD)));
+					stmt.setString(2, m.getCodigo());
+					stmt.executeUpdate();
+					break;
+					
+				case 4:
+					stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_HORARIO_FIM"));
+					stmt.setString(1, String.valueOf(LocalTime.parse(alteracao, dataFormatoBD)));
+					stmt.setString(2, m.getCodigo());
+					stmt.executeUpdate();
+					break;
+					
+				default:
+					UtilidadesGUI.exibeMensagem("Opção Inválida!");
+					break;
+			}
+			return true;
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
