@@ -311,8 +311,29 @@ public class ImplReservaDAO implements ReservaDAO {
 
 	@Override
 	public boolean DeletarReserva(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			qr.DMLReserva();
+			FileInputStream in = new FileInputStream("DML_RESERVA.properties");
+			qr.queriesReserva.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("DELETE_FROM_RESERVA"));
+			
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+			
+		}catch(SQLException e) {
+
+			e.printStackTrace();
+			return false;
+			
+		}catch(IOException e) {
+
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 	
 	public Reserva montaReserva(ResultSet rs) throws SQLException {
