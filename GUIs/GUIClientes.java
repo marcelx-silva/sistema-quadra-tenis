@@ -114,24 +114,33 @@ public class GUIClientes {
 		}
 	}
 	
-	void GUIExibirCliente(){
+	void GUIExibirCliente(Cliente cliente){
 		try {
 			String cpf;
 			UtilidadesGUI.exibeMensagem("Pesquisa de Clientes:\n\n");
 			UtilidadesGUI.exibeMensagem("Entre com o CPF do cliente que deseja visualizar as informações:\n");
 			cpf = scanner.nextLine();
 			
-			Cliente c = clienteDAO.obterClientePeloCPF(cpf);
+			cliente = clienteDAO.obterClientePeloCPF(cpf);
 			
-			System.out.println("Nome: "+c.getNome()
-			+"Data de Nascimento: "+c.getDataNascimento()
-			+"CPF: "+c.getCpf()
-			+"Email: "+c.getEmail()
-			+"Celular: "+c.getNumeroCelular());
+			VisualizarDados(cliente);
 			
 		} catch (ClientNotFoundException e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	void VisualizarDados(Cliente cliente) {
+		System.out.println("Nome: "+cliente.getNome()
+		+"Data de Nascimento: "+cliente.getDataNascimento()
+		+"CPF: "+cliente.getCpf()
+		+"Email: "+cliente.getEmail()
+		+"Celular: "+cliente.getNumeroCelular());
+	}
+	
+	
+	void GUIAlterarDadosCliente(Cliente cliente) {
 		
 	}
 }
