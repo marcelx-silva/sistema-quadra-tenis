@@ -213,7 +213,8 @@ public class ImplQuadraDAO implements QuadraDAO{
 
 		e.printStackTrace();
 		return false;
-	}}
+	}
+	}
 	
 	@Override
 	public boolean AlterarDadosQuadra(Quadra qua, String alteracao, int escolha) { 

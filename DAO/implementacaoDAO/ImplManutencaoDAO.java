@@ -22,8 +22,6 @@ import interfaceDAO.ManutencaoDAO;
 import queries.QueriesManutencao;
 import implementacaoDAO.ImplQuadraDAO;
 import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class ImplManutencaoDAO implements ManutencaoDAO {
 
