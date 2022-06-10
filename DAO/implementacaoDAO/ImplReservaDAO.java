@@ -40,6 +40,7 @@ public class ImplReservaDAO implements ReservaDAO {
 		List<Reserva> listaReservas = new ArrayList();
 		
 		try {
+			qr.consultaReserva();
 			FileInputStream in = new FileInputStream("QUERY_RESERVA.properties");
 			qr.queriesReserva.load(in);
 			in.close();
@@ -68,6 +69,7 @@ public class ImplReservaDAO implements ReservaDAO {
 		List<Reserva> listaReservas = new ArrayList();
 		
 		try {
+			qr.consultaReserva();
 			FileInputStream in = new FileInputStream("QUERY_RESERVA.properties");
 			qr.queriesReserva.load(in);
 			in.close();
@@ -99,6 +101,7 @@ public class ImplReservaDAO implements ReservaDAO {
 		List<Reserva> listaReservas = new ArrayList();
 		
 		try {
+			qr.consultaReserva();
 			FileInputStream in = new FileInputStream("QUERY_RESERVA.properties");
 			qr.queriesReserva.load(in);
 			in.close();
@@ -128,11 +131,12 @@ public class ImplReservaDAO implements ReservaDAO {
 		List<Reserva> listaReservas = new ArrayList();
 		
 		try {
+			qr.consultaReserva();
 			FileInputStream in = new FileInputStream("QUERY_RESERVA.properties");
 			qr.queriesReserva.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_DAY"));
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_INTERVAL_OF_DAYS"));
 			stmt.setString(1, dataInicio.format(dataFormatoBD));
 			stmt.setString(2, dataFim.format(dataFormatoBD));
 			ResultSet rs = stmt.executeQuery();
@@ -159,6 +163,7 @@ public class ImplReservaDAO implements ReservaDAO {
 		Reserva r = null;
 		
 		try {
+			qr.consultaReserva();
 			FileInputStream in = new FileInputStream("QUERY_RESERVA.properties");
 			qr.queriesReserva.load(in);
 			in.close();
@@ -187,10 +192,12 @@ public class ImplReservaDAO implements ReservaDAO {
 	public boolean registrarPagamento(Reserva r) {
 		
 		try {
+			qr.consultaReserva();
 			FileInputStream in = new FileInputStream("QUERY_RESERVA.properties");
 			qr.queriesReserva.load(in);
 			in.close();
 			
+			qr.DMLReserva();
 			in = new FileInputStream("DML_RESERVA.properties");
 			qr.queriesReserva.load(in);
 			in.close();
@@ -202,6 +209,7 @@ public class ImplReservaDAO implements ReservaDAO {
 			if(rs.next()) {
 				
 				stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("REGISTER_CUSTOMER_PAYMENT"));
+				stmt.setBoolean(1, true);
 				stmt.executeUpdate();
 			}
 			
@@ -348,6 +356,9 @@ public class ImplReservaDAO implements ReservaDAO {
 		String parcelas = rs.getString("res_parcelas");
 		String horarioClienteEntrou = rs.getString("res_cli_entrou");
 		String horarioClienteFim = rs.getString("res_cli_saiu");
+		data = LocalDate.parse(data, dataFormatoBD).format(dataFormatoPadrao);
+		horarioInicio = LocalTime.parse(horarioInicio, horarioFormatoBD).format(horarioFormatoPadrao);	
+		horarioFim = LocalTime.parse(horarioFim, horarioFormatoBD).format(horarioFormatoPadrao);
 		
 		return new Reserva(codigo, qua, cli, LocalDate.parse(data, dataFormatoPadrao), LocalTime.parse(horarioInicio, horarioFormatoPadrao), LocalTime.parse(horarioFim, horarioFormatoPadrao), formaPagamento, parcelas);
 		

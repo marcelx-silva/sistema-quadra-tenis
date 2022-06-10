@@ -65,7 +65,7 @@ public class ImpClienteDAO implements ClienteDAO {
 		String celular = rs.getString("cli_celular");
 		String dataNascimento = rs.getString("cli_dt_nasc");
 		boolean bloqueado = rs.getBoolean("cli_bloqueado");
-		boolean invalidado = rs.getBoolean("cli_invalidado");
+		boolean invalidado = rs.getBoolean("cli_restrito");
 		
 		LocalDate LocaldataNascimento = LocalDate.parse(dataNascimento,DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		
