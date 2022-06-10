@@ -29,10 +29,14 @@ public class Reserva extends Agendamento{
 		this.parcelas = parcelas;
 	}
 	
-	public BigDecimal calcularParcela(double preco_reserva,int parcela) {
-		BigDecimal prc_res = new BigDecimal(String.valueOf(preco_reserva));
+	public String calcularParcela(boolean coberta,int parcela) {
+		BigDecimal prc_res;
+		if(!coberta)
+			prc_res = new BigDecimal(String.valueOf("40"));
+		else
+			prc_res = new BigDecimal(String.valueOf("70"));
 		BigDecimal prl = new BigDecimal(String.valueOf(parcela));
-		return prc_res.divide(prl, 2, RoundingMode.UP);
+		return prc_res.divide(prl, 2, RoundingMode.UP).toString();
 		
 	}
 	
