@@ -1,6 +1,7 @@
 package interfaceDAO;
 
 import Dominio.Cliente;
+import Exceptions.ClientNotFoundException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ public interface ClienteDAO {
 	List<Cliente> obterTodosClientes() throws IOException, SQLException;
 	
 	//Seleciona cliente pelo identificador
-	Cliente obterClientePeloId(int id);
+	Cliente obterClientePeloId(int id) throws ClientNotFoundException;
 	
 	//Seleciona clientes bloqueados ou desbloqueados
 	List<Cliente> obterClienteHabilitados(boolean bloqueado);

@@ -6,20 +6,22 @@ import java.util.Properties;
 
 public class QueriesCliente {
 	
-	Properties queriesCliente = new Properties();
+	public Properties queriesCliente = new Properties();
 	
 	public void consultaCliente() throws IOException {
 		
 		queriesCliente.setProperty("SELECT_ALL_FROM_ALL_CLIENT","SELECT cli_id 'ID', cli_nome 'Nome', cli_cpf 'CPF', cli_email 'E-MAIL', cli_celular 'Celular', cli_tel_fixo 'Telefone Fixo', \r\n"
 				+ "date_format(cli_dt_nasc,\"%d-%m-%Y\") 'Data de Nascimento', date_format(cli_dt_registro,\"%d-%m-%Y\") 'Data de Cadastro', \r\n"
 				+ "IF(cli_bloqueado,'SIM','N�O') 'Bloqueado', IF(cli_habilitado,'SIM','N�O') 'Habilitado', IF(cli_invalidado,'SIM','N�O') 'Invalidado' \r\n"
-				+ "FROM cliente");
+				+ "FROM cliente"
+				+ "WHERE cli_habilitado <> false");
 		
 		queriesCliente.setProperty("SELECT_ALL_FROM_CLIENT_BY_ID","SELECT cli_id 'ID', cli_nome 'Nome', cli_cpf 'CPF', cli_email 'E-MAIL', cli_celular 'Celular', cli_tel_fixo 'Telefone Fixo', \r\n"
 				+ "date_format(cli_dt_nasc,\"%d-%m-%Y\") 'Data de Nascimento', date_format(cli_dt_registro,\"%d-%m-%Y\") 'Data de Cadastro', \r\n"
 				+ "IF(cli_bloqueado,'SIM','N�O') 'Bloqueado', IF(cli_habilitado,'SIM','N�O') 'Habilitado', IF(cli_invalidado,'SIM','N�O') 'Invalidado' \r\n"
 				+ "FROM cliente \r\n"
-				+ "WHERE cli_id = ?");
+				+ "WHERE cli_habilitado <> false"
+				+ "AND cli_id = ?");
 		
 		queriesCliente.setProperty("SELECT_ALL_BLOCKED_CLIENT","SELECT cli_id 'ID', cli_nome 'Nome', cli_cpf 'CPF', cli_email 'E-MAIL', cli_celular 'Celular', cli_tel_fixo 'Telefone Fixo', \r\n"
 				+ "date_format(cli_dt_nasc,\"%d-%m-%Y\") 'Data de Nascimento', date_format(cli_dt_registro,\"%d-%m-%Y\") 'Data de Cadastro', \r\n"
