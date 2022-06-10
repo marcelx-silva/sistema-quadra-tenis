@@ -341,6 +341,57 @@ public class ImpClienteDAO implements ClienteDAO {
 	boolean BloquearCliente(String cpf, boolean bloqueado) throws ClientNotFoundException {
 		
 		
+		try {
+			
+			q.DMLCliente();
+			
+			FileInputStream in_dml = new FileInputStream("QUERY_DML_CLIENTE.properties");
+			FileInputStream in_select = new FileInputStream("QUERY_CONSULTA_CLIENTE.properties");
+			
+			q.queriesCliente.load(in_dml);
+			q.queriesCliente.load(in_select);
+			in_dml.close();
+			in_select.close();
+			
+			PreparedStatement stmt;
+			Connection con = null;
+			con = ConexaoBD.conectaBD();
+			
+			stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_BLOCK_STATUS_FROM_CLIENT_BY_CPF"));
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				stmt = con.prepareStatement(q.queriesCliente.getProperty("BLOCK_CLIENT"));
+				stmt.setBoolean(1, bloqueado);
+				stmt.setString(2,cpf);	
+			}else{
+				throw new ClientNotFoundException("Cliente de cpf "+cpf+" inexistente !");
+			}
+			
+			int linhaAlterada = stmt.executeUpdate();
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt,rs);
+
+			
+			if(linhaAlterada == 0){
+				return false;
+			}
+			
+			return true;
+			
+			
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}catch(IOException io) {
+			io.printStackTrace();
+			return false;
+		}
+		
 	}
 	
 	boolean InvalidarCliente(int id, boolean validado) throws  ClientNotFoundException {
