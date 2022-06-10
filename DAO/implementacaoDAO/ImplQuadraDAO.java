@@ -25,10 +25,11 @@ public class ImplQuadraDAO implements QuadraDAO{
 	
 	QueriesQuadra q = new QueriesQuadra(); 
 	
+	
 	@Override
 	public List<Quadra> obterTodasQuadras() throws IOException, SQLException{
 		
-		List<Quadra> quadrasLista = new ArrayList<>();
+		List<Quadra> quadrasLista = new ArrayList<Quadra>();
 		FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
 		q.queriesQuadra.load(in);
 		in.close();
@@ -37,18 +38,25 @@ public class ImplQuadraDAO implements QuadraDAO{
 		
 		while(rs.next()) {
 			
-			Quadra quadra = montaQuadra(rs);
+			String nome = rs.getString("qua_nome");
+			String endereco = rs.getString("qua_endereco");
+			TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
+			boolean cobertura = rs.getBoolean("qua_cobertura");
+			boolean arquibancada = rs.getBoolean("qua_arquibancada");
+			boolean descanso = rs.getBoolean("qua_area_descanso");
+			boolean bloqueada = rs.getBoolean("qua_bloqueado");
+			Quadra quadra = new Quadra(nome, endereco, tipo, cobertura, arquibancada, descanso, bloqueada);
 			quadrasLista.add(quadra);
 		}
 		
-		List<Quadra> quadrasListaCopia = new ArrayList<>();
+		List<Quadra> quadrasListaCopia = new ArrayList<Quadra>();
 		quadrasListaCopia.addAll(quadrasLista);
 		
 		return quadrasListaCopia;
 		
 	}
 	
-	@Override
+
 	public List<Quadra> obterQuadrasHabilitadas(boolean habilitado) throws IOException, SQLException{
 		
 		List<Quadra> quadraLista = new ArrayList<Quadra>();
@@ -61,19 +69,26 @@ public class ImplQuadraDAO implements QuadraDAO{
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()) {
-
-			Quadra quadra = montaQuadra(rs);
+			
+			String nome = rs.getString("qua_nome");
+			String endereco = rs.getString("qua_endereco");
+			TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
+			boolean coberta = rs.getBoolean("qua_cobertura");
+			boolean arquibancada = rs.getBoolean("qua_arquibancada");
+			boolean descanso = rs.getBoolean("qua_area_descanso");
+			boolean bloqueada = rs.getBoolean("qua_bloqueado");
+			Quadra quadra = new Quadra(nome, endereco, tipo, coberta, arquibancada, descanso, bloqueada);
 			quadraLista.add(quadra);
 		}
 		
+		//
 		ConexaoBD.encerrarConexaoBD(null, stmt);
 		
 		return quadraLista;
 	}
 	
-	@Override
 	public List<Quadra> obterQuadraBloqueadas(boolean bloqueado){ 
-		List<Quadra> quadrasLista = new ArrayList<>();
+		List<Quadra> quadrasLista = new ArrayList<Quadra>();
 		
 		try {
 			FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
@@ -84,7 +99,15 @@ public class ImplQuadraDAO implements QuadraDAO{
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
-				Quadra quadra = montaQuadra(rs);
+				
+				String nome = rs.getString("qua_nome");
+				String endereco = rs.getString("qua_endereco");
+				TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
+				boolean cobertura = rs.getBoolean("qua_cobertura");
+				boolean arquibancada = rs.getBoolean("qua_arquibancada");
+				boolean descanso = rs.getBoolean("qua_area_descanso");
+				boolean bloqueada = rs.getBoolean("qua_bloqueado");
+				Quadra quadra = new Quadra(nome, endereco, tipo, cobertura, arquibancada, descanso, bloqueada);
 				quadrasLista.add(quadra);
 			}
 			
@@ -99,7 +122,6 @@ public class ImplQuadraDAO implements QuadraDAO{
 		
 	}
 	
-	@Override
 	public Quadra obterQuadraPeloNome(String nome) throws CourtNotFoundException {
 		
 		Quadra qua = null;
@@ -118,7 +140,14 @@ public class ImplQuadraDAO implements QuadraDAO{
 			
 			if(rs.next()) {
 					
-				qua = montaQuadra(rs);
+				String nomeQuadra = rs.getString("qua_nome");
+				String endereco = rs.getString("qua_endereco");
+				TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
+				boolean cobertura = rs.getBoolean("qua_cobertura");
+				boolean arquibancada = rs.getBoolean("qua_arquibancada");
+				boolean descanso = rs.getBoolean("qua_area_descanso");
+				boolean bloqueada = rs.getBoolean("qua_bloqueado");
+				qua = new Quadra(nomeQuadra, endereco, tipo, cobertura, arquibancada, descanso, bloqueada); 
 				
 			}else {
 				throw new CourtNotFoundException("Não foi encontrada nenhuma quadra com o nome: " + nome);
@@ -134,7 +163,6 @@ public class ImplQuadraDAO implements QuadraDAO{
 		return qua;
 	}
 	
-	@Override
 	public Quadra obterQuadraPeloID(String id) throws CourtNotFoundException {
 		
 		Quadra qua = null;
@@ -153,7 +181,14 @@ public class ImplQuadraDAO implements QuadraDAO{
 			
 			if(rs.next()) {
 					
-				qua = montaQuadra(rs);
+				String nomeQuadra = rs.getString("qua_nome");
+				String endereco = rs.getString("qua_endereco");
+				TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
+				boolean cobertura = rs.getBoolean("qua_cobertura");
+				boolean arquibancada = rs.getBoolean("qua_arquibancada");
+				boolean descanso = rs.getBoolean("qua_area_descanso");
+				boolean bloqueada = rs.getBoolean("qua_bloqueado");
+				qua = new Quadra(nomeQuadra, endereco, tipo, cobertura, arquibancada, descanso, bloqueada); 
 				
 			}else {
 				throw new CourtNotFoundException("Não foi encontrada nenhuma quadra com o id: " + id);
@@ -169,7 +204,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 		return qua;
 	}
 	
-	@Override
+
 	public boolean CadastrarQuadra(Quadra qua) throws CourtAlreadyRegisteredException{ 
 		
 		
@@ -215,7 +250,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 		return false;
 	}}
 	
-	@Override
+
 	public boolean AlterarDadosQuadra(Quadra qua, String alteracao, int escolha) { 
 		try {
 			q.DMLQuadra();
@@ -284,7 +319,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 		return false;
 	}
 	
-	@Override
+
 	public boolean HabilitarQuadra(String nome, boolean habilitado) { 
 	
 		try {
@@ -310,7 +345,6 @@ public class ImplQuadraDAO implements QuadraDAO{
 		}
 	}
 	
-	@Override
 	public boolean BloquearQuadra(String nome, boolean bloqueado) {
 		
 		try {
@@ -336,7 +370,6 @@ public class ImplQuadraDAO implements QuadraDAO{
 		}
 	}
 	
-	@Override
 	public boolean DeletarQuadra(String nome) { 
 	
 		try {
@@ -359,15 +392,4 @@ public class ImplQuadraDAO implements QuadraDAO{
 		}
 	}
 	
-	public Quadra montaQuadra(ResultSet rs) throws SQLException {
-
-		String nome = rs.getString("qua_nome");
-		String endereco = rs.getString("qua_endereco");
-		TipoQuadra tipo = UtilidadesConversao.transformaInteiroEmTipoQuadra(rs.getInt("qua_id_tipo"));
-		boolean cobertura = rs.getBoolean("qua_cobertura");
-		boolean arquibancada = rs.getBoolean("qua_arquibancada");
-		boolean descanso = rs.getBoolean("qua_area_descanso");
-		boolean bloqueada = rs.getBoolean("qua_bloqueado");
-		return new Quadra(nome, endereco, tipo, cobertura, arquibancada, descanso, bloqueada);
-	}
 }
