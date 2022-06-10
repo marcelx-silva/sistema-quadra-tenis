@@ -21,23 +21,25 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 	
-	public Cliente(String codigo, String nome,String email, String cpf, String celular, LocalDate dataNascimento, boolean bloqueado, boolean invalidado, boolean habilitado){
+	public Cliente(String codigo, String nome,String email, String cpf, String celular, String numeroFixo, LocalDate dataNascimento, boolean bloqueado, boolean invalidado, boolean habilitado){
 		this.codigo = codigo;
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
 		this.numeroCelular = celular;
+		this.numeroFixo = numeroFixo;
 		this.dataNascimento = dataNascimento;
 		this.bloqueado = bloqueado;
 		this.invalidado = invalidado;
 		this.habilitado = habilitado;
 	}
 	
-	public Cliente(String nome,String email, String cpf, String celular, LocalDate dataNascimento, boolean bloqueado, boolean invalidado, boolean habilitado){
+	public Cliente(String nome,String email, String cpf, String celular,String numeroFixo, LocalDate dataNascimento, boolean bloqueado, boolean invalidado, boolean habilitado){
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
 		this.numeroCelular = celular;
+		this.numeroFixo = numeroFixo;
 		this.dataNascimento = dataNascimento;
 		this.bloqueado = bloqueado;
 		this.invalidado = invalidado;
