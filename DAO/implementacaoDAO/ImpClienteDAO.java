@@ -74,7 +74,7 @@ public class ImpClienteDAO implements ClienteDAO {
 	
 	
 	
-	public Cliente obterClientePeloId(int id) throws ClientNotFoundException {
+	public Cliente obterClientePeloCPF(String cpf) throws ClientNotFoundException {
 		
 		Cliente cliente = null;
 		
@@ -88,8 +88,8 @@ public class ImpClienteDAO implements ClienteDAO {
 		in.close();
 		
 		Connection con =  ConexaoBD.conectaBD();
-		PreparedStatement stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_FROM_CLIENT_BY_ID"));
-		stmt.setInt(1,id);
+		PreparedStatement stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_FROM_CLIENT_BY_CPF"));
+		stmt.setString(1,cpf);
 		ResultSet rs = stmt.executeQuery();
 		
 		
