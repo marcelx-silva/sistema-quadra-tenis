@@ -155,8 +155,31 @@ public class ImplReservaDAO implements ReservaDAO {
 
 	@Override
 	public Reserva obterReservaPeloId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Reserva r = null;
+		try {
+			FileInputStream in = new FileInputStream("QUERY_RESERVA.properties");
+			qr.queriesReserva.load(in);
+			in.close();
+			
+			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_ID"));
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				r = montaReserva(rs);
+			}
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+
+		}
+		
+		return r;
 	}
 
 	@Override
