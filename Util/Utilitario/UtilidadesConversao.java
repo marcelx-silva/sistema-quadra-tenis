@@ -2,6 +2,7 @@ package Utilitario;
 
 import Enum.TipoPagamento;
 import Enum.TipoQuadra;
+import Enum.DiaSemana;
 
 public class UtilidadesConversao {
 	
@@ -94,6 +95,36 @@ public class UtilidadesConversao {
 			
 		default:
 			return 0;
+		}
+	}
+	
+	public static DiaSemana transformaInteiroEmDiaSemana(int dia) {
+		
+		switch(dia) {
+		
+		case 1:
+			return DiaSemana.SABADO;
+			
+		case 2:
+			return DiaSemana.DOMINGO;
+			
+		case 3: 
+			return DiaSemana.SEGUNDA;
+			
+		case 4:
+			return DiaSemana.TERCA;
+			
+		case 5:
+			return DiaSemana.QUARTA;
+			
+		case 6:
+			return DiaSemana.QUINTA;
+			
+		case 7:
+			return DiaSemana.SEXTA;
+			
+		default:
+			return DiaSemana.INVALIDO;
 		}
 	}
 }

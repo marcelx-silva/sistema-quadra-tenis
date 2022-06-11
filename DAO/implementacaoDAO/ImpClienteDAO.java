@@ -65,7 +65,7 @@ public class ImpClienteDAO implements ClienteDAO {
 		String celular = rs.getString("cli_celular");
 		String dataNascimento = rs.getString("cli_dt_nasc");
 		boolean bloqueado = rs.getBoolean("cli_bloqueado");
-		boolean invalidado = rs.getBoolean("cli_invalidado");
+		boolean invalidado = rs.getBoolean("cli_restrito");
 		
 		LocalDate LocaldataNascimento = LocalDate.parse(dataNascimento,DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		
@@ -74,7 +74,7 @@ public class ImpClienteDAO implements ClienteDAO {
 	
 	
 	
-	public Cliente obterClientePeloId(int id) throws ClientNotFoundException {
+	public Cliente obterClientePeloCPF(String cpf) throws ClientNotFoundException {
 		
 		Cliente cliente = null;
 		
@@ -88,8 +88,8 @@ public class ImpClienteDAO implements ClienteDAO {
 		in.close();
 		
 		Connection con =  ConexaoBD.conectaBD();
-		PreparedStatement stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_FROM_CLIENT_BY_ID"));
-		stmt.setInt(1,id);
+		PreparedStatement stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_FROM_CLIENT_BY_CPF"));
+		stmt.setString(1,cpf);
 		ResultSet rs = stmt.executeQuery();
 		
 		
@@ -118,6 +118,49 @@ public class ImpClienteDAO implements ClienteDAO {
 		
 	}
 	
+public Cliente obterClientePeloCpf(String cpf) throws ClientNotFoundException {
+		
+		Cliente cliente = null;
+		
+	try {
+		
+		q.consultaCliente();
+		
+		
+		FileInputStream in = new FileInputStream("QUERY_CONSULTA_CLIENTE.properties");
+		q.queriesCliente.load(in);
+		in.close();
+		
+		Connection con =  ConexaoBD.conectaBD();
+		PreparedStatement stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_FROM_CLIENT_BY_CPF"));
+		stmt.setString(1, cpf);
+		ResultSet rs = stmt.executeQuery();
+		
+		
+		
+		if(rs.next()){
+			
+			cliente = montaCliente(rs);
+			
+		}else {
+			throw new ClientNotFoundException("Cliente inexistente");
+		}
+		
+		ConexaoBD.encerrarConexaoBD(con,stmt,rs);
+	
+		
+	}catch(SQLException e) {
+		e.printStackTrace();
+		
+	}catch(IOException io) {
+		io.printStackTrace();
+	}	
+		
+	return cliente;
+		
+		
+		
+	}
 	
 	public List<Cliente> obterClienteHabilitados(boolean bloqueado) throws IOException, SQLException{
 		
@@ -172,7 +215,6 @@ public class ImpClienteDAO implements ClienteDAO {
 			stmt.setObject(3, dataNascimento);
 			stmt.setString(4, c.getEmail());
 			stmt.setString(5, c.getNumeroCelular());
-			stmt.setString(6, c.getNumeroFixo());
 			
 			int linhaAlterada =  stmt.executeUpdate();
 			
@@ -230,14 +272,6 @@ public class ImpClienteDAO implements ClienteDAO {
 					break;
 					
 				case 3:
-					stmt = con.prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_PHONE"));
-					stmt.setString(1, alteracao);
-					stmt.setString(2, c.getCpf());
-					linhaAlterada = stmt.executeUpdate();
-					ConexaoBD.encerrarConexaoBD(con, stmt);
-					break;
-					
-				case 4:
 					stmt = con.prepareStatement(q.queriesCliente.getProperty("UPDATE_CLIENT_CELL_PHONE"));
 					stmt.setString(1, alteracao);
 					stmt.setString(2, c.getCpf());

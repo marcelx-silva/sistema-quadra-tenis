@@ -15,6 +15,7 @@ import Utilitario.UtilidadesGUI;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -33,7 +34,9 @@ public class ImplQuadraDAO implements QuadraDAO{
 		FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
 		q.queriesQuadra.load(in);
 		in.close();
-		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_ALL_FROM_ALL_QUADRA"));
+		
+		Connection con =  ConexaoBD.conectaBD();
+		PreparedStatement stmt = con.prepareStatement(q.queriesQuadra.getProperty("SELECT_ALL_FROM_ALL_QUADRA"));
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()) {
@@ -41,6 +44,8 @@ public class ImplQuadraDAO implements QuadraDAO{
 			Quadra quadra = montaQuadra(rs); 
 			quadrasLista.add(quadra);
 		}
+		
+		ConexaoBD.encerrarConexaoBD(con, stmt, rs);
 		
 		List<Quadra> quadrasListaCopia = new ArrayList<Quadra>();
 		quadrasListaCopia.addAll(quadrasLista);
@@ -57,7 +62,9 @@ public class ImplQuadraDAO implements QuadraDAO{
 		FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
 		q.queriesQuadra.load(in);
 		in.close();
-		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_DISABLE_QUADRA"));
+		
+		Connection con =  ConexaoBD.conectaBD();
+		PreparedStatement stmt = con.prepareStatement(q.queriesQuadra.getProperty("SELECT_DISABLE_QUADRA"));
 		stmt.setBoolean(1, habilitado);
 		ResultSet rs = stmt.executeQuery();
 		
@@ -67,8 +74,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 			quadraLista.add(quadra);
 		}
 		
-		//
-		ConexaoBD.encerrarConexaoBD(null, stmt);
+		ConexaoBD.encerrarConexaoBD(con, stmt, rs);
 		
 		return quadraLista;
 	}
@@ -80,7 +86,9 @@ public class ImplQuadraDAO implements QuadraDAO{
 			FileInputStream in = new FileInputStream("QUERY_CONSULTA_QUADRA.properties");
 			q.queriesQuadra.load(in);
 			in.close();
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_ALL_BLOCKED_QUADRA"));
+			
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(q.queriesQuadra.getProperty("SELECT_ALL_BLOCKED_QUADRA"));
 			stmt.setBoolean(1, bloqueado);
 			ResultSet rs = stmt.executeQuery();
 			
@@ -89,6 +97,8 @@ public class ImplQuadraDAO implements QuadraDAO{
 				Quadra quadra = montaQuadra(rs); 
 				quadrasLista.add(quadra);
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -113,7 +123,8 @@ public class ImplQuadraDAO implements QuadraDAO{
 			q.queriesQuadra.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_FROM_QUADRA_BY_QUA_NOME"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(q.queriesQuadra.getProperty("SELECT_FROM_QUADRA_BY_QUA_NOME"));
 			stmt.setString(1, nome);
 			ResultSet rs = stmt.executeQuery();
 			
@@ -124,6 +135,9 @@ public class ImplQuadraDAO implements QuadraDAO{
 			}else {
 				throw new CourtNotFoundException("Não foi encontrada nenhuma quadra com o nome: " + nome);
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 			
@@ -147,7 +161,8 @@ public class ImplQuadraDAO implements QuadraDAO{
 			q.queriesQuadra.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("SELECT_FROM_QUADRA_BY_QUA_ID"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(q.queriesQuadra.getProperty("SELECT_FROM_QUADRA_BY_QUA_ID"));
 			stmt.setString(1, id);
 			ResultSet rs = stmt.executeQuery();
 			
@@ -158,6 +173,9 @@ public class ImplQuadraDAO implements QuadraDAO{
 			}else {
 				throw new CourtNotFoundException("Não foi encontrada nenhuma quadra com o id: " + id);
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 			
@@ -183,7 +201,8 @@ public class ImplQuadraDAO implements QuadraDAO{
 			in.close();
 			in2.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("VERIFY_QUADRA_BY_QUA_NOME"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(q.queriesQuadra.getProperty("VERIFY_QUADRA_BY_QUA_NOME"));
 			stmt.setString(1, qua.getNome());
 			ResultSet rs = stmt.executeQuery();
 			
@@ -202,6 +221,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 	
 			stmt.executeUpdate();
 			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
 			return true;
 		
 	}catch(SQLException e) {
@@ -224,47 +244,48 @@ public class ImplQuadraDAO implements QuadraDAO{
 			q.queriesQuadra.load(in);
 			in.close();
 			
-			PreparedStatement stmt;
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = null;
 			
 			switch(escolha) {
 			
 				case 1:
-					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_NOME"));
+					stmt = con.prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_NOME"));
 					stmt.setString(1, alteracao);
 					stmt.setString(2, qua.getNome());
 					stmt.executeUpdate();
 					break;
 					
 				case 2:
-					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_ENDERECO"));
+					stmt = con.prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_ENDERECO"));
 					stmt.setString(1, alteracao);
 					stmt.setString(2, qua.getNome());
 					stmt.executeUpdate();
 					break;
 					
 				case 3:
-					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_COBERTURA"));
+					stmt = con.prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_COBERTURA"));
 					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
 					stmt.setString(2, qua.getNome());
 					stmt.executeUpdate();
 					break;
 					
 				case 4:
-					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_ARQUIBANCADA"));
+					stmt = con.prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_ARQUIBANCADA"));
 					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
 					stmt.setString(2, qua.getNome());
 					stmt.executeUpdate();
 					break;
 					
 				case 5:
-					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_AREA_DESCANSO"));
+					stmt = con.prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_AREA_DESCANSO"));
 					stmt.setBoolean(1, UtilidadesConversao.transformaString(alteracao));
 					stmt.setString(2, qua.getNome());
 					stmt.executeUpdate();
 					break;
 					
 				case 6:
-					stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_TIPO"));
+					stmt = con.prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_TIPO"));
 					stmt.setInt(1, Integer.valueOf(alteracao));
 					stmt.setString(2, qua.getNome());
 					stmt.executeUpdate();
@@ -274,6 +295,7 @@ public class ImplQuadraDAO implements QuadraDAO{
 					UtilidadesGUI.exibeMensagem("Opção Inválida!");
 					break;
 			}
+			ConexaoBD.encerrarConexaoBD(con, stmt);
 			return true;
 			
 		} catch(SQLException e) {
@@ -294,11 +316,14 @@ public class ImplQuadraDAO implements QuadraDAO{
 			q.queriesQuadra.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_HABILITADO"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_HABILITADO"));
 			stmt.setBoolean(1, habilitado);
 			stmt.setString(2, nome);
 			
 			stmt.executeUpdate();
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt);
 			return true;
 			
 		}catch(IOException e) {
@@ -319,11 +344,13 @@ public class ImplQuadraDAO implements QuadraDAO{
 			q.queriesQuadra.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_BLOQUEADO"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(q.queriesQuadra.getProperty("UPDATE_QUADRA_BLOQUEADO"));
 			stmt.setBoolean(1, bloqueado);
 			stmt.setString(2, nome);
 			
 			stmt.executeUpdate();
+			ConexaoBD.encerrarConexaoBD(con, stmt);
 			return true;
 			
 		}catch(IOException e) {
@@ -343,9 +370,12 @@ public class ImplQuadraDAO implements QuadraDAO{
 			FileInputStream in = new FileInputStream("DML_QUADRA.properties");
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesQuadra.getProperty("DELETE_QUADRA"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(q.queriesQuadra.getProperty("DELETE_QUADRA"));
 			stmt.setString(1, nome);
 			stmt.executeUpdate();
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt);
 			return true;
 			
 		}catch(IOException e) {
