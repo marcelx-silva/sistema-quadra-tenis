@@ -40,16 +40,7 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 		
 		while(rs.next()) {
 			
-			String codigo = rs.getString("usu_id");
-			String nome = rs.getString("usu_nome");
-			String email = rs.getString("usu_email");
-			String senha = rs.getString("usu_senha");
-			boolean acessoGestorQuadra = rs.getBoolean("usu_acesso_gestor_quadra");
-			boolean acessoGestorUsuario = rs.getBoolean("usu_acesso_gestor_usuario");
-			boolean acessoRelatorio = rs.getBoolean("usu_acesso_relatorio");
-			boolean acessoZelador = rs.getBoolean("usu_acesso_zelador");
-			Usuario usu = new Usuario(codigo, nome, email, senha, acessoGestorQuadra, acessoGestorUsuario, acessoRelatorio, acessoZelador);
-			
+			Usuario usu = montaUsuario(rs);
 			todosUsuarios.add(usu);
 		}
 		
@@ -78,16 +69,7 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 		
 		while(rs.next()) {
 				
-			String codigo = rs.getString("usu_id");
-			String nome = rs.getString("usu_nome");
-			String email = rs.getString("usu_email");
-			String senha = rs.getString("usu_senha");
-			boolean acessoGestorQuadra = rs.getBoolean("usu_acesso_gestor_quadra");
-			boolean acessoGestorUsuario = rs.getBoolean("usu_acesso_gestor_usuario");
-			boolean acessoRelatorio = rs.getBoolean("usu_acesso_relatorio");
-			boolean acessoZelador = rs.getBoolean("usu_acesso_zelador");
-			Usuario usu = new Usuario(codigo, nome, email, senha, acessoGestorQuadra, acessoGestorUsuario, acessoRelatorio, acessoZelador); 
-			
+			Usuario usu = montaUsuario(rs);			
 			todosUsuariosHabilitados.add(usu);
 		}
 		
@@ -153,14 +135,7 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 			
 			if(rs.next()) {
 					
-				String nome = rs.getString("usu_nome");
-				String email = rs.getString("usu_email");
-				String senha = rs.getString("usu_senha");
-				boolean acessoGestorQuadra = rs.getBoolean("usu_acesso_gestor_quadra");
-				boolean acessoGestorUsuario = rs.getBoolean("usu_acesso_gestor_usuario");
-				boolean acessoRelatorio = rs.getBoolean("usu_acesso_relatorio");
-				boolean acessoZelador = rs.getBoolean("usu_acesso_zelador");
-				usu = new Usuario(nome, email, senha, acessoGestorQuadra, acessoGestorUsuario, acessoRelatorio, acessoZelador); 
+				usu = montaUsuario(rs);
 				
 			}else {
 				throw new UserNotFoundException("Não foi encontrado nenhum usuário cadastrado com o email digitado!");
@@ -434,5 +409,18 @@ public class ImplUsuarioDAO implements UsuarioDAO {
 		}
 		
 		return conseguiuLogar;
+	}
+	
+	public Usuario montaUsuario(ResultSet rs) throws SQLException {
+		
+		String codigo = rs.getString("usu_id");
+		String nome = rs.getString("usu_nome");
+		String email = rs.getString("usu_email");
+		String senha = rs.getString("usu_senha");
+		boolean acessoGestorQuadra = rs.getBoolean("usu_acesso_gestor_quadra");
+		boolean acessoGestorUsuario = rs.getBoolean("usu_acesso_gestor_usuario");
+		boolean acessoRelatorio = rs.getBoolean("usu_acesso_relatorio");
+		boolean acessoZelador = rs.getBoolean("usu_acesso_zelador");
+		return new Usuario(codigo, nome, email, senha, acessoGestorQuadra, acessoGestorUsuario, acessoRelatorio, acessoZelador);
 	}
 }
