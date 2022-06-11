@@ -33,7 +33,8 @@ public class GUIClientes {
 					+ "\n3. VISUALIZAR TODOS OS CLIENTES"
 					+ "\n4. BLOQUEAR/DESBLOQUEAR CLIENTES"
 					+ "\n5. ALTERAR DADOS DE CLIENTES"
-					+ "\n6. SAIR DO MENU"
+					+ "\n6. DELETAR CLIENTE"
+					+ "\n7. SAIR DO MENU"
 					+ "\nOP��O: ");
 			
 			operadorMenu = scanner.nextInt();
@@ -60,6 +61,9 @@ public class GUIClientes {
 					this.GUIAlterarDadosCliente(cliente);
 					break;
 				case 6:
+					this.GUIDeletarCliente(cliente);
+					break;
+				case 7:
 					UtilidadesGUI.exibeMensagem("Saindo... \n");
 					break;
 					
@@ -202,6 +206,43 @@ public class GUIClientes {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	void GUIDeletarCliente(Cliente cliente) {
+		try {
+			String cpf;
+			boolean resposta;
+			boolean deletado;
+			
+			
+			
+			UtilidadesGUI.exibeMensagem("Deletar Clientes:\n\n");
+			UtilidadesGUI.exibeMensagem("Entre com o CPF do cliente que deseja deletar:\n");
+			cpf = scanner.nextLine();
+			
+			cliente = clienteDAO.obterClientePeloCPF(cpf);
+			VisualizarDados(cliente);
+		
+			UtilidadesGUI.exibeMensagem("Deseja Deletar ? (sim/não)");
+			resposta = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
+			
+			if(resposta) {
+				deletado  = clienteDAO.DeletarCliente(cliente.getCpf());
+				
+				if(deletado) {
+					UtilidadesGUI.exibeMensagem("Cliente deletado!");
+				}
+			}
+				
+			else
+				UtilidadesGUI.exibeMensagem("Cliente não deletado!");
+			
+			
+			
+			UtilidadesGUI.exibeMensagem("");
+		} catch (ClientNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	void alterarDado(Cliente cliente,int escolha) {
