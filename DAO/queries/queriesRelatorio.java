@@ -26,11 +26,11 @@ public class queriesRelatorio {
 				+ "FROM reserva\r\n"
 				+ "WHERE res_data = ?");
 		
-		queriesRelatorio.setProperty("RESERVATION_BY_DAY_OF_WEEK", "SELECT COUNT(r.res_id), q.qua_nome, q.qua_id, q.qua_nome, q.qua_endereco, q.qua_id_tipo,"
-				+ "q.qua_cobertura, q.qua_arquibancada, q.qua_area_descanso, DAYOFWEEK(r.res_data)\r\n"
+		queriesRelatorio.setProperty("RESERVATION_BY_DAY_OF_WEEK", "SELECT COUNT(r.res_id) 'contagem', q.qua_nome, q.qua_id, q.qua_nome, q.qua_endereco, q.qua_id_tipo,"
+				+ "q.qua_cobertura, q.qua_arquibancada, q.qua_area_descanso, DAYOFWEEK(r.res_data) 'dia'\r\n"
 				+ "FROM reserva r JOIN quadra q\r\n"
 				+ "ON(r.res_id_quadra = q.qua_id)\r\n"
-				+ "GROUP BY DAYOFWEEK(r.res_data); ");
+				+ "GROUP BY DAYOFWEEK(r.res_data)");
 		
 		FileOutputStream out = new FileOutputStream("QUERY_RELATORIOS.properties");
 		queriesRelatorio.store(out, null);
