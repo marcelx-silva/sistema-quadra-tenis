@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -45,7 +45,8 @@ public class ImplReservaDAO implements ReservaDAO {
 			qr.queriesReserva.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA"));
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -53,6 +54,9 @@ public class ImplReservaDAO implements ReservaDAO {
 				Reserva r = montaReserva(rs);
 				listaReservas.add(r);
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
+			
 		}catch(IOException e) {
 			e.printStackTrace();
 			
@@ -74,7 +78,8 @@ public class ImplReservaDAO implements ReservaDAO {
 			qr.queriesReserva.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_DAY_AND_TIME"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_DAY_AND_TIME"));
 			stmt.setString(1, data.format(dataFormatoBD));
 			stmt.setString(2, horarioInicio.format(horarioFormatoBD));
 			stmt.setString(3, horarioFim.format(horarioFormatoBD));
@@ -85,6 +90,9 @@ public class ImplReservaDAO implements ReservaDAO {
 				Reserva r = montaReserva(rs);
 				listaReservas.add(r);
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
+			
 		}catch(IOException e) {
 			e.printStackTrace();
 			
@@ -106,7 +114,8 @@ public class ImplReservaDAO implements ReservaDAO {
 			qr.queriesReserva.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_DAY"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_DAY"));
 			stmt.setString(1, data.format(dataFormatoBD));
 			ResultSet rs = stmt.executeQuery();
 			
@@ -115,6 +124,9 @@ public class ImplReservaDAO implements ReservaDAO {
 				Reserva r = montaReserva(rs);
 				listaReservas.add(r);
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
+			
 		}catch(IOException e) {
 			e.printStackTrace();
 			
@@ -136,7 +148,8 @@ public class ImplReservaDAO implements ReservaDAO {
 			qr.queriesReserva.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_INTERVAL_OF_DAYS"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_INTERVAL_OF_DAYS"));
 			stmt.setString(1, dataInicio.format(dataFormatoBD));
 			stmt.setString(2, dataFim.format(dataFormatoBD));
 			ResultSet rs = stmt.executeQuery();
@@ -146,6 +159,9 @@ public class ImplReservaDAO implements ReservaDAO {
 				Reserva r = montaReserva(rs);
 				listaReservas.add(r);
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
+			
 		}catch(IOException e) {
 			e.printStackTrace();
 			
@@ -168,7 +184,8 @@ public class ImplReservaDAO implements ReservaDAO {
 			qr.queriesReserva.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_ID"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_ID"));
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			
@@ -176,6 +193,8 @@ public class ImplReservaDAO implements ReservaDAO {
 				
 				r = montaReserva(rs);
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -202,16 +221,20 @@ public class ImplReservaDAO implements ReservaDAO {
 			qr.queriesReserva.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_ID"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qr.queriesReserva.getProperty("SELECT_ALL_FROM_RESERVA_BY_ID"));
 			stmt.setInt(1, Integer.valueOf(r.getCodigo()));
 			ResultSet rs = stmt.executeQuery();
 			
 			if(rs.next()) {
 				
-				stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("REGISTER_CUSTOMER_PAYMENT"));
+				
+				stmt = con.prepareStatement(qr.queriesReserva.getProperty("REGISTER_CUSTOMER_PAYMENT"));
 				stmt.setBoolean(1, true);
 				stmt.executeUpdate();
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -235,10 +258,13 @@ public class ImplReservaDAO implements ReservaDAO {
 			qr.queriesReserva.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("REGISTER_CUSTOMER_ENTRANCE"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qr.queriesReserva.getProperty("REGISTER_CUSTOMER_ENTRANCE"));
 			
 			stmt.setInt(1, Integer.valueOf(r.getCodigo()));
 			stmt.executeUpdate();
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt);
 			
 		}catch(SQLException e) {
 
@@ -262,10 +288,13 @@ public class ImplReservaDAO implements ReservaDAO {
 			qr.queriesReserva.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("REGISTER_CUSTOMER_EXIT"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qr.queriesReserva.getProperty("REGISTER_CUSTOMER_EXIT"));
 			
 			stmt.setInt(1, Integer.valueOf(r.getCodigo()));
 			stmt.executeUpdate();
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt);
 			
 		}catch(SQLException e) {
 
@@ -289,7 +318,8 @@ public class ImplReservaDAO implements ReservaDAO {
 			qr.queriesReserva.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("INSERT_INTO_RESERVA"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qr.queriesReserva.getProperty("INSERT_INTO_RESERVA"));
 			
 			stmt.setInt(1, Integer.valueOf(r.getCodigo()));
 			stmt.setString(2, r.getHorarioInicio().format(horarioFormatoBD));
@@ -302,6 +332,8 @@ public class ImplReservaDAO implements ReservaDAO {
 			stmt.setNull(9, 0);
 			stmt.setNull(10, 0);
 			stmt.executeUpdate();
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt);
 			
 		}catch(SQLException e) {
 
@@ -325,10 +357,13 @@ public class ImplReservaDAO implements ReservaDAO {
 			qr.queriesReserva.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qr.queriesReserva.getProperty("DELETE_FROM_RESERVA"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qr.queriesReserva.getProperty("DELETE_FROM_RESERVA"));
 			
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt);
 			
 		}catch(SQLException e) {
 
