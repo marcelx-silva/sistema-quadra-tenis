@@ -14,9 +14,7 @@ public interface ClienteDAO {
 	
 	Cliente obterClientePeloCPF(String cpf) throws ClientNotFoundException;
 	
-	Cliente obterClientePeloCpf(String cpf) throws ClientNotFoundException;
-	
-	List<Cliente> obterClienteHabilitados(boolean bloqueado) throws IOException, SQLException;
+	List<Cliente> obterClientesHabilitados(boolean habilitado) throws IOException, SQLException;
 		
 	boolean CadastrarCliente(Cliente c);
 	

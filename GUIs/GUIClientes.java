@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import Dominio.Cliente;
 import Exceptions.ClientNotFoundException;
+import Utilitario.UtilidadesConversao;
 import Utilitario.UtilidadesGUI;
 import implementacaoDAO.ImpClienteDAO;
 
@@ -28,10 +29,12 @@ public class GUIClientes {
 
 			UtilidadesGUI.exibeMensagem("MENU CLIENTES"
 					+ "\n1. CADASTRAR CLIENTE"
-					+ "\n2. VISUALIZAR CLIENTES"
-					+ "\n3. BLOQUEAR/DESBLOQUEAR CLIENTES"
-					+ "\n4. ALTERAR DADOS DE CLIENTES"
-					+ "\n5. SAIR DO MENU"
+					+ "\n2. VISUALIZAR CLIENTE PELO CPF"
+					+ "\n3. VISUALIZAR TODOS OS CLIENTES"
+					+ "\n4. BLOQUEAR/DESBLOQUEAR CLIENTES"
+					+ "\n5. ALTERAR DADOS DE CLIENTES"
+					+ "\n6. DELETAR CLIENTE"
+					+ "\n7. SAIR DO MENU"
 					+ "\nOP��O: ");
 			
 			operadorMenu = scanner.nextInt();
@@ -47,15 +50,21 @@ public class GUIClientes {
 					break;
 					
 				case 3:
-					UtilidadesGUI.exibeMensagem("Em Desenvolvimento!\n");
+					this.GUIExibirTodosClientes();
 					break;
 					
 				case 4:
-					UtilidadesGUI.exibeMensagem("Em Desenvolvimento!\n");
+					this.GUIBloquearCliente(cliente);
 					break;
 					
-				case  5:
-					UtilidadesGUI.exibeMensagem("Voltando ao menu anterior!\n");
+				case 5:
+					this.GUIAlterarDadosCliente(cliente);
+					break;
+				case 6:
+					this.GUIDeletarCliente(cliente);
+					break;
+				case 7:
+					UtilidadesGUI.exibeMensagem("Saindo... \n");
 					break;
 					
 				default:
@@ -64,7 +73,7 @@ public class GUIClientes {
 
 			}
 			
-		}while(operadorMenu!=5);
+		}while(operadorMenu!=6);
 	}
 	
 	void GUICadastroCliente(Cliente cliente){
@@ -130,15 +139,6 @@ public class GUIClientes {
 		
 	}
 	
-	void VisualizarDados(Cliente cliente) {
-		UtilidadesGUI.exibeMensagem("Nome: "+cliente.getNome()
-		+"Data de Nascimento: "+cliente.getDataNascimento()
-		+"CPF: "+cliente.getCpf()
-		+"Email: "+cliente.getEmail()
-		+"Celular: "+cliente.getNumeroCelular());
-	}
-	
-	
 	void GUIAlterarDadosCliente(Cliente cliente) {
 		
 		String cpf;
@@ -180,6 +180,71 @@ public class GUIClientes {
 		}
 	}
 	
+	void GUIBloquearCliente(Cliente cliente) {
+		
+		try {
+			String cpf;
+			boolean resposta;
+			
+			
+			
+			UtilidadesGUI.exibeMensagem("Bloquear/Desbloquear Clientes:\n\n");
+			UtilidadesGUI.exibeMensagem("Entre com o CPF do cliente que deseja bloquear/desbloquear:\n");
+			cpf = scanner.nextLine();
+			
+			cliente = clienteDAO.obterClientePeloCPF(cpf);
+			VisualizarDados(cliente);
+		
+			UtilidadesGUI.exibeMensagem("Bloquear/Desbloquear (sim/não)");
+			resposta = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
+			clienteDAO.BloquearCliente(cliente.getCpf(), resposta);
+			
+			
+			
+			UtilidadesGUI.exibeMensagem("");
+		} catch (ClientNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	void GUIDeletarCliente(Cliente cliente) {
+		try {
+			String cpf;
+			boolean resposta;
+			boolean deletado;
+			
+			
+			
+			UtilidadesGUI.exibeMensagem("Deletar Clientes:\n\n");
+			UtilidadesGUI.exibeMensagem("Entre com o CPF do cliente que deseja deletar:\n");
+			cpf = scanner.nextLine();
+			
+			cliente = clienteDAO.obterClientePeloCPF(cpf);
+			VisualizarDados(cliente);
+		
+			UtilidadesGUI.exibeMensagem("Deseja Deletar ? (sim/não)");
+			resposta = UtilidadesConversao.transformaString(UtilidadesGUI.persistirValor(scanner.next()));
+			
+			if(resposta) {
+				deletado  = clienteDAO.DeletarCliente(cliente.getCpf());
+				
+				if(deletado) {
+					UtilidadesGUI.exibeMensagem("Cliente deletado!");
+				}
+			}
+				
+			else
+				UtilidadesGUI.exibeMensagem("Cliente não deletado!");
+			
+			
+			
+			UtilidadesGUI.exibeMensagem("");
+		} catch (ClientNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	void alterarDado(Cliente cliente,int escolha) {
 		
 		String alteracao;
@@ -198,6 +263,14 @@ public class GUIClientes {
 			
 		}
 		
+	}
+	
+	void VisualizarDados(Cliente cliente) {
+		UtilidadesGUI.exibeMensagem("Nome: "+cliente.getNome()
+		+"Data de Nascimento: "+cliente.getDataNascimento()
+		+"CPF: "+cliente.getCpf()
+		+"Email: "+cliente.getEmail()
+		+"Celular: "+cliente.getNumeroCelular());
 	}
 	
 	

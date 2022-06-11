@@ -71,54 +71,8 @@ public class ImpClienteDAO implements ClienteDAO {
 		
 		return new Cliente(nome, email, cpf, celular, LocaldataNascimento, bloqueado, invalidado);
 	}
-	
-	
-	
-	public Cliente obterClientePeloCPF(String cpf) throws ClientNotFoundException {
 		
-		Cliente cliente = null;
-		
-	try {
-		
-		q.consultaCliente();
-		
-		
-		FileInputStream in = new FileInputStream("QUERY_CONSULTA_CLIENTE.properties");
-		q.queriesCliente.load(in);
-		in.close();
-		
-		Connection con =  ConexaoBD.conectaBD();
-		PreparedStatement stmt = con.prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_FROM_CLIENT_BY_CPF"));
-		stmt.setString(1,cpf);
-		ResultSet rs = stmt.executeQuery();
-		
-		
-		
-		if(rs.next()){
-			
-			cliente = montaCliente(rs);
-			
-		}else {
-			throw new ClientNotFoundException("Cliente inexistente");
-		}
-		
-		ConexaoBD.encerrarConexaoBD(con,stmt,rs);
-	
-		
-	}catch(SQLException e) {
-		e.printStackTrace();
-		
-	}catch(IOException io) {
-		io.printStackTrace();
-	}	
-		
-	return cliente;
-		
-		
-		
-	}
-	
-public Cliente obterClientePeloCpf(String cpf) throws ClientNotFoundException {
+    public Cliente obterClientePeloCPF(String cpf) throws ClientNotFoundException {
 		
 		Cliente cliente = null;
 		
@@ -162,7 +116,7 @@ public Cliente obterClientePeloCpf(String cpf) throws ClientNotFoundException {
 		
 	}
 	
-	public List<Cliente> obterClienteHabilitados(boolean bloqueado) throws IOException, SQLException{
+	public List<Cliente> obterClientesHabilitados(boolean habilitado) throws IOException, SQLException{
 		
 		q.consultaCliente();
 		List<Cliente> listaClientesBloqueados = new ArrayList<Cliente>();
@@ -170,8 +124,8 @@ public Cliente obterClientePeloCpf(String cpf) throws ClientNotFoundException {
 		FileInputStream in = new FileInputStream("QUERY_CONSULTA_CLIENTE.properties");
 		q.queriesCliente.load(in);
 		in.close();
-		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_BLOCKED_CLIENT"));
-		stmt.setBoolean(1, bloqueado);
+		PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(q.queriesCliente.getProperty("SELECT_ALL_DISABLE_CLIENT"));
+		stmt.setBoolean(1, habilitado);
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()){
@@ -188,7 +142,6 @@ public Cliente obterClientePeloCpf(String cpf) throws ClientNotFoundException {
 		return listaClientesBloqueadoCopia;
 	}
 		
-	
 	public boolean CadastrarCliente(Cliente c){
 		
 		try {
@@ -238,8 +191,7 @@ public Cliente obterClientePeloCpf(String cpf) throws ClientNotFoundException {
 		
 		
 	}
-	
-	
+		
 	public boolean AlterarDadosCliente(Cliente c,String alteracao, int escolha) {
 		
 		try {
@@ -301,8 +253,7 @@ public Cliente obterClientePeloCpf(String cpf) throws ClientNotFoundException {
 		}
 		return false;
 	}
-	
-	
+		
 	public boolean DesabilitarCliente(String cpf, boolean habilitado) throws ClientNotFoundException {
 		
 		try {
@@ -357,7 +308,6 @@ public Cliente obterClientePeloCpf(String cpf) throws ClientNotFoundException {
 		}
 	}
 	
-
 	public boolean BloquearCliente(String cpf, boolean bloqueado) throws ClientNotFoundException {
 		
 		
@@ -469,7 +419,6 @@ public Cliente obterClientePeloCpf(String cpf) throws ClientNotFoundException {
 		
 	}
 	
-	
 	public boolean DeletarCliente(String cpf) throws  ClientNotFoundException {
 		
 		try {
@@ -520,5 +469,7 @@ public Cliente obterClientePeloCpf(String cpf) throws ClientNotFoundException {
 			return false;
 		}
 	}
+
+
 
 }
