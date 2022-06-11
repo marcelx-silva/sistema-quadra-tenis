@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 
 import Dominio.Quadra;
+import Enum.DiaSemana;
 
 public interface RelatorioDAO {
 
@@ -14,5 +15,5 @@ public interface RelatorioDAO {
 	
 	BigDecimal receitaPorPeridoDeDiaEQuadra(Quadra q, LocalDate dataInicio, LocalDate dataFim);
 	
-	HashMap<String, Integer> usoDasQuadrasPorDiaDaSemana(LocalDate dataInicio, LocalDate dataFim);
+	HashMap<DiaSemana, Integer> usoDasQuadrasPorDiaDaSemana(LocalDate dataInicio, LocalDate dataFim);
 }
