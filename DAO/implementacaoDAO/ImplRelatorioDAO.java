@@ -58,7 +58,7 @@ public class ImplRelatorioDAO implements RelatorioDAO {
 	@Override
 	public BigDecimal receitaPorPeridoDeDia(LocalDate dataInicio, LocalDate dataFim) {
 		
-		BigDecimal receitaDia = null;
+		BigDecimal receitaDias = null;
 		try {
 			qr.consultaRelatorios();
 			FileInputStream in = new FileInputStream(qr.queriesRelatorio.getProperty("QUERY_RELATORIOS.properties"));
@@ -72,7 +72,7 @@ public class ImplRelatorioDAO implements RelatorioDAO {
 			ResultSet rs = stmt.executeQuery();
 			
 			if(rs.next()) {
-				receitaDia = rs.getBigDecimal("res_valor");
+				receitaDias = rs.getBigDecimal("res_valor");
 			}
 			
 		}catch(IOException e) {
@@ -82,13 +82,37 @@ public class ImplRelatorioDAO implements RelatorioDAO {
 			e.printStackTrace();
 			
 		}
-		return receitaDia;
+		return receitaDias;
 	}
 
 	@Override
 	public BigDecimal receitaPorPeridoDeDiaEQuadra(Quadra q, LocalDate dataInicio, LocalDate dataFim) {
-		// TODO Auto-generated method stub
-		return null;
+		BigDecimal receitaDias = null;
+		try {
+			qr.consultaRelatorios();
+			FileInputStream in = new FileInputStream(qr.queriesRelatorio.getProperty("QUERY_RELATORIOS.properties"));
+			qr.queriesRelatorio.load(in);
+			in.close();
+			
+			Connection con = ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qr.queriesRelatorio.getProperty("RECEIPT_BY_DAY"));
+			stmt.setInt(1, Integer.valueOf(q.getCodigo()));
+			stmt.setString(2, dataInicio.format(dataFormatoBD));
+			stmt.setString(3, dataFim.format(dataFormatoBD));
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				receitaDias = rs.getBigDecimal("res_valor");
+			}
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}
+		return receitaDias;
 	}
 
 	@Override
