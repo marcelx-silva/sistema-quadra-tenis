@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -46,13 +46,16 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 			qm.queriesManutencao.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO"));
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
 				Manutencao m = montaManutencao(rs);
 				listaManutencoes.add(m);
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -75,7 +78,8 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 			qm.queriesManutencao.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO_BY_INTERVAL_OF_DAYS"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO_BY_INTERVAL_OF_DAYS"));
 			stmt.setString(1, dataInicio.format(dataFormatoBD));
 			stmt.setString(2, dataFim.format(dataFormatoBD));
 			ResultSet rs = stmt.executeQuery();
@@ -84,6 +88,8 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 				Manutencao m = montaManutencao(rs);
 				listaManutencoes.add(m);
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -106,7 +112,8 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 			qm.queriesManutencao.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO_BY_DAY"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO_BY_DAY"));
 			stmt.setString(1, dataManutencao.format(dataFormatoBD));
 			ResultSet rs = stmt.executeQuery();
 			
@@ -114,6 +121,8 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 				Manutencao m = montaManutencao(rs);
 				listaManutencoes.add(m);
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -136,7 +145,8 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 			qm.queriesManutencao.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO_BY_DAY_AND_TIME"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO_BY_DAY_AND_TIME"));
 			stmt.setString(1, dataManutencao.format(dataFormatoBD));
 			stmt.setString(2, horarioInicioM.format(horarioFormatoBD));
 			stmt.setString(3, horarioFimM.format(horarioFormatoBD));
@@ -146,6 +156,8 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 				Manutencao m = montaManutencao(rs);
 				listaManutencoes.add(m);
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -168,7 +180,8 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 			qm.queriesManutencao.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO_BY_ID"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qm.queriesManutencao.getProperty("SELECT_ALL_FROM_MANUTENCAO_BY_ID"));
 			stmt.setInt(1, Integer.valueOf(id));
 			ResultSet rs = stmt.executeQuery();
 			
@@ -177,6 +190,8 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 			}else {
 				throw new MaintenanceNotFoundException("Não foi encontrada nenhuma manutenção cadastrada com este código!");
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt, rs);
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -197,7 +212,8 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 			qm.queriesManutencao.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("INSERT_INTO_MANUTENCAO"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qm.queriesManutencao.getProperty("INSERT_INTO_MANUTENCAO"));
 			
 			stmt.setInt(1, Integer.valueOf(m.getCodigo()));
 			stmt.setString(2, m.getDescricao());
@@ -207,6 +223,8 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 			stmt.setBoolean(6, m.isPreventiva());
 			stmt.setInt(7, Integer.valueOf(m.getQuadra().getCodigo()));		
 			stmt.executeUpdate();
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt);
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -228,42 +246,45 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 			qm.queriesManutencao.load(in);
 			in.close();
 			
-			PreparedStatement stmt;
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = null;
 			
 			switch(escolha) {
 			
 				case 1:
-					stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_DESC"));
+					stmt = con.prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_DESC"));
 					stmt.setString(1, alteracao);
 					stmt.setString(2, m.getCodigo());
 					stmt.executeUpdate();
-					break;
-					
+				break;
+			
 				case 2:
-					stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_DATA"));
+					stmt = con.prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_DATA"));
 					stmt.setString(1, LocalDate.parse(alteracao, dataFormatoPadrao).format(dataFormatoBD));
 					stmt.setString(2, m.getCodigo());
 					stmt.executeUpdate();
-					break;
-					
+				break;
+				
 				case 3:
-					stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_HORARIO_INICIO"));
+					stmt = con.prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_HORARIO_INICIO"));
 					stmt.setString(1, LocalTime.parse(alteracao, horarioFormatoPadrao).format(horarioFormatoBD));
 					stmt.setString(2, m.getCodigo());
 					stmt.executeUpdate();
-					break;
-					
+				break;
+				
 				case 4:
-					stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_HORARIO_FIM"));
+				 	stmt = con.prepareStatement(qm.queriesManutencao.getProperty("UPDATE_MANUTENCAO_HORARIO_FIM"));
 					stmt.setString(1, LocalTime.parse(alteracao, horarioFormatoPadrao).format(horarioFormatoBD));
 					stmt.setString(2, m.getCodigo());
 					stmt.executeUpdate();
-					break;
-					
-				default:
-					UtilidadesGUI.exibeMensagem("Opção Inválida!");
-					break;
-			}
+				break;
+			
+		default:
+			UtilidadesGUI.exibeMensagem("Opção Inválida!");
+			break;
+	}
+			ConexaoBD.encerrarConexaoBD(con, stmt);
+			
 			return true;
 			
 		} catch(SQLException e) {
@@ -283,10 +304,13 @@ public class ImplManutencaoDAO implements ManutencaoDAO {
 			qm.queriesManutencao.load(in);
 			in.close();
 			
-			PreparedStatement stmt = ConexaoBD.conectaBD().prepareStatement(qm.queriesManutencao.getProperty("DELETE_FROM_MANUTENCAO"));
+			Connection con =  ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qm.queriesManutencao.getProperty("DELETE_FROM_MANUTENCAO"));
 			
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt);
 			
 		}catch(SQLException e) {
 
