@@ -46,6 +46,8 @@ public class ImplRelatorioDAO implements RelatorioDAO {
 				receitaDia = rs.getBigDecimal("res_valor");
 			}
 			
+			ConexaoBD.encerrarConexaoBD(con, stmt);
+			
 		}catch(IOException e) {
 			e.printStackTrace();
 			
@@ -75,6 +77,8 @@ public class ImplRelatorioDAO implements RelatorioDAO {
 			if(rs.next()) {
 				receitaDias = rs.getBigDecimal("res_valor");
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt);
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -106,6 +110,8 @@ public class ImplRelatorioDAO implements RelatorioDAO {
 				receitaDias = rs.getBigDecimal("res_valor");
 			}
 			
+			ConexaoBD.encerrarConexaoBD(con, stmt);
+			
 		}catch(IOException e) {
 			e.printStackTrace();
 			
@@ -135,6 +141,8 @@ public class ImplRelatorioDAO implements RelatorioDAO {
 			while(rs.next()) {
 				usoPorDia.put(UtilidadesConversao.transformaInteiroEmDiaSemana(rs.getInt("dia")), Integer.valueOf(rs.getInt("contagem")));
 			}
+			
+			ConexaoBD.encerrarConexaoBD(con, stmt);
 			
 		}catch(IOException e) {
 			e.printStackTrace();
