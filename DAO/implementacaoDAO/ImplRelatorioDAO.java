@@ -57,8 +57,32 @@ public class ImplRelatorioDAO implements RelatorioDAO {
 
 	@Override
 	public BigDecimal receitaPorPeridoDeDia(LocalDate dataInicio, LocalDate dataFim) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		BigDecimal receitaDia = null;
+		try {
+			qr.consultaRelatorios();
+			FileInputStream in = new FileInputStream(qr.queriesRelatorio.getProperty("QUERY_RELATORIOS.properties"));
+			qr.queriesRelatorio.load(in);
+			in.close();
+			
+			Connection con = ConexaoBD.conectaBD();
+			PreparedStatement stmt = con.prepareStatement(qr.queriesRelatorio.getProperty("RECEIPT_BY_DAY"));
+			stmt.setString(1, dataInicio.format(dataFormatoBD));
+			stmt.setString(2, dataFim.format(dataFormatoBD));
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				receitaDia = rs.getBigDecimal("res_valor");
+			}
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}
+		return receitaDia;
 	}
 
 	@Override
